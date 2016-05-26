@@ -26,9 +26,9 @@ return [
     |
     */
 
-    // 'default' => env('DB_CONNECTION', 'pgsql'),
+    'default' => env('DB_CONNECTION', 'pgsql'),
 
-    'default' => 'pgsql',
+    // 'default' => 'pgsql',
 
     // $url = parse_url(getenv("DATABASE_URL"));
     // $host = $url["host"];
