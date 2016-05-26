@@ -30,7 +30,7 @@ return [
 
     // 'default' => 'pgsql',
     //
-    $url = parse_url(getenv("DATABASE_URL"));
+    $url = parse_url(getenv("postgres://szjbaepoxfjxsh:AIT6rj1whgiOpJdDeL4MPMQ1qU@ec2-107-22-250-212.compute-1.amazonaws.com:5432/d4022qtjg0tavf"));
     $host = $url["host"];
     $username = $url["user"];
     $password = $url["pass"];
