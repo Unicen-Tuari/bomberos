@@ -26,15 +26,15 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'mysql'),
+    // 'default' => env('DB_CONNECTION', 'pgsql'),
 
-    // 'default' => 'pgsql',
-    //
-    $url = parse_url(getenv("postgres://szjbaepoxfjxsh:AIT6rj1whgiOpJdDeL4MPMQ1qU@ec2-107-22-250-212.compute-1.amazonaws.com:5432/d4022qtjg0tavf"));
-    $host = $url["host"];
-    $username = $url["user"];
-    $password = $url["pass"];
-    $database = substr($url["path"], 1);
+    'default' => 'pgsql',
+
+    // $url = parse_url(getenv("DATABASE_URL"));
+    // $host = $url["host"];
+    // $username = $url["user"];
+    // $password = $url["pass"];
+    // $database = substr($url["path"], 1);
     //
     // 'pgsql' => array(
     // 'driver'   => 'pgsql',
@@ -85,14 +85,10 @@ return [
 
         'pgsql' => [
             'driver'   => 'pgsql',
-            // 'host'     => env('DB_HOST', 'localhost'),
-            // 'database' => env('DB_DATABASE', 'forge'),
-            // 'username' => env('DB_USERNAME', 'forge'),
-            // 'password' => env('DB_PASSWORD', ''),
-            'host'     => $host,
-            'database' => $database,
-            'username' => $username,
-            'password' => $password,
+            'host'     => env('DB_HOST', 'localhost'),
+            'database' => env('DB_DATABASE', 'forge'),
+            'username' => env('DB_USERNAME', 'forge'),
+            'password' => env('DB_PASSWORD', ''),
             'charset'  => 'utf8',
             'prefix'   => '',
             'schema'   => 'public',
