@@ -26,26 +26,26 @@ return [
     |
     */
 
-    //'default' => env('DB_CONNECTION', 'pgsql'),
+    'default' => env('DB_CONNECTION', 'pgsql'),
 
-    'default' => 'pgsql',
-
-    $url = parse_url(getenv("DATABASE_URL"));
-    $host = $url["host"];
-    $username = $url["user"];
-    $password = $url["pass"];
-    $database = substr($url["path"], 1);
-
-    'pgsql' => array(
-    'driver'   => 'pgsql',
-    'host'     => $host,
-    'database' => $database,
-    'username' => $username,
-    'password' => $password,
-    'charset'  => 'utf8',
-    'prefix'   => '',
-    'schema'   => 'public',
-    ),
+    // 'default' => 'pgsql',
+    //
+    // $url = parse_url(getenv("DATABASE_URL"));
+    // $host = $url["host"];
+    // $username = $url["user"];
+    // $password = $url["pass"];
+    // $database = substr($url["path"], 1);
+    //
+    // 'pgsql' => array(
+    // 'driver'   => 'pgsql',
+    // 'host'     => $host,
+    // 'database' => $database,
+    // 'username' => $username,
+    // 'password' => $password,
+    // 'charset'  => 'utf8',
+    // 'prefix'   => '',
+    // 'schema'   => 'public',
+    // ),
 
     /*
     |--------------------------------------------------------------------------
