@@ -11,9 +11,10 @@ class NotesTableSeeder extends Seeder
      */
      public function run()
      {
-         factory(App\Note::class)->create([
-           'note' => 'Primer nota'
-         ]
-       );
+       for($i = 1; $i < 5; $i++){
+               App\Note::create(array(
+                   'note' => 'nota' . $i
+               ));
+          }
      }
 }
