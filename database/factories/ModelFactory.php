@@ -11,7 +11,7 @@
 |
 */
 
-$factory->define(App\Note::class, function ($faker) {
+  $factory->define(App\Note::class, function ($faker) {
     return [
         'note' => $faker->name,
     ];
