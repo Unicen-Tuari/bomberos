@@ -1,7 +1,7 @@
 vendor/
 node_modules/
 
-# Laravel 4 specific
+# Laravel 4 specificacion
 bootstrap/compiled.php
 app/storage/
 
