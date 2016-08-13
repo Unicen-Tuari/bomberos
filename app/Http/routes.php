@@ -14,7 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
+
+Route::get('/alta', 'BomberoController@alta');
+
+Route::post('/alta', ['uses'=>'BomberoController@altaBombero', 'as'=>'altaBombero']);
