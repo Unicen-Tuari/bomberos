@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<article class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
@@ -24,15 +24,15 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">Nombre de usuario</label>
+                        <div class="form-group{{ $errors->has('usuario') ? ' has-error' : '' }}">
+                            <label for="usuario" class="col-md-4 control-label">Nombre de usuario</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="text" class="form-control" name="email" value="{{ old('email') }}">
+                                <input id="usuario" type="text" class="form-control" name="usuario" value="{{ old('usuario') }}">
 
-                                @if ($errors->has('email'))
+                                @if ($errors->has('usuario'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                                        <strong>{{ $errors->first('usuario') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -69,7 +69,7 @@
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-btn fa-user"></i> Registrar
+                                    <i class=" glyphicon glyphicon-user"></i> Registrar
                                 </button>
                             </div>
                         </div>
@@ -78,5 +78,5 @@
             </div>
         </div>
     </div>
-</div>
+</article>
 @endsection
