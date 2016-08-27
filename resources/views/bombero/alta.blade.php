@@ -7,7 +7,7 @@
     Formulario de alta bombero
   </div>
   <div class="panel-body">
-    {!! Form::open([ 'class' => 'form-horizontal', 'url' => 'alta', 'method' => 'POST', 'files' => true]) !!}
+    {!! Form::open([ 'route' => 'bombero.store', 'class' => 'form-horizontal', 'method' => 'POST', 'files' => true]) !!}
       {{ csrf_field() }} {{-- Crea todo el campo TOKEN falsificación de petición en sitios cruzados --}}
 
       <div class="form-group {{ $errors->has('nombre') ? ' has-error' : '' }}">
