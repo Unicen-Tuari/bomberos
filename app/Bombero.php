@@ -8,7 +8,7 @@ class Bombero extends Model
 {
   protected $table = 'bombero';
   protected $fillable = [
-      'nombre','apellido', 'nro_legajo', 'jerarquia',
+      'nro_legajo', 'jerarquia', 'apellido', 'nombre',
       'direccion', 'telefono', 'fecha_nacimiento',
   ];
 }
