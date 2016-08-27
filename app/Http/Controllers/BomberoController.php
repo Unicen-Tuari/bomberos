@@ -15,7 +15,12 @@ class BomberoController extends Controller
   {
       $this->middleware('auth');
   }
-  public function alta()
+  public function index()
+  {
+      $bomberos=Bombero::all();
+      return view('bombero/lista',compact('bomberos'));
+  }
+  public function create()
   {
       return view('bombero/alta');
   }
@@ -26,20 +31,7 @@ class BomberoController extends Controller
    * @param  array  $data
    * @return User
    */
-  protected function create(Request  $data)
-  {
-      return Bombero::create([
-          'nombre' => $data['nombre'],
-          'apellido'=> $data['apellido'],
-          'nro_legajo' => $data['nro_legajo'],
-          'jerarquia' => $data['jerarquia'],
-          'direccion' => $data['direccion'],
-          'telefono' => $data['telefono'],
-          'fecha_nacimiento' => $data['fechan'],
-      ]);
-  }
-
-  public function altaBombero(GuardarBomberoRequest  $data)
+  public function store(GuardarBomberoRequest  $data)
   {
     Bombero::create([
         'nombre' => $data->all()['nombre'],
@@ -50,6 +42,6 @@ class BomberoController extends Controller
         'telefono' => $data->all()['telefono'],
         'fecha_nacimiento' => $data->all()['fechan'],
     ]);
-    return back();
+    return BomberoController::index();
   }
 }
