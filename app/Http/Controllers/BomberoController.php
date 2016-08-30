@@ -24,6 +24,18 @@ class BomberoController extends Controller
   {
       return view('bombero/alta');
   }
+  public function edit($id)
+  {
+      $bombero=Bombero::find($id);
+      return view('bombero/editar',compact('bombero'));
+  }
+  public function destroy($id)
+  {
+      $bombero=Bombero::find($id);
+      $bombero->delete();
+      $bomberos=Bombero::all();
+      return view('bombero/lista',compact('bomberos'));
+  }
 
   /**
    * Create a new user instance after a valid registration.

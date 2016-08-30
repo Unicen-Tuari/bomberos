@@ -30,8 +30,12 @@
             <td class="text-center">{{$bombero->direccion}}</td>
             <td class="text-center">{{$bombero->telefono}}</td>
             <td class="text-center">{{$bombero->fecha_nacimiento}}</td>
-            <td class="text-center"><span class="glyphicon glyphicon-trash"></span></td>
-            <td class="text-center"><span class="glyphicon glyphicon-edit"></span></td>
+            <td class="text-center">
+              {{ Form::open(['route' => ['bombero.destroy', $bombero->id], 'method' => 'delete']) }}
+                  <button type="submit" class="btn btn-danger btn-mini glyphicon glyphicon-trash"></button>
+              {{ Form::close() }}
+            </td>
+            <td class="text-center"><a class="glyphicon glyphicon-edit" href="{{ url("/bombero/$bombero->id/edit") }}"></a></td>
           </tr>
         @endforeach
         </tbody>
