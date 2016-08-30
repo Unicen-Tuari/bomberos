@@ -18,6 +18,12 @@ Route::auth();
 
 Route::get('/home', 'HomeController@index');
 
-Route::get('/alta', 'BomberoController@alta');
+Route::resource('bombero','BomberoController');
 
-Route::post('/alta', ['uses'=>'BomberoController@altaBombero', 'as'=>'altaBombero']);
+// Route::group(['prefix' => 'bombero'], function () {
+//
+//     Route::get('/alta', 'BomberoController@vistaAlta');
+//     Route::get('/lista', 'BomberoController@vistaLista');
+//
+//     Route::post('/alta', 'BomberoController@altaBombero');
+// });

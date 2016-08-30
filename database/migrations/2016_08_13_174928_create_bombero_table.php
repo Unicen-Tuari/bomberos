@@ -14,6 +14,7 @@ class CreateBomberoTable extends Migration
     {
         Schema::create('bombero', function (Blueprint $table) {
             $table->increments('id');
+            $table->rememberToken();
             $table->string('nombre', 100);
             $table->string('apellido', 100);
             $table->string('nro_legajo', 100)->unique();;
