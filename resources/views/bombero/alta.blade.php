@@ -8,7 +8,6 @@
   </div>
   <div class="panel-body">
     {!! Form::open([ 'route' => 'bombero.store', 'class' => 'form-horizontal', 'method' => 'POST', 'files' => true]) !!}
-      {{ csrf_field() }} {{-- Crea todo el campo TOKEN falsificación de petición en sitios cruzados --}}
 
       <div class="form-group {{ $errors->has('nombre') ? ' has-error' : '' }}">
         {!! Form::label('nombre', 'Nombre',['class' => 'col-md-4 control-label']) !!}
@@ -88,14 +87,14 @@
         </div>
       </div>
 
-      <div class="form-group {{ $errors->has('fechan') ? ' has-error' : '' }}">
-        {!! Form::label('fechan', 'Fecha de nacimiento',['class' => 'col-md-4 control-label']) !!}
+      <div class="form-group {{ $errors->has('fecha_nacimiento') ? ' has-error' : '' }}">
+        {!! Form::label('fecha_nacimiento', 'Fecha de nacimiento',['class' => 'col-md-4 control-label']) !!}
         <div class="col-md-6">
-        {!! Form::text('fechan', 'dia/mes/año', ['class' => 'form-control']) !!}
+        {!! Form::text('fecha_nacimiento', 'año-mes-dia', ['class' => 'form-control']) !!}
 
-            @if ($errors->has('fechan'))
+            @if ($errors->has('fecha_nacimiento'))
                 <span class="help-block">
-                    <strong>{{ $errors->first('fechan') }}</strong>
+                    <strong>{{ $errors->first('fecha_nacimiento') }}</strong>
                 </span>
             @endif
         </div>

@@ -6,8 +6,7 @@ use Illuminate\Http\Request;
 
 use Validator;
 use App\Bombero;
-use App\Http\Requests;
-use App\Http\Requests\GuardarBomberoRequest;
+use App\Http\Requests\saveBomberoRequest;
 
 class BomberoController extends Controller
 {
@@ -17,7 +16,7 @@ class BomberoController extends Controller
   }
   public function index()
   {
-      $bomberos=Bombero::all();
+      $bomberos=Bombero::orderBy('nombre','DESC')->paginate(2);
       return view('bombero/lista',compact('bomberos'));
   }
   public function create()
@@ -26,15 +25,20 @@ class BomberoController extends Controller
   }
   public function edit($id)
   {
-      $bombero=Bombero::find($id);
+      $bombero=Bombero::findorfail($id);
       return view('bombero/editar',compact('bombero'));
   }
   public function destroy($id)
   {
       $bombero=Bombero::find($id);
       $bombero->delete();
-      $bomberos=Bombero::all();
-      return view('bombero/lista',compact('bomberos'));
+      return redirect()->route('bombero.index');
+  }
+  public function update(saveBomberoRequest  $data, $id)
+  {
+      $bombero=Bombero::findorfail($id)->update($data->all());
+      // $bombero->update();
+      return redirect()->route('bombero.index');
   }
 
   /**
@@ -43,17 +47,9 @@ class BomberoController extends Controller
    * @param  array  $data
    * @return User
    */
-  public function store(GuardarBomberoRequest  $data)
+  public function store(saveBomberoRequest  $data)
   {
-    Bombero::create([
-        'nombre' => $data->all()['nombre'],
-        'apellido'=> $data->all()['apellido'],
-        'nro_legajo' => $data->all()['nro_legajo'],
-        'jerarquia' => $data->all()['jerarquia'],
-        'direccion' => $data->all()['direccion'],
-        'telefono' => $data->all()['telefono'],
-        'fecha_nacimiento' => $data->all()['fechan'],
-    ]);
-    return BomberoController::index();
+    Bombero::create($data->all());
+    return redirect()->route('bombero.index');
   }
 }

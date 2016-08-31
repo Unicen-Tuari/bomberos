@@ -7,8 +7,7 @@
     Editar bombero
   </div>
   <div class="panel-body">
-    {!! Form::open([ 'route' => 'bombero.store', 'class' => 'form-horizontal', 'method' => 'PUT', 'files' => true]) !!}
-      {{ csrf_field() }} {{-- Crea todo el campo TOKEN falsificación de petición en sitios cruzados --}}
+    {!! Form::open([ 'route' => ['bombero.update', $bombero ], 'class' => 'form-horizontal', 'method' => 'PUT', 'files' => true]) !!}
 
       <div class="form-group {{ $errors->has('nombre') ? ' has-error' : '' }}">
         {!! Form::label('nombre', 'Nombre',['class' => 'col-md-4 control-label']) !!}
@@ -88,14 +87,14 @@
         </div>
       </div>
 
-      <div class="form-group {{ $errors->has('fechan') ? ' has-error' : '' }}">
-        {!! Form::label('fechan', 'Fecha de nacimiento',['class' => 'col-md-4 control-label']) !!}
+      <div class="form-group {{ $errors->has('fecha_nacimiento') ? ' has-error' : '' }}">
+        {!! Form::label('fecha_nacimiento', 'Fecha de nacimiento',['class' => 'col-md-4 control-label']) !!}
         <div class="col-md-6">
-        {!! Form::text('fechan', $bombero->fecha_nacimiento, ['class' => 'form-control']) !!}
+        {!! Form::text('fecha_nacimiento', $bombero->fecha_nacimiento, ['class' => 'form-control']) !!}
 
-            @if ($errors->has('fechan'))
+            @if ($errors->has('fecha_nacimiento'))
                 <span class="help-block">
-                    <strong>{{ $errors->first('fechan') }}</strong>
+                    <strong>{{ $errors->first('fecha_nacimiento') }}</strong>
                 </span>
             @endif
         </div>
