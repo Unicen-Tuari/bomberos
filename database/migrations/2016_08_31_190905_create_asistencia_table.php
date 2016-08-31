@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTipoServicioTable extends Migration
+class CreateAsistenciaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,10 +12,11 @@ class CreateTipoServicioTable extends Migration
      */
     public function up()
     {
-        Schema::create('tipo_servicio', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('nombre', 100);
+        Schema::create('asistencia', function (Blueprint $table) {
+            $table->integer('bombero_id');
             $table->timestamps();
+            $table->primary(['bombero_id','created_at']);
+            $table->foreign('bombero_id')->references('id')->on('bombero')->onDelete('cascade');
         });
     }
 
@@ -26,6 +27,6 @@ class CreateTipoServicioTable extends Migration
      */
     public function down()
     {
-        Schema::drop('tipo_servicio');
+        Schema::drop('asistencia');
     }
 }
