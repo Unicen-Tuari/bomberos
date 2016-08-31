@@ -35,7 +35,7 @@
                   <button type="submit" class="btn btn-danger btn-mini glyphicon glyphicon-trash"></button>
               {{ Form::close() }}
             </td>
-            <td class="text-center"><a class="glyphicon glyphicon-edit" href="{{ url("/bombero/$bombero->id/edit") }}"></a></td>
+            <td class="text-center"><a class="glyphicon glyphicon-edit" href="{{ route('bombero.edit', $bombero->id) }}"></a></td>
           </tr>
         @endforeach
         </tbody>
@@ -46,6 +46,9 @@
         </tfoot>
         <br>
       </table>
+      <div class="text-center">
+        {{ $bomberos->render()}}
+      </div>
   </div>
 </div>
 </div>
