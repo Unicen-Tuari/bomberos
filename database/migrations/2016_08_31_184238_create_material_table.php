@@ -18,6 +18,7 @@ class CreateMaterialTable extends Migration
           $table->string('nombre', 100);
           $table->integer('veiculo_id')->nullable();
           $table->timestamps();
+          $table->foreign('veiculo_id')->references('id')->on('vehiculo')->onDelete('set null');
       });
     }
 
