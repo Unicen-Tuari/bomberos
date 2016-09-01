@@ -20,6 +20,8 @@ Route::get('/home', 'HomeController@index');
 
 Route::resource('bombero','BomberoController');
 
+Route::resource('vehiculos','VehiculoController');
+
 // Route::group(['prefix' => 'bombero'], function () {
 //
 //     Route::get('/alta', 'BomberoController@vistaAlta');

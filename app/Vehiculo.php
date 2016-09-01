@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Vehiculo extends Model
 {
-  protected $table = 'material';
+  protected $table = 'vehiculo';
   protected $fillable = [
       'patente',
   ];
