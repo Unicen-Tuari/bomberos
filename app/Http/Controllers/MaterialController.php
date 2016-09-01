@@ -22,33 +22,35 @@ class MaterialController extends Controller
   {
       return view('materiales/alta');
   }
+
   public function edit($id)
   {
-      $vehiculo=Vehiculo::findorfail($id);
-      return view('vehiculos/editar',compact('vehiculo'));
+      $material=Material::findorfail($id);
+      return view('materiales/editar',compact('material'));
   }
   public function destroy($id)
   {
-      $bombero=Vehiculo::find($id);
-      $bombero->delete();
-      return redirect()->route('vehiculos.index');
-  }
-  public function update(Request  $data, $id)
-  {
-      $vehiculo=Vehiculo::findorfail($id)->update($data->all());
-      // $bombero->update();
-      return redirect()->route('vehiculos.index');
+      $material=Material::find($id);
+      $material->delete();
+      return redirect()->route('materiales.index');
   }
 
-  /**
-   * Create a new user instance after a valid registration.
-   *
-   * @param  array  $data
-   * @return User
-   */
+  public function update(Request  $data, $id)
+  {
+      $material=Material::findorfail($id)->update($data->all());
+
+      return redirect()->route('materiales.index');
+  }
+
   public function store(Request $data)
   {
-    Vehiculo::create($data->all());
-    return redirect()->route('vehiculos.index');
+
+    if ($data['vehiculo_id'] == "")
+      $data['vehiculo_id'] = null;
+
+    Material::create($data->all());
+    return redirect()->route('materiales.index');
+
+
   }
 }
