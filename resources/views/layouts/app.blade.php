@@ -12,6 +12,7 @@
 
     {{-- <link rel="stylesheet" href="{{asset('assets/css/bootstrap.css')}}"> --}}
     {!! Html::style('assets/css/bootstrap.css') !!}
+    {!! Html::style('assets/css/bootstrap-multiselect.css') !!}
     {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
 
     {!! Html::style('assets/css/bomberos.css') !!}
@@ -65,6 +66,5 @@
     <!-- JavaScripts -->
     {!!HTML::script('assets/js/jquery.js')!!}
     {!!HTML::script('assets/js/bootstrap.min.js')!!}
-    {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
 </body>
 </html>

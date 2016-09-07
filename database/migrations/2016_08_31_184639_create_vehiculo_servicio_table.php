@@ -13,8 +13,8 @@ class CreateVehiculoServicioTable extends Migration
     public function up()
     {
         Schema::create('vehiculo_servicio', function (Blueprint $table) {
-            $table->integer('servicio_id');
-            $table->integer('vehiculo_id');
+            $table->integer('servicio_id')->unsigned();
+            $table->integer('vehiculo_id')->unsigned();
             $table->primary(['servicio_id', 'vehiculo_id']);
             $table->timestamps();
             $table->foreign('servicio_id')->references('id')->on('servicio')->onDelete('cascade');

@@ -14,9 +14,14 @@ class CreateServicioTable extends Migration
     {
         Schema::create('servicio', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('tipo_servicio_id')->nullable();
+            $table->integer('tipo_servicio_id')->unsigned();
+            $table->string('direccion', 100);
+            $table->text('descripcion')->nullable();
+            $table->dateTime('hora_alarma');
+            $table->dateTime('hora_salida')->nullable();
+            $table->dateTime('hora_regreso')->nullable();
             $table->timestamps();
-            $table->foreign('tipo_servicio_id')->references('id')->on('tipo_servicio')->onDelete('set null');
+            $table->foreign('tipo_servicio_id')->references('id')->on('tipo_servicio')->onDelete('cascade');
         });
     }
 

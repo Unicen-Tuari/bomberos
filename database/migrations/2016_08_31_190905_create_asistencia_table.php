@@ -13,7 +13,7 @@ class CreateAsistenciaTable extends Migration
     public function up()
     {
         Schema::create('asistencia', function (Blueprint $table) {
-            $table->integer('bombero_id');
+            $table->integer('bombero_id')->unsigned();
             $table->timestamps();
             $table->primary(['bombero_id','created_at']);
             $table->foreign('bombero_id')->references('id')->on('bombero')->onDelete('cascade');

@@ -37,7 +37,6 @@ class BomberoController extends Controller
   public function update(saveBomberoRequest  $data, $id)
   {
       $bombero=Bombero::findorfail($id)->update($data->all());
-      // $bombero->update();
       return redirect()->route('bombero.index');
   }
 
