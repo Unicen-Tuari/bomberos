@@ -1,0 +1,21 @@
+.home-navbar, .navbar-default .navbar-nav > li > a{
+    background-color: #450000;
+    color:white;
+}
+
+.navbar-default .navbar-nav > li > a:hover {
+  background-color: white;
+  color:#450000;
+  font-weight: bold;
+}
+
+#logoHome img {
+  border-radius: 50%;
+  margin-top: 50px;
+  margin-bottom: 100px;
+  border: 2px solid white;
+}
+
+body  {
+  background-color: #450000;
+}
