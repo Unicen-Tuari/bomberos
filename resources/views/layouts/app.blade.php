@@ -63,9 +63,9 @@
     </nav>
 
     @yield('content')
-
-    <!-- JavaScripts -->
     {!!HTML::script('assets/js/jquery.js')!!}
-    {!!HTML::script('assets/js/bootstrap.min.js')!!}
+    {!!HTML::script('assets/js/bootstrap.js')!!}
+    {!!HTML::script('assets/js/bootstrap-multiselect.js')!!}
+    <!-- JavaScripts -->
 </body>
 </html>

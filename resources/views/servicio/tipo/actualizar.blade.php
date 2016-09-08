@@ -7,7 +7,7 @@
       Modificar tipo de servicio
     </div>
     <div class="panel-body">
-      {!! Form::open([ 'route' => ['tipo.update', $tipo], 'class' => 'form-horizontal', 'method' => 'PUT']) !!}
+      {!! Form::open([ 'route' => ['servicio.tipo.update', $tipo], 'class' => 'form-horizontal', 'method' => 'PUT']) !!}
 
         <div class="form-group {{ $errors->has('nombre') ? ' has-error' : '' }}">
           {!! Form::label('nombre', 'Nombre',['class' => 'col-md-4 control-label']) !!}

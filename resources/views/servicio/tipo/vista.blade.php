@@ -23,11 +23,11 @@
               <tr>
                 <td class="text-center">{{$tipo->nombre}}</td>
                 <td class="text-center">
-                  {{ Form::open(['route' => ['tipo.destroy', $tipo->id], 'method' => 'delete']) }}
+                  {{ Form::open(['route' => ['servicio.tipo.destroy', $tipo->id], 'method' => 'delete']) }}
                       <button type="submit" class="btn btn-danger btn-mini glyphicon glyphicon-trash"></button>
                   {{ Form::close() }}
                 </td>
-                <td class="text-center"><a class="glyphicon glyphicon-edit" href="{{ route('tipo.edit', $tipo->id) }}"></a></td>
+                <td class="text-center"><a class="glyphicon glyphicon-edit" href="{{ route('servicio.tipo.edit', $tipo->id) }}"></a></td>
               </tr>
             @endforeach
             </tbody>
@@ -48,7 +48,7 @@
         Formulario de alta bombero
       </div>
       <div class="panel-body">
-        {!! Form::open([ 'route' => 'tipo.store', 'class' => 'form-horizontal', 'method' => 'POST']) !!}
+        {!! Form::open([ 'route' => 'servicio.tipo.store', 'class' => 'form-horizontal', 'method' => 'POST']) !!}
 
           <div class="form-group {{ $errors->has('nombre') ? ' has-error' : '' }}">
             {!! Form::label('nombre', 'Nombre',['class' => 'col-md-4 control-label']) !!}

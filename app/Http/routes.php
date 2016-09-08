@@ -24,7 +24,8 @@ Route::resource('bombero','BomberoController',['except' => ['show']]);
 Route::resource('vehiculos','VehiculoController');
 
 Route::resource('materiales','MaterialController');
+
+Route::resource('servicio/tipo','TipoServicioController',['except' => ['create']]);
+
 Route::get('servicio/sinfinalizar', 'ServicioController@sinfinalizar');
 Route::resource('servicio','ServicioController');
-
-Route::resource('tipo','TipoServicioController',['except' => ['create']]);

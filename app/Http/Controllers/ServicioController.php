@@ -46,7 +46,7 @@ class ServicioController extends Controller
         {
             $tipos[$data->id] = $data->nombre;
         }
-        return view('servicio/llamada',compact('tipos'));
+        return view('servicio/finalizar',compact('tipos'));
     }
     /**
      * Store a newly created resource in storage.
