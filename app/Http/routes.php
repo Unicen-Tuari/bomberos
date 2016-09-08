@@ -19,16 +19,12 @@ Route::auth();
 
 Route::get('/home', 'HomeController@index');
 
-Route::resource('bombero','BomberoController');
+Route::resource('bombero','BomberoController',['except' => ['show']]);
 
 Route::resource('vehiculos','VehiculoController');
 
 Route::resource('materiales','MaterialController');
+Route::get('servicio/sinfinalizar', 'ServicioController@sinfinalizar');
+Route::resource('servicio','ServicioController');
 
-// Route::group(['prefix' => 'bombero'], function () {
-//
-//     Route::get('/alta', 'BomberoController@vistaAlta');
-//     Route::get('/lista', 'BomberoController@vistaLista');
-//
-//     Route::post('/alta', 'BomberoController@altaBombero');
-// });
+Route::resource('tipo','TipoServicioController',['except' => ['create']]);
