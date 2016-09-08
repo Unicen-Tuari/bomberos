@@ -9,16 +9,17 @@
     <!-- Fonts -->
     {!! Html::style('assets/css/lato.css') !!}
     <!-- Styles -->
-
     {{-- <link rel="stylesheet" href="{{asset('assets/css/bootstrap.css')}}"> --}}
     {!! Html::style('assets/css/bootstrap.css') !!}
     {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
 
     {!! Html::style('assets/css/bomberos.css') !!}
 
+    {!! Html::style('assets/css/home.css') !!}
+
 </head>
 <body id="app-layout">
-    <nav class="navbar navbar-default navbar-static-top">
+    <nav class="navbar navbar-default navbar-static-top home-navbar">
         <div class="container">
             <div class="navbar-header">
 

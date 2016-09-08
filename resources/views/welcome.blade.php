@@ -2,14 +2,11 @@
 
 @section('content')
   <article class="container">
-      <div class="col-md-10 col-md-offset-1">
-          <div class="panel panel-default">
-              <div class="panel-heading">bienvenido!</div>
-
-              <div class="panel-body">
-                   Logo   Inicie sesion
-              </div>
-          </div>
+    <div class="row">
+      <div class="col-md-offset-4 col-md-4" id="logoHome">
+        <img src="assets/images/logo.png" alt="" />
       </div>
+    </div>
+
   </article>
 @endsection
