@@ -18,7 +18,7 @@
           </tr>
         </thead>
         <tbody><!--Contenido de la tabla-->
-          @foreach ($sers as $servicio)
+          @foreach ($servicios as $servicio)
             <tr>
               <td class="text-center">{{$servicio->tipo_servicio_id}}</td>
               <td class="text-center">{{$servicio->direccion}}</td>
@@ -28,7 +28,7 @@
                     <button type="submit" class="btn btn-danger btn-mini glyphicon glyphicon-trash"></button>
                 {{ Form::close() }}
               </td>
-              <td class="text-center"><a class="glyphicon glyphicon-edit" href="{{ route('servicio.edit', $servicio->id) }}"></a></td>
+              <td class="text-center"><a class="glyphicon glyphicon-edit" href="{{ route('servicio.mostrar', $servicio->id) }}"></a></td>
             </tr>
           @endforeach
           </tbody>

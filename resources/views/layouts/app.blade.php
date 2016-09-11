@@ -20,8 +20,13 @@
 
 </head>
 <body id="app-layout">
+
     <nav class="navbar navbar-default navbar-static-top home-navbar">
+      <ul class="nav navbar-nav">
+          <li><img id="logoNav" src="{{ url('assets/images/logo.png') }}" alt="Logo" /></li>
+      </ul>
         <div class="container">
+
             <div class="navbar-header">
 
                 <!-- Collapsed Hamburger -->
@@ -34,11 +39,20 @@
 
             </div>
 
+
+
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
-                <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/home') }}">Home</a></li>
-                </ul>
+
+
+                @if (!Auth::guest())
+                  <ul class="nav navbar-nav">
+                      <li><a class="odd navIcon glyphicon glyphicon-phone-alt odd" href="{{ url('/servicio/create') }}" title="Cargar llamada"></a></li>
+                      <li><a class="navIcon glyphicon glyphicon-fire" href="{{ url('/servicio') }}" title="Servicios activos"></a></li>
+                      <li><a class="navIcon glyphicon glyphicon-file odd" href="{{ url('/servicio') }}" title="Cargar servicio finalizado"></a></li>
+                      <li><a class="navIcon glyphicon glyphicon-list" href="{{ url('/servicio') }}" title="Ultimos servicios realizados"></a></li>
+                  </ul>
+                @endif
 
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
@@ -62,10 +76,17 @@
         </div>
     </nav>
 
-    @yield('content')
+    <div class="left-panel col-md-2">
 
-    <!-- JavaScripts -->
+    </div>
+
+    <div class="right-panel col-md-10">
+      @yield('content')
+    </div>
+
     {!!HTML::script('assets/js/jquery.js')!!}
-    {!!HTML::script('assets/js/bootstrap.min.js')!!}
+    {!!HTML::script('assets/js/bootstrap.js')!!}
+    {!!HTML::script('assets/js/bootstrap-multiselect.js')!!}
+    <!-- JavaScripts -->
 </body>
 </html>

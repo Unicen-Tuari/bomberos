@@ -1,12 +1,26 @@
 .home-navbar, .navbar-default .navbar-nav > li > a{
-    background-color: #450000;
-    color:white;
+    background-color: #bb2f0e;
+    color: white;
 }
 
 .navbar-default .navbar-nav > li > a:hover {
-  background-color: white;
-  color:#450000;
+  color:#aaaaaa;
   font-weight: bold;
+}
+
+.navIcon {
+  font-size: 40px;
+  border-bottom: 1px solid white;
+  border-right: 1px solid white;
+}
+
+li > a .odd {
+  background-color: #ac533e;
+}
+
+#logoNav {
+  height: 40px;
+  margin-top: 5px;
 }
 
 #logoHome img {
@@ -17,5 +31,14 @@
 }
 
 body  {
-  background-color: #450000;
+  background-color: #333333;
+}
+
+.left-panel {
+}
+
+.right-panel {
+  background-color: white;
+  margin-top: -20px;
+  height: 100vh;
 }

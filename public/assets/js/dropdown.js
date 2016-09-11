@@ -1,8 +1,11 @@
 $(document).ready(function () {
-    $('#lsbomberos').multiselect({
-        includeSelectAllOption: true
+
+    $('select').multiselect({
+          enableFiltering: true,
+          includeSelectAllOption: true,
+          selectAllJustVisible: false
     });
-    
+
     // $('#btnSelected').click(function () {
     //     var selected = $("#lstFruits option:selected");
     //     var message = "";

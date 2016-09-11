@@ -24,7 +24,9 @@ Route::resource('bombero','BomberoController',['except' => ['show']]);
 Route::resource('vehiculos','VehiculoController');
 
 Route::resource('materiales','MaterialController');
-Route::get('servicio/sinfinalizar', 'ServicioController@sinfinalizar');
-Route::resource('servicio','ServicioController');
 
-Route::resource('tipo','TipoServicioController',['except' => ['create']]);
+Route::resource('servicio/tipo','TipoServicioController',['except' => ['create']]);
+
+Route::get('servicio/activo/{id}', 'ServicioController@mostrar')->name('servicio.mostrar');
+Route::put('servicio/activo/{id}/edit', 'ServicioController@finalizar')->name('servicio.finalizar');
+Route::resource('servicio','ServicioController');

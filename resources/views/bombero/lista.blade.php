@@ -31,7 +31,7 @@
               <td class="text-center">{{$bombero->telefono}}</td>
               <td class="text-center">{{$bombero->fecha_nacimiento}}</td>
               <td class="text-center">
-                {{ Form::open(['route' => ['bombero.destroy', $bombero->id], 'method' => 'delete']) }}
+                {{ Form::open(['route' => ['bombero.destroy', $bombero->id], 'method' => 'DELETE']) }}
                     <button type="submit" class="btn btn-danger btn-mini glyphicon glyphicon-trash"></button>
                 {{ Form::close() }}
               </td>

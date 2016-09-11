@@ -13,8 +13,6 @@
           {!! Form::label('Tipo', 'Tipo de servicio',['class' => 'col-md-2 col-md-offset-2 control-label']) !!}
           <div class="col-md-2">
             {{Form::select('Tipo', $tipos,null,['class' => 'form-control'])}}
-
-
           </div>
         </div>
 

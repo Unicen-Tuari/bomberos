@@ -42,7 +42,7 @@ class TipoServicioController extends Controller
     public function store(Request $request)
     {
       TipoServicio::create($request->all());
-      return redirect()->route('tipo.index');
+      return redirect()->route('servicio.tipo.index');
     }
 
     /**
@@ -78,7 +78,7 @@ class TipoServicioController extends Controller
     public function update(Request $request, $id)
     {
         $tipo=TipoServicio::findorfail($id)->update($request->all());
-        return redirect()->route('tipo.index');
+        return redirect()->route('servicio.tipo.index');
     }
 
     /**
@@ -91,6 +91,6 @@ class TipoServicioController extends Controller
     {
         $tipo=TipoServicio::find($id);
         $tipo->delete();
-        return redirect()->route('tipo.index');
+        return redirect()->route('servicio.tipo.index');
     }
 }
