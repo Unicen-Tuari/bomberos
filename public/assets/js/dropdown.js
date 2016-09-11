@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    $('#lsbomberos').multiselect({
+    $('select').multiselect({
           enableFiltering: true,
           includeSelectAllOption: true,
           selectAllJustVisible: false

@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\TipoServicio;
 use App\Http\Requests;
 use App\servicio;
+use App\Bombero;
+use App\Vehiculo;
+
 class ServicioController extends Controller
 {
     public function __construct()
@@ -18,8 +21,8 @@ class ServicioController extends Controller
      */
     public function index()
     {
-      $sers=Servicio::all();
-      return view('servicio/servicios',compact('sers'));
+      $servicios=Servicio::all();
+      return view('servicio/servicios',compact('servicios'));
     }
 
     /**
@@ -37,16 +40,28 @@ class ServicioController extends Controller
         }
         return view('servicio/llamada',compact('tipos'));
     }
-    public function sinfinalizar()
+    public function mostrar($id)
     {
       // cambiar conteniado
-        $datas=TipoServicio::all(['id', 'nombre']);
-        $tipos = array();
-        foreach ($datas as $data)
+        $datasb=Bombero::all(['id', 'nombre']);
+        $bomberos = array();
+        foreach ($datasb as $data)
         {
-            $tipos[$data->id] = $data->nombre;
+            $bomberos[$data->id] = $data->nombre;
         }
-        return view('servicio/finalizar',compact('tipos'));
+          $datasv=Vehiculo::all(['id', 'patente']);
+          $vehiculos = array();
+          foreach ($datasv as $data)
+          {
+              $vehiculos[$data->id] = $data->patente;
+          }
+        return view('servicio/finalizar',compact('id','bomberos','vehiculos'));
+    }
+
+    public function finalizar(Request $request, $id)
+    {
+      //con el id y las dos lista se generan las 2 relaciones 
+        dd($request->all(),$id);
     }
     /**
      * Store a newly created resource in storage.
@@ -57,9 +72,10 @@ class ServicioController extends Controller
     public function store(Request $request)
     {
       $hllamada = date("Y-m-d H:i:s");
-      $bom= TipoServicio::find($request['Tipo']);
-      $servicio=new Servicio;
-      $servicio->tipo_servicio_id=$request['Tipo'];
+      $tipo= TipoServicio::find($request['Tipo']);
+      if($tipo)
+      {$servicio=new Servicio;
+      $servicio->tipo_servicio_id=$tipo->id;
       $servicio->direccion=$request['direccion'];
       $servicio->hora_alarma=$hllamada;
       if ($servicio->save()) {
@@ -67,6 +83,9 @@ class ServicioController extends Controller
        dd($a);
       }else {
         dd('fallo');
+      }}
+      else {
+        dd('no existe tipo');
       }
 
     }

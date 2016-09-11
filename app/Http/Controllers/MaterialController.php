@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Material;
-
+use App\Vehiculo;
 class MaterialController extends Controller
 {
   public function __construct()
@@ -20,7 +20,13 @@ class MaterialController extends Controller
   }
   public function create()
   {
-      return view('materiales/alta');
+      $datas=Vehiculo::all(['id', 'patente']);
+      $vehiculos = array();
+      foreach ($datas as $data)
+      {
+          $vehiculos[$data->id] = $data->patente;
+      }
+      return view('materiales/alta',compact('vehiculos'));
   }
 
   public function edit($id)
@@ -44,7 +50,6 @@ class MaterialController extends Controller
 
   public function store(Request $data)
   {
-
     if ($data['vehiculo_id'] == "")
       $data['vehiculo_id'] = null;
 

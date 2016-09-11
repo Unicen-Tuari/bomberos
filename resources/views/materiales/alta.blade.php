@@ -21,13 +21,14 @@
             @endif
         </div>
 
-        {!! Form::label('vehiculo_id', 'Esta en el vehiculo: ',['class' => 'col-md-4 control-label']) !!}
-        <div class="col-md-6">
-            {!! Form::text('vehiculo_id', null, ['class' => 'form-control']) !!}
-
-            @if ($errors->has('nombre'))
+        <div class="form-group">
+          {!! Form::label('vehiculo_id', 'Esta en el vehiculo: ',['class' => 'col-md-4 control-label']) !!}
+          <div class="col-md-2">
+            {{Form::select('vehiculo_id', $vehiculos,null,['class' => 'form-control'])}}
+          </div>
+            @if ($errors->has('vehiculo_id'))
                 <span class="help-block">
-                    <strong>{{ $errors->first('nombre') }}</strong>
+                    <strong>{{ $errors->first('vehiculo_id') }}</strong>
                 </span>
             @endif
         </div>

@@ -27,5 +27,6 @@ Route::resource('materiales','MaterialController');
 
 Route::resource('servicio/tipo','TipoServicioController',['except' => ['create']]);
 
-Route::get('servicio/sinfinalizar', 'ServicioController@sinfinalizar');
+Route::get('servicio/activo/{id}', 'ServicioController@mostrar')->name('servicio.mostrar');
+Route::put('servicio/activo/{id}/edit', 'ServicioController@finalizar')->name('servicio.finalizar');
 Route::resource('servicio','ServicioController');
