@@ -60,8 +60,16 @@ class ServicioController extends Controller
 
     public function finalizar(Request $request, $id)
     {
-      //con el id y las dos lista se generan las 2 relaciones 
+      //con el id y las dos lista se generan las 2 relaciones
         dd($request->all(),$id);
+    }
+    public function salida($id)
+    {
+        $hsalida = date("Y-m-d H:i:s", (strtotime ("-3 Hours")));
+        $servicio=Servicio::find($id);
+        $servicio->hora_salida=$hsalida;
+        $servicio->save();
+        return redirect()->route('servicio.index');
     }
     /**
      * Store a newly created resource in storage.
@@ -71,7 +79,7 @@ class ServicioController extends Controller
      */
     public function store(Request $request)
     {
-      $hllamada = date("Y-m-d H:i:s");
+      $hllamada = date("Y-m-d H:i:s", (strtotime ("-3 Hours")));
       $tipo= TipoServicio::find($request['Tipo']);
       if($tipo)
       {$servicio=new Servicio;
@@ -80,7 +88,7 @@ class ServicioController extends Controller
       $servicio->hora_alarma=$hllamada;
       if ($servicio->save()) {
        $a=Servicio::all();
-       dd($a);
+       return redirect()->route('servicio.index');
       }else {
         dd('fallo');
       }}
