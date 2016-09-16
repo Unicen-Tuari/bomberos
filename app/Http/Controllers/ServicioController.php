@@ -60,7 +60,7 @@ class ServicioController extends Controller
 
     public function finalizar(Request $request, $id)
     {
-      //con el id y las dos lista se generan las 2 relaciones 
+      //con el id y las dos lista se generan las 2 relaciones
         dd($request->all(),$id);
     }
     /**

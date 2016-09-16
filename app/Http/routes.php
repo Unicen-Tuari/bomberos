@@ -29,4 +29,5 @@ Route::resource('servicio/tipo','TipoServicioController',['except' => ['create']
 
 Route::get('servicio/activo/{id}', 'ServicioController@mostrar')->name('servicio.mostrar');
 Route::put('servicio/activo/{id}/edit', 'ServicioController@finalizar')->name('servicio.finalizar');
+Route::put('servicio/activo/{id}/salida', 'ServicioController@salida')->name('servicio.salida');
 Route::resource('servicio','ServicioController');

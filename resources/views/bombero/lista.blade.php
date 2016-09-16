@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<article class="container">
+<article class="container col-md-12">
   <div class="panel panel-default">
     <div class="panel-heading">
       Lista de bomberos
@@ -32,7 +32,7 @@
               <td class="text-center">{{$bombero->fecha_nacimiento}}</td>
               <td class="text-center">
                 {{ Form::open(['route' => ['bombero.destroy', $bombero->id], 'method' => 'DELETE']) }}
-                    <button type="submit" class="btn btn-danger btn-mini glyphicon glyphicon-trash"></button>
+                    <button type="submit" class="btn glyphicon glyphicon-trash eliminar"></button>
                 {{ Form::close() }}
               </td>
               <td class="text-center"><a class="glyphicon glyphicon-edit" href="{{ route('bombero.edit', $bombero->id) }}"></a></td>

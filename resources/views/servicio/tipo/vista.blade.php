@@ -24,7 +24,7 @@
                 <td class="text-center">{{$tipo->nombre}}</td>
                 <td class="text-center">
                   {{ Form::open(['route' => ['servicio.tipo.destroy', $tipo->id], 'method' => 'delete']) }}
-                      <button type="submit" class="btn btn-danger btn-mini glyphicon glyphicon-trash"></button>
+                      <button type="submit" class="btn glyphicon glyphicon-trash eliminar"></button>
                   {{ Form::close() }}
                 </td>
                 <td class="text-center"><a class="glyphicon glyphicon-edit" href="{{ route('servicio.tipo.edit', $tipo->id) }}"></a></td>

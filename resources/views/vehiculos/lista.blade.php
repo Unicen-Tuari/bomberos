@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container col-md-12">
 <div class="panel panel-default">
   <div class="panel-heading">
     Lista de vehiculos
@@ -21,7 +21,7 @@
             <td class="text-center">{{$vehiculo->patente}}</td>
             <td class="text-center">
               {{ Form::open(['route' => ['vehiculos.destroy', $vehiculo->id], 'method' => 'delete']) }}
-                  <button type="submit" class="btn btn-danger btn-mini glyphicon glyphicon-trash"></button>
+                  <button type="submit" class="btn glyphicon glyphicon-trash eliminar"></button>
               {{ Form::close() }}
             </td>
             <td class="text-center"><a class="glyphicon glyphicon-edit" href="{{ route('vehiculos.edit', $vehiculo->id) }}"></a></td>

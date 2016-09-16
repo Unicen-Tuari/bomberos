@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container">
+<div class="container col-md-12">
   <div class="panel panel-default">
     <div class="panel-heading">
       Inicio Alerta
@@ -25,7 +25,7 @@
               <td class="text-center">{{$servicio->hora_alarma}}</td>
               <td class="text-center">
                 {{ Form::open(['route' => ['servicio.destroy', $servicio->id], 'method' => 'delete']) }}
-                    <button type="submit" class="btn btn-danger btn-mini glyphicon glyphicon-trash"></button>
+                    <button type="submit" class="btn glyphicon glyphicon-trash eliminar"></button>
                 {{ Form::close() }}
               </td>
               <td class="text-center"><a class="glyphicon glyphicon-edit" href="{{ route('servicio.mostrar', $servicio->id) }}"></a></td>
