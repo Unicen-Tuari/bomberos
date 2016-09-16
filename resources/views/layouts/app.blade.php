@@ -76,14 +76,9 @@
         </div>
     </nav>
 
-    <div class="left-panel col-md-2">
-
-    </div>
-
-    <div class="right-panel col-md-10">
-      @yield('content')
-    </div>
-
+      <div class="right-panel col-md-12">
+        @yield('content')
+      </div>
     {!!HTML::script('assets/js/jquery.js')!!}
     {!!HTML::script('assets/js/bootstrap.js')!!}
     {!!HTML::script('assets/js/bootstrap-multiselect.js')!!}
