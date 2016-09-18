@@ -35,9 +35,9 @@
 
               <li class="dropdown navIcon">
                 <a class="dropdown-toggle" href="#" title="Servicios activos" data-toggle="dropdown">
-                  <span class="cantidad">{{count(App\servicio::getActivos())}}</span> <span class="glyphicon glyphicon-fire"></span> <span class="icon-title">Activos</span></a>
+                  <span class="cantidad">{{count(App\Servicio::getActivos())}}</span> <span class="glyphicon glyphicon-fire"></span> <span class="icon-title">Activos</span></a>
                 <ul class="dropdown-menu">
-                  @foreach( App\servicio::getActivos() as $servicio)
+                  @foreach( App\Servicio::getActivos() as $servicio)
                     <li><a href="{{route('servicio.mostrar', $servicio->id)}}">{{$servicio->direccion}}</a>
                       @if(!$servicio->hora_salida)
                       {{ Form::open(['route' => ['servicio.salida',$servicio->id], 'method' => 'PUT']) }}
