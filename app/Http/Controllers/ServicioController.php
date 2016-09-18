@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\TipoServicio;
 use App\Http\Requests;
-use App\servicio;
+use App\Servicio;
 use App\Bombero;
 use App\Vehiculo;
 
