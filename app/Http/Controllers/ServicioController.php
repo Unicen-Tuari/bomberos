@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\TipoServicio;
 use App\Http\Requests;
-use App\servicio;
+use App\Servicio;
 use App\Bombero;
 use App\Vehiculo;
 
@@ -85,6 +85,7 @@ class ServicioController extends Controller
       {$servicio=new Servicio;
       $servicio->tipo_servicio_id=$tipo->id;
       $servicio->direccion=$request['direccion'];
+      $servicio->descripcion=$request['descripcion'];
       $servicio->hora_alarma=$hllamada;
       if ($servicio->save()) {
        $a=Servicio::all();
