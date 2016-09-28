@@ -90,7 +90,7 @@
       <div class="form-group {{ $errors->has('fecha_nacimiento') ? ' has-error' : '' }}">
         {!! Form::label('fecha_nacimiento', 'Fecha de nacimiento',['class' => 'col-md-4 control-label']) !!}
         <div class="col-md-6">
-        {!! Form::text('fecha_nacimiento', 'año-mes-dia', ['class' => 'form-control']) !!}
+        {!! Form::text('fecha_nacimiento', null, ['class' => 'form-control', 'placeholder' => 'Año-Mes-Día']) !!}
 
             @if ($errors->has('fecha_nacimiento'))
                 <span class="help-block">

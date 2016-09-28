@@ -12,7 +12,7 @@
         <thead><!--Titulos de la tabla-->
           <tr>
             <th class="text-center">Tipo de servicio</th>
-            <th class="text-center">direccion</th>
+            <th class="text-center">Direccion</th>
             <th class="text-center">Hora de alarma</th>
             <th colspan="2"></th>
           </tr>
@@ -31,10 +31,10 @@
               <td class="text-center"><a class="glyphicon glyphicon-edit" href="{{ route('servicio.mostrar', $servicio->id) }}"></a></td>
             </tr>
           @endforeach
-          </tbody>
+        </tbody>
           <tfoot>
             <tr>
-              <td class="text-center" colspan="5"> lista de bomberos activos </td>
+              <td class="text-center" colspan="5"> Lista de bomberos activos </td>
             </tr>
           </tfoot>
           <br>
