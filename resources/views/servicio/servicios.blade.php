@@ -31,7 +31,7 @@
               <td class="text-center"><a class="glyphicon glyphicon-edit" href="{{ route('servicio.mostrar', $servicio->id) }}"></a></td>
             </tr>
           @endforeach
-          </tbody>
+        </tbody>
           <tfoot>
             <tr>
               <td class="text-center" colspan="5"> lista de bomberos activos </td>

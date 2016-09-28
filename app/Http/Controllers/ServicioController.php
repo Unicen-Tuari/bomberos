@@ -85,6 +85,7 @@ class ServicioController extends Controller
       {$servicio=new Servicio;
       $servicio->tipo_servicio_id=$tipo->id;
       $servicio->direccion=$request['direccion'];
+      $servicio->descripcion=$request['descripcion'];
       $servicio->hora_alarma=$hllamada;
       if ($servicio->save()) {
        $a=Servicio::all();
