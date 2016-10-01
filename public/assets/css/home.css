@@ -100,14 +100,14 @@ body  {
 }
 
 .sidebar {
-    padding-left: 0px;
-    padding-right: 0px;
     height: calc(100% - 110px);
 }
-
+[class*="col-"]{
+  padding-left: 0px;
+  padding-right: 0px;
+}
 .right-panel {
   background-color: rgb(219, 219, 219);
-  height: auto;
   height: calc(100% - 110px);
 }
 

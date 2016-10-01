@@ -81,7 +81,7 @@
     </nav>
 
     @if (!Auth::guest())
-      <div class="col-md-2  col-xs-4 sidebar">
+      <div class="col-md-2  col-xs-3 sidebar">
         <div class="nav-side-menu">
           <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
 
@@ -131,7 +131,7 @@
           </div>
         </div>
       </div>
-      <div class="right-panel col-md-10  col-xs-8">
+      <div class="col-md-10  col-xs-9 right-panel ">
     @else
       <div class="right-panel col-md-12">
     @endif

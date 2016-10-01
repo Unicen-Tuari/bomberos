@@ -133,6 +133,28 @@ class ServicioController extends Controller
         //
     }
 
+    public function finalizado(){
+      $datas=TipoServicio::all(['id', 'nombre']);
+      $tipos = array();
+      foreach ($datas as $data)
+      {
+          $tipos[$data->id] = $data->nombre;
+      }
+      $datasb=Bombero::all(['id', 'nombre']);
+      $bomberos = array();
+      foreach ($datasb as $data)
+      {
+          $bomberos[$data->id] = $data->nombre;
+      }
+        $datasv=Vehiculo::all(['id', 'patente']);
+        $vehiculos = array();
+        foreach ($datasv as $data)
+        {
+            $vehiculos[$data->id] = $data->patente;
+        }
+      return view('servicio/finalizado',compact('tipos','bomberos','vehiculos'));
+    }
+
     /**
      * Remove the specified resource from storage.
      *

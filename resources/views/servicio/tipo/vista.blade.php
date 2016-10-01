@@ -1,11 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-  <div class="panel  panel-default text-center">
+<div class="col-md-12">
+  <div class="panel  panel-default">
+  <div class="panel-heading text-center">
     <h>tipos de servicios</h>
   </div>
-  <article class="container col-md-6">
+  <div class="panel-body">
+  <article class="col-md-6">
     <div class="panel panel-default">
       <div class="panel-heading text-center">
         Lista de tipos de servicios
@@ -42,7 +44,7 @@
     </div>
   </article>
 
-  <aside class="container col-md-6">
+  <aside class="col-md-6">
     <div class="panel panel-default">
       <div class="panel-heading text-center">
         Formulario de alta bombero
@@ -76,5 +78,7 @@
       </div>
     </div>
   </aside>
+  </div>
+</div>
 </div>
 @endsection
