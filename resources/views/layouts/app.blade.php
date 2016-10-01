@@ -22,45 +22,56 @@
 </head>
 <body id="app-layout">
 
-    <nav class="navbar navbar-default navbar-static-top">
-      <ul class="col-md-2 col-xs-4">
+    <nav>
+      <div class="col-lg-2 col-sm-3 col-xs-12 text-center">
         <h2>Bomberos</h2>
         <h4>Trenque Lauquen</h4>
-      </ul>
-      <div class="col-md-10  col-xs-8 rightnav">
+      </div>
+      <div class="col-lg-10 col-sm-9 col-xs-12">
         @if (!Auth::guest())
-          <ul class="nav navbar-nav">
-              <li id="first-icon" class="navIcon odd"><a href="{{route('servicio.create')}}" title="Cargar llamada">
-                  <span class="cantidad"></span> <span class="glyphicon glyphicon-phone-alt"></span> <span class="icon-title">Llamada</span></a></li>
+          <ul class="col-xs-10">
+              <li id="first-icon" class="navIcon odd text-center">
+                <a href="{{route('servicio.create')}}" title="Cargar llamada">
+                  <p><span class="glyphicon glyphicon-phone-alt"></span></p><p><span>Llamada</span><p>
+                </a>
+              </li>
 
-              <li class="dropdown navIcon">
+              <li class="dropdown navIcon text-center">
                 <a class="dropdown-toggle" href="#" title="Servicios activos" data-toggle="dropdown">
-                  <span class="cantidad">{{count(App\Servicio::getActivos())}}</span> <span class="glyphicon glyphicon-fire"></span> <span class="icon-title">Activos</span></a>
+                  <span class="cantidad">{{count(App\Servicio::getActivos())}}</span><p><span class="glyphicon glyphicon-fire"></span></p><p><span class="icon-title">Activos</span></p>
+                </a>
                 <ul class="dropdown-menu">
                   @foreach( App\Servicio::getActivos() as $servicio)
-                    <li><a href="{{route('servicio.mostrar', $servicio->id)}}">{{$servicio->direccion}}</a>
-                      @if(!$servicio->hora_salida)
-                      {{ Form::open(['route' => ['servicio.salida',$servicio->id], 'method' => 'PUT']) }}
-                        <button type="submit" class="btn fa fa-bus salida"></button>
-                      {{ Form::close() }}
-                      @else
-                        <button type="submit" class="btn fa fa-bus salidaok"></button>
-                      @endif
+                    <li>
+                      <a href="{{route('servicio.mostrar', $servicio->id)}}">{{$servicio->direccion}}</a>
+                        @if(!$servicio->hora_salida)
+                          {{ Form::open(['route' => ['servicio.salida',$servicio->id], 'method' => 'PUT']) }}
+                            <button type="submit" class="btn fa fa-bus salida"></button>
+                          {{ Form::close() }}
+                        @else
+                          <button type="submit" class="btn fa fa-bus salidaok"></button>
+                        @endif
                     </li>
                   @endforeach
                 </ul>
               </li>
 
-              <li class="navIcon odd"><a href="{{route('servicio.index')}}" title="Cargar servicio finalizado">
-                <span class="cantidad"></span> <span class="glyphicon glyphicon-file"></span> <span class="icon-title">Finalizar</span>
-              </a></li>
-              <li class="navIcon"><a href="{{route('servicio.index')}}" title="Ultimos servicios realizados">
-                <span class="cantidad"></span> <span class="glyphicon glyphicon-list"></span> <span class="icon-title">Últimos</span></a></li>
+              <li class="navIcon odd text-center">
+                <a href="{{route('servicio.index')}}" title="Cargar servicio finalizado">
+                  <p><span class="glyphicon glyphicon-file"></span></p><p><span class="icon-title">Finalizar</span></p>
+                </a>
+              </li>
+
+              <li class="navIcon text-center">
+                <a href="{{route('servicio.index')}}" title="Ultimos servicios realizados">
+                  <p><span class="glyphicon glyphicon-list"></span></p><p><span class="icon-title">Últimos</span></p>
+                </a>
+              </li>
           </ul>
         @endif
 
         <!-- Right Side Of Navbar -->
-        <ul class="nav navbar-nav navbar-right">
+        <ul class="col-xs-2 rightNav">
             <!-- Authentication Links -->
             @if (Auth::guest())
                 <li><a href="{{ url('/login') }}">Iniciar sesión</a></li>
@@ -72,7 +83,7 @@
                     </a>
 
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="{{ url('/logout') }}"><i class="glyphicon glyphicon-log-out"></i>Logout</a></li>
+                        <li><a href="{{ url('/logout') }}"><i class="glyphicon glyphicon-log-out"></i> Salir</a></li>
                     </ul>
                 </li>
             @endif
@@ -81,65 +92,50 @@
     </nav>
 
     @if (!Auth::guest())
-      <div class="col-md-2  col-xs-4 sidebar">
-        <div class="nav-side-menu">
-          <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+      <div id="MainMenu" class="col-lg-2 col-xs-4">
+        <div class="list-group panel">
 
-          <div class="menu-list">
-            <ul id="menu-content" class="menu-content collapse out">
+          <a href="#bomberosSubMenu" id="bomberoMenu" class="list-group-item" data-toggle="collapse" data-parent="#MainMenu"><i class="fa fa-user fa-lg"></i> Bomberos<span class="arrow"></span></a>
+          <div class="collapse" id="bomberosSubMenu">
+            <a href="{{route('bombero.index')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Listar bomberos</a>
+            <a href="{{route('bombero.create')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Alta bombero</a>
+          </div>
 
-              <a href="#">
-                <li data-toggle="collapse" data-target="#bombero" class="collapsed">
-                <i class="fa fa-user fa-lg"></i> Bomberos<span class="arrow"></span>
-                </li>
-              </a>
-              <ul class="sub-menu collapse" id="bombero">
-                <a href="{{route('bombero.index')}}"><li>Lista de bomberos</li></a>
-                  <a href="{{route('bombero.create')}}"><li>Registrar bombero</li></a>
-              </ul>
+          <a href="#asistenciasSubMenu" id="asistenciaMenu" class="list-group-item" data-toggle="collapse" data-parent="#MainMenu"><i class="fa fa-users fa-lg"></i> Asistencia<span class="arrow"></span></a>
+          <div class="collapse" id="asistenciasSubMenu">
+            <a href="" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Asistencia?</a>
+          </div>
 
-              <a href="#">
-                <li>
-                <i class="fa fa-users fa-lg"></i> Asistencia
-                </li>
-              </a>
+          <a href="#serviciosSubMenu" id="servicioMenu" class="list-group-item" data-toggle="collapse" data-parent="#MainMenu"><i class="fa fa-cog fa-lg"></i>  Servicios<span class="arrow"></span></a>
+          <div class="collapse" id="serviciosSubMenu">
+            <a href="{{route('servicio.tipo.index')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Tipos de servicios</a>
+            <a href="{{route('servicio.index')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Ultimos servicios</a>
+          </div>
 
+          <a href="#vehiculosSubMenu" id="vehiculoMenu" class="list-group-item" data-toggle="collapse" data-parent="#MainMenu"><i class="fa fa-car fa-lg"></i> Vehiculos<span class="arrow"></span></a>
+          <div class="collapse" id="vehiculosSubMenu">
+            <a href="{{route('vehiculo.index')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Lista de vehiculos</a>
+            <a href="{{route('vehiculo.create')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Alta vehiculo</a>
+          </div>
 
-              <a href="#">
-                <li data-toggle="collapse" data-target="#servicio" class="active collapsed">
-                <i class="fa fa-cog fa-lg"></i> Servicio <span class="arrow"></span>
-                </li>
-              </a>
-              <ul class="sub-menu collapse" id="servicio">
-                <a href="{{route('servicio.tipo.index')}}"><li class="active">Tipo de servicio</li></a>
-                <a href="{{route('servicio.index')}}"><li>Lista de servicio</li></a>
-              </ul>
-
-
-              <a href="{{route('vehiculos.index')}}">
-                <li>
-                <i class="fa fa-car fa-lg"></i> Vehiculos
-                </li>
-              </a>
-
-              <a href="{{route('materiales.index')}}">
-                <li>
-                <i class="fa fa-wrench fa-lg"></i> Materiales
-                </li>
-              </a>
-            </ul>
+          <a href="#materialesSubMenu" id="materialMenu" class="list-group-item" data-toggle="collapse" data-parent="#MainMenu"><i class="fa fa-wrench fa-lg"></i> Materiales<span class="arrow"></span></a>
+          <div class="collapse" id="materialesSubMenu">
+            <a href="{{route('material.index')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Lista de materiales</a>
+            <a href="{{route('material.create')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Alta material</a>
           </div>
         </div>
+
       </div>
-      <div class="right-panel col-md-10  col-xs-8">
+      <div class="right-panel col-lg-10 col-xs-8">
     @else
-      <div class="right-panel col-md-12">
+      <div class="right-panel col-sm-12">
     @endif
         @yield('content')
       </div>
     {!!HTML::script('assets/js/jquery.js')!!}
     {!!HTML::script('assets/js/bootstrap.js')!!}
     {!!HTML::script('assets/js/bootstrap-multiselect.js')!!}
+    {!!HTML::script('assets/js/script.js')!!}
     <!-- JavaScripts -->
 </body>
 </html>

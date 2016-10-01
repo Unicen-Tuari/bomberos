@@ -16,7 +16,7 @@ class MaterialController extends Controller
   public function index()
   {
       $materiales=Material::orderBy('nombre','DESC')->paginate(2);
-      return view('materiales/lista',compact('materiales'));
+      return view('material/lista',compact('materiales'));
   }
   public function create()
   {
@@ -26,26 +26,26 @@ class MaterialController extends Controller
       {
           $vehiculos[$data->id] = $data->patente;
       }
-      return view('materiales/alta',compact('vehiculos'));
+      return view('material/alta',compact('vehiculos'));
   }
 
   public function edit($id)
   {
       $material=Material::findorfail($id);
-      return view('materiales/editar',compact('material'));
+      return view('material/editar',compact('material'));
   }
   public function destroy($id)
   {
       $material=Material::find($id);
       $material->delete();
-      return redirect()->route('materiales.index');
+      return redirect()->route('material.index');
   }
 
   public function update(Request  $data, $id)
   {
       $material=Material::findorfail($id)->update($data->all());
 
-      return redirect()->route('materiales.index');
+      return redirect()->route('material.index');
   }
 
   public function store(Request $data)
@@ -54,7 +54,7 @@ class MaterialController extends Controller
       $data['vehiculo_id'] = null;
 
     Material::create($data->all());
-    return redirect()->route('materiales.index');
+    return redirect()->route('material.index');
 
 
   }

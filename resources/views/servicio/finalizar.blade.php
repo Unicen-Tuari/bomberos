@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<article class="col-md-12">
   <div class="panel panel-default">
     <div class="panel-heading">
       Finalizar servicio
@@ -13,7 +13,7 @@
     <div class="form-group {{ $errors->has('nombre') ? ' has-error' : '' }}">
       {!! Form::label('bomberos', 'Bomberos involucrados',['class' => 'col-md-4 control-label']) !!}
       <div class="col-md-6">
-        {{Form::select('Bomberos[]', $bomberos,null,['multiple'=>'multiple'])}}
+        {{Form::select('Bomberos[]', $bomberos,null,['class' => 'selectMultiple', 'multiple'=>'multiple'])}}
         @if ($errors->has('nombre'))
             <span class="help-block">
                 <strong>{{ $errors->first('nombre') }}</strong>
@@ -25,7 +25,7 @@
     <div class="form-group {{ $errors->has('nombre') ? ' has-error' : '' }}">
       {!! Form::label('vehiculos', 'Vehiculos involucrados',['class' => 'col-md-4 control-label']) !!}
       <div class="col-md-6">
-        {{Form::select('Vehiculos[]', $vehiculos,null,['multiple'=>'multiple'])}}
+        {{Form::select('Vehiculos[]', $vehiculos,null,['class' => 'selectMultiple', 'multiple'=>'multiple'])}}
         @if ($errors->has('nombre'))
             <span class="help-block">
                 <strong>{{ $errors->first('nombre') }}</strong>
@@ -52,8 +52,6 @@
 
     </div>
   </div>
-</div>
+</article>
 
-  <script type="text/javascript" src="{{ URL::asset('assets/js/jquery.js') }}"></script>
-  <script type="text/javascript" src="{{ URL::asset('assets/js/dropdown.js') }}"></script>
 @endsection
