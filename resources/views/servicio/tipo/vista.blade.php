@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-  <div class="panel  panel-default text-center">
+<article class="panel panel-default col-md-12">
+  <div class="panel-heading text-center">
     <h>tipos de servicios</h>
   </div>
-  <article class="container col-md-6">
+  <section class="panel-body col-md-6">
     <div class="panel panel-default">
       <div class="panel-heading text-center">
         Lista de tipos de servicios
@@ -31,21 +31,15 @@
               </tr>
             @endforeach
             </tbody>
-            <tfoot>
-              <tr>
-                <td class="text-center" colspan="3"> tipos de servicios </td>
-              </tr>
-            </tfoot>
-            <br>
           </table>
       </div>
     </div>
-  </article>
+  </section>
 
-  <aside class="container col-md-6">
+  <section class="panel-body col-md-6">
     <div class="panel panel-default">
       <div class="panel-heading text-center">
-        Formulario de alta bombero
+        Formulario de alta tipo de servicio
       </div>
       <div class="panel-body">
         {!! Form::open([ 'route' => 'servicio.tipo.store', 'class' => 'form-horizontal', 'method' => 'POST']) !!}
@@ -75,6 +69,6 @@
         {!! Form::close() !!}
       </div>
     </div>
-  </aside>
-</div>
+  </section>
+</article>
 @endsection

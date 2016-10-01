@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<article class="container col-md-12">
+<article class="col-sm-12">
   <div class="panel panel-default">
     <div class="panel-heading">
       Lista de bomberos

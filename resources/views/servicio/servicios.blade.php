@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container col-md-12">
+<article class="col-md-12">
   <div class="panel panel-default">
     <div class="panel-heading">
       Inicio Alerta
@@ -41,5 +41,5 @@
         </table>
     </div>
   </div>
-</div>
+</article>
 @endsection
