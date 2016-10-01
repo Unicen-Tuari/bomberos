@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container">
+<article class="col-md-12">
   <div class="panel panel-default">
     <div class="panel-heading">
       Inicio Alerta
@@ -55,5 +55,5 @@
       {!! Form::close() !!}
     </div>
   </div>
-</div>
+</article>
 @endsection

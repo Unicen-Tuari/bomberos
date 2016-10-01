@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<article class="col-md-12">
 <div class="panel panel-default">
   <div class="panel-heading">
     Alta de vehiculo
   </div>
   <div class="panel-body">
-    {!! Form::open([ 'route' => 'vehiculos.store', 'class' => 'form-horizontal', 'method' => 'POST', 'files' => true]) !!}
+    {!! Form::open([ 'route' => 'vehiculo.store', 'class' => 'form-horizontal', 'method' => 'POST', 'files' => true]) !!}
 
 
         {!! Form::label('patente', 'Patente',['class' => 'col-md-4 control-label']) !!}
@@ -34,5 +34,5 @@
     {!! Form::close() !!}
   </div>
 </div>
-</div>
+</article>
 @endsection

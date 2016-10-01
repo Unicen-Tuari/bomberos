@@ -21,9 +21,9 @@ Route::get('/home', 'HomeController@index');
 
 Route::resource('bombero','BomberoController',['except' => ['show']]);
 
-Route::resource('vehiculos','VehiculoController');
+Route::resource('vehiculo','VehiculoController');
 
-Route::resource('materiales','MaterialController');
+Route::resource('material','MaterialController');
 
 Route::resource('servicio/tipo','TipoServicioController',['except' => ['create']]);
 

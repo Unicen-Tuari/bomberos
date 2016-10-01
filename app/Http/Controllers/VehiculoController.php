@@ -16,39 +16,33 @@ class VehiculoController extends Controller
   public function index()
   {
       $vehiculos=Vehiculo::orderBy('patente','DESC')->paginate(2);
-      return view('vehiculos/lista',compact('vehiculos'));
+      return view('vehiculo/lista',compact('vehiculos'));
   }
   public function create()
   {
-      return view('vehiculos/alta');
+      return view('vehiculo/alta');
   }
   public function edit($id)
   {
       $vehiculo=Vehiculo::findorfail($id);
-      return view('vehiculos/editar',compact('vehiculo'));
+      return view('vehiculo/editar',compact('vehiculo'));
   }
   public function destroy($id)
   {
       $vehiculo=Vehiculo::find($id);
       $vehiculo->delete();
-      return redirect()->route('vehiculos.index');
+      return redirect()->route('vehiculo.index');
   }
   public function update(Request  $data, $id)
   {
       $vehiculo=Vehiculo::findorfail($id)->update($data->all());
       // $bombero->update();
-      return redirect()->route('vehiculos.index');
+      return redirect()->route('vehiculo.index');
   }
 
-  /**
-   * Create a new user instance after a valid registration.
-   *
-   * @param  array  $data
-   * @return User
-   */
   public function store(Request $data)
   {
     Vehiculo::create($data->all());
-    return redirect()->route('vehiculos.index');
+    return redirect()->route('vehiculo.index');
   }
 }
