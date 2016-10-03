@@ -20,15 +20,11 @@
             @endif
         </div>
 
-        {!! Form::label('vehiculo_id', 'Esta en el vehiculo: ',['class' => 'col-md-4 control-label']) !!}
-        <div class="col-md-6">
-            {!! Form::text('vehiculo_id', $material->vehiculo_id, ['class' => 'form-control']) !!}
-
-            @if ($errors->has('patente'))
-                <span class="help-block">
-                    <strong>{{ $errors->first('patente') }}</strong>
-                </span>
-            @endif
+        <div class="form-group">
+          {!! Form::label('vehiculo_id', 'Esta en el vehiculo: ',['class' => 'col-md-4 control-label']) !!}
+          <div class="col-md-2">
+            {{Form::select('vehiculo_id', $vehiculos,$material->vehiculo_id,['class' => 'form-control'])}}
+          </div>
         </div>
 
         <div class="form-group">

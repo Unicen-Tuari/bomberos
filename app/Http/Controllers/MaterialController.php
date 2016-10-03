@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Validator;
 use App\Http\Requests;
+use App\Http\Requests\MaterialRequest;
 use App\Material;
 use App\Vehiculo;
+
 class MaterialController extends Controller
 {
   public function __construct()
@@ -31,8 +34,14 @@ class MaterialController extends Controller
 
   public function edit($id)
   {
+      $datas=Vehiculo::all(['id', 'patente']);
+      $vehiculos = array();
+      foreach ($datas as $data)
+      {
+          $vehiculos[$data->id] = $data->patente;
+      }
       $material=Material::findorfail($id);
-      return view('material/editar',compact('material'));
+      return view('material/editar',compact('material', 'vehiculos'));
   }
   public function destroy($id)
   {
@@ -41,14 +50,14 @@ class MaterialController extends Controller
       return redirect()->route('material.index');
   }
 
-  public function update(Request  $data, $id)
+  public function update(MaterialRequest $data, $id)
   {
       $material=Material::findorfail($id)->update($data->all());
 
       return redirect()->route('material.index');
   }
 
-  public function store(Request $data)
+  public function store(MaterialRequest $data)
   {
     if ($data['vehiculo_id'] == "")
       $data['vehiculo_id'] = null;

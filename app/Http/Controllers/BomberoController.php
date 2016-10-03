@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use Validator;
 use App\Bombero;
-use App\Http\Requests\saveBomberoRequest;
+use App\Http\Requests\BomberoRequest;
 
 class BomberoController extends Controller
 {
@@ -34,19 +34,13 @@ class BomberoController extends Controller
       $bombero->delete();
       return redirect()->route('bombero.index');
   }
-  public function update(saveBomberoRequest  $data, $id)
+  public function update(BomberoRequest  $data, $id)
   {
       $bombero=Bombero::findorfail($id)->update($data->all());
       return redirect()->route('bombero.index');
   }
 
-  /**
-   * Create a new user instance after a valid registration.
-   *
-   * @param  array  $data
-   * @return User
-   */
-  public function store(saveBomberoRequest  $data)
+  public function store(BomberoRequest  $data)
   {
     Bombero::create($data->all());
     return redirect()->route('bombero.index');

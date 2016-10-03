@@ -13,7 +13,6 @@
           {!! Form::label('nombre', 'Nombre',['class' => 'col-md-4 control-label']) !!}
           <div class="col-md-6">
               {!! Form::text('nombre', null, ['class' => 'form-control']) !!}
-
               @if ($errors->has('nombre'))
                   <span class="help-block">
                       <strong>{{ $errors->first('nombre') }}</strong>
@@ -26,11 +25,6 @@
             <div class="col-md-2">
               {{Form::select('vehiculo_id', $vehiculos,null,['class' => 'form-control'])}}
             </div>
-              @if ($errors->has('vehiculo_id'))
-                  <span class="help-block">
-                      <strong>{{ $errors->first('vehiculo_id') }}</strong>
-                  </span>
-              @endif
           </div>
 
         <div class="form-group">
