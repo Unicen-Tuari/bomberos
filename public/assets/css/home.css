@@ -2,6 +2,10 @@ nav [class*='col-'] {
   padding: 0px;
   margin: 0px;
 }
+ .accidentados [class*='col-']{
+   padding-left: 0px;
+   padding-right: 0px;
+ }
 
 nav li a:hover span{
   color: #fff;

@@ -23,11 +23,11 @@
 <body id="app-layout">
 
     <nav>
-      <div class="col-lg-2 col-sm-3 col-xs-12 text-center">
+      <div class="col-lg-2 col-sm-4 col-xs-12 text-center">
         <h2>Bomberos</h2>
         <h4>Trenque Lauquen</h4>
       </div>
-      <div class="col-lg-10 col-sm-9 col-xs-12">
+      <div class="col-lg-10 col-sm-8 col-xs-12">
         @if (!Auth::guest())
           <ul class="col-xs-10">
               <li id="first-icon" class="navIcon odd text-center">
