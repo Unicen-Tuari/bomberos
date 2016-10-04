@@ -40,11 +40,11 @@
                 {!! Form::label('password', 'Contraseña',['class' => 'col-md-4 control-label']) !!}
 
                 <div class="col-md-6">
-                  {!! Form::password('password', null, ['class' => 'form-control']) !!}
+                  {!! Form::password('password', ['class' => 'form-control']) !!}
 
                   @if ($errors->has('password'))
                       <span class="help-block">
-                          <strong>{{ $errors->first('password') }}</strong>
+                          <strong>{{  str_replace("password","contraseña",$errors->first('password')) }}</strong>
                       </span>
                   @endif
                 </div>
@@ -54,7 +54,7 @@
                 {!! Form::label('password-confirm', 'Confirmar Contraseña',['class' => 'col-md-4 control-label']) !!}
 
                 <div class="col-md-6">
-                  {!! Form::password('password_confirmation', null, ['class' => 'form-control']) !!}
+                  {!! Form::password('password_confirmation', ['class' => 'form-control']) !!}
 
                   @if ($errors->has('password_confirmation'))
                       <span class="help-block">

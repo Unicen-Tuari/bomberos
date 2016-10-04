@@ -36,6 +36,7 @@ class MaterialRequest extends Request
          {
            return [
                'nombre' => 'required|min:3|max:255',
+               'vehiculo_id'=>'exists:vehiculo,id'
            ];
          }
 
@@ -43,6 +44,7 @@ class MaterialRequest extends Request
          {
            return [
              'nombre' => 'required|min:3|max:255',
+             'vehiculo_id'=>'exists:vehiculo,id'
            ];
          }
          default:break;

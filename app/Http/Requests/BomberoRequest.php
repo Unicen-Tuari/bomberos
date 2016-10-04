@@ -40,7 +40,7 @@ class BomberoRequest extends Request
               'nro_legajo' => 'required|min:6|numeric|unique:bombero',
               'jerarquia' => 'required|max:255',
               'direccion' => 'required|max:255',
-              'telefono' => 'required|min:6|alpha_num',
+              'telefono' => 'required|min:6|numeric',
               'fecha_nacimiento' => 'required|date_format:Y-m-d',
           ];
         }

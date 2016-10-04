@@ -17,7 +17,7 @@ class VehiculoController extends Controller
   }
   public function index()
   {
-      $vehiculos=Vehiculo::orderBy('patente','DESC')->paginate(2);
+      $vehiculos=Vehiculo::orderBy('patente','DESC')->paginate(8);
       return view('vehiculo/lista',compact('vehiculos'));
   }
   public function create()
@@ -44,6 +44,7 @@ class VehiculoController extends Controller
 
   public function store(VehiculoRequest $data)
   {
+    $data['patente'] = strtoupper($data->patente);
     Vehiculo::create($data->all());
     return redirect()->route('vehiculo.index');
   }

@@ -35,14 +35,14 @@ class VehiculoRequest extends Request
         case 'POST':
         {
           return [
-              'patente' => 'required|min:6',
+              'patente' => array('required','min:6','unique:vehiculo', 'regex:/^\w{2}\s\d{3}\s\w{2}$|\w{3}\s\d{3}$/'),
           ];
         }
 
         case 'PUT':
         {
           return [
-              'patente' => 'required|min:6',
+              'patente' => array('required','min:6','unique:vehiculo', 'regex:/^\w{2}\s\d{3}\s\w{2}$|\w{3}\s\d{3}$/'),
           ];
         }
         default:break;

@@ -18,7 +18,7 @@ class MaterialController extends Controller
   }
   public function index()
   {
-      $materiales=Material::orderBy('nombre','DESC')->paginate(2);
+      $materiales=Material::orderBy('nombre','DESC')->paginate(8);
       return view('material/lista',compact('materiales'));
   }
   public function create()
@@ -59,12 +59,11 @@ class MaterialController extends Controller
 
   public function store(MaterialRequest $data)
   {
-    if ($data['vehiculo_id'] == "")
+    if ($data['vehiculo_id'] == ""){
       $data['vehiculo_id'] = null;
 
+    }
     Material::create($data->all());
     return redirect()->route('material.index');
-
-
   }
 }

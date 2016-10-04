@@ -9,22 +9,29 @@
     <div class="panel-body">
       {!! Form::open([ 'route' => ['material.update', $material ], 'class' => 'form-horizontal', 'method' => 'PUT', 'files' => true]) !!}
 
-        {!! Form::label('nombre', 'Nombre',['class' => 'col-md-4 control-label']) !!}
-        <div class="col-md-6">
-            {!! Form::text('nombre', $material->nombre, ['class' => 'form-control']) !!}
+        <div class="form-group {{ $errors->has('nombre') ? ' has-error' : '' }}">
+          {!! Form::label('nombre', 'Nombre',['class' => 'col-md-4 control-label']) !!}
+          <div class="col-md-6">
+              {!! Form::text('nombre', $material->nombre, ['class' => 'form-control']) !!}
 
-            @if ($errors->has('patente'))
-                <span class="help-block">
-                    <strong>{{ $errors->first('patente') }}</strong>
-                </span>
-            @endif
+              @if ($errors->has('nombre'))
+                  <span class="help-block">
+                      <strong>{{ $errors->first('nombre') }}</strong>
+                  </span>
+              @endif
+          </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group  {{ $errors->has('vehiculo_id') ? ' has-error' : '' }}">
           {!! Form::label('vehiculo_id', 'Esta en el vehiculo: ',['class' => 'col-md-4 control-label']) !!}
           <div class="col-md-2">
-            {{Form::select('vehiculo_id', $vehiculos,$material->vehiculo_id,['class' => 'form-control'])}}
+            {{Form::select('vehiculo_id',['' => 'Ninguno'] + $vehiculos, $material->vehiculo_id, ['class' => 'form-control'])}}
           </div>
+          @if ($errors->has('vehiculo_id'))
+              <span class="help-block">
+                  <strong>{{ str_replace(" id "," ",$errors->first('vehiculo_id')) }}</strong>
+              </span>
+          @endif
         </div>
 
         <div class="form-group">
