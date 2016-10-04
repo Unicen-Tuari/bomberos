@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Vehiculo;
+use Validator;
+use App\Http\Requests\VehiculoRequest;
 
 class VehiculoController extends Controller
 {
@@ -15,7 +17,7 @@ class VehiculoController extends Controller
   }
   public function index()
   {
-      $vehiculos=Vehiculo::orderBy('patente','DESC')->paginate(2);
+      $vehiculos=Vehiculo::orderBy('patente','DESC')->paginate(8);
       return view('vehiculo/lista',compact('vehiculos'));
   }
   public function create()
@@ -33,15 +35,16 @@ class VehiculoController extends Controller
       $vehiculo->delete();
       return redirect()->route('vehiculo.index');
   }
-  public function update(Request  $data, $id)
+  public function update(VehiculoRequest $data, $id)
   {
       $vehiculo=Vehiculo::findorfail($id)->update($data->all());
       // $bombero->update();
       return redirect()->route('vehiculo.index');
   }
 
-  public function store(Request $data)
+  public function store(VehiculoRequest $data)
   {
+    $data['patente'] = strtoupper($data->patente);
     Vehiculo::create($data->all());
     return redirect()->route('vehiculo.index');
   }

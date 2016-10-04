@@ -10,9 +10,11 @@
       <table  class="table table-bordered">
         <thead><!--Titulos de la tabla-->
           <tr>
-            <th>
+            <th class="text-center">
               Materiales
             </th>
+            <th class="text-center">Vehiculo</th>
+            <th colspan="2"></th>
           </tr>
         </thead>
         <tbody><!--Contenido de la tabla-->
