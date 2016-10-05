@@ -26,9 +26,15 @@ class VehiculoController extends Controller
   }
   public function edit($id)
   {
-      $vehiculo=Vehiculo::findorfail($id);
+      $vehiculo=Vehiculo::find($id);
       return view('vehiculo/editar',compact('vehiculo'));
   }
+
+  public function mostrar($id){
+      $vehiculo=Vehiculo::find($id);
+      return view('vehiculo/info',compact('vehiculo'));
+  }
+
   public function destroy($id)
   {
       $vehiculo=Vehiculo::find($id);

@@ -10,4 +10,7 @@ class Vehiculo extends Model
   protected $fillable = [
       'patente',
   ];
+  public function materiales(){
+    return $this->hasMany(Material::class);
+  }
 }

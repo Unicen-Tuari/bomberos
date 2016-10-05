@@ -16,13 +16,14 @@ class BomberoController extends Controller
   }
   public function index()
   {
-      $bomberos=Bombero::orderBy('nombre','DESC')->paginate(2);
+      $bomberos=Bombero::orderBy('nombre','DESC')->paginate(12);
       return view('bombero/lista',compact('bomberos'));
   }
   public function create()
   {
       return view('bombero/alta');
   }
+
   public function edit($id)
   {
       $bombero=Bombero::findorfail($id);

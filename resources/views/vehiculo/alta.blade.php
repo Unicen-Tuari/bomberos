@@ -7,7 +7,7 @@
     Alta de vehiculo
   </div>
   <div class="panel-body">
-    {!! Form::open([ 'route' => 'vehiculo.store', 'class' => 'form-horizontal', 'method' => 'POST', 'files' => true]) !!}
+    {!! Form::open([ 'route' => 'vehiculo.store', 'class' => 'form-horizontal', 'method' => 'POST']) !!}
 
       <div class="form-group {{ $errors->has('patente') ? ' has-error' : '' }}">
         {!! Form::label('patente', 'Patente',['class' => 'col-md-4 control-label']) !!}
