@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use App\Http\Requests\Request;
 use App\Bombero;
 
-class saveBomberoRequest extends Request
+class BomberoRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -40,7 +40,7 @@ class saveBomberoRequest extends Request
               'nro_legajo' => 'required|min:6|numeric|unique:bombero',
               'jerarquia' => 'required|max:255',
               'direccion' => 'required|max:255',
-              'telefono' => 'required|min:6|alpha_num',
+              'telefono' => 'required|min:6',
               'fecha_nacimiento' => 'required|date_format:Y-m-d',
           ];
         }
@@ -53,7 +53,7 @@ class saveBomberoRequest extends Request
               'nro_legajo' => 'required|min:6|numeric|unique:bombero,id,'.$bombero->id,
               'jerarquia' => 'required|max:255',
               'direccion' => 'required|max:255',
-              'telefono' => 'required|min:6|alpha_num',
+              'telefono' => 'required|min:6',
               'fecha_nacimiento' => 'required|date_format:Y-m-d',
           ];
         }

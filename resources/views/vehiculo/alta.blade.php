@@ -7,19 +7,20 @@
     Alta de vehiculo
   </div>
   <div class="panel-body">
-    {!! Form::open([ 'route' => 'vehiculo.store', 'class' => 'form-horizontal', 'method' => 'POST', 'files' => true]) !!}
+    {!! Form::open([ 'route' => 'vehiculo.store', 'class' => 'form-horizontal', 'method' => 'POST']) !!}
 
-
+      <div class="form-group {{ $errors->has('patente') ? ' has-error' : '' }}">
         {!! Form::label('patente', 'Patente',['class' => 'col-md-4 control-label']) !!}
         <div class="col-md-6">
             {!! Form::text('patente', null, ['class' => 'form-control']) !!}
 
             @if ($errors->has('patente'))
                 <span class="help-block">
-                    <strong>{{ $errors->first('patente') }}</strong>
+                    <strong>{{ $errors->first('patente') }} Usar: AAA 999 o AA 999 AA</strong>
                 </span>
             @endif
         </div>
+      </div>
       {{-- </div> --}}
 
       <div class="form-group">

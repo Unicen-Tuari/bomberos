@@ -10,16 +10,18 @@
       <table  class="table table-bordered">
         <thead><!--Titulos de la tabla-->
           <tr>
-            <th>
+            <th class="text-center">
               Materiales
             </th>
+            <th class="text-center">Vehiculo</th>
+            <th colspan="2"></th>
           </tr>
         </thead>
         <tbody><!--Contenido de la tabla-->
           @foreach ($materiales as $material)
             <tr>
               <td class="text-center">{{$material->nombre}}</td>
-              <td class="text-center">{{$material->vehiculo_id}}</td>
+              <td class="text-center">{{$material->vehiculo->patente}}</td>
               <td class="text-center">
                 {{ Form::open(['route' => ['material.destroy', $material->id], 'method' => 'delete']) }}
                     <button type="submit" class="btn glyphicon glyphicon-trash eliminar"></button>

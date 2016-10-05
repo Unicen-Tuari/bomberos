@@ -70,13 +70,22 @@
           </ul>
         @endif
 
-        <!-- Right Side Of Navbar -->
-        <ul class="col-xs-2 rightNav">
-            <!-- Authentication Links -->
             @if (Auth::guest())
+            <!-- Right Side Of Navbar -->
+            <ul class="col-xs-12 rightNav">
+                <div class="col-xs-11">
+
+                </div>
+                <!-- Authentication Links -->
                 <li><a href="{{ url('/login') }}">Iniciar sesión</a></li>
                 <li><a href="{{ url('/register') }}">Registrarse</a></li>
             @else
+            <!-- Right Side Of Navbar -->
+            <ul class="col-xs-2 rightNav">
+                <div class="col-xs-3">
+
+                </div>
+                <!-- Authentication Links -->
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                         {{ Auth::user()->nombre }} <span class="caret"></span>
