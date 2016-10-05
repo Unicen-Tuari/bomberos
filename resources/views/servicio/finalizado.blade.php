@@ -161,7 +161,7 @@
     <div class="form-group {{ $errors->has('reconocimiento') ? ' has-error' : '' }}">
       {!! Form::label('reconocimiento', 'Reconocimiento',['class' => 'col-sm-4 control-label']) !!}
       <div class="col-sm-6">
-          {!! Form::textarea('reconocimiento', null, ['class' => 'form-control' , 'rows' => '7']) !!}
+          {!! Form::textarea('reconocimiento', null, ['class' => 'form-control' , 'rows' => '6']) !!}
 
           @if ($errors->has('reconocimiento'))
               <span class="help-block">
@@ -174,11 +174,24 @@
     <div class="form-group {{ $errors->has('descripcion') ? ' has-error' : '' }}">
       {!! Form::label('descripcion', 'Descripcion',['class' => 'col-sm-4 control-label']) !!}
       <div class="col-sm-6">
-        {!! Form::textarea('descripcion', null, ['class' => 'form-control', 'rows' => '7']) !!}
+        {!! Form::textarea('descripcion', null, ['class' => 'form-control', 'rows' => '6']) !!}
 
         @if ($errors->has('descripcion'))
             <span class="help-block">
                 <strong>{{ $errors->first('descripcion') }}</strong>
+            </span>
+        @endif
+      </div>
+    </div>
+
+    <div class="form-group {{ $errors->has('alarma') ? ' has-error' : '' }}">
+      {!! Form::label('alarma', 'Hora alarma',['class' => 'col-sm-4 control-label']) !!}
+      <div class="col-sm-6">
+        {!! Form::date('alarma', \Carbon\Carbon::now()->toDateTimeString(),['class' => 'form-control']) !!}
+
+        @if ($errors->has('alarma'))
+            <span class="help-block">
+                <strong>{{ $errors->first('alarma') }}</strong>
             </span>
         @endif
       </div>
