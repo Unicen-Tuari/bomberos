@@ -21,7 +21,7 @@
           @foreach ($materiales as $material)
             <tr>
               <td class="text-center">{{$material->nombre}}</td>
-              <td class="text-center">{{$material->vehiculo_id}}</td>
+              <td class="text-center">{{$material->vehiculo->patente}}</td>
               <td class="text-center">
                 {{ Form::open(['route' => ['material.destroy', $material->id], 'method' => 'delete']) }}
                     <button type="submit" class="btn glyphicon glyphicon-trash eliminar"></button>

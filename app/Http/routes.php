@@ -21,6 +21,7 @@ Route::get('/home', 'HomeController@index');
 
 Route::resource('bombero','BomberoController',['except' => ['show']]);
 
+Route::get('vehiculo/{id}/mostrar', 'VehiculoController@mostrar')->name('vehiculo.mostrar');
 Route::resource('vehiculo','VehiculoController');
 
 Route::resource('material','MaterialController');

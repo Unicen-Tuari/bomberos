@@ -10,4 +10,7 @@ class Material extends Model
   protected $fillable = [
       'nombre','vehiculo_id',
   ];
+  public function vehiculo(){
+    return $this->belongsTo(Vehiculo::class);
+  }
 }

@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Bombero;
 
-class DatabaseSeeder extends Seeder
+class BomberoTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,7 +12,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
-        $this->call(BomberoTableSeeder::class);
+        factory(Bombero::class)->times(50)->create();
     }
 }
