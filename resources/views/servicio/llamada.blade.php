@@ -7,8 +7,8 @@
     <div class="panel-heading">
       Inicio Alerta
     </div>
-    <div>
-      {!! Form::open([ 'route' => 'servicio.store', 'class' => 'form-horizontal', 'method' => 'POST']) !!}
+    <div class="panel-body">
+      {!! Form::open([ 'route' => 'servicio.iniciado', 'class' => 'form-horizontal', 'method' => 'POST']) !!}
         <div class="form-group">
           {!! Form::label('Tipo', 'Tipo de servicio',['class' => 'col-md-2 col-md-offset-2 control-label']) !!}
           <div class="col-md-2">

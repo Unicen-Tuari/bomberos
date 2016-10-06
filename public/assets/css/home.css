@@ -2,6 +2,10 @@ nav [class*='col-'] {
   padding: 0px;
   margin: 0px;
 }
+ .accidentados [class*='col-']{
+   padding-left: 0px;
+   padding-right: 0px;
+ }
 
 nav li a:hover span{
   color: #fff;
@@ -115,11 +119,9 @@ body  {
 }
 
 .sidebar {
-    padding-left: 0px;
-    padding-right: 0px;
     height: calc(100% - 110px);
 }
-.panel-body {
+.panel-body{
   overflow-x: auto;
 }
 article {
@@ -131,7 +133,6 @@ article {
   padding-left: 0px;
   padding-right: 0px;
   background-color: rgb(219, 219, 219);
-  height: auto;
   height: calc(100% - 110px);
 }
 
