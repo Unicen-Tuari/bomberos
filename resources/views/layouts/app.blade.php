@@ -31,7 +31,7 @@
         @if (!Auth::guest())
           <ul class="col-xs-10">
               <li id="first-icon" class="navIcon odd text-center">
-                <a href="{{route('servicio.create')}}" title="Cargar llamada">
+                <a href="{{route('servicio.llamada')}}" title="Cargar llamada">
                   <p><span class="glyphicon glyphicon-phone-alt"></span></p><p><span>Llamada</span><p>
                 </a>
               </li>

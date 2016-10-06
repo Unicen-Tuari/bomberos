@@ -12,7 +12,8 @@ class Servicio extends Model
             quemados, lesionados, combustible, disposiciones, reconocimiento'];
 
   protected function getActivos()
-    {
-        return $this->orderBy('id','ASC')->get();
-    }
+  {
+      return $this->orderBy('id','ASC')->get();
+  }
+  
 }

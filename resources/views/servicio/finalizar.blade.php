@@ -3,45 +3,41 @@
 @section('content')
 <article class="col-md-12">
   <div class="panel panel-default">
-    <div class="panel-heading">
+    <div class="panel-heading text-center">
       Finalizar servicio
     </div>
   <div class="panel-body">
 
   {!! Form::open([ 'route' => ['servicio.finalizar', $id], 'class' => 'form-horizontal', 'method' => 'PUT']) !!}
 
-      <div class="form-group">
-        <div class="{{ $errors->has('bomberos') ? ' has-error' : '' }}">
-          {!! Form::label('bomberos', 'Bomberos involucrados',['class' => 'col-sm-4 control-label']) !!}
-          <div class="col-sm-2">
-            {{Form::select('Bomberos[]', $bomberos,null,['class' => 'selectMultiple', 'multiple'=>'multiple'])}}
-            @if ($errors->has('bomberos'))
-                <span class="help-block">
-                    <strong>{{ $errors->first('bomberos') }}</strong>
-                </span>
-            @endif
-          </div>
+      <div class="form-group {{ $errors->has('bomberos') ? ' has-error' : '' }}">
+        {!! Form::label('bomberos', 'Bomberos involucrados',['class' => 'col-sm-4 control-label']) !!}
+        <div class="col-sm-2">
+          {{Form::select('Bomberos[]', $bomberos,null,['class' => 'selectMultiple', 'multiple'=>'multiple'])}}
+          @if ($errors->has('bomberos'))
+              <span class="help-block">
+                  <strong>{{ $errors->first('bomberos') }}</strong>
+              </span>
+          @endif
         </div>
       </div>
 
-      <div class="form-group">
-        <div class="{{ $errors->has('vehiculos') ? ' has-error' : '' }}">
-          {!! Form::label('vehiculos', 'Vehiculos involucrados',['class' => 'col-sm-4 control-label']) !!}
-          <div class="col-sm-2">
-            {{Form::select('Vehiculos[]', $vehiculos,null,['class' => 'selectMultiple', 'multiple'=>'multiple'])}}
-            @if ($errors->has('vehiculos'))
-                <span class="help-block">
-                    <strong>{{ $errors->first('vehiculos') }}</strong>
-                </span>
-            @endif
-          </div>
+      <div class="form-group {{ $errors->has('vehiculos') ? ' has-error' : '' }}">
+        {!! Form::label('vehiculos', 'Vehiculos involucrados',['class' => 'col-sm-4 control-label']) !!}
+        <div class="col-sm-2">
+          {{Form::select('Vehiculos[]', $vehiculos,null,['class' => 'selectMultiple', 'multiple'=>'multiple'])}}
+          @if ($errors->has('vehiculos'))
+              <span class="help-block">
+                  <strong>{{ $errors->first('vehiculos') }}</strong>
+              </span>
+          @endif
         </div>
       </div>
 
       <div class="form-group accidentados">
-        <div class="col-md-2 col-md-offset-3 {{ $errors->has('ilesos') ? ' has-error' : '' }}">
-          {!! Form::label('ilesos', 'Ilesos',['class' => 'col-md-3 col-md-offset-5 col-form-label']) !!}
-          <div class="col-md-3">
+        <div class="col-sm-2 col-md-offset-3 {{ $errors->has('ilesos') ? ' has-error' : '' }}">
+          {!! Form::label('ilesos', 'Ilesos',['class' => 'col-md-6 col-md-offset-1 col-form-label']) !!}
+          <div class="col-md-5">
               {!! Form::text('ilesos', 0, ['class' => 'form-control']) !!}
 
               @if ($errors->has('ilesos'))
@@ -52,9 +48,9 @@
           </div>
         </div>
 
-        <div class="col-md-2 {{ $errors->has('lesionados') ? ' has-error' : '' }}">
-          {!! Form::label('lesionados', 'Lesionados',['class' => 'col-md-4 col-md-offset-2 col-form-label']) !!}
-          <div class="col-md-3">
+        <div class="col-sm-2 {{ $errors->has('lesionados') ? ' has-error' : '' }}">
+          {!! Form::label('lesionados', 'Lesionados',['class' => 'col-md-5 col-md-offset-1 col-form-label']) !!}
+          <div class="col-md-5">
               {!! Form::text('lesionados', 0, ['class' => 'form-control']) !!}
 
               @if ($errors->has('lesionados'))
@@ -65,8 +61,8 @@
           </div>
         </div>
 
-        <div class="col-md-1 {{ $errors->has('quemados') ? ' has-error' : '' }}">
-          {!! Form::label('quemados', 'Quemados',['class' => 'col-md-7 col-form-label']) !!}
+        <div class="col-sm-2 {{ $errors->has('quemados') ? ' has-error' : '' }}">
+          {!! Form::label('quemados', 'Quemados',['class' => 'col-md-5 col-md-offset-1 col-form-label']) !!}
           <div class="col-md-5">
               {!! Form::text('quemados', 0, ['class' => 'form-control']) !!}
 
@@ -77,10 +73,11 @@
               @endif
           </div>
         </div>
+
       </div>
 
       <div class="form-group accidentados">
-        <div class="col-md-2 col-md-offset-3 {{ $errors->has('muertos') ? ' has-error' : '' }}">
+        <div class="col-sm-2 col-sm-offset-3 {{ $errors->has('muertos') ? ' has-error' : '' }}">
           {!! Form::label('muertos', 'Muertos',['class' => 'col-md-6 col-md-offset-1 col-form-label']) !!}
           <div class="col-md-5">
               {!! Form::text('muertos', 0, ['class' => 'form-control']) !!}
@@ -93,9 +90,9 @@
           </div>
         </div>
 
-        <div class="col-md-1 {{ $errors->has('otros') ? ' has-error' : '' }}">
-          {!! Form::label('otros', 'Otros',['class' => 'col-md-4 col-md-offset-2 col-form-label']) !!}
-          <div class="col-md-6">
+        <div class="col-sm-2 {{ $errors->has('otros') ? ' has-error' : '' }}">
+          {!! Form::label('otros', 'Otros',['class' => 'col-md-5 col-md-offset-1 col-form-label']) !!}
+          <div class="col-md-5">
               {!! Form::text('otros', 0, ['class' => 'form-control']) !!}
 
               @if ($errors->has('otros'))
@@ -124,7 +121,7 @@
       <div class="form-group {{ $errors->has('reconocimiento') ? ' has-error' : '' }}">
         {!! Form::label('reconocimiento', 'Reconocimiento',['class' => 'col-sm-4 control-label']) !!}
         <div class="col-sm-6">
-            {!! Form::textarea('reconocimiento', null, ['class' => 'form-control' , 'rows' => '7']) !!}
+            {!! Form::textarea('reconocimiento', null, ['class' => 'form-control' , 'rows' => '8']) !!}
 
             @if ($errors->has('reconocimiento'))
                 <span class="help-block">
@@ -134,17 +131,59 @@
         </div>
       </div>
 
-      <div class="form-group {{ $errors->has('descripcion') ? ' has-error' : '' }}">
-        {!! Form::label('descripcion', 'Descripcion',['class' => 'col-sm-4 control-label']) !!}
+      <div class="form-group {{ $errors->has('disposiciones') ? ' has-error' : '' }}">
+        {!! Form::label('disposiciones', 'Disposiciones',['class' => 'col-sm-4 control-label']) !!}
         <div class="col-sm-6">
-          {!! Form::textarea('descripcion', null, ['class' => 'form-control', 'rows' => '7']) !!}
+          {!! Form::textarea('disposiciones', null, ['class' => 'form-control', 'rows' => '4']) !!}
 
-          @if ($errors->has('descripcion'))
+          @if ($errors->has('disposiciones'))
               <span class="help-block">
-                  <strong>{{ $errors->first('descripcion') }}</strong>
+                  <strong>{{ $errors->first('disposiciones') }}</strong>
               </span>
           @endif
         </div>
+      </div>
+
+      <div class="form-group">
+        <div class="{{ $errors->has('alarma') ? ' has-error' : '' }}">
+          {!! Form::label('alarma', 'Hora alarma',['class' => 'col-sm-3 control-label']) !!}
+          <div class="col-sm-2">
+            {!! Form::date('alarma', \Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires'))->toDateTimeString(),['class' => 'form-control']) !!}
+
+            @if ($errors->has('alarma'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('alarma') }}</strong>
+                </span>
+            @endif
+          </div>
+        </div>
+
+        <div class="{{ $errors->has('salida') ? ' has-error' : '' }}">
+          {!! Form::label('salida', 'Hora salida',['class' => 'col-sm-1 control-label']) !!}
+          <div class="col-sm-2">
+            {!! Form::date('salida', \Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires'))->toDateTimeString(),['class' => 'form-control']) !!}
+
+            @if ($errors->has('salida'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('salida') }}</strong>
+                </span>
+            @endif
+          </div>
+        </div>
+
+        <div class="{{ $errors->has('regreso') ? ' has-error' : '' }}">
+          {!! Form::label('regreso', 'Hora regreso',['class' => 'col-sm-1 control-label']) !!}
+          <div class="col-sm-2">
+            {!! Form::date('regreso', \Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires'))->toDateTimeString(),['class' => 'form-control']) !!}
+
+            @if ($errors->has('regreso'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('regreso') }}</strong>
+                </span>
+            @endif
+          </div>
+        </div>
+
       </div>
 
       <div class="col-sm-6 col-sm-offset-4">

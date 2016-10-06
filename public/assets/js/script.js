@@ -28,7 +28,8 @@ $(document).ready(function () {
   $('.selectMultiple').multiselect({
         enableFiltering: true,
         includeSelectAllOption: true,
-        selectAllJustVisible: false
+        selectAllJustVisible: true,
+        maxHeight: 300,
   });
 
 });

@@ -121,7 +121,7 @@ body  {
 .sidebar {
     height: calc(100% - 110px);
 }
-.panel-body {
+.panel-body{
   overflow-x: auto;
 }
 article {
