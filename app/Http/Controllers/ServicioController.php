@@ -8,6 +8,8 @@ use App\Http\Requests;
 use App\Servicio;
 use App\Bombero;
 use App\Vehiculo;
+use App\BomberoServicio;
+use App\VehiculoServicio;
 use Carbon\Carbon;
 use \DateTimeZone;
 
@@ -47,13 +49,15 @@ class ServicioController extends Controller
       $servicio->hora_salida=$serv['salida'];
       $servicio->hora_regreso=$serv['regreso'];
       if ($servicio->save()) {
+        $id=$servicio->id;
         foreach ($data->all()["Bomberos"] as $bombero) {
           //creo las relaciones servicio bomberos
-          // $servicio->id
+          BomberoServicio::create(['servicio_id'=>$id,'bombero_id'=>$bombero]);
         }
-        foreach ($data->all()["Vehiculos"] as $vehiculos) {
+
+        foreach ($data->all()["Vehiculos"] as $vehiculo) {
           //creo las relaciones servicio Vehiculos
-          // $servicio->id
+          VehiculoServicio::create(['servicio_id'=>$id,'vehiculo_id'=>$vehiculo]);
         }
        return redirect()->route('servicio.index');
       }else {

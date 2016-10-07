@@ -57,8 +57,8 @@
               </li>
 
               <li class="navIcon odd text-center">
-                <a href="{{route('servicio.index')}}" title="Cargar servicio finalizado">
-                  <p><span class="glyphicon glyphicon-file"></span></p><p><span class="icon-title">Finalizar</span></p>
+                <a href="{{route('servicio.create')}}" title="Cargar servicio finalizado">
+                  <p><span class="glyphicon glyphicon-file"></span></p><p><span class="icon-title">Cargar servicio</span></p>
                 </a>
               </li>
 
