@@ -8,14 +8,8 @@ use App\Servicio;
 
 class BomberoServicio extends Model
 {
-
+  use Traits\HasCompositePrimaryKey; 
     protected $table = 'bombero_servicio';
     protected $fillable = ['servicio_id','bombero_id'];
-
-    public function bombero(){
-      return $this->belongsTo(Bombero::class);
-    }
-    public function servicio(){
-      return $this->belongsTo(Servicio::class);
-    }
+    protected $primarykey = ['servicio_id','bombero_id'];
 }
