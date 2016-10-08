@@ -12,8 +12,8 @@ class Servicio extends Model
             quemados, lesionados, combustible, disposiciones, reconocimiento'];
 
   protected function getActivos()
-  {
-      return $this->orderBy('id','ASC')->get();
+  {   //servicios activos son aquellos que no tengan hora de regreso marcada
+      return $this->whereNull('hora_regreso')->orderBy('id','ASC')->get();
   }
-  
+
 }

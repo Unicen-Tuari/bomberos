@@ -30,7 +30,7 @@ class VehiculoController extends Controller
       return view('vehiculo/editar',compact('vehiculo'));
   }
 
-  public function mostrar($id){
+  public function show($id){
       $vehiculo=Vehiculo::find($id);
       return view('vehiculo/info',compact('vehiculo'));
   }

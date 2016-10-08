@@ -42,6 +42,19 @@
           </div>
         </div>
 
+        <div class="form-group {{ $errors->has('alarma') ? ' has-error' : '' }}">
+          {!! Form::label('alarma', 'Hora alarma',['class' => 'col-sm-4 control-label']) !!}
+          <div class="col-sm-2">
+            {!! Form::date('alarma', \Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires'))->toDateTimeString(),['class' => 'form-control']) !!}
+
+            @if ($errors->has('alarma'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('alarma') }}</strong>
+                </span>
+            @endif
+          </div>
+        </div>
+
 
         <div class="form-group">
           <div class="col-md-6 col-md-offset-4">
