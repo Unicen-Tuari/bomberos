@@ -18,7 +18,7 @@ class MaterialController extends Controller
   }
   public function index()
   {
-      $materiales=Material::orderBy('nombre','DESC')->paginate(8);
+      $materiales=Material::orderBy('vehiculo_id','DESC')->paginate(8);
       return view('material/lista',compact('materiales'));
   }
   public function create()
