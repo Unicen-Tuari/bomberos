@@ -33,3 +33,11 @@ $factory->define(App\Bombero::class, function (Faker\Generator $faker) {
   ];
 
 });
+
+$factory->define(App\Material::class, function (Faker\Generator $faker) {
+
+  return [
+    'nombre' => $faker->word,
+  ];
+
+});
