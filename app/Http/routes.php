@@ -21,7 +21,6 @@ Route::get('/home', 'HomeController@index');
 
 Route::resource('bombero','BomberoController',['except' => ['show']]);
 
-Route::get('vehiculo/{id}/mostrar', 'VehiculoController@mostrar')->name('vehiculo.mostrar');
 Route::resource('vehiculo','VehiculoController');
 
 Route::resource('material','MaterialController');
@@ -31,7 +30,8 @@ Route::resource('servicio/tipo','TipoServicioController',['except' => ['create']
 Route::get('servicio/llamada', 'ServicioController@llamada')->name('servicio.llamada');
 Route::get('servicio/activo/{id}', 'ServicioController@mostrar')->name('servicio.mostrar');
 route::get('servicio/finalizado', 'ServicioController@finalizado')->name('servicio.finalizado');
+Route::get('servicio/estadistica', 'ServicioController@estadistica')->name('servicio.estadistica');
 Route::post('servicio/iniciado', 'ServicioController@iniciado')->name('servicio.iniciado');
-Route::put('servicio/activo/{id}/edit', 'ServicioController@finalizar')->name('servicio.finalizar');
+Route::put('servicio/activo/{id}/finalizar', 'ServicioController@finalizar')->name('servicio.finalizar');
 Route::put('servicio/activo/{id}/salida', 'ServicioController@salida')->name('servicio.salida');
 Route::resource('servicio','ServicioController');

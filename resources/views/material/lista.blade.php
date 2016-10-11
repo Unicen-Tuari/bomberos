@@ -21,10 +21,10 @@
           @foreach ($materiales as $material)
             <tr>
               <td class="text-center">{{$material->nombre}}</td>
-              @if (!$material->vehiculo_id)
-                <td class="text-center">Sin asignar</td>
-              @else
+              @if ($material->vehiculo_id)
                 <td class="text-center">{{$material->vehiculo->patente}}</td>
+              @else
+                <td class="text-center">Sin asignado</td>
               @endif
               <td class="text-center">
                 {{ Form::open(['route' => ['material.destroy', $material->id], 'method' => 'delete']) }}

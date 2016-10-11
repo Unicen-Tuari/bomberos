@@ -15,8 +15,8 @@ class CreateBomberoServicioTable extends Migration
         Schema::create('bombero_servicio', function (Blueprint $table) {
             $table->integer('servicio_id')->unsigned();
             $table->integer('bombero_id')->unsigned();
-            $table->primary(['servicio_id', 'bombero_id']);
             $table->timestamps();
+            $table->primary(['servicio_id', 'bombero_id']);
             $table->foreign('servicio_id')->references('id')->on('servicio')->onDelete('cascade');
             $table->foreign('bombero_id')->references('id')->on('bombero')->onDelete('cascade');
         });

@@ -8,6 +8,8 @@ use App\Http\Requests;
 use App\Servicio;
 use App\Bombero;
 use App\Vehiculo;
+use App\BomberoServicio;
+use App\VehiculoServicio;
 use Carbon\Carbon;
 use \DateTimeZone;
 
@@ -16,44 +18,44 @@ class ServicioController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-    }/**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    }
+
     public function index()
     {
       $servicios=Servicio::all();
       return view('servicio/servicios',compact('servicios'));
     }
 
-    public function store(Request $data)
+    public function store(Request $request)
     {
-      $serv=$data->all();
-      unset($serv["Bomberos"]);
-      unset($serv["Vehiculos"]);
+      $data=$request->all();//obtengo todos los atributos
       $servicio=new Servicio;
-      $servicio->tipo_servicio_id=$serv['tipo'];
-      $servicio->direccion=$serv['direccion'];
-      $servicio->descripcion=$serv['descripcion'];
-      $servicio->ilesos=$serv['ilesos'];
-      $servicio->lesionados=$serv['lesionados'];
-      $servicio->quemados=$serv['quemados'];
-      $servicio->muertos=$serv['muertos'];
-      $servicio->otros=$serv['otros'];
-      $servicio->reconocimiento=$serv['reconocimiento'];
-      $servicio->disposiciones=$serv['disposiciones'];
-      $servicio->hora_alarma=$serv['alarma'];
-      $servicio->hora_salida=$serv['salida'];
-      $servicio->hora_regreso=$serv['regreso'];
+      $servicio->tipo_servicio_id=$data['tipo'];
+      $servicio->direccion=$data['direccion'];
+      $servicio->descripcion=$data['descripcion'];
+      $servicio->ilesos=$data['ilesos'];
+      $servicio->lesionados=$data['lesionados'];
+      $servicio->quemados=$data['quemados'];
+      $servicio->muertos=$data['muertos'];
+      $servicio->otros=$data['otros'];
+      $servicio->combustible=$data['combustible'];
+      $servicio->reconocimiento=$data['reconocimiento'];
+      $servicio->disposiciones=$data['disposiciones'];
+      $servicio->hora_alarma=$data['alarma'];
+      $servicio->hora_salida=$data['salida'];
+      $servicio->hora_regreso=$data['regreso'];
       if ($servicio->save()) {
-        foreach ($data->all()["Bomberos"] as $bombero) {
-          //creo las relaciones servicio bomberos
-          // $servicio->id
+        if(array_key_exists("Bomberos",$data)){
+          foreach ($data["Bomberos"] as $bombero) {
+            //creo las relaciones servicio bomberos
+            BomberoServicio::create(['servicio_id'=>$servicio->id,'bombero_id'=>$bombero]);
+          }
         }
-        foreach ($data->all()["Vehiculos"] as $vehiculos) {
-          //creo las relaciones servicio Vehiculos
-          // $servicio->id
+        if(array_key_exists("Vehiculos",$data)){
+          foreach ($data["Vehiculos"] as $vehiculo) {
+            //creo las relaciones servicio Vehiculos
+            VehiculoServicio::create(['servicio_id'=>$servicio->id,'vehiculo_id'=>$vehiculo]);
+          }
         }
        return redirect()->route('servicio.index');
       }else {
@@ -96,6 +98,7 @@ class ServicioController extends Controller
     public function mostrar($id)
     {
       // cambiar conteniado
+        $servicio=Servicio::find($id);
         $datasb=Bombero::all(['id', 'nombre']);
         $bomberos = array();
         foreach ($datasb as $data)
@@ -108,13 +111,43 @@ class ServicioController extends Controller
           {
               $vehiculos[$data->id] = $data->patente;
           }
-        return view('servicio/finalizar',compact('id','bomberos','vehiculos'));
+        return view('servicio/finalizar',compact('servicio','bomberos','vehiculos'));
     }
 
-    public function finalizar(Request $data, $id)
+    public function finalizar(Request $request, $id)
     {
-      //con el id y las dos lista se generan las 2 relaciones
-        dd($data->all(),$id);
+      $data=$request->all();//obtengo todos los atributos
+      $servicio= Servicio::find($id);
+      $servicio->ilesos=$data['ilesos'];
+      $servicio->lesionados=$data['lesionados'];
+      $servicio->quemados=$data['quemados'];
+      $servicio->muertos=$data['muertos'];
+      $servicio->otros=$data['otros'];
+      $servicio->combustible=$data['combustible'];
+      $servicio->reconocimiento=$data['reconocimiento'];
+      $servicio->disposiciones=$data['disposiciones'];
+      if(!$servicio->hora_salida){
+        //si la hora de salida no esta marcada se asigna igual a la de alarma
+        $servicio->hora_salida=$data['salida'];
+      }
+      $servicio->hora_regreso=$data['regreso'];
+      if ($servicio->save()) {
+        if(array_key_exists("Bomberos",$data)){
+          foreach ($data["Bomberos"] as $bombero) {
+            //creo las relaciones servicio bomberos
+            BomberoServicio::create(['servicio_id'=>$servicio->id,'bombero_id'=>$bombero]);
+          }
+        }
+        if(array_key_exists("Vehiculos",$data)){
+          foreach ($data["Vehiculos"] as $vehiculo) {
+            //creo las relaciones servicio Vehiculos
+            VehiculoServicio::create(['servicio_id'=>$servicio->id,'vehiculo_id'=>$vehiculo]);
+          }
+        }
+       return redirect()->route('servicio.index');
+      }else {
+        dd('fallo');
+      }
     }
     public function salida($id)
     {
@@ -132,25 +165,29 @@ class ServicioController extends Controller
      */
     public function iniciado(Request $data)
     {
-      $hllamada = Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires'))->toDateTimeString();
       $tipo= TipoServicio::find($data['Tipo']);
-      if($tipo)
-      {$servicio=new Servicio;
-      $servicio->tipo_servicio_id=$tipo->id;
-      $servicio->direccion=$data['direccion'];
-      $servicio->descripcion=$data['descripcion'];
-      $servicio->hora_alarma=$hllamada;
-      if ($servicio->save()) {
-       return redirect()->route('servicio.index');
-      }else {
-        dd('fallo');
-      }}
+      if($tipo){
+        $servicio=new Servicio;
+        $servicio->tipo_servicio_id=$tipo->id;
+        $servicio->direccion=$data['direccion'];
+        $servicio->descripcion=$data['descripcion'];
+        $servicio->hora_alarma=$data['alarma'];
+        if ($servicio->save()) {
+         return redirect()->route('servicio.index');
+        }else {
+          dd('fallo');
+        }
+      }
       else {
         dd('no existe tipo');
       }
 
     }
-
+    public function estadistica()
+    {
+        $servicios=Servicio::all();
+        return view('servicio/estadistica',compact('servicios'));
+    }
     /**
      * Display the specified resource.
      *
@@ -162,12 +199,6 @@ class ServicioController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         //
