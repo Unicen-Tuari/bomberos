@@ -236,3 +236,6 @@ a:hover, a:focus {
   color: #337ab7;
   margin-top: -5px;
 }
+thead th{
+  border:2px solid rgb(0, 0, 0) !important;
+}

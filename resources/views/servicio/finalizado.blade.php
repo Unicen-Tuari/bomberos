@@ -202,7 +202,7 @@
       <div class="{{ $errors->has('salida') ? ' has-error' : '' }}">
         {!! Form::label('salida', 'Hora salida',['class' => 'col-sm-1 control-label']) !!}
         <div class="col-sm-2">
-          {!! Form::date('salida', \Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires'))->toDateTimeString(),['class' => 'form-control']) !!}
+          {!! Form::date('salida', \Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires'))->addSeconds(30)->toDateTimeString(),['class' => 'form-control']) !!}
 
           @if ($errors->has('salida'))
               <span class="help-block">
@@ -215,7 +215,7 @@
       <div class="{{ $errors->has('regreso') ? ' has-error' : '' }}">
         {!! Form::label('regreso', 'Hora regreso',['class' => 'col-sm-1 control-label']) !!}
         <div class="col-sm-2">
-          {!! Form::date('regreso', \Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires'))->toDateTimeString(),['class' => 'form-control']) !!}
+          {!! Form::date('regreso', \Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires'))->addSeconds(60)->toDateTimeString(),['class' => 'form-control']) !!}
 
           @if ($errors->has('regreso'))
               <span class="help-block">

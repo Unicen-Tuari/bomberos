@@ -3,8 +3,6 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Vehiculo;
-use App\Servicio;
 
 class VehiculoServicio extends Model
 {
@@ -13,4 +11,7 @@ class VehiculoServicio extends Model
   protected $fillable = ['servicio_id' , 'vehiculo_id'];
   protected $primaryKey = ['servicio_id','vehiculo_id'];
 
+  public function servicio(){
+    return $this->belongsTo(Servicio::class);
+  };
 }

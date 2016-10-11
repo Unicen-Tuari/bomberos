@@ -38,20 +38,24 @@ class ServicioController extends Controller
       $servicio->quemados=$data['quemados'];
       $servicio->muertos=$data['muertos'];
       $servicio->otros=$data['otros'];
+      $servicio->combustible=$data['combustible'];
       $servicio->reconocimiento=$data['reconocimiento'];
       $servicio->disposiciones=$data['disposiciones'];
       $servicio->hora_alarma=$data['alarma'];
       $servicio->hora_salida=$data['salida'];
       $servicio->hora_regreso=$data['regreso'];
       if ($servicio->save()) {
-        foreach ($data["Bomberos"] as $bombero) {
-          //creo las relaciones servicio bomberos
-          BomberoServicio::create(['servicio_id'=>$servicio->id,'bombero_id'=>$bombero]);
+        if(array_key_exists("Bomberos",$data)){
+          foreach ($data["Bomberos"] as $bombero) {
+            //creo las relaciones servicio bomberos
+            BomberoServicio::create(['servicio_id'=>$servicio->id,'bombero_id'=>$bombero]);
+          }
         }
-
-        foreach ($data["Vehiculos"] as $vehiculo) {
-          //creo las relaciones servicio Vehiculos
-          VehiculoServicio::create(['servicio_id'=>$servicio->id,'vehiculo_id'=>$vehiculo]);
+        if(array_key_exists("Vehiculos",$data)){
+          foreach ($data["Vehiculos"] as $vehiculo) {
+            //creo las relaciones servicio Vehiculos
+            VehiculoServicio::create(['servicio_id'=>$servicio->id,'vehiculo_id'=>$vehiculo]);
+          }
         }
        return redirect()->route('servicio.index');
       }else {
@@ -119,6 +123,7 @@ class ServicioController extends Controller
       $servicio->quemados=$data['quemados'];
       $servicio->muertos=$data['muertos'];
       $servicio->otros=$data['otros'];
+      $servicio->combustible=$data['combustible'];
       $servicio->reconocimiento=$data['reconocimiento'];
       $servicio->disposiciones=$data['disposiciones'];
       if(!$servicio->hora_salida){
@@ -127,14 +132,17 @@ class ServicioController extends Controller
       }
       $servicio->hora_regreso=$data['regreso'];
       if ($servicio->save()) {
-        foreach ($data["Bomberos"] as $bombero) {
-          //creo las relaciones servicio bomberos
-          BomberoServicio::create(['servicio_id'=>$servicio->id,'bombero_id'=>$bombero]);
+        if(array_key_exists("Bomberos",$data)){
+          foreach ($data["Bomberos"] as $bombero) {
+            //creo las relaciones servicio bomberos
+            BomberoServicio::create(['servicio_id'=>$servicio->id,'bombero_id'=>$bombero]);
+          }
         }
-
-        foreach ($data["Vehiculos"] as $vehiculo) {
-          //creo las relaciones servicio Vehiculos
-          VehiculoServicio::create(['servicio_id'=>$servicio->id,'vehiculo_id'=>$vehiculo]);
+        if(array_key_exists("Vehiculos",$data)){
+          foreach ($data["Vehiculos"] as $vehiculo) {
+            //creo las relaciones servicio Vehiculos
+            VehiculoServicio::create(['servicio_id'=>$servicio->id,'vehiculo_id'=>$vehiculo]);
+          }
         }
        return redirect()->route('servicio.index');
       }else {
@@ -175,7 +183,11 @@ class ServicioController extends Controller
       }
 
     }
-
+    public function estadistica()
+    {
+        $servicios=Servicio::all();
+        return view('servicio/estadistica',compact('servicios'));
+    }
     /**
      * Display the specified resource.
      *

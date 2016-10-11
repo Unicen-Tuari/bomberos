@@ -150,7 +150,7 @@
           <div class="{{ $errors->has('salida') ? ' has-error' : '' }}">
             {!! Form::label('salida', 'Hora salida',['class' => 'col-sm-4 control-label']) !!}
             <div class="col-sm-2">
-                {!! Form::date('salida', $servicio->hora_alarma,['class' => 'form-control']) !!}
+                {!! Form::date('salida', \Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$servicio->hora_alarma)->addSeconds(30)->toDateTimeString(),['class' => 'form-control']) !!}
 
               @if ($errors->has('salida'))
                   <span class="help-block">
