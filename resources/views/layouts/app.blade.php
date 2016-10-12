@@ -119,14 +119,14 @@
           <a href="#serviciosSubMenu" id="servicioMenu" class="list-group-item" data-toggle="collapse" data-parent="#MainMenu"><i class="fa fa-cog fa-lg"></i>  Servicios<span class="arrow"></span></a>
           <div class="collapse" id="serviciosSubMenu">
             <a href="{{route('servicio.tipo.index')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Tipos de servicios</a>
-            <a href="{{route('servicio.index')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Ultimos servicios</a>
-            <a href="{{route('servicio.estadistica')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Estadistica</a>
+            <a href="{{route('servicio.index')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Últimos servicios</a>
+            <a href="{{route('servicio.estadistica')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Estadísticas</a>
           </div>
 
-          <a href="#vehiculosSubMenu" id="vehiculoMenu" class="list-group-item" data-toggle="collapse" data-parent="#MainMenu"><i class="fa fa-car fa-lg"></i> Vehiculos<span class="arrow"></span></a>
+          <a href="#vehiculosSubMenu" id="vehiculoMenu" class="list-group-item" data-toggle="collapse" data-parent="#MainMenu"><i class="fa fa-car fa-lg"></i> Vehículos<span class="arrow"></span></a>
           <div class="collapse" id="vehiculosSubMenu">
-            <a href="{{route('vehiculo.index')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Lista de vehiculos</a>
-            <a href="{{route('vehiculo.create')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Alta vehiculo</a>
+            <a href="{{route('vehiculo.index')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Lista de vehículos</a>
+            <a href="{{route('vehiculo.create')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Alta vehículo</a>
           </div>
 
           <a href="#materialesSubMenu" id="materialMenu" class="list-group-item" data-toggle="collapse" data-parent="#MainMenu"><i class="fa fa-wrench fa-lg"></i> Materiales<span class="arrow"></span></a>

@@ -79,7 +79,7 @@
       <div class="col-sm-2 col-md-offset-3 {{ $errors->has('ilesos') ? ' has-error' : '' }}">
         {!! Form::label('ilesos', 'Ilesos',['class' => 'col-md-6 col-md-offset-1 col-form-label']) !!}
         <div class="col-md-5">
-            {!! Form::text('ilesos', 0, ['class' => 'form-control']) !!}
+            {!! Form::text('ilesos', null, ['class' => 'form-control', 'placeholder' => '0']) !!}
 
             @if ($errors->has('ilesos'))
                 <span class="help-block">
@@ -92,7 +92,7 @@
       <div class="col-sm-2 {{ $errors->has('lesionados') ? ' has-error' : '' }}">
         {!! Form::label('lesionados', 'Lesionados',['class' => 'col-md-5 col-md-offset-1 col-form-label']) !!}
         <div class="col-md-5">
-            {!! Form::text('lesionados', 0, ['class' => 'form-control']) !!}
+            {!! Form::text('lesionados', null, ['class' => 'form-control', 'placeholder' => '0']) !!}
 
             @if ($errors->has('lesionados'))
                 <span class="help-block">
@@ -105,7 +105,7 @@
       <div class="col-sm-2 {{ $errors->has('quemados') ? ' has-error' : '' }}">
         {!! Form::label('quemados', 'Quemados',['class' => 'col-md-5 col-md-offset-1 col-form-label']) !!}
         <div class="col-md-5">
-            {!! Form::text('quemados', 0, ['class' => 'form-control']) !!}
+            {!! Form::text('quemados', null, ['class' => 'form-control', 'placeholder' => '0']) !!}
 
             @if ($errors->has('quemados'))
                 <span class="help-block">
@@ -121,7 +121,7 @@
       <div class="col-sm-2 col-sm-offset-3 {{ $errors->has('muertos') ? ' has-error' : '' }}">
         {!! Form::label('muertos', 'Muertos',['class' => 'col-md-6 col-md-offset-1 col-form-label']) !!}
         <div class="col-md-5">
-            {!! Form::text('muertos', 0, ['class' => 'form-control']) !!}
+            {!! Form::text('muertos', null, ['class' => 'form-control', 'placeholder' => '0']) !!}
 
             @if ($errors->has('muertos'))
                 <span class="help-block">
@@ -134,7 +134,7 @@
       <div class="col-sm-2 {{ $errors->has('otros') ? ' has-error' : '' }}">
         {!! Form::label('otros', 'Otros',['class' => 'col-md-5 col-md-offset-1 col-form-label']) !!}
         <div class="col-md-5">
-            {!! Form::text('otros', 0, ['class' => 'form-control']) !!}
+            {!! Form::text('otros', null, ['class' => 'form-control', 'placeholder' => '0']) !!}
 
             @if ($errors->has('otros'))
                 <span class="help-block">
@@ -149,7 +149,7 @@
     <div class="form-group {{ $errors->has('combustible') ? ' has-error' : '' }}">
       {!! Form::label('combustible', 'Combustible',['class' => 'col-sm-4 control-label']) !!}
       <div class="col-sm-6">
-          {!! Form::text('combustible', null, ['class' => 'form-control']) !!}
+          {!! Form::text('combustible', null, ['class' => 'form-control', 'placeholder' => '0']) !!}
 
           @if ($errors->has('combustible'))
               <span class="help-block">
@@ -189,7 +189,7 @@
       <div class="{{ $errors->has('alarma') ? ' has-error' : '' }}">
         {!! Form::label('alarma', 'Hora alarma',['class' => 'col-sm-3 control-label']) !!}
         <div class="col-sm-2">
-          {!! Form::date('alarma', \Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires'))->toDateTimeString(),['class' => 'form-control']) !!}
+          {!! Form::text('alarma', \Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires'))->toDateTimeString(),['class' => 'form-control']) !!}
 
           @if ($errors->has('alarma'))
               <span class="help-block">
@@ -202,7 +202,7 @@
       <div class="{{ $errors->has('salida') ? ' has-error' : '' }}">
         {!! Form::label('salida', 'Hora salida',['class' => 'col-sm-1 control-label']) !!}
         <div class="col-sm-2">
-          {!! Form::date('salida', \Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires'))->addSeconds(30)->toDateTimeString(),['class' => 'form-control']) !!}
+          {!! Form::text('salida', \Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires'))->addSeconds(30)->toDateTimeString(),['class' => 'form-control']) !!}
 
           @if ($errors->has('salida'))
               <span class="help-block">
@@ -215,7 +215,7 @@
       <div class="{{ $errors->has('regreso') ? ' has-error' : '' }}">
         {!! Form::label('regreso', 'Hora regreso',['class' => 'col-sm-1 control-label']) !!}
         <div class="col-sm-2">
-          {!! Form::date('regreso', \Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires'))->addSeconds(60)->toDateTimeString(),['class' => 'form-control']) !!}
+          {!! Form::text('regreso', \Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires'))->addSeconds(60)->toDateTimeString(),['class' => 'form-control']) !!}
 
           @if ($errors->has('regreso'))
               <span class="help-block">
