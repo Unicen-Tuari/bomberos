@@ -79,7 +79,7 @@
       <div class="col-sm-2 col-md-offset-3 {{ $errors->has('ilesos') ? ' has-error' : '' }}">
         {!! Form::label('ilesos', 'Ilesos',['class' => 'col-md-6 col-md-offset-1 col-form-label']) !!}
         <div class="col-md-5">
-            {!! Form::text('ilesos', null, ['class' => 'form-control', 'placeholder' => '0']) !!}
+            {!! Form::text('ilesos', 0, ['class' => 'form-control']) !!}
 
             @if ($errors->has('ilesos'))
                 <span class="help-block">
@@ -92,7 +92,7 @@
       <div class="col-sm-2 {{ $errors->has('lesionados') ? ' has-error' : '' }}">
         {!! Form::label('lesionados', 'Lesionados',['class' => 'col-md-5 col-md-offset-1 col-form-label']) !!}
         <div class="col-md-5">
-            {!! Form::text('lesionados', null, ['class' => 'form-control', 'placeholder' => '0']) !!}
+            {!! Form::text('lesionados', 0, ['class' => 'form-control']) !!}
 
             @if ($errors->has('lesionados'))
                 <span class="help-block">
@@ -105,7 +105,7 @@
       <div class="col-sm-2 {{ $errors->has('quemados') ? ' has-error' : '' }}">
         {!! Form::label('quemados', 'Quemados',['class' => 'col-md-5 col-md-offset-1 col-form-label']) !!}
         <div class="col-md-5">
-            {!! Form::text('quemados', null, ['class' => 'form-control', 'placeholder' => '0']) !!}
+            {!! Form::text('quemados', 0, ['class' => 'form-control']) !!}
 
             @if ($errors->has('quemados'))
                 <span class="help-block">
@@ -121,7 +121,7 @@
       <div class="col-sm-2 col-sm-offset-3 {{ $errors->has('muertos') ? ' has-error' : '' }}">
         {!! Form::label('muertos', 'Muertos',['class' => 'col-md-6 col-md-offset-1 col-form-label']) !!}
         <div class="col-md-5">
-            {!! Form::text('muertos', null, ['class' => 'form-control', 'placeholder' => '0']) !!}
+            {!! Form::text('muertos', 0, ['class' => 'form-control']) !!}
 
             @if ($errors->has('muertos'))
                 <span class="help-block">
@@ -134,7 +134,7 @@
       <div class="col-sm-2 {{ $errors->has('otros') ? ' has-error' : '' }}">
         {!! Form::label('otros', 'Otros',['class' => 'col-md-5 col-md-offset-1 col-form-label']) !!}
         <div class="col-md-5">
-            {!! Form::text('otros', null, ['class' => 'form-control', 'placeholder' => '0']) !!}
+            {!! Form::text('otros', 0, ['class' => 'form-control']) !!}
 
             @if ($errors->has('otros'))
                 <span class="help-block">
@@ -149,7 +149,7 @@
     <div class="form-group {{ $errors->has('combustible') ? ' has-error' : '' }}">
       {!! Form::label('combustible', 'Combustible',['class' => 'col-sm-4 control-label']) !!}
       <div class="col-sm-6">
-          {!! Form::text('combustible', null, ['class' => 'form-control', 'placeholder' => '0']) !!}
+          {!! Form::text('combustible', 0, ['class' => 'form-control']) !!}
 
           @if ($errors->has('combustible'))
               <span class="help-block">
