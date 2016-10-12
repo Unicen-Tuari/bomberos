@@ -44,35 +44,7 @@
             <th>G.</th>
           </tr>
         </thead>
-        <tbody><!--Contenido de la tabla-->
-          <th class="text-center">aa</th>
-          <th class="text-center">aa</th>
-          <th class="text-center">aa</th>
-          <th class="text-center">aa</th>
-          <th class="text-center">aa</th>
-          <th class="text-center">aa</th>
-          <th class="text-center">aa</th>
-          <th class="text-center">aa</th>
-          <th class="text-center">aa</th>
-          <th class="text-center">0</th>
-          <th class="text-center">0</th>
-          <th class="text-center">0</th>
-          <th class="text-center">0</th>
-          <th class="text-center">0</th>
-          <th class="text-center">X</th>
-          <th class="text-center">X</th>
-          <th class="text-center">X</th>
-          <th class="text-center">X</th>
-          <th class="text-center">X</th>
-          <th class="text-center">X</th>
-          <th class="text-center">X</th>
-          <th class="text-center">X</th>
-          <th class="text-center">X</th>
-          <th class="text-center">X</th>
-          <th class="text-center">X</th>
-          <th class="text-center">X</th>
-          <th class="text-center">X</th>
-          <th class="text-center">aa</th>
+        <tbody>
           @foreach ($servicios as $servicio)
             @if($servicio->hora_regreso)
             <tr>
@@ -82,42 +54,118 @@
               <th class="text-center">{{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$servicio->hora_regreso)->toTimeString()}}</th>
               <th class="text-center">{{count($servicio->vehiculos)}}</th>
               <th class="text-center">{{$servicio->combustible}}</th>
-              <th class="text-center">{{count($servicio->bomberos()}}</th>
-              <th class="text-center">aa</th>
-              <th class="text-center">aa</th>
+              <th class="text-center">{{count($servicio->bomberos)}}</th>
+              <th class="text-center">{{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$servicio->hora_regreso)->diffInMinutes(\Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$servicio->hora_alarma))}}</th>
+              <th class="text-center">{{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$servicio->hora_regreso)->diffInMinutes(\Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$servicio->hora_alarma))*count($servicio->bomberos)}}</th>
               <th class="text-center">{{$servicio->ilesos}}</th>
               <th class="text-center">{{$servicio->muertos}}</th>
               <th class="text-center">{{$servicio->quemados}}</th>
               <th class="text-center">{{$servicio->lesionados}}</th>
               <th class="text-center">{{$servicio->otros}}</th>
-              <th class="text-center">X</th>
-              <th class="text-center">X</th>
-              <th class="text-center">X</th>
-              <th class="text-center">X</th>
-              <th class="text-center">X</th>
-              <th class="text-center">X</th>
-              <th class="text-center">X</th>
-              <th class="text-center">X</th>
-              <th class="text-center">X</th>
-              <th class="text-center">X</th>
-              <th class="text-center">X</th>
-              <th class="text-center">X</th>
-              <th class="text-center">X</th>
-              <th class="text-center">aa</th>
+              @if($servicio->tipo_servicio_id==1)
+                <th class="text-center">X</th>
+              @else
+                <th></th>
+              @endif
+              @if($servicio->tipo_servicio_id==2)
+                <th class="text-center">X</th>
+              @else
+                <th></th>
+              @endif
+              @if($servicio->tipo_servicio_id==3)
+                <th class="text-center">X</th>
+              @else
+                <th></th>
+              @endif
+              @if($servicio->tipo_servicio_id==4)
+                <th class="text-center">X</th>
+              @else
+                <th></th>
+              @endif
+              @if($servicio->tipo_servicio_id==5)
+                <th class="text-center">X</th>
+              @else
+                <th></th>
+              @endif
+              @if($servicio->tipo_servicio_id==6)
+                <th class="text-center">X</th>
+              @else
+                <th></th>
+              @endif
+              @if($servicio->tipo_servicio_id==7)
+                <th class="text-center">X</th>
+              @else
+                <th></th>
+              @endif
+              @if($servicio->tipo_servicio_id==8)
+                <th class="text-center">X</th>
+              @else
+                <th></th>
+              @endif
+              @if($servicio->tipo_servicio_id==9)
+                <th class="text-center">X</th>
+              @else
+                <th></th>
+              @endif
+              @if($servicio->tipo_servicio_id==10)
+                <th class="text-center">X</th>
+              @else
+                <th></th>
+              @endif
+              @if($servicio->tipo_servicio_id==11)
+                <th class="text-center">X</th>
+              @else
+                <th></th>
+              @endif
+              @if($servicio->tipo_servicio_id==12)
+                <th class="text-center">X</th>
+              @else
+                <th></th>
+              @endif
+              @if($servicio->tipo_servicio_id==13)
+                <th class="text-center">X</th>
+              @else
+                <th></th>
+              @endif
+              <th class="text-center">{{$servicio->descripcion}}</th>
             </tr>
             @endif
           @endforeach
           </tbody>
           <tfoot>
             <tr>
-              <td class="text-center" colspan="9"> lista de bomberos activos </td>
+                <th class="text-center" colspan="4">TOTAL</th>
+                <th class="text-center">Cant Movil</th>
+                <th class="text-center">Cant comb</th>
+                <th class="text-center">presentes</th>
+                <th class="text-center">minutos</th>
+                <th class="text-center">MinuH</th>
+                <th class="text-center">V</th>
+                <th class="text-center">M</th>
+                <th class="text-center">Q</th>
+                <th class="text-center">L</th>
+                <th class="text-center">O</th>
+                <th class="text-center">#</th>
+                <th class="text-center">#</th>
+                <th class="text-center">#</th>
+                <th class="text-center">#</th>
+                <th class="text-center">#</th>
+                <th class="text-center">#</th>
+                <th class="text-center">#</th>
+                <th class="text-center">#</th>
+                <th class="text-center">#</th>
+                <th class="text-center">#</th>
+                <th class="text-center">#</th>
+                <th class="text-center">#</th>
+                <th class="text-center">#</th>
+                <th class="text-center"></th>
+            </tr>
+            <tr>
+              <td class="text-center" colspan="28"> Servicios Realizados</td>
             </tr>
           </tfoot>
           <br>
         </table>
-        <div class="text-center">
-          totales
-        </div>
     </div>
   </div>
 </article>

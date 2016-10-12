@@ -45,11 +45,9 @@ class ServicioController extends Controller
       $servicio->hora_salida=$data['salida'];
       $servicio->hora_regreso=$data['regreso'];
       if ($servicio->save()) {
-        if(array_key_exists("Bomberos",$data)){
-          foreach ($data["Bomberos"] as $bombero) {
-            //creo las relaciones servicio bomberos
-            BomberoServicio::create(['servicio_id'=>$servicio->id,'bombero_id'=>$bombero]);
-          }
+        foreach ($data["Bomberos"] as $bombero) {
+          //creo las relaciones servicio bomberos
+          BomberoServicio::create(['servicio_id'=>$servicio->id,'bombero_id'=>$bombero]);
         }
         if(array_key_exists("Vehiculos",$data)){
           foreach ($data["Vehiculos"] as $vehiculo) {
@@ -132,11 +130,9 @@ class ServicioController extends Controller
       }
       $servicio->hora_regreso=$data['regreso'];
       if ($servicio->save()) {
-        if(array_key_exists("Bomberos",$data)){
-          foreach ($data["Bomberos"] as $bombero) {
-            //creo las relaciones servicio bomberos
-            BomberoServicio::create(['servicio_id'=>$servicio->id,'bombero_id'=>$bombero]);
-          }
+        foreach ($data["Bomberos"] as $bombero) {
+          //creo las relaciones servicio bomberos
+          BomberoServicio::create(['servicio_id'=>$servicio->id,'bombero_id'=>$bombero]);
         }
         if(array_key_exists("Vehiculos",$data)){
           foreach ($data["Vehiculos"] as $vehiculo) {
