@@ -40,17 +40,18 @@
                 <a class="dropdown-toggle" href="#" title="Servicios activos" data-toggle="dropdown">
                   <span class="cantidad">{{count(App\Servicio::getActivos())}}</span><p><span class="glyphicon glyphicon-fire"></span></p><p><span class="icon-title">Activos</span></p>
                 </a>
-                <ul class="dropdown-menu">
+                <ul class="dropdown-menu serviciosActivos">
                   @foreach( App\Servicio::getActivos() as $servicio)
                     <li>
-                      <a href="{{route('servicio.mostrar', $servicio->id)}}">{{$servicio->direccion}}</a>
+                      <a href="{{route('servicio.finalizarActivo', $servicio->id)}}">{{$servicio->direccion}}
                         @if(!$servicio->hora_salida)
                           {{ Form::open(['route' => ['servicio.salida',$servicio->id], 'method' => 'PUT']) }}
-                            <button type="submit" class="btn fa fa-bus salida"></button>
+                            <button type="submit" class="btn fa fa-bus salida" title="Cargar hora de salida"></button>
                           {{ Form::close() }}
                         @else
                           <button type="submit" class="btn fa fa-bus salidaok"></button>
                         @endif
+                      </a>
                     </li>
                   @endforeach
                 </ul>
@@ -119,14 +120,14 @@
           <a href="#serviciosSubMenu" id="servicioMenu" class="list-group-item" data-toggle="collapse" data-parent="#MainMenu"><i class="fa fa-cog fa-lg"></i>  Servicios<span class="arrow"></span></a>
           <div class="collapse" id="serviciosSubMenu">
             <a href="{{route('servicio.tipo.index')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Tipos de servicios</a>
-            <a href="{{route('servicio.index')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Ultimos servicios</a>
-            <a href="{{route('servicio.estadistica')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Estadistica</a>
+            <a href="{{route('servicio.index')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Últimos servicios</a>
+            <a href="{{route('servicio.estadistica')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Estadísticas</a>
           </div>
 
-          <a href="#vehiculosSubMenu" id="vehiculoMenu" class="list-group-item" data-toggle="collapse" data-parent="#MainMenu"><i class="fa fa-car fa-lg"></i> Vehiculos<span class="arrow"></span></a>
+          <a href="#vehiculosSubMenu" id="vehiculoMenu" class="list-group-item" data-toggle="collapse" data-parent="#MainMenu"><i class="fa fa-car fa-lg"></i> Vehículos<span class="arrow"></span></a>
           <div class="collapse" id="vehiculosSubMenu">
-            <a href="{{route('vehiculo.index')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Lista de vehiculos</a>
-            <a href="{{route('vehiculo.create')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Alta vehiculo</a>
+            <a href="{{route('vehiculo.index')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Lista de vehículos</a>
+            <a href="{{route('vehiculo.create')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Alta vehículo</a>
           </div>
 
           <a href="#materialesSubMenu" id="materialMenu" class="list-group-item" data-toggle="collapse" data-parent="#MainMenu"><i class="fa fa-wrench fa-lg"></i> Materiales<span class="arrow"></span></a>

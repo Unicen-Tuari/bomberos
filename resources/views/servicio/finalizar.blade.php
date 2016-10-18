@@ -3,12 +3,12 @@
 @section('content')
 <article class="col-md-12">
   <div class="panel panel-default">
-    <div class="panel-heading text-center">
+    <div class="panel-heading">
       Finalizar servicio
     </div>
   <div class="panel-body">
 
-  {!! Form::open([ 'route' => ['servicio.finalizar', $servicio->id], 'class' => 'form-horizontal', 'method' => 'PUT']) !!}
+  {!! Form::open([ 'route' => ['servicio.guardarActivo', $servicio->id], 'class' => 'form-horizontal', 'method' => 'PUT']) !!}
 
       <div class="form-group {{ $errors->has('bomberos') ? ' has-error' : '' }}">
         {!! Form::label('bomberos', 'Bomberos involucrados',['class' => 'col-sm-4 control-label']) !!}
@@ -108,7 +108,7 @@
       <div class="form-group {{ $errors->has('combustible') ? ' has-error' : '' }}">
         {!! Form::label('combustible', 'Combustible',['class' => 'col-sm-4 control-label']) !!}
         <div class="col-sm-6">
-            {!! Form::text('combustible', null, ['class' => 'form-control']) !!}
+            {!! Form::text('combustible', 0, ['class' => 'form-control']) !!}
 
             @if ($errors->has('combustible'))
                 <span class="help-block">
@@ -150,7 +150,7 @@
           <div class="{{ $errors->has('salida') ? ' has-error' : '' }}">
             {!! Form::label('salida', 'Hora salida',['class' => 'col-sm-4 control-label']) !!}
             <div class="col-sm-2">
-                {!! Form::date('salida', \Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$servicio->hora_alarma)->addSeconds(30)->toDateTimeString(),['class' => 'form-control']) !!}
+                {!! Form::text('salida', \Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$servicio->hora_alarma)->addSeconds(30)->toDateTimeString(),['class' => 'form-control']) !!}
 
               @if ($errors->has('salida'))
                   <span class="help-block">
@@ -168,7 +168,7 @@
 
         @endif
             <div class="col-sm-2">
-              {!! Form::date('regreso', \Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires'))->toDateTimeString(),['class' => 'form-control']) !!}
+              {!! Form::text('regreso', \Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires'))->toDateTimeString(),['class' => 'form-control']) !!}
 
               @if ($errors->has('regreso'))
                   <span class="help-block">
