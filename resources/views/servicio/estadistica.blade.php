@@ -4,7 +4,7 @@
 <article class="col-sm-12">
   <div class="panel panel-default">
     <div class="panel-heading">
-      Lista de bomberos
+      Estadisticas
     </div>
     <div class="panel-body">
       <table  class="table table-bordered">
@@ -161,7 +161,7 @@
                 <th class="text-center"></th>
             </tr>
             <tr>
-              <td class="text-center" colspan="28"> Servicios Realizados</td>
+              <td class="text-center" colspan="28"> Estadisticas de #</td>
             </tr>
           </tfoot>
           <br>

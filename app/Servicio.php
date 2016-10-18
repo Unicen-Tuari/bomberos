@@ -23,4 +23,9 @@ class Servicio extends Model
   public function vehiculos(){
     return $this->hasMany(VehiculoServicio::class);
   }
+
+  public function tipoServicio(){
+    return $this->belongsTo(TipoServicio::class);
+  }
+
 }

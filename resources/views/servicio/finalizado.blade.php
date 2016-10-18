@@ -3,21 +3,21 @@
 @section('content')
 <article class="col-sm-12">
   <div class="panel panel-default">
-    <div class="panel-heading text-center">
+    <div class="panel-heading">
       Servicio
     </div>
   <div class="panel-body">
 
   {!! Form::open([ 'route' => 'servicio.store', 'class' => 'form-horizontal', 'method' => 'POST']) !!}
 
-    <div class="form-group {{ $errors->has('tipo') ? ' has-error' : '' }}">
+    <div class="form-group {{ $errors->has('tipo_servicio_id') ? ' has-error' : '' }}">
       {!! Form::label('tipo', 'Tipo de servicio',['class' => 'col-sm-2 col-sm-offset-2 control-label']) !!}
       <div class="col-sm-2">
         {{Form::select('tipo', $tipos,null,['class' => 'form-control'])}}
 
-        @if ($errors->has('tipo'))
+        @if ($errors->has('tipo_servicio_id'))
             <span class="help-block">
-                <strong>{{ $errors->first('tipo') }}</strong>
+                <strong>{{ $errors->first('tipo_servicio_id') }}</strong>
             </span>
         @endif
       </div>
@@ -65,7 +65,7 @@
       <div class="col-sm-6 {{ $errors->has('vehiculos') ? ' has-error' : '' }}">
         {!! Form::label('vehiculos', 'Vehiculos involucrados',['class' => 'col-sm-5 control-label']) !!}
         <div class="col-sm-2">
-          {{Form::select('Vehiculos[]', $vehiculos,null,['class' => 'selectMultiple', 'multiple'=>'multiple'])}}
+          {{Form::select('Vehiculos[]', $vehiculos,null,['class' => 'selectMultiple', 'multiple'=>'multiple', 'id'=>'listavehiculos'])}}
           @if ($errors->has('vehiculos'))
               <span class="help-block">
                   <strong>{{ $errors->first('vehiculos') }}</strong>
@@ -149,7 +149,7 @@
     <div class="form-group {{ $errors->has('combustible') ? ' has-error' : '' }}">
       {!! Form::label('combustible', 'Combustible',['class' => 'col-sm-4 control-label']) !!}
       <div class="col-sm-6">
-          {!! Form::text('combustible', 0, ['class' => 'form-control']) !!}
+          {!! Form::text('combustible', 0, ['class' => 'form-control', 'id'=>'combustible', 'idfactor'=> 0.3333]) !!}
 
           @if ($errors->has('combustible'))
               <span class="help-block">
@@ -189,7 +189,7 @@
       <div class="{{ $errors->has('alarma') ? ' has-error' : '' }}">
         {!! Form::label('alarma', 'Hora alarma',['class' => 'col-sm-3 control-label']) !!}
         <div class="col-sm-2">
-          {!! Form::text('alarma', \Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires'))->toDateTimeString(),['class' => 'form-control']) !!}
+          {!! Form::text('alarma', \Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires'))->toDateTimeString(),['class' => 'form-control', 'id'=>'horaAlarma']) !!}
 
           @if ($errors->has('alarma'))
               <span class="help-block">
@@ -215,7 +215,7 @@
       <div class="{{ $errors->has('regreso') ? ' has-error' : '' }}">
         {!! Form::label('regreso', 'Hora regreso',['class' => 'col-sm-1 control-label']) !!}
         <div class="col-sm-2">
-          {!! Form::text('regreso', \Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires'))->addSeconds(60)->toDateTimeString(),['class' => 'form-control']) !!}
+          {!! Form::text('regreso', \Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires'))->addSeconds(60)->toDateTimeString(),['class' => 'form-control', 'id'=>'horaSalida']) !!}
 
           @if ($errors->has('regreso'))
               <span class="help-block">

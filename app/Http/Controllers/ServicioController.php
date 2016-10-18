@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\TipoServicio;
 use App\Http\Requests;
+use App\Http\Requests\ServicioRequest;
 use App\Servicio;
 use App\Bombero;
 use App\Vehiculo;
@@ -22,7 +23,7 @@ class ServicioController extends Controller
 
     public function index()
     {
-      $servicios=Servicio::all();
+      $servicios=Servicio::orderBy('hora_regreso','DESC')->paginate(12);
       return view('servicio/servicios',compact('servicios'));
     }
 
@@ -93,7 +94,7 @@ class ServicioController extends Controller
         }
         return view('servicio/llamada',compact('tipos'));
     }
-    public function mostrar($id)
+    public function finalizarActivo($id)
     {
       // cambiar conteniado
         $servicio=Servicio::find($id);
@@ -112,7 +113,7 @@ class ServicioController extends Controller
         return view('servicio/finalizar',compact('servicio','bomberos','vehiculos'));
     }
 
-    public function finalizar(Request $request, $id)
+    public function guardarActivo(Request $request, $id)
     {
       $data=$request->all();//obtengo todos los atributos
       $servicio= Servicio::find($id);

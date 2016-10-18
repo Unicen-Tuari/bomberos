@@ -239,3 +239,7 @@ a:hover, a:focus {
 thead th{
   border:2px solid rgb(0, 0, 0) !important;
 }
+
+.serviciosActivos li a, .serviciosActivos li form{
+  display: inline-block;
+}
