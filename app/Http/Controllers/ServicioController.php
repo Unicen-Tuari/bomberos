@@ -182,9 +182,21 @@ class ServicioController extends Controller
     }
     public function estadistica()
     {
-        $servicios=Servicio::all();
-        return view('servicio/estadistica',compact('servicios'));
+        return view('servicio/estadistica');
     }
+
+    public function tabla($mes,$anio)
+    {
+        $servicios=Servicio::all();
+        foreach ($servicios as $key => $servicio) {
+          if (!((\Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$servicio->hora_alarma)->format('m')==$mes ) &&  (\Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$servicio->hora_alarma)->format('Y')==$anio)))
+          {
+            unset($servicios[$key]);
+          }
+        }
+        return view('servicio/estadisticasMes',compact('servicios'));
+    }
+
     /**
      * Display the specified resource.
      *
@@ -255,7 +267,7 @@ class ServicioController extends Controller
         }
         $servicio->hora_regreso=$data['regreso'];
 
-        // Eliminamos los bomberos que an sido descartado por la edicion
+        // Eliminamos los bomberos que han sido descartado por la edicion
         $eliminarb=BomberoServicio::where('servicio_id',$servicio->id)->get();
         foreach ($eliminarb as $value) {
           if (!in_array ( $value->bombero_id , $data["Bomberos"])) {
@@ -263,11 +275,11 @@ class ServicioController extends Controller
           }
         }
 
-        // Eliminamos los vehiculo que an sido descartado por la edicion
+        // Eliminamos los vehiculo que han sido descartado por la edicion
         $eliminarv=VehiculoServicio::where('servicio_id',$servicio->id)->get();
         foreach ($eliminarv as $value) {
           if (!in_array ( $value->vehiculo_id , $data["Vehiculos"])) {
-            BomberoServicio::where('servicio_id',$servicio->id)->where('vehiculo_id',$value->vehiculo_id)->delete();
+            VehiculoServicio::where('servicio_id',$servicio->id)->where('vehiculo_id',$value->vehiculo_id)->delete();
           }
         }
 

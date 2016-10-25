@@ -41,9 +41,6 @@ class ServicioRequest extends Request
               'hora_alarma' => 'required|date_format:Y-m-d H:i:s',
               'hora_salida' => 'required|date_format:Y-m-d H:i:s|after:hora_alarma',
               'hora_regreso' => 'required|date_format:Y-m-d H:i:s|after:hora_alarma',
-              'nro_legajo' => 'required|min:6|numeric|unique:bombero',
-              'jerarquia' => 'required|max:255',
-              'telefono' => 'required|min:6',
           ];
         }
 
