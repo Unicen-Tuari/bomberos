@@ -11,5 +11,8 @@ class Bombero extends Model
     'id', 'nombre', 'apellido', 'nro_legajo', 'jerarquia',
      'direccion', 'telefono', 'fecha_nacimiento',
   ];
-  
+
+  public function servicio(){
+    return $this->belongsTo(BomberoServicio::class);
+  }
 }

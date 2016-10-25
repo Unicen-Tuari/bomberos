@@ -198,31 +198,107 @@ class ServicioController extends Controller
 
     public function edit($id)
     {
-        //
+      $servicio=Servicio::find($id);
+      $datasb=Bombero::all(['id', 'nombre']);
+      $bomberos = array();
+      foreach ($datasb as $data)
+      {
+          $bomberos[$data->id] = $data->nombre;
+      }
+
+      $datasv=Vehiculo::all(['id', 'patente']);
+      $vehiculos = array();
+      foreach ($datasv as $data)
+      {
+          $vehiculos[$data->id] = $data->patente;
+      }
+
+      $datas=TipoServicio::all(['id', 'nombre']);
+      $tipos = array();
+      foreach ($datas as $data)
+      {
+          $tipos[$data->id] = $data->nombre;
+      }
+
+      $bomberosparticipantes=array();
+      foreach ($servicio->bomberos as $data)
+      {
+          $bomberosparticipantes[] = $data->bombero_id;
+      }
+
+      $vehiculosparticipantes=array();
+      foreach ($servicio->vehiculos as $data)
+      {
+          $vehiculosparticipantes[] = $data->vehiculo_id;
+      }
+
+      return view('servicio/editar',compact('tipos','servicio','bomberos','vehiculos','bomberosparticipantes','vehiculosparticipantes'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+        $data=$request->all();//obtengo todos los atributos
+        $servicio= Servicio::find($id);
+        $servicio->direccion=$data['direccion'];
+        $servicio->descripcion=$data['descripcion'];
+        $servicio->ilesos=$data['ilesos'];
+        $servicio->lesionados=$data['lesionados'];
+        $servicio->quemados=$data['quemados'];
+        $servicio->muertos=$data['muertos'];
+        $servicio->otros=$data['otros'];
+        $servicio->combustible=$data['combustible'];
+        $servicio->reconocimiento=$data['reconocimiento'];
+        $servicio->disposiciones=$data['disposiciones'];
+        if(!$servicio->hora_salida){
+          //si la hora de salida no esta marcada se asigna igual a la de alarma
+          $servicio->hora_salida=$data['salida'];
+        }
+        $servicio->hora_regreso=$data['regreso'];
+
+        // Eliminamos los bomberos que an sido descartado por la edicion
+        $eliminarb=BomberoServicio::where('servicio_id',$servicio->id)->get();
+        foreach ($eliminarb as $value) {
+          if (!in_array ( $value->bombero_id , $data["Bomberos"])) {
+            BomberoServicio::where('servicio_id',$servicio->id)->where('bombero_id',$value->bombero_id)->delete();
+          }
+        }
+
+        // Eliminamos los vehiculo que an sido descartado por la edicion
+        $eliminarv=VehiculoServicio::where('servicio_id',$servicio->id)->get();
+        foreach ($eliminarv as $value) {
+          if (!in_array ( $value->vehiculo_id , $data["Vehiculos"])) {
+            BomberoServicio::where('servicio_id',$servicio->id)->where('vehiculo_id',$value->vehiculo_id)->delete();
+          }
+        }
+
+        if ($servicio->save()) {
+          foreach ($data["Bomberos"] as $bombero) {
+            //creo las relaciones servicio bomberos
+            if (!BomberoServicio::where('servicio_id',$servicio->id)->where('bombero_id',$bombero)->count()) {
+              BomberoServicio::create(['servicio_id'=>$servicio->id,'bombero_id'=>$bombero]);
+            }
+          }
+
+
+          if(array_key_exists("Vehiculos",$data)){
+            foreach ($data["Vehiculos"] as $vehiculo) {
+              //creo las relaciones servicio Vehiculos
+              if (!VehiculoServicio::where('servicio_id',$servicio->id)->where('vehiculo_id',$vehiculo)->count()) {
+                VehiculoServicio::create(['servicio_id'=>$servicio->id,'vehiculo_id'=>$vehiculo]);
+              }
+            }
+          }
+         return redirect()->route('servicio.index');
+        }else {
+          dd('fallo');
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
-        $bombero=Servicio::find($id);
-        $bombero->delete();
+        $servicio=Servicio::find($id);
+        $servicio->delete();
         return redirect()->route('servicio.index');
     }
 }

@@ -30,7 +30,7 @@
                   {{ Form::close() }}
                 </td>
                 {{-- finalizarActivo implementar Update --}}
-                <td class="text-center"><a class="glyphicon glyphicon-edit" href="{{ route('servicio.finalizarActivo', $servicio->id) }}"></a></td>
+                <td class="text-center"><a class="glyphicon glyphicon-edit" href="{{ route('servicio.edit', $servicio->id) }}"></a></td>
               </tr>
             @endif
           @endforeach
