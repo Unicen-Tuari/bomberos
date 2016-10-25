@@ -50,7 +50,6 @@ $('#listavehiculos').on('change', function(){
     var secondsF = (+secondsHoraFin[0]) * 60 * 60 + (+secondsHoraFin[1]) * 60 + (+secondsHoraFin[2]);
     var dias = diaFin - diaInicio;
     if ((dias)>0){
-      alert(dias);
       secondsF +=( dias*24 * 60 * 60);
     }
     var cantVehiculos=$('#listavehiculos option:selected').length;
@@ -65,5 +64,5 @@ $('#listavehiculos').on('change', function(){
     calcularCombustible()
   });
 
-  calcularCombustible();
+  // calcularCombustible();
 });
