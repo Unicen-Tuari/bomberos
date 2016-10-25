@@ -31,6 +31,7 @@ Route::get('servicio/llamada', 'ServicioController@llamada')->name('servicio.lla
 Route::get('servicio/activo/{id}', 'ServicioController@finalizarActivo')->name('servicio.finalizarActivo');
 route::get('servicio/finalizado', 'ServicioController@finalizado')->name('servicio.finalizado');
 Route::get('servicio/estadistica', 'ServicioController@estadistica')->name('servicio.estadistica');
+Route::get('servicio/{mes}/{anio}/tabla', 'ServicioController@tabla')->name('servicio.tabla');
 Route::post('servicio/iniciado', 'ServicioController@iniciado')->name('servicio.iniciado');
 Route::put('servicio/activo/{id}/finalizar', 'ServicioController@guardarActivo')->name('servicio.guardarActivo');
 Route::put('servicio/activo/{id}/salida', 'ServicioController@salida')->name('servicio.salida');
