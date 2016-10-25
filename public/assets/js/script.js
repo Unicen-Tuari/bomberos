@@ -70,7 +70,7 @@ $('#listavehiculos').on('change', function(){
 		$.ajax({
 			type: 'GET',
 			dataType: 'HTML',
-			url: '/bomberos/public/servicio/'+mes+'/'+año+'/tabla',
+			url: '../servicio/'+mes+'/'+año+'/tabla',
 			success: function(data){
 						$('#estadistica').html(data);
 					},
