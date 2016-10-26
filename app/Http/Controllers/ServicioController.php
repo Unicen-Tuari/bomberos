@@ -27,7 +27,7 @@ class ServicioController extends Controller
       return view('servicio/servicios',compact('servicios'));
     }
 
-    public function store(Request $request)
+    public function store(ServicioRequest $request)
     {
       $data=$request->all();//obtengo todos los atributos
       $servicio=new Servicio;
@@ -285,7 +285,7 @@ class ServicioController extends Controller
 
         if ($servicio->save()) {
           foreach ($data["Bomberos"] as $bombero) {
-            //creo las relaciones servicio bomberos
+            //creo las relaciones servicio bomberos de los nuevos bomberos
             if (!BomberoServicio::where('servicio_id',$servicio->id)->where('bombero_id',$bombero)->count()) {
               BomberoServicio::create(['servicio_id'=>$servicio->id,'bombero_id'=>$bombero]);
             }
@@ -294,7 +294,7 @@ class ServicioController extends Controller
 
           if(array_key_exists("Vehiculos",$data)){
             foreach ($data["Vehiculos"] as $vehiculo) {
-              //creo las relaciones servicio Vehiculos
+              //creo las relaciones servicio Vehiculos de los nuevos Vehiculos
               if (!VehiculoServicio::where('servicio_id',$servicio->id)->where('vehiculo_id',$vehiculo)->count()) {
                 VehiculoServicio::create(['servicio_id'=>$servicio->id,'vehiculo_id'=>$vehiculo]);
               }

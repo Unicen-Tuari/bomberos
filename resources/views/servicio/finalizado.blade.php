@@ -50,13 +50,13 @@
     </div>
 
     <div class="form-group">
-      <div class="col-sm-6 {{ $errors->has('bomberos') ? ' has-error' : '' }}">
+      <div class="col-sm-6 {{ $errors->has('Bomberos') ? ' has-error' : '' }}">
         {!! Form::label('bomberos', 'Bomberos involucrados',['class' => 'col-sm-5 col-sm-offset-3 control-label']) !!}
         <div class="col-sm-2">
           {{Form::select('Bomberos[]', $bomberos,null,['class' => 'selectMultiple', 'multiple'=>'multiple'])}}
-          @if ($errors->has('bomberos'))
+          @if ($errors->has('Bomberos'))
               <span class="help-block">
-                  <strong>{{ $errors->first('bomberos') }}</strong>
+                  <strong>{{ $errors->first('Bomberos') }}</strong>
               </span>
           @endif
         </div>

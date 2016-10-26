@@ -35,12 +35,21 @@ class ServicioRequest extends Request
         case 'POST':
         {
           return [
-              'tipo_servicio_id' => 'required|exists:bombero,id',
+              'tipo' => 'required|exists:tipo_servicio,id',
               'direccion' => 'required|max:255',
               'descripcion' => 'required|max:255',
-              'hora_alarma' => 'required|date_format:Y-m-d H:i:s',
-              'hora_salida' => 'required|date_format:Y-m-d H:i:s|after:hora_alarma',
-              'hora_regreso' => 'required|date_format:Y-m-d H:i:s|after:hora_alarma',
+              'ilesos' => 'required|numeric',
+              'lesionados' => 'required|numeric',
+              'quemados' => 'required|numeric',
+              'muertos' => 'required|numeric',
+              'otros' => 'required|numeric',
+              'combustible' => 'required|numeric',
+              'reconocimiento' => 'required|min:5',
+              'disposiciones' => 'required|min:5',
+              'alarma' => 'required|date_format:Y-m-d H:i:s',
+              'salida' => 'required|date_format:Y-m-d H:i:s|after:alarma',
+              'regreso' => 'required|date_format:Y-m-d H:i:s|after:salida',
+              'Bomberos' => 'array|required',
           ];
         }
 
