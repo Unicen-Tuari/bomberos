@@ -10,13 +10,17 @@
 
   {!! Form::open([ 'route' => ['servicio.guardarActivo', $servicio->id], 'class' => 'form-horizontal', 'method' => 'PUT']) !!}
 
-      <div class="form-group {{ $errors->has('bomberos') ? ' has-error' : '' }}">
+      <div hidden>
+        {!! Form::text('editar', "false", ['class' => 'form-control']) !!}
+      </div>
+
+      <div class="form-group {{ $errors->has('Bomberos') ? ' has-error' : '' }}">
         {!! Form::label('bomberos', 'Bomberos involucrados',['class' => 'col-sm-4 control-label']) !!}
         <div class="col-sm-2">
           {{Form::select('Bomberos[]', $bomberos,null,['class' => 'selectMultiple', 'multiple'=>'multiple'])}}
-          @if ($errors->has('bomberos'))
+          @if ($errors->has('Bomberos'))
               <span class="help-block">
-                  <strong>{{ $errors->first('bomberos') }}</strong>
+                  <strong>{{ $errors->first('Bomberos') }}</strong>
               </span>
           @endif
         </div>
@@ -145,6 +149,10 @@
       </div>
 
       <div class="form-group">
+
+        <div hidden>//este campo esta para el tema de validacion oculto para que el usuario no pueda modificar
+          {!! Form::text('alarma', $servicio->hora_alarma,[]) !!}
+        </div>
 
         @if(!$servicio->hora_salida)
           <div class="{{ $errors->has('salida') ? ' has-error' : '' }}">

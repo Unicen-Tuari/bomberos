@@ -113,7 +113,7 @@ class ServicioController extends Controller
         return view('servicio/finalizar',compact('servicio','bomberos','vehiculos'));
     }
 
-    public function guardarActivo(Request $request, $id)
+    public function guardarActivo(ServicioRequest $request, $id)
     {
       $data=$request->all();//obtengo todos los atributos
       $servicio= Servicio::find($id);
@@ -125,7 +125,7 @@ class ServicioController extends Controller
       $servicio->combustible=$data['combustible'];
       $servicio->reconocimiento=$data['reconocimiento'];
       $servicio->disposiciones=$data['disposiciones'];
-      if(!$servicio->hora_salida){
+      if(!$servicio->hora_salida && $servicio->hora_salida>$servicio->hora_alarma){
         //si la hora de salida no esta marcada se asigna igual a la de alarma
         $servicio->hora_salida=$data['salida'];
       }
@@ -160,9 +160,9 @@ class ServicioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function iniciado(Request $data)
+    public function iniciado(ServicioRequest $data)
     {
-      $tipo= TipoServicio::find($data['Tipo']);
+      $tipo= TipoServicio::find($data['tipo']);
       if($tipo){
         $servicio=new Servicio;
         $servicio->tipo_servicio_id=$tipo->id;
@@ -247,7 +247,7 @@ class ServicioController extends Controller
       return view('servicio/editar',compact('tipos','servicio','bomberos','vehiculos','bomberosparticipantes','vehiculosparticipantes'));
     }
 
-    public function update(Request $request, $id)
+    public function update(ServicioRequest $request, $id)
     {
         $data=$request->all();//obtengo todos los atributos
         $servicio= Servicio::find($id);
@@ -261,10 +261,7 @@ class ServicioController extends Controller
         $servicio->combustible=$data['combustible'];
         $servicio->reconocimiento=$data['reconocimiento'];
         $servicio->disposiciones=$data['disposiciones'];
-        if(!$servicio->hora_salida){
-          //si la hora de salida no esta marcada se asigna igual a la de alarma
-          $servicio->hora_salida=$data['salida'];
-        }
+        $servicio->hora_salida=$data['salida'];
         $servicio->hora_regreso=$data['regreso'];
 
         // Eliminamos los bomberos que han sido descartado por la edicion

@@ -38,6 +38,27 @@ class ServicioRequest extends Request
               'tipo' => 'required|exists:tipo_servicio,id',
               'direccion' => 'required|max:255',
               'descripcion' => 'required|max:255',
+              'ilesos' => 'required_if:finalizado,true|numeric',
+              'lesionados' => 'required_if:finalizado,true|numeric',
+              'quemados' => 'required_if:finalizado,true|numeric',
+              'muertos' => 'required_if:finalizado,true|numeric',
+              'otros' => 'required_if:finalizado,true|numeric',
+              'combustible' => 'required_if:finalizado,true|numeric',
+              'reconocimiento' => 'required_if:finalizado,true|min:5',
+              'disposiciones' => 'required_if:finalizado,true|min:5',
+              'alarma' => 'required|date_format:Y-m-d H:i:s',
+              'salida' => 'required_if:finalizado,true|date_format:Y-m-d H:i:s|after:alarma',
+              'regreso' => 'required_if:finalizado,true|date_format:Y-m-d H:i:s|after:salida',
+              'Bomberos' => 'array|required_if:finalizado,true',
+          ];
+        }
+
+        case 'PUT':
+        {
+          return [
+              'tipo' => 'required_if:editar,true|exists:tipo_servicio,id',
+              'direccion' => 'required_if:editar,true|max:255',
+              'descripcion' => 'required_if:editar,true|max:255',
               'ilesos' => 'required|numeric',
               'lesionados' => 'required|numeric',
               'quemados' => 'required|numeric',
@@ -46,23 +67,10 @@ class ServicioRequest extends Request
               'combustible' => 'required|numeric',
               'reconocimiento' => 'required|min:5',
               'disposiciones' => 'required|min:5',
-              'alarma' => 'required|date_format:Y-m-d H:i:s',
+              'alarma' => 'required_if:editar,true|date_format:Y-m-d H:i:s',
               'salida' => 'required|date_format:Y-m-d H:i:s|after:alarma',
               'regreso' => 'required|date_format:Y-m-d H:i:s|after:salida',
               'Bomberos' => 'array|required',
-          ];
-        }
-
-        case 'PUT':
-        {
-          return [
-              'nombre' => 'required|max:255',
-              'apellido' => 'required|max:255',
-              'nro_legajo' => 'required|min:6|numeric|unique:bombero,id,'.$bombero->id,
-              'jerarquia' => 'required|max:255',
-              'direccion' => 'required|max:255',
-              'telefono' => 'required|min:6',
-              'fecha_nacimiento' => 'required|date_format:Y-m-d',
           ];
         }
         default:break;
