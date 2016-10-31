@@ -41,3 +41,29 @@ $factory->define(App\Material::class, function (Faker\Generator $faker) {
   ];
 
 });
+
+$factory->define(App\Servicio::class, function (Faker\Generator $faker) {
+  $tipos = App\TipoServicio::all();
+  $tipo=$tipos->random();
+  $alarma = \Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires'))->addMonth(-rand(1,10))->toDateTimeString();
+  $salida =\Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$alarma)->addMinutes(rand(1,10))->toDateTimeString();
+  $regreso=\Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$alarma)->addMinutes(rand(30,480))->toDateTimeString();
+
+  return [
+    'tipo_servicio_id' => $tipo->id,
+    'direccion' => $faker->address,
+    'descripcion' => $faker->sentence($nbWords = 6, $variableNbWords = true),
+    'ilesos' => $faker->randomNumber($nbDigits = 1),
+    'lesionados' => $faker->randomNumber($nbDigits = 1),
+    'quemados' => $faker->randomNumber($nbDigits = 1),
+    'muertos' => $faker->randomNumber($nbDigits = 1),
+    'otros' => $faker->randomNumber($nbDigits = 1),
+    'combustible' => $faker->randomNumber($nbDigits = 3),
+    'reconocimiento' => $faker->sentence($nbWords = 6, $variableNbWords = true),
+    'disposiciones' => $faker->sentence($nbWords = 6, $variableNbWords = true),
+    'hora_alarma' => $alarma,
+    'hora_salida' => $salida,
+    'hora_regreso' => $regreso,
+  ];
+
+});
