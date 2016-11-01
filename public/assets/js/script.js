@@ -75,7 +75,7 @@ $('#listavehiculos').on('change', function(){
 						$('#estadistica').html(data);
 					},
 			error: function(){
-						alert('Error al Cargar la tabla ');
+						// alert('Error al Cargar la tabla ');
 					}
 		});
   };

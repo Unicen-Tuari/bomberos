@@ -140,7 +140,7 @@
       </div>
       <div class="right-panel col-lg-10 col-xs-8">
     @else
-      <div class="right-panel col-sm-12">
+      <div class="col-sm-12">
     @endif
         @yield('content')
       </div>
