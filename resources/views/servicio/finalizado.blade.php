@@ -10,6 +10,10 @@
 
   {!! Form::open([ 'route' => 'servicio.store', 'class' => 'form-horizontal', 'method' => 'POST']) !!}
 
+    <div hidden>
+      {!! Form::text('finalizado', "true", ['class' => 'form-control']) !!}
+    </div>
+
     <div class="form-group {{ $errors->has('tipo_servicio_id') ? ' has-error' : '' }}">
       {!! Form::label('tipo', 'Tipo de servicio',['class' => 'col-sm-2 col-sm-offset-2 control-label']) !!}
       <div class="col-sm-2">
@@ -50,20 +54,20 @@
     </div>
 
     <div class="form-group">
-      <div class="col-sm-6 {{ $errors->has('bomberos') ? ' has-error' : '' }}">
-        {!! Form::label('bomberos', 'Bomberos involucrados',['class' => 'col-sm-5 col-sm-offset-3 control-label']) !!}
-        <div class="col-sm-2">
-          {{Form::select('Bomberos[]', $bomberos,null,['class' => 'selectMultiple', 'multiple'=>'multiple'])}}
-          @if ($errors->has('bomberos'))
+      <div class="col-sm-7 {{ $errors->has('Bomberos') ? ' has-error' : '' }}">
+        {!! Form::label('bomberos', 'Bomberos involucrados',['class' => 'col-sm-4 col-sm-offset-3 control-label']) !!}
+        <div class="col-sm-5">
+          {{Form::select('Bomberos[]', $bomberos,null,['class' => 'col-sm-2 selectMultiple', 'multiple'=>'multiple'])}}
+          @if ($errors->has('Bomberos'))
               <span class="help-block">
-                  <strong>{{ $errors->first('bomberos') }}</strong>
+                  <strong>{{ $errors->first('Bomberos') }}</strong>
               </span>
           @endif
         </div>
       </div>
 
-      <div class="col-sm-6 {{ $errors->has('vehiculos') ? ' has-error' : '' }}">
-        {!! Form::label('vehiculos', 'Vehiculos involucrados',['class' => 'col-sm-5 control-label']) !!}
+      <div class="col-sm-5 {{ $errors->has('vehiculos') ? ' has-error' : '' }}">
+        {!! Form::label('vehiculos', 'Vehiculos involucrados',['class' => 'col-sm-4 control-label']) !!}
         <div class="col-sm-2">
           {{Form::select('Vehiculos[]', $vehiculos,null,['class' => 'selectMultiple', 'multiple'=>'multiple', 'id'=>'listavehiculos'])}}
           @if ($errors->has('vehiculos'))

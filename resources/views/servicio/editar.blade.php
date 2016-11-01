@@ -10,6 +10,10 @@
 
   {!! Form::open([ 'route' =>['servicio.update', $servicio], 'class' => 'form-horizontal', 'method' => 'PUT']) !!}
 
+    <div hidden>
+      {!! Form::text('editar', "true", ['class' => 'form-control']) !!}
+    </div>
+
     <div class="form-group {{ $errors->has('tipo_servicio_id') ? ' has-error' : '' }}">
       {!! Form::label('tipo', 'Tipo de servicio',['class' => 'col-sm-2 col-sm-offset-2 control-label']) !!}
       <div class="col-sm-2">
@@ -50,13 +54,13 @@
     </div>
 
     <div class="form-group">
-      <div class="col-sm-6 {{ $errors->has('bomberos') ? ' has-error' : '' }}">
+      <div class="col-sm-6 {{ $errors->has('Bomberos') ? ' has-error' : '' }}">
         {!! Form::label('bomberos', 'Bomberos involucrados',['class' => 'col-sm-5 col-sm-offset-3 control-label']) !!}
         <div class="col-sm-2">
           {{Form::select('Bomberos[]', $bomberos,$bomberosparticipantes,['class' => 'selectMultiple', 'multiple'=>'multiple'])}}
-          @if ($errors->has('bomberos'))
+          @if ($errors->has('Bomberos'))
               <span class="help-block">
-                  <strong>{{ $errors->first('bomberos') }}</strong>
+                  <strong>{{ $errors->first('Bomberos') }}</strong>
               </span>
           @endif
         </div>

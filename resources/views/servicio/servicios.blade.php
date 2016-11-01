@@ -36,6 +36,9 @@
           @endforeach
         </tbody>
       </table>
+      <div class="text-center">
+        {{ $servicios->render()}}
+      </div>
     </div>
   </div>
 </article>

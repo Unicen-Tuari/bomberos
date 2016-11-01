@@ -115,6 +115,7 @@
           <a href="#asistenciasSubMenu" id="asistenciaMenu" class="list-group-item" data-toggle="collapse" data-parent="#MainMenu"><i class="fa fa-users fa-lg"></i> Asistencia<span class="arrow"></span></a>
           <div class="collapse" id="asistenciasSubMenu">
             <a href="" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Asistencia?</a>
+            <a  href="{{route('asistencia.puntuacion')}}"  class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Puntuacion?</a>
           </div>
 
           <a href="#serviciosSubMenu" id="servicioMenu" class="list-group-item" data-toggle="collapse" data-parent="#MainMenu"><i class="fa fa-cog fa-lg"></i>  Servicios<span class="arrow"></span></a>
@@ -148,6 +149,7 @@
     {!!HTML::script('assets/js/bootstrap.js')!!}
     {!!HTML::script('assets/js/bootstrap-multiselect.js')!!}
     {!!HTML::script('assets/js/script.js')!!}
+    @yield('js')
     <!-- JavaScripts -->
 </body>
 </html>

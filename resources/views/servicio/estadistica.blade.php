@@ -22,3 +22,7 @@
   </div>
 </article>
 @endsection
+
+@section('js')
+  {!! Html::script('assets/js/ajaxtabla.js') !!}
+@endsection
