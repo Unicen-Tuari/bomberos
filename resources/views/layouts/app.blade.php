@@ -110,6 +110,7 @@
           <div class="collapse" id="bomberosSubMenu">
             <a href="{{route('bombero.index')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Listar bomberos</a>
             <a href="{{route('bombero.create')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Alta bombero</a>
+            <a href="{{route('bombero.altaResponsable')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Asignar responsables </a>
           </div>
 
           <a href="#asistenciasSubMenu" id="asistenciaMenu" class="list-group-item" data-toggle="collapse" data-parent="#MainMenu"><i class="fa fa-users fa-lg"></i> Asistencia<span class="arrow"></span></a>
@@ -141,7 +142,7 @@
       </div>
       <div class="right-panel col-lg-10 col-xs-8">
     @else
-      <div class="right-panel col-sm-12">
+      <div class="col-sm-12">
     @endif
         @yield('content')
       </div>

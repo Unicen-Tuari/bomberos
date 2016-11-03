@@ -19,6 +19,8 @@ Route::auth();
 
 Route::get('/home', 'HomeController@index');
 
+Route::get('bombero/responsable', 'BomberoController@altaResponsable')->name('bombero.altaResponsable');
+
 Route::resource('bombero','BomberoController',['except' => ['show']]);
 
 Route::get('asistencia/puntuacion', 'AsistenciaController@puntuacion')->name('asistencia.puntuacion');

@@ -54,9 +54,9 @@
     </div>
 
     <div class="form-group">
-      <div class="col-sm-7 {{ $errors->has('Bomberos') ? ' has-error' : '' }}">
-        {!! Form::label('bomberos', 'Bomberos involucrados',['class' => 'col-sm-4 col-sm-offset-3 control-label']) !!}
-        <div class="col-sm-5">
+      <div class="col-sm-6 {{ $errors->has('Bomberos') ? ' has-error' : '' }}">
+        {!! Form::label('bomberos', 'Bomberos involucrados',['class' => 'col-sm-4 col-sm-offset-4 control-label']) !!}
+        <div class="col-sm-4">
           {{Form::select('Bomberos[]', $bomberos,null,['class' => 'col-sm-2 selectMultiple', 'multiple'=>'multiple'])}}
           @if ($errors->has('Bomberos'))
               <span class="help-block">
@@ -66,8 +66,8 @@
         </div>
       </div>
 
-      <div class="col-sm-5 {{ $errors->has('vehiculos') ? ' has-error' : '' }}">
-        {!! Form::label('vehiculos', 'Vehiculos involucrados',['class' => 'col-sm-4 control-label']) !!}
+      <div class="col-sm-6 {{ $errors->has('vehiculos') ? ' has-error' : '' }}">
+        {!! Form::label('vehiculos', 'Vehiculos involucrados',['class' => 'col-sm-5 control-label']) !!}
         <div class="col-sm-2">
           {{Form::select('Vehiculos[]', $vehiculos,null,['class' => 'selectMultiple', 'multiple'=>'multiple', 'id'=>'listavehiculos'])}}
           @if ($errors->has('vehiculos'))

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use Validator;
 use App\Bombero;
+use App\Material;
+use App\Vehiculo;
 use App\Http\Requests\BomberoRequest;
 
 class BomberoController extends Controller
@@ -45,5 +47,34 @@ class BomberoController extends Controller
   {
     Bombero::create($data->all());
     return redirect()->route('bombero.index');
+  }
+
+  public function altaResponsable()
+  {
+    $dataM=Material::all(['id', 'nombre']);
+    $materiales = array();
+    foreach ($dataM as $data)
+    {
+        $materiales[$data->id] = $data->nombre;
+    }
+    $dataV=Vehiculo::all(['id', 'patente']);
+    $vehiculos = array();
+    $vehiculosA = array();
+    $vehiculosB = array();
+    foreach ($dataV as $key => $data)
+    {
+      $vehiculos[$data->id] = $data->patente;
+      if ($key <= (count($dataV)/2))
+        $vehiculosA[] = $data->id;
+      else
+        $vehiculosB[] = $data->id;
+    }
+    $dataB=Bombero::all(['id', 'nombre']);
+    $bomberos = array();
+    foreach ($dataB as $data)
+    {
+        $bomberos[$data->id] = $data->nombre;
+    }
+      return view('bombero/responsable/alta', compact('materiales', 'vehiculos', 'vehiculosA', 'vehiculosB', 'bomberos'));
   }
 }
