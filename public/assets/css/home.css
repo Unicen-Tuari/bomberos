@@ -114,7 +114,7 @@ html {
 }
 
 body  {
-  background-color: #bb2f0e;
+  background-color: #2e353d;
   height: 100%;
 }
 
@@ -215,6 +215,10 @@ a:hover, a:focus {
   text-decoration: none;
 }
 
+.dropdown-menu{
+      padding: 5px 15px 5px 5px;
+      margin-left: 25%;
+}
 .dropdown-menu li a{
   padding: 0px 0px;
   margin-left: 10px;
