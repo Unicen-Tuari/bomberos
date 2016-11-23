@@ -139,6 +139,18 @@
           </div>
         </div>
 
+        <div class="{{ $errors->has('Bomberos') ? ' has-error' : '' }}">
+          {!! Form::label('bomberos', 'Bomberos involucrados',['class' => 'col-sm-4 col-sm-offset-4 control-label']) !!}
+          <div class="col-sm-6">
+            {{Form::select('Bomberos', App\Bombero::getBomberos(),null,['class' => 'col-sm-2 selectMultiple'])}}
+            @if ($errors->has('Bomberos'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('Bomberos') }}</strong>
+                </span>
+            @endif
+          </div>
+        </div>
+
       </div>
       <div class="right-panel col-lg-10 col-xs-8">
     @else
