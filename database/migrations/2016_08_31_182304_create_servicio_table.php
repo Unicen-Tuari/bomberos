@@ -28,12 +28,17 @@ class CreateServicioTable extends Migration
             $table->string('direccion', 100);
             $table->string('cuartel_colaborador', 20)->nullable();
             $table->text('reconocimiento')->nullable();
-            $table->text('descripcion');
             $table->text('disposiciones')->nullable();
             $table->dateTime('hora_alarma');
             $table->dateTime('hora_salida')->nullable();
             $table->dateTime('hora_regreso')->nullable();
+            $table->integer('jefe_servicio')->unsigned();
+            $table->integer('oficial')->unsigned();
+            $table->integer('jefe_de_cuerpo')->unsigned();
             $table->timestamps();
+            $table->foreign('jefe_servicio')->references('id')->on('bombero')->onDelete('cascade');
+            $table->foreign('oficial')->references('id')->on('bombero')->onDelete('cascade');
+            $table->foreign('jefe_de_cuerpo')->references('id')->on('bombero')->onDelete('cascade');
             $table->foreign('tipo_servicio_id')->references('id')->on('tipo_servicio')->onDelete('cascade');
         });
     }
