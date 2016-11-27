@@ -12,12 +12,12 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Route::auth();
 
-Route::get('/home', 'HomeController@index');
+Route::get('/home', 'HomeController@index')->name('home.index');
 
 Route::get('bombero/responsable', 'BomberoController@altaResponsable')->name('bombero.altaResponsable');
 
@@ -41,3 +41,4 @@ Route::post('servicio/iniciado', 'ServicioController@iniciado')->name('servicio.
 Route::put('servicio/activo/{id}/finalizar', 'ServicioController@guardarActivo')->name('servicio.guardarActivo');
 Route::put('servicio/activo/{id}/salida', 'ServicioController@salida')->name('servicio.salida');
 Route::resource('servicio','ServicioController');
+Route::post('ingreso/{id}', 'IngresoController@guardarIngreso')->name('ingreso.guardar');

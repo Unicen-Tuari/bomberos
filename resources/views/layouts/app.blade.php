@@ -23,9 +23,11 @@
 <body id="app-layout">
 
     <nav>
-      <div class="col-lg-2 col-sm-4 col-xs-12 text-center">
-        <h2>Bomberos</h2>
-        <h4>Trenque Lauquen</h4>
+      <div id="titleHome"  class="col-lg-2 col-sm-4 col-xs-12">
+        <a href="{{route('home.index')}}">
+          <h2>Bomberos</h2>
+          <h4>Trenque Lauquen</h4>
+        </a>
       </div>
       <div class="col-lg-10 col-sm-8 col-xs-12">
         @if (!Auth::guest())
@@ -139,6 +141,18 @@
           </div>
         </div>
 
+        <div id="regIngreso">
+          <div class="">
+            {{Form::select('Bomberos', App\Bombero::getBomberos(), null,['class' => 'col-sm-2 selectMultiple', 'id' => 'bomberoIngreso'])}}
+            @if ($errors->has('Bomberos'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('Bomberos') }}</strong>
+                </span>
+            @endif
+          </div>
+          <p>Ingresar <button class="fa fa-sign-in" type="button" title="Registrar ingreso" id="ingresar" name="button"></button></p>
+          <p>Egresar <button class="fa fa-sign-out" type="button" title="Registrar egreso" id="egresar" name="button"></button></p>
+        </div>
       </div>
       <div class="right-panel col-lg-10 col-xs-8">
     @else
@@ -150,6 +164,7 @@
     {!!HTML::script('assets/js/bootstrap.js')!!}
     {!!HTML::script('assets/js/bootstrap-multiselect.js')!!}
     {!!HTML::script('assets/js/script.js')!!}
+    {!!HTML::script('assets/js/ajaxIngreso.js')!!}
     @yield('js')
     <!-- JavaScripts -->
 </body>

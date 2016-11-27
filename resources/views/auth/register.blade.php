@@ -3,9 +3,11 @@
 @section('content')
 <article class="container">
   <div class="row">
+    <div class="col-xs-offset-5 col-xs-3" id="logoHome">
+      <img src="assets/images/logo.png" alt=""/>
+    </div>
     <div class="col-md-8 col-md-offset-2">
-      <div class="panel panel-default">
-        <div class="panel-heading"> Registrarse </div>
+      <div id="panelRegister" class="panel panel-default">
         <div class="panel-body">
           {!! Form::open([ 'class' => 'form-horizontal', 'url' => 'register', 'method' => 'POST',]) !!}
             {{ csrf_field() }} {{-- Crea todo el campo TOKEN falsificación de petición en sitios cruzados --}}
@@ -13,7 +15,7 @@
             <div class="form-group {{ $errors->has('nombre') ? ' has-error' : '' }}">
               {!! Form::label('nombre', 'Nombre',['class' => 'col-md-4 control-label']) !!}
               <div class="col-md-6">
-                  {!! Form::text('nombre', null, ['class' => 'form-control']) !!}
+                  {!! Form::text('nombre', null, ['class' => 'form-control', 'placeholder' => 'Nombre']) !!}
 
                   @if ($errors->has('nombre'))
                       <span class="help-block">

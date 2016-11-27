@@ -3,18 +3,19 @@
 @section('content')
 <article class="container">
     <div class="row">
+      <div class="col-xs-offset-5 col-xs-3" id="logoHome">
+        <img src="assets/images/logo.png" alt=""/>
+      </div>
         <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Iniciar sesión</div>
+            <div id="panelLogin" class="panel panel-default">
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('usuario') ? ' has-error' : '' }}">
-                            <label for="usuario" class="col-md-4 control-label">Nombre de usuario</label>
 
-                            <div class="col-md-6">
-                                <input id="usuario" type="text" class="form-control" name="usuario" value="{{ old('usuario') }}">
+                            <div class="col-md-offset-3 col-md-6">
+                                <input id="usuario" type="text" class="form-control" name="usuario" placeholder="Usuario" value="{{ old('usuario') }}">
 
                                 @if ($errors->has('usuario'))
                                     <span class="help-block">
@@ -25,10 +26,9 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Contraseña</label>
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password">
+                            <div class="col-md-offset-3 col-md-6">
+                                <input id="password" type="password" class="form-control" placeholder="Contraseña" name="password">
 
                                 @if ($errors->has('password'))
                                     <span class="help-block">
@@ -39,7 +39,7 @@
                         </div>
 
                         <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
+                            <div class="col-md-6 col-md-offset-3">
                                 <div class="checkbox">
                                     <label>
                                         <input type="checkbox" name="remember"> Mantener sesión iniciada
@@ -49,7 +49,7 @@
                         </div>
 
                         <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
+                            <div class="col-md-6 col-md-offset-3">
                                 <button type="submit" class="btn btn-primary">
                                     <i class="glyphicon glyphicon-log-in"></i> Iniciar sesión
                                 </button>
