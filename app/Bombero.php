@@ -12,7 +12,19 @@ class Bombero extends Model
      'direccion', 'telefono', 'fecha_nacimiento',
   ];
 
+  protected function getBomberos(){
+      $datasb = $this->select('id', 'nombre')->orderBy('id','ASC')->get();
+      $bomberos = array();
+      $bomberos[0] = "Elegir bombero...";
+      foreach ($datasb as $data)
+      {
+          $bomberos[$data->id] = $data->nombre;
+      }
+      return $bomberos;
+  }
+
   public function servicio(){
     return $this->belongsTo(BomberoServicio::class);
   }
+
 }

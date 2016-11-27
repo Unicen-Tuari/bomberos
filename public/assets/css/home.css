@@ -35,7 +35,7 @@ nav .odd {
 
 nav div:first-child, nav div:last-child{
     height: 110px;
-    background-color: #bb2f0e;
+    background-color: #490000;
     color: white;
     border-bottom: 1px solid white;
 }
@@ -114,7 +114,8 @@ html {
 }
 
 body  {
-  background-color: #2e353d;
+  /*background-color: #2e353d;*/
+  background-color: #490000;
   height: 100%;
 }
 
@@ -182,7 +183,7 @@ a.list-group-item{
 }
 
 .activo:hover {
-  border-left: 4px solid #bb2f0e;
+  border-left: 4px solid #490000;
   background-color: #4f5b69;
   -webkit-transition: all 0.6s ease;
   -moz-transition: all 0.6s ease;
@@ -192,7 +193,7 @@ a.list-group-item{
 }
 
 .activo {
-  border-left: 4px solid #bb2f0e;
+  border-left: 4px solid #490000;
   background-color: #4f5b69;
 }
 
@@ -203,7 +204,7 @@ a.list-group-item:focus{
 a.list-group-item:hover{
   background-color: #4f5b69;
   color:white;
-  border-left: 4px solid #bb2f0e;
+  border-left: 4px solid #490000;
   -webkit-transition: all 0.6s ease;
   -moz-transition: all 0.6s ease;
   -o-transition: all 0.6s ease;
@@ -246,4 +247,67 @@ thead th{
 
 .serviciosActivos li a, .serviciosActivos li form{
   display: inline-block;
+}
+
+#regIngreso {
+  font-weight: bold;
+  color: white;
+  height: 100px;
+  width: 70%;
+  margin-left: 15%;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 18px;
+}
+
+#panelLogin, #panelRegister {
+  background-color: #490000;
+  color: white;
+  margin-top: -50px;
+  border: 0px;
+  font-weight: bold;
+}
+
+#panelLogin .btn-primary, #panelRegister .btn-primary {
+  background-color: white;
+  color: #490000;
+  border: 1px solid #490000;
+  font-weight: bold;
+  float: right;
+}
+
+#panelLogin .btn-link {
+  color: white;
+}
+
+#titleHome > a{
+  text-align: center;
+  color: white;
+  text-decoration: none;
+}
+#titleHome{
+  border-bottom: 1px solid white;
+}
+#titleHome > a:hover{
+  background-color: #552222;
+  transition: all 0.6s ease;
+}
+
+
+#regIngreso .fa-sign-in {
+  background-color: inherit;
+  font-size: 30px;
+  border: 0px;
+  color: green;
+  margin-top: 10px;
+}
+#regIngreso .fa-sign-out {
+  background-color: inherit;
+  font-size: 30px;
+  border: 0px;
+  color: red;
+}
+
+.list-group-item {
+  border-bottom: 1px solid white;
 }
