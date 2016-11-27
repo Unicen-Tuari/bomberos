@@ -9,6 +9,10 @@
     <div class="panel-body">
       {!! Form::open([ 'route' => 'bombero.store', 'class' => 'form-horizontal', 'method' => 'POST', 'files' => true]) !!}
 
+        <div hidden>
+          {!! Form::checkbox('activo', 1) !!}
+        </div>
+
         <div class="form-group {{ $errors->has('nombre') ? ' has-error' : '' }}">
           {!! Form::label('nombre', 'Nombre',['class' => 'col-md-4 control-label']) !!}
           <div class="col-md-6">

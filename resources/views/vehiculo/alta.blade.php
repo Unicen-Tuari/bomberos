@@ -21,7 +21,19 @@
             @endif
         </div>
       </div>
-      {{-- </div> --}}
+
+      <div class="form-group {{ $errors->has('num_movil') ? ' has-error' : '' }}">
+        {!! Form::label('num_movil', 'Numero de Movil',['class' => 'col-md-4 control-label']) !!}
+        <div class="col-md-6">
+            {!! Form::text('num_movil', 1, ['class' => 'form-control']) !!}
+
+            @if ($errors->has('num_movil'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('num_movil') }}</strong>
+                </span>
+            @endif
+        </div>
+      </div>
 
       <div class="form-group">
         <div class="col-md-6 col-md-offset-4">

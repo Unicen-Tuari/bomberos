@@ -15,6 +15,7 @@ class CreateVehiculoTable extends Migration
       Schema::create('vehiculo', function (Blueprint $table) {
           $table->increments('id');
           $table->rememberToken();
+          $table->integer('num_movil')->unsigned();
           $table->string('patente', 20)->unique();
           $table->timestamps();
       });
