@@ -35,9 +35,11 @@ class ServicioRequest extends Request
         case 'POST':
         {
           return [
+              'num_servicio' => 'required|unique:servicio',
               'tipo' => 'required|exists:tipo_servicio,id',
+              'tipo_alarma' => 'required',
+              'autor_llamada' => 'max:100',
               'direccion' => 'required|max:255',
-              'descripcion' => 'required|max:255',
               'ilesos' => 'required_if:finalizado,true|numeric',
               'lesionados' => 'required_if:finalizado,true|numeric',
               'quemados' => 'required_if:finalizado,true|numeric',
@@ -47,9 +49,14 @@ class ServicioRequest extends Request
               'reconocimiento' => 'required_if:finalizado,true|min:5',
               'disposiciones' => 'required_if:finalizado,true|min:5',
               'alarma' => 'required|date_format:Y-m-d H:i:s',
+              'cuartel_colaborador' => 'max:20',
+              'superficie' => 'numeric|required_if:tipo,11',
               'salida' => 'required_if:finalizado,true|date_format:Y-m-d H:i:s|after:alarma',
               'regreso' => 'required_if:finalizado,true|date_format:Y-m-d H:i:s|after:salida',
-              'Bomberos' => 'array|required_if:finalizado,true',
+              'Bombero' => 'required_if:finalizado,true',
+              'jefe_servicio' => 'required|exists:bombero,id',
+              'oficial' => 'required|exists:bombero,id',
+              'jefe_de_cuerpo' => 'required|exists:bombero,id',
           ];
         }
 
@@ -58,7 +65,6 @@ class ServicioRequest extends Request
           return [
               'tipo' => 'required_if:editar,true|exists:tipo_servicio,id',
               'direccion' => 'required_if:editar,true|max:255',
-              'descripcion' => 'required_if:editar,true|max:255',
               'ilesos' => 'required|numeric',
               'lesionados' => 'required|numeric',
               'quemados' => 'required|numeric',

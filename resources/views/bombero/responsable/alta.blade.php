@@ -29,7 +29,7 @@
       <div class="col-sm-4 {{ $errors->has('BomberoResp') ? ' has-error' : '' }}">
         {!! Form::label('bombero', 'Bombero responsable',['class' => 'col-sm-6 control-label']) !!}
         <div class="col-sm-3">
-          {{Form::select('BomberoResp', $bomberos,null,['class' => 'form-control selectMultiple'])}}
+          {{Form::select('BomberoResp', $bomberos,rand(1,count($bomberos)),['class' => 'form-control selectMultiple'])}}
           @if ($errors->has('BomberoResp'))
               <span class="help-block">
                   <strong>{{ $errors->first('BomberoResp') }}</strong>
@@ -41,7 +41,7 @@
       <div class="col-sm-4 {{ $errors->has('BomberoAyud') ? ' has-error' : '' }}">
         {!! Form::label('bombero', 'Bombero ayudante',['class' => 'col-sm-6 control-label']) !!}
         <div class="col-sm-3">
-          {{Form::select('BomberoAyud', $bomberos,null,['class' => 'form-control selectMultiple'])}}
+          {{Form::select('BomberoAyud', $bomberos,rand(1,count($bomberos)),['class' => 'form-control selectMultiple'])}}
           @if ($errors->has('BomberoAyud'))
               <span class="help-block">
                   <strong>{{ $errors->first('BomberoAyud') }}</strong>
@@ -70,7 +70,7 @@
       <div class="col-sm-4 {{ $errors->has('BomberoResp') ? ' has-error' : '' }}">
         {!! Form::label('bombero', 'Bombero responsable',['class' => 'col-sm-6 control-label']) !!}
         <div class="col-sm-3">
-          {{Form::select('BomberoResp', $bomberos,null,['class' => 'form-control selectMultiple'])}}
+          {{Form::select('BomberoResp', $bomberos,rand(1,count($bomberos)),['class' => 'form-control selectMultiple'])}}
           @if ($errors->has('BomberoResp'))
               <span class="help-block">
                   <strong>{{ $errors->first('BomberoResp') }}</strong>
@@ -82,7 +82,7 @@
       <div class="col-sm-4 {{ $errors->has('BomberoAyud') ? ' has-error' : '' }}">
         {!! Form::label('bombero', 'Bombero ayudante',['class' => 'col-sm-6 control-label']) !!}
         <div class="col-sm-3">
-          {{Form::select('BomberoAyud', $bomberos,null,['class' => 'form-control selectMultiple'])}}
+          {{Form::select('BomberoAyud', $bomberos,rand(1,count($bomberos)),['class' => 'form-control selectMultiple'])}}
           @if ($errors->has('BomberoAyud'))
               <span class="help-block">
                   <strong>{{ $errors->first('BomberoAyud') }}</strong>
@@ -112,7 +112,7 @@
       <div class="col-sm-4 {{ $errors->has('BomberoResp') ? ' has-error' : '' }}">
         {!! Form::label('bombero', 'Bombero responsable',['class' => 'col-sm-6 control-label']) !!}
         <div class="col-sm-3">
-          {{Form::select('BomberoResp', $bomberos,null,['class' => 'form-control selectMultiple'])}}
+          {{Form::select('BomberoResp', $bomberos,rand(1,count($bomberos)),['class' => 'form-control selectMultiple'])}}
           @if ($errors->has('BomberoResp'))
               <span class="help-block">
                   <strong>{{ $errors->first('BomberoResp') }}</strong>
@@ -124,7 +124,7 @@
       <div class="col-sm-4 {{ $errors->has('BomberoAyud') ? ' has-error' : '' }}">
         {!! Form::label('bombero', 'Bombero ayudante',['class' => 'col-sm-6 control-label']) !!}
         <div class="col-sm-3">
-          {{Form::select('BomberoAyud', $bomberos,null,['class' => 'form-control selectMultiple'])}}
+          {{Form::select('BomberoAyud', $bomberos,rand(1,count($bomberos)),['class' => 'form-control selectMultiple'])}}
           @if ($errors->has('BomberoAyud'))
               <span class="help-block">
                   <strong>{{ $errors->first('BomberoAyud') }}</strong>
@@ -153,7 +153,7 @@
       <div class="col-sm-4 {{ $errors->has('BomberoResp') ? ' has-error' : '' }}">
         {!! Form::label('bombero', 'Bombero responsable',['class' => 'col-sm-6 control-label']) !!}
         <div class="col-sm-3">
-          {{Form::select('BomberoResp', $bomberos,null,['class' => 'form-control selectMultiple'])}}
+          {{Form::select('BomberoResp', $bomberos,rand(1,count($bomberos)),['class' => 'form-control selectMultiple'])}}
           @if ($errors->has('BomberoResp'))
               <span class="help-block">
                   <strong>{{ $errors->first('BomberoResp') }}</strong>
@@ -165,7 +165,7 @@
       <div class="col-sm-4 {{ $errors->has('BomberoAyud') ? ' has-error' : '' }}">
         {!! Form::label('bombero', 'Bombero ayudante',['class' => 'col-sm-6 control-label']) !!}
         <div class="col-sm-3">
-          {{Form::select('BomberoAyud', $bomberos,null,['class' => 'form-control selectMultiple'])}}
+          {{Form::select('BomberoAyud', $bomberos,rand(1,count($bomberos)),['class' => 'form-control selectMultiple'])}}
           @if ($errors->has('BomberoAyud'))
               <span class="help-block">
                   <strong>{{ $errors->first('BomberoAyud') }}</strong>
@@ -185,7 +185,7 @@
       <div class="col-sm-4 {{ $errors->has('BomberoResp') ? ' has-error' : '' }}">
         {!! Form::label('bombero', 'Bombero responsable',['class' => 'col-sm-6 control-label']) !!}
         <div class="col-sm-3">
-          {{Form::select('BomberoResp', $bomberos,null,['class' => 'form-control selectMultiple'])}}
+          {{Form::select('BomberoResp', $bomberos,rand(1,count($bomberos)),['class' => 'form-control selectMultiple'])}}
           @if ($errors->has('BomberoResp'))
               <span class="help-block">
                   <strong>{{ $errors->first('BomberoResp') }}</strong>
@@ -197,7 +197,7 @@
       <div class="col-sm-4 {{ $errors->has('BomberoAyud') ? ' has-error' : '' }}">
         {!! Form::label('bombero', 'Bombero ayudante',['class' => 'col-sm-6 control-label']) !!}
         <div class="col-sm-3">
-          {{Form::select('BomberoAyud', $bomberos,null,['class' => 'form-control selectMultiple'])}}
+          {{Form::select('BomberoAyud', $bomberos,rand(1,count($bomberos)),['class' => 'form-control selectMultiple'])}}
           @if ($errors->has('BomberoAyud'))
               <span class="help-block">
                   <strong>{{ $errors->first('BomberoAyud') }}</strong>
@@ -218,7 +218,7 @@
       <div class="col-sm-4 {{ $errors->has('BomberoResp') ? ' has-error' : '' }}">
         {!! Form::label('bombero', 'Bombero responsable',['class' => 'col-sm-6 control-label']) !!}
         <div class="col-sm-3">
-          {{Form::select('BomberoResp', $bomberos,null,['class' => 'form-control selectMultiple'])}}
+          {{Form::select('BomberoResp', $bomberos,rand(1,count($bomberos)),['class' => 'form-control selectMultiple'])}}
           @if ($errors->has('BomberoResp'))
               <span class="help-block">
                   <strong>{{ $errors->first('BomberoResp') }}</strong>
@@ -230,7 +230,7 @@
       <div class="col-sm-4 {{ $errors->has('BomberoAyud') ? ' has-error' : '' }}">
         {!! Form::label('bombero', 'Bombero ayudante',['class' => 'col-sm-6 control-label']) !!}
         <div class="col-sm-3">
-          {{Form::select('BomberoAyud', $bomberos,null,['class' => 'form-control selectMultiple'])}}
+          {{Form::select('BomberoAyud', $bomberos,rand(1,count($bomberos)),['class' => 'form-control selectMultiple'])}}
           @if ($errors->has('BomberoAyud'))
               <span class="help-block">
                   <strong>{{ $errors->first('BomberoAyud') }}</strong>
