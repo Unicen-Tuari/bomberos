@@ -11,10 +11,10 @@ use App\Bombero;
 class IngresoController extends Controller
 {
 
-    public function index()
+    public function listarIngresos()
     {
-        $ingresados=Ingreso::orderBy('nombre','DESC')->paginate(12);
-        return view('asistencia/listar',compact('bomberos'));
+        $ingresados=Ingreso::all();
+        return view('asistencia/listar',compact('ingresados'));
     }
 
     public function guardarIngreso(Request $request){

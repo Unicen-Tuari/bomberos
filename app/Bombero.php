@@ -13,7 +13,7 @@ class Bombero extends Model
   ];
 
   protected function getBomberos(){
-      $datasb = $this->select('id', 'nombre', 'activo')->where('activo', 1)->orderBy('id','ASC');
+      $datasb = $this->select('id', 'nombre', 'apellido')->orderBy('id','ASC')->where('activo', 1)->get();
       $bomberos = array();
       $bomberos[0] = "Elegir bombero...";
       foreach ($datasb as $data)
@@ -27,4 +27,11 @@ class Bombero extends Model
     return $this->belongsTo(BomberoServicio::class);
   }
 
+  public function vehiculo(){
+    return $this->belongsTo(Vehiculo::class);
+  }
+
+  public function ingresado(){
+      return $this->belongsTo(Ingreso::class);
+  }
 }
