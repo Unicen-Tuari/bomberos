@@ -151,7 +151,15 @@
             @endif
           </div>
           <p>Ingresar <button class="fa fa-sign-in" type="button" title="Registrar ingreso" id="ingresar" name="button"></button></p>
-          <p>Egresar <button class="fa fa-sign-out" type="button" title="Registrar egreso" id="egresar" name="button"></button></p>
+          {{Form::open(['route' => ['ingreso.guardarIngreso'], 'method' => 'POST', 'id' => 'form-ingresar'])}}
+            <div hidden>
+              {!! Form::text('id_bombero', ':USER_ID', ['class' => 'form-control','id' => 'ingresado']) !!}
+            </div>
+          {{Form::close()}}
+
+          {{Form::open(['route' => ['ingreso.borrarIngreso', ':USER_ID'], 'method' => 'DELETE', 'id' => 'form-delete'])}}
+            <p>Egresar <button class="fa fa-sign-out" type="button" title="Registrar egreso" id="egresar" name="button"></button></p>
+          {{Form::close()}}
         </div>
       </div>
       <div class="right-panel col-lg-10 col-xs-8">

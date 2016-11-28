@@ -41,4 +41,6 @@ Route::post('servicio/iniciado', 'ServicioController@iniciado')->name('servicio.
 Route::put('servicio/activo/{id}/finalizar', 'ServicioController@guardarActivo')->name('servicio.guardarActivo');
 Route::put('servicio/activo/{id}/salida', 'ServicioController@salida')->name('servicio.salida');
 Route::resource('servicio','ServicioController');
-Route::post('ingreso/{id}', 'IngresoController@guardarIngreso')->name('ingreso.guardar');
+
+Route::post('ingreso/', 'IngresoController@guardarIngreso')->name('ingreso.guardarIngreso');
+Route::delete('ingreso/{id}', 'IngresoController@borrarIngreso')->name('ingreso.borrarIngreso');
