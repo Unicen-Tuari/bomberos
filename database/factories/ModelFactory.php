@@ -24,6 +24,7 @@ $factory->define(App\Bombero::class, function (Faker\Generator $faker) {
 
   return [
     'nombre' => $faker->name,
+    'activo'=>1,
     'apellido' => $faker->lastName,
     'nro_legajo' => $faker->randomNumber($nbDigits = 6),
     'jerarquia' => $faker->jobTitle,
