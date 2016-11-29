@@ -14,7 +14,7 @@ class ServicioRequest extends Request
      */
     public function authorize()
     {
-        return true;
+        return "verdadero";
     }
 
     /**
@@ -35,48 +35,54 @@ class ServicioRequest extends Request
         case 'POST':
         {
           return [
-              'num_servicio' => 'required|unique:servicio',
               'tipo' => 'required|exists:tipo_servicio,id',
               'tipo_alarma' => 'required',
               'autor_llamada' => 'max:100',
               'direccion' => 'required|max:255',
-              'ilesos' => 'required_if:finalizado,true|numeric',
-              'lesionados' => 'required_if:finalizado,true|numeric',
-              'quemados' => 'required_if:finalizado,true|numeric',
-              'muertos' => 'required_if:finalizado,true|numeric',
-              'otros' => 'required_if:finalizado,true|numeric',
-              'combustible' => 'required_if:finalizado,true|numeric',
-              'reconocimiento' => 'required_if:finalizado,true|min:5',
-              'disposiciones' => 'required_if:finalizado,true|min:5',
+              'ilesos' => 'required_if:finalizado,"verdadero"|numeric',
+              'lesionados' => 'required_if:finalizado,"verdadero"|numeric',
+              'quemados' => 'required_if:finalizado,"verdadero"|numeric',
+              'muertos' => 'required_if:finalizado,"verdadero"|numeric',
+              'otros' => 'required_if:finalizado,"verdadero"|numeric',
+              'combustible' => 'required_if:finalizado,"verdadero"|numeric',
+              'reconocimiento' => 'required_if:finalizado,"verdadero"|min:5',
+              'disposiciones' => 'required_if:finalizado,"verdadero"|min:5',
               'alarma' => 'required|date_format:Y-m-d H:i:s',
               'cuartel_colaborador' => 'max:20',
               'superficie' => 'numeric|required_if:tipo,11',
-              'salida' => 'required_if:finalizado,true|date_format:Y-m-d H:i:s|after:alarma',
-              'regreso' => 'required_if:finalizado,true|date_format:Y-m-d H:i:s|after:salida',
-              'Bombero' => 'required_if:finalizado,true',
-              'jefe_servicio' => 'required|exists:bombero,id',
-              'oficial' => 'required|exists:bombero,id',
-              'jefe_de_cuerpo' => 'required|exists:bombero,id',
+              'salida' => 'required_if:finalizado,"verdadero"|date_format:Y-m-d H:i:s|after:alarma',
+              'regreso' => 'required_if:finalizado,"verdadero"|date_format:Y-m-d H:i:s|after:salida',
+              'bombero' => 'required_if:finalizado,"verdadero"|exists:bombero,id',
+              'jefe_servicio' => 'required_if:finalizado,"verdadero"|exists:bombero,id',
+              'oficial' => 'required_if:finalizado,"verdadero"|exists:bombero,id|different:jefe_servicio',
+              'jefe_de_cuerpo' => 'required_if:finalizado,"verdadero"|exists:bombero,id|different:jefe_servicio|different:oficial',
           ];
         }
 
         case 'PUT':
         {
           return [
-              'tipo' => 'required_if:editar,true|exists:tipo_servicio,id',
-              'direccion' => 'required_if:editar,true|max:255',
+              'tipo' => 'required|exists:tipo_servicio,id',
+              'tipo_alarma' => 'required',
+              'autor_llamada' => 'max:100',
+              'direccion' => 'required|max:255',
               'ilesos' => 'required|numeric',
               'lesionados' => 'required|numeric',
               'quemados' => 'required|numeric',
               'muertos' => 'required|numeric',
               'otros' => 'required|numeric',
+              'bombero' => 'required|exists:bombero,id',
               'combustible' => 'required|numeric',
               'reconocimiento' => 'required|min:5',
               'disposiciones' => 'required|min:5',
-              'alarma' => 'required_if:editar,true|date_format:Y-m-d H:i:s',
+              'cuartel_colaborador' => 'max:20',
+              'superficie' => 'numeric|required_if:tipo,11',
+              'alarma' => 'required|date_format:Y-m-d H:i:s',
               'salida' => 'required|date_format:Y-m-d H:i:s|after:alarma',
               'regreso' => 'required|date_format:Y-m-d H:i:s|after:salida',
-              'Bomberos' => 'array|required',
+              'jefe_servicio' => 'required|exists:bombero,id',
+              'oficial' => 'required|exists:bombero,id|different:jefe_servicio',
+              'jefe_de_cuerpo' => 'required|exists:bombero,id|different:jefe_servicio|different:oficial',
           ];
         }
         default:break;
