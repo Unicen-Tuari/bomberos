@@ -19,6 +19,7 @@
           @foreach ($vehiculos as $vehiculo)
             <tr>
               <td class="text-center">{{$vehiculo->patente}}</td>
+              <td class="text-center">{{$vehiculo->num_movil}}</td>
               <td class="text-center">
                 {{ Form::open(['route' => ['vehiculo.destroy', $vehiculo->id], 'method' => 'delete']) }}
                     <button type="submit" class="btn glyphicon glyphicon-trash eliminar"></button>

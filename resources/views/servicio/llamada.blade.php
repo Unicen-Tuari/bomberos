@@ -11,7 +11,20 @@
       {!! Form::open([ 'route' => 'servicio.iniciado', 'class' => 'form-horizontal', 'method' => 'POST']) !!}
 
         <div hidden>
-          {!! Form::text('finalizado', "false", ['class' => 'form-control']) !!}
+          {!! Form::text('finalizado', 'falso', ['class' => 'form-control']) !!}
+        </div>
+
+        <div class="form-group {{ $errors->has('num_servicio') ? ' has-error' : '' }}">
+          {!! Form::label('num_servicio', 'Nº servicio',['class' => 'col-sm-8 control-label']) !!}
+          <div class="col-sm-2">
+              {!! Form::text('num_servicio', null, ['class' => 'form-control']) !!}
+
+              @if ($errors->has('num_servicio'))
+                  <span class="help-block">
+                      <strong>{{ $errors->first('num_servicio') }}</strong>
+                  </span>
+              @endif
+          </div>
         </div>
 
         <div class="form-group">
@@ -34,14 +47,14 @@
           </div>
         </div>
 
-        <div class="form-group {{ $errors->has('descripcion') ? ' has-error' : '' }}">
-          {!! Form::label('descripcion', 'Descripcion',['class' => 'col-md-4 control-label']) !!}
+        <div class="form-group {{ $errors->has('autor_llamada') ? ' has-error' : '' }}">
+          {!! Form::label('autor_llamada', 'Autor llamada',['class' => 'col-md-4 control-label']) !!}
           <div class="col-md-6">
-              {!! Form::textarea('descripcion', null, ['class' => 'form-control', 'rows' => 2]) !!}
+              {!! Form::textarea('autor_llamada', null, ['class' => 'form-control', 'rows' => 2]) !!}
 
-              @if ($errors->has('descripcion'))
+              @if ($errors->has('autor_llamada'))
                   <span class="help-block">
-                      <strong>{{ $errors->first('descripcion') }}</strong>
+                      <strong>{{ $errors->first('autor_llamada') }}</strong>
                   </span>
               @endif
           </div>

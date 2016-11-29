@@ -33,7 +33,7 @@ class ServicioController extends Controller
       $servicio=new Servicio;
       $servicio->tipo_servicio_id=$data['tipo'];
       $servicio->direccion=$data['direccion'];
-      $servicio->descripcion=$data['descripcion'];
+      $servicio->autor_llamada=$data['autor_llamada'];
       $servicio->ilesos=$data['ilesos'];
       $servicio->lesionados=$data['lesionados'];
       $servicio->quemados=$data['quemados'];
@@ -45,11 +45,22 @@ class ServicioController extends Controller
       $servicio->hora_alarma=$data['alarma'];
       $servicio->hora_salida=$data['salida'];
       $servicio->hora_regreso=$data['regreso'];
+      $servicio->jefe_servicio=$data['jefe_servicio'];
+      $servicio->oficial=$data['oficial'];
+      $servicio->jefe_de_cuerpo=$data['jefe_de_cuerpo'];
       if ($servicio->save()) {
-        foreach ($data["Bomberos"] as $bombero) {
+
+        // if ($data["bombero"]) {
+        //   //creo las relaciones servicio bomberos
+        //   BomberoServicio::create(['servicio_id'=>$servicio->id,'bombero_id'=>$bombero,'tipo_asistencia'=>2,'a_cargo'=>true]);
+        // }
+        if ($data["vehiculo"]) {
           //creo las relaciones servicio bomberos
-          BomberoServicio::create(['servicio_id'=>$servicio->id,'bombero_id'=>$bombero]);
+          $movil=VehiculoServicio::create(['servicio_id'=>$servicio->id,'vehiculo_id'=>$data['vehiculo']]);
+          $movil->primero= 1;
+          $movil->save();
         }
+
         if(array_key_exists("Vehiculos",$data)){
           foreach ($data["Vehiculos"] as $vehiculo) {
             //creo las relaciones servicio Vehiculos
@@ -71,17 +82,26 @@ class ServicioController extends Controller
       }
       $datasb=Bombero::all(['id', 'nombre']);
       $bomberos = array();
+      $bomberos[0] = "bombero...";
       foreach ($datasb as $data)
       {
           $bomberos[$data->id] = $data->nombre;
       }
-        $datasv=Vehiculo::all(['id', 'patente']);
-        $vehiculos = array();
-        foreach ($datasv as $data)
-        {
-            $vehiculos[$data->id] = $data->patente;
-        }
-      return view('servicio/finalizado',compact('tipos','bomberos','vehiculos'));
+      $datasv=Vehiculo::all(['id', 'patente']);
+      $vehiculos = array();
+      $vehiculos[0] = "vehiculo...";
+      foreach ($datasv as $data)
+      {
+          $vehiculos[$data->id] = $data->patente;
+      }
+      $finalizado='finalizado';
+      $ultimo=Servicio::select('id')->orderBy('id','desc')->first();
+      if($ultimo){
+        $ultimo=$ultimo->id+1;
+      }else {
+        $ultimo=1;
+      }
+      return view('servicio/finalizado',compact('tipos','bomberos','vehiculos','finalizado','ultimo'));
     }
 
     public function llamada()
@@ -98,54 +118,31 @@ class ServicioController extends Controller
     {
       // cambiar conteniado
         $servicio=Servicio::find($id);
+        $datas=TipoServicio::all(['id', 'nombre']);
+        $tipos = array();
+        foreach ($datas as $data)
+        {
+            $tipos[$data->id] = $data->nombre;
+        }
         $datasb=Bombero::all(['id', 'nombre']);
         $bomberos = array();
+        $bomberos[0] = "bombero...";
         foreach ($datasb as $data)
         {
             $bomberos[$data->id] = $data->nombre;
         }
-          $datasv=Vehiculo::all(['id', 'patente']);
-          $vehiculos = array();
-          foreach ($datasv as $data)
-          {
-              $vehiculos[$data->id] = $data->patente;
-          }
-        return view('servicio/finalizar',compact('servicio','bomberos','vehiculos'));
+        $datasv=Vehiculo::all(['id', 'patente']);
+        $vehiculos = array();
+        $vehiculos[0] = "vehiculo...";
+        foreach ($datasv as $data)
+        {
+            $vehiculos[$data->id] = $data->patente;
+        }
+        $finalizado='editar';
+        return view('servicio/finalizar',compact('tipos','bomberos','vehiculos','finalizado','servicio'));
     }
 
-    public function guardarActivo(ServicioRequest $request, $id)
-    {
-      $data=$request->all();//obtengo todos los atributos
-      $servicio= Servicio::find($id);
-      $servicio->ilesos=$data['ilesos'];
-      $servicio->lesionados=$data['lesionados'];
-      $servicio->quemados=$data['quemados'];
-      $servicio->muertos=$data['muertos'];
-      $servicio->otros=$data['otros'];
-      $servicio->combustible=$data['combustible'];
-      $servicio->reconocimiento=$data['reconocimiento'];
-      $servicio->disposiciones=$data['disposiciones'];
-      if(!$servicio->hora_salida && $servicio->hora_salida>$servicio->hora_alarma){
-        //si la hora de salida no esta marcada se asigna igual a la de alarma
-        $servicio->hora_salida=$data['salida'];
-      }
-      $servicio->hora_regreso=$data['regreso'];
-      if ($servicio->save()) {
-        foreach ($data["Bomberos"] as $bombero) {
-          //creo las relaciones servicio bomberos
-          BomberoServicio::create(['servicio_id'=>$servicio->id,'bombero_id'=>$bombero]);
-        }
-        if(array_key_exists("Vehiculos",$data)){
-          foreach ($data["Vehiculos"] as $vehiculo) {
-            //creo las relaciones servicio Vehiculos
-            VehiculoServicio::create(['servicio_id'=>$servicio->id,'vehiculo_id'=>$vehiculo]);
-          }
-        }
-       return redirect()->route('servicio.index');
-      }else {
-        dd('fallo');
-      }
-    }
+
     public function salida($id)
     {
         $hsalida = Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires'))->toDateTimeString();
@@ -167,7 +164,7 @@ class ServicioController extends Controller
         $servicio=new Servicio;
         $servicio->tipo_servicio_id=$tipo->id;
         $servicio->direccion=$data['direccion'];
-        $servicio->descripcion=$data['descripcion'];
+        $servicio->autor_llamada=$data['autor_llamada'];
         $servicio->hora_alarma=$data['alarma'];
         if ($servicio->save()) {
          return redirect()->route('servicio.index');
@@ -213,6 +210,7 @@ class ServicioController extends Controller
       $servicio=Servicio::find($id);
       $datasb=Bombero::all(['id', 'nombre']);
       $bomberos = array();
+      $bomberos[0] = "bombero...";
       foreach ($datasb as $data)
       {
           $bomberos[$data->id] = $data->nombre;
@@ -220,6 +218,7 @@ class ServicioController extends Controller
 
       $datasv=Vehiculo::all(['id', 'patente']);
       $vehiculos = array();
+      $vehiculos[0] = "vehiculo...";
       foreach ($datasv as $data)
       {
           $vehiculos[$data->id] = $data->patente;
@@ -243,16 +242,17 @@ class ServicioController extends Controller
       {
           $vehiculosparticipantes[] = $data->vehiculo_id;
       }
-
-      return view('servicio/editar',compact('tipos','servicio','bomberos','vehiculos','bomberosparticipantes','vehiculosparticipantes'));
+      $finalizado='editar';
+      return view('servicio/editar',compact('tipos','servicio','bomberos','vehiculos','bomberosparticipantes','vehiculosparticipantes','finalizado'));
     }
 
     public function update(ServicioRequest $request, $id)
     {
         $data=$request->all();//obtengo todos los atributos
         $servicio= Servicio::find($id);
+        $servicio->tipo_servicio_id=$data['tipo'];
         $servicio->direccion=$data['direccion'];
-        $servicio->descripcion=$data['descripcion'];
+        $servicio->autor_llamada=$data['autor_llamada'];
         $servicio->ilesos=$data['ilesos'];
         $servicio->lesionados=$data['lesionados'];
         $servicio->quemados=$data['quemados'];
@@ -261,42 +261,62 @@ class ServicioController extends Controller
         $servicio->combustible=$data['combustible'];
         $servicio->reconocimiento=$data['reconocimiento'];
         $servicio->disposiciones=$data['disposiciones'];
+        $servicio->hora_alarma=$data['alarma'];
         $servicio->hora_salida=$data['salida'];
         $servicio->hora_regreso=$data['regreso'];
+        $servicio->jefe_servicio=$data['jefe_servicio'];
+        $servicio->oficial=$data['oficial'];
+        $servicio->jefe_de_cuerpo=$data['jefe_de_cuerpo'];
 
         // Eliminamos los bomberos que han sido descartado por la edicion
-        $eliminarb=BomberoServicio::where('servicio_id',$servicio->id)->get();
-        foreach ($eliminarb as $value) {
-          if (!in_array ( $value->bombero_id , $data["Bomberos"])) {
-            BomberoServicio::where('servicio_id',$servicio->id)->where('bombero_id',$value->bombero_id)->delete();
-          }
-        }
+        // $eliminarb=BomberoServicio::where('servicio_id',$servicio->id)->get();
+        // foreach ($eliminarb as $value) {
+        //   if (!in_array ( $value->bombero_id , $data["Bomberos"])) {
+        //     BomberoServicio::where('servicio_id',$servicio->id)->where('bombero_id',$value->bombero_id)->delete();
+        //   }
+        // }
 
         // Eliminamos los vehiculo que han sido descartado por la edicion
-        $eliminarv=VehiculoServicio::where('servicio_id',$servicio->id)->get();
-        foreach ($eliminarv as $value) {
-          if (!in_array ( $value->vehiculo_id , $data["Vehiculos"])) {
-            VehiculoServicio::where('servicio_id',$servicio->id)->where('vehiculo_id',$value->vehiculo_id)->delete();
-          }
-        }
+        // $eliminarv=VehiculoServicio::where('servicio_id',$servicio->id)->get();
+        // foreach ($eliminarv as $value) {
+        //   if (!in_array ( $value->vehiculo_id , $data["Vehiculos"])) {
+        //     VehiculoServicio::where('servicio_id',$servicio->id)->where('vehiculo_id',$value->vehiculo_id)->delete();
+        //   }
+        // }
 
         if ($servicio->save()) {
-          foreach ($data["Bomberos"] as $bombero) {
-            //creo las relaciones servicio bomberos de los nuevos bomberos
-            if (!BomberoServicio::where('servicio_id',$servicio->id)->where('bombero_id',$bombero)->count()) {
-              BomberoServicio::create(['servicio_id'=>$servicio->id,'bombero_id'=>$bombero]);
-            }
+          if ($data["bombero"]) {
+            //creo las relaciones servicio bomberos
+            BomberoServicio::create(['servicio_id'=>$servicio->id,'bombero_id'=>$bombero,'tipo_asistencia'=>2,'a_cargo'=>true]);
           }
-
+          if ($data["vehiculo"]) {
+            //creo las relaciones servicio bomberos
+            VehiculoServicio::create(['servicio_id'=>$servicio->id,'vehiculo_id'=>$vehiculo,'primero'=>1]);
+          }
 
           if(array_key_exists("Vehiculos",$data)){
             foreach ($data["Vehiculos"] as $vehiculo) {
-              //creo las relaciones servicio Vehiculos de los nuevos Vehiculos
-              if (!VehiculoServicio::where('servicio_id',$servicio->id)->where('vehiculo_id',$vehiculo)->count()) {
-                VehiculoServicio::create(['servicio_id'=>$servicio->id,'vehiculo_id'=>$vehiculo]);
-              }
+              //creo las relaciones servicio Vehiculos
+              VehiculoServicio::create(['servicio_id'=>$servicio->id,'vehiculo_id'=>$vehiculo]);
             }
           }
+
+          // foreach ($data["Bomberos"] as $bombero) {
+          //   //creo las relaciones servicio bomberos de los nuevos bomberos
+          //   if (!BomberoServicio::where('servicio_id',$servicio->id)->where('bombero_id',$bombero)->count()) {
+          //     BomberoServicio::create(['servicio_id'=>$servicio->id,'bombero_id'=>$bombero]);
+          //   }
+          // }
+          //
+          //
+          // if(array_key_exists("Vehiculos",$data)){
+          //   foreach ($data["Vehiculos"] as $vehiculo) {
+          //     //creo las relaciones servicio Vehiculos de los nuevos Vehiculos
+          //     if (!VehiculoServicio::where('servicio_id',$servicio->id)->where('vehiculo_id',$vehiculo)->count()) {
+          //       VehiculoServicio::create(['servicio_id'=>$servicio->id,'vehiculo_id'=>$vehiculo]);
+          //     }
+          //   }
+          // }
          return redirect()->route('servicio.index');
         }else {
           dd('fallo');

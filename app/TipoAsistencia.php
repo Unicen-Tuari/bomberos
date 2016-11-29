@@ -8,5 +8,4 @@ class TipoAsistencia extends Model
 {
   protected $table = 'tipo_asistencia';
   protected $fillable = ['nombre'];
-
 }
