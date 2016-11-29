@@ -56,7 +56,7 @@ class ServicioController extends Controller
             VehiculoServicio::create(['servicio_id'=>$servicio->id,'vehiculo_id'=>$vehiculo]);
           }
         }
-       return redirect()->route('servicio.index');
+       return redirect()->route('ingreso.listar');
       }else {
         dd('fallo');
       }

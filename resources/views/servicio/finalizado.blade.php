@@ -342,8 +342,8 @@
 
     <div class="col-sm-6 col-sm-offset-4">
       {{-- {!!Form::submit('Registrar', ['class' => 'btn btn-primary']) !!} --}}
-      <button type="submit" class="btn btn-primary">
-          <i class="glyphicon glyphicon-ok"></i> Finalizar
+      <button type="submit" class="btn btn-primary pull-right">
+          Cargar presentes <i class="fa fa-sign-in"></i>
       </button>
     </div>
 
