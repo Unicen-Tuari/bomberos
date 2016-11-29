@@ -10,4 +10,8 @@ class Ingreso extends Model
     protected $fillable = [
         'id','id_bombero',
     ];
+
+    public function bombero(){
+      return $this->hasOne(Bombero::class,"id");
+    }
 }
