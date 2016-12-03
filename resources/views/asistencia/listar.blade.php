@@ -23,17 +23,17 @@
         <tbody><!--Contenido de la tabla-->
           @foreach ($ingresados as $ingresado)
             <tr>
+
               <td class="text-center">{{$ingresado->bombero->nombre." ". $ingresado->bombero->apellido}}</td>
+              <td>{{Form::select('TipoAsistencia', $tipos_asist, 4,['class' => 'col-sm-3'])}}</td>
             </tr>
           @endforeach
           </tbody>
-          <tfoot>
-            <tr>
-              <td class="text-center" colspan="9">Lista de presentes</td>
-            </tr>
-          </tfoot>
           <br>
         </table>
+        <button type="button" class="btn btn-primary pull-right">
+            <i class="glyphicon glyphicon-ok"></i> Finalizar
+        </button>
     </div>
   </div>
 </article>
