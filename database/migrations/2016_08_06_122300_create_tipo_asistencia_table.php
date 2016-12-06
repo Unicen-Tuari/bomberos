@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAsistenciaTable extends Migration
+class CreateTipoAsistenciaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,8 +12,9 @@ class CreateAsistenciaTable extends Migration
      */
     public function up()
     {
-        Schema::create('asistencia', function (Blueprint $table) {
+        Schema::create('tipo_asistencia', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('tipo', 100);
             $table->timestamps();
         });
     }
@@ -25,6 +26,6 @@ class CreateAsistenciaTable extends Migration
      */
     public function down()
     {
-        Schema::drop('asistencia');
+        Schema::drop('tipo_asistencia');
     }
 }

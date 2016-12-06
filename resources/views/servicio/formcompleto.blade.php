@@ -25,7 +25,7 @@
       <div class="{{ $errors->has('tipo_alarma') ? ' has-error' : '' }}">
         {!! Form::label('tipo_alarma', 'Tipo alarma',['class' => 'col-sm-2 control-label']) !!}
         <div class="col-sm-2">
-          {{Form::select('tipo_alarma', ['Ninguna','Interna','Selectiva','General'],null,['class' => 'form-control'])}}
+          {{Form::select('tipo_alarma', [null =>'Ninguna',1 => 'Interna',2 => 'Selectiva',3 => 'General'],$tipo_alarma or 1,['class' => 'form-control'])}}
 
           @if ($errors->has('tipo_alarma'))
               <span class="help-block">

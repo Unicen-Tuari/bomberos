@@ -22,6 +22,7 @@
     $direccion=$servicio->direccion;
     $hora=$servicio->hora_alarma;
     $salida=$servicio->hora_salida;
+    $tipo_alarma=$servicio->tipo_alarma;
     @endphp
 
     @if(!$servicio->hora_salida)

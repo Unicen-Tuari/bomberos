@@ -14,23 +14,23 @@
           {!! Form::text('finalizado', 'falso', ['class' => 'form-control']) !!}
         </div>
 
-        <div class="form-group {{ $errors->has('num_servicio') ? ' has-error' : '' }}">
-          {!! Form::label('num_servicio', 'Nº servicio',['class' => 'col-sm-8 control-label']) !!}
-          <div class="col-sm-2">
-              {!! Form::text('num_servicio', null, ['class' => 'form-control']) !!}
-
-              @if ($errors->has('num_servicio'))
-                  <span class="help-block">
-                      <strong>{{ $errors->first('num_servicio') }}</strong>
-                  </span>
-              @endif
-          </div>
-        </div>
-
         <div class="form-group">
           {!! Form::label('Tipo', 'Tipo de servicio',['class' => 'col-md-2 col-md-offset-2 control-label']) !!}
           <div class="col-md-2">
             {{Form::select('tipo', $tipos,null,['class' => 'form-control'])}}
+          </div>
+
+          <div class="{{ $errors->has('tipo_alarma') ? ' has-error' : '' }}">
+            {!! Form::label('tipo_alarma', 'Tipo alarma',['class' => 'col-sm-2 control-label']) !!}
+            <div class="col-sm-2">
+              {{Form::select('tipo_alarma', [null =>'Ninguna',1 => 'Interna',2 => 'Selectiva',3 => 'General'],null,['class' => 'form-control'])}}
+
+              @if ($errors->has('tipo_alarma'))
+                  <span class="help-block">
+                      <strong>{{ $errors->first('tipo_alarma') }}</strong>
+                  </span>
+              @endif
+            </div>
           </div>
         </div>
 
