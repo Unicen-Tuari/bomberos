@@ -2,65 +2,64 @@
 
 @section('content')
 <article class="container">
-    <div class="row">
-      <div class="col-xs-offset-5 col-xs-3" id="logoHome">
+      <div class="" id="logoHome">
         <img src="assets/images/logo.png" alt=""/>
       </div>
-        <div class="col-md-8 col-md-offset-2">
-            <div id="panelLogin" class="panel panel-default">
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
-                        {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('usuario') ? ' has-error' : '' }}">
+      <div class="col-md-offset-1 col-md-10 ">
+          <div id="panelLogin" class="panel panel-default">
+              <div class="panel-body">
+                  <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
+                      {{ csrf_field() }}
 
-                            <div class="col-md-offset-3 col-md-6">
-                                <input id="usuario" type="text" class="form-control" name="usuario" placeholder="Usuario" value="{{ old('usuario') }}">
+                      <div class="form-group{{ $errors->has('usuario') ? ' has-error' : '' }}">
 
-                                @if ($errors->has('usuario'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('usuario') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+                          <div class="col-md-offset-3 col-md-6">
+                              <input id="usuario" type="text" class="form-control" name="usuario" placeholder="Usuario" value="{{ old('usuario') }}">
 
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                              @if ($errors->has('usuario'))
+                                  <span class="help-block">
+                                      <strong>{{ $errors->first('usuario') }}</strong>
+                                  </span>
+                              @endif
+                          </div>
+                      </div>
 
-                            <div class="col-md-offset-3 col-md-6">
-                                <input id="password" type="password" class="form-control" placeholder="Contraseña" name="password">
+                      <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
 
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+                          <div class="col-md-offset-3 col-md-6">
+                              <input id="password" type="password" class="form-control" placeholder="Contraseña" name="password">
 
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-3">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember"> Mantener sesión iniciada
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
+                              @if ($errors->has('password'))
+                                  <span class="help-block">
+                                      <strong>{{ $errors->first('password') }}</strong>
+                                  </span>
+                              @endif
+                          </div>
+                      </div>
 
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-3">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="glyphicon glyphicon-log-in"></i> Iniciar sesión
-                                </button>
+                      <div class="form-group">
+                          <div class="col-md-6 col-md-offset-3">
+                              <div class="checkbox">
+                                  <label>
+                                      <input type="checkbox" name="remember"> Mantener sesión iniciada
+                                  </label>
+                              </div>
+                          </div>
+                      </div>
 
-                                <a class="btn btn-link" href="{{ url('/password/reset') }}">¿Has olvidado la contraseña?</a>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+                      <div class="form-group">
+                          <div class="col-md-6 col-md-offset-3">
+                              <button type="submit" class="btn btn-primary">
+                                  <i class="glyphicon glyphicon-log-in"></i> Iniciar sesión
+                              </button>
+
+                              <a class="btn btn-link" href="{{ url('/password/reset') }}">¿Has olvidado la contraseña?</a>
+                          </div>
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </div>
 </article>
 @endsection
