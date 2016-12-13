@@ -3,8 +3,9 @@
 @section('content')
 <article class="col-sm-12">
   <div class="panel panel-default">
-    <div class="panel-heading">
-      Puntuacion de bomberos
+    <div id="breadcrumb" class="panel-heading">
+      <span class="fa fa-table" aria-hidden="true"></span>
+      <h4>Puntuaciones</h4>
     </div>
     <div class="panel-body">
       <table  class="table table-bordered">

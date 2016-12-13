@@ -3,15 +3,19 @@
 @section('content')
 <article class="col-md-12">
   <div class="panel panel-default">
-    <div class="panel-heading">
-      Lista de vehiculos
+    <div id="breadcrumb" class="panel-heading">
+      <span class="fa fa-list" aria-hidden="true"></span>
+      <h4>Vehiculos</h4>
     </div>
     <div class="panel-body">
       <table  class="table table-bordered">
         <thead><!--Titulos de la tabla-->
           <tr>
             <th>
-              Vehiculos
+              Patente
+            </th>
+            <th>
+              Nro. de Unidad
             </th>
           </tr>
         </thead>

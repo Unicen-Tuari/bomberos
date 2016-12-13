@@ -4,8 +4,9 @@
 
 <article class="col-md-12">
   <div class="panel panel-default">
-    <div class="panel-heading">
-      Inicio Alerta
+    <div id="breadcrumb" class="panel-heading">
+      <span class="fa fa-phone" aria-hidden="true"></span>
+      <h4>Cargar llamada</h4>
     </div>
     <div class="panel-body">
       {!! Form::open([ 'route' => 'servicio.iniciado', 'class' => 'form-horizontal', 'method' => 'POST']) !!}
@@ -50,7 +51,7 @@
         <div class="form-group {{ $errors->has('autor_llamada') ? ' has-error' : '' }}">
           {!! Form::label('autor_llamada', 'Autor llamada',['class' => 'col-md-4 control-label']) !!}
           <div class="col-md-6">
-              {!! Form::textarea('autor_llamada', null, ['class' => 'form-control', 'rows' => 2]) !!}
+              {!! Form::text('autor_llamada', null, ['class' => 'form-control', 'rows' => 2]) !!}
 
               @if ($errors->has('autor_llamada'))
                   <span class="help-block">

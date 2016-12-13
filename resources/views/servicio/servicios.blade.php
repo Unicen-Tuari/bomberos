@@ -4,8 +4,9 @@
 
 <article class="col-md-12">
   <div class="panel panel-default">
-    <div class="panel-heading">
-      Ultimos servicios realizados
+    <div id="breadcrumb" class="panel-heading">
+      <span class="fa fa-list" aria-hidden="true"></span>
+      <h4>Ultimos servicios realizados</h4>
     </div>
     <div class="panel-body">
       <table  class="table table-bordered">
