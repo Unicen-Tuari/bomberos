@@ -2,6 +2,7 @@
 
 @section('content')
 <article>
+  @if (!Auth::guest())
   <div class="panel panel-default">
     <div id="breadcrumb" class="panel-heading">
       <span class="fa fa-home" aria-hidden="true"></span>
@@ -45,5 +46,6 @@
         </div>
     </div>
   </div>
+  @endif
 </article>
 @endsection

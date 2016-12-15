@@ -2,6 +2,7 @@ nav [class*='col-'] {
   padding: 0px;
   margin: 0px;
 }
+
  .accidentados [class*='col-']{
    padding-left: 0px;
    padding-right: 0px;
@@ -394,4 +395,8 @@ thead th{
 
 .list-group-item:last-child {
   border-bottom: 1px solid white;
+}
+
+.row {
+  margin: 0px;
 }

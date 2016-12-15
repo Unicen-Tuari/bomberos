@@ -54,7 +54,7 @@
                                   <i class="glyphicon glyphicon-log-in"></i> Iniciar sesión
                               </button>
 
-                              <a class="btn btn-link" href="{{ url('/password/reset') }}">¿Has olvidado la contraseña?</a>
+                              {{-- <a class="btn btn-link" href="{{ url('/password/reset') }}">¿Has olvidado la contraseña?</a> --}}
                           </div>
                       </div>
                   </form>
