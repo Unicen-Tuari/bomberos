@@ -4,8 +4,9 @@
 
 <article class="col-sm-12">
   <div class="panel panel-default">
-    <div class="panel-heading">
-      Estadisticas
+    <div id="breadcrumb" class="panel-heading">
+      <span class="fa fa-bar-chart" aria-hidden="true"></span>
+      <h4>Estadisticas</h4>
     </div>
     <div class="panel-body">
       <div class="col-sm-2">

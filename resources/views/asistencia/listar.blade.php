@@ -3,8 +3,9 @@
 @section('content')
 <article class="col-sm-12">
   <div class="panel panel-default">
-    <div class="panel-heading">
-      Presentes
+    <div id="breadcrumb" class="panel-heading">
+      <span class="fa fa-share" aria-hidden="true"></span>
+      <h4>Bomberos ingresados</h4>
     </div>
     <div class="panel-body">
       <table  class="table table-bordered">

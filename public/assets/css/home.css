@@ -2,6 +2,7 @@ nav [class*='col-'] {
   padding: 0px;
   margin: 0px;
 }
+
  .accidentados [class*='col-']{
    padding-left: 0px;
    padding-right: 0px;
@@ -101,10 +102,52 @@ nav ul h2, nav ul h4{
   text-align: center;
 }
 
+#carouselHome {
+  margin-top: 10%;
+  border: 2px solid #690000;
+  border-radius: 2px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+#carouselHome {
+  margin-top: 50%;
+  border-radius: 5px;
+}
+
+#carouselHome img {
+  border-radius: 4px;
+}
+
+#breadcrumb {
+  /*height: 40px;*/
+  /*background-color: #490000;*/
+  color: #490000;
+  height: 40px;
+  padding-top: 0px;
+  border-bottom: 1px solid #490000;
+  border-left: 1px solid white;
+  padding-left: 20px;
+}
+#breadcrumb .fa {
+  vertical-align: middle;
+  font-size: 28px;
+  padding-right: 15px;
+  border-right: 1px dotted #505050;
+}
+
+#breadcrumb h4 {
+  padding-left: 15px;
+  vertical-align: middle;
+  display: inline-block;
+}
+
 #logoHome img {
   border-radius: 50%;
-  margin-top: 50px;
-  margin-bottom: 100px;
+  width: 20%;
+  margin-top: 7%;
+  margin-bottom: 7%;
+  margin-left: 42%;
   border: 2px solid white;
 }
 
@@ -133,10 +176,15 @@ article {
 .right-panel {
   padding-left: 0px;
   padding-right: 0px;
-  background-color: rgb(219, 219, 219);
+  background-color: #f5f5f5;
   height: calc(100% - 110px);
 }
 
+/*@media screen and (max-width: 768px) {
+    .right-panel {
+        margin-top: 40px;
+    }
+}*/
 #MainMenu .panel {
   border: 0px;
   border-radius: 0px;
@@ -151,7 +199,7 @@ article {
 }
 
 .list-group div a {
-  padding-left: 40px;
+  padding-left: 30px;
   line-height: 15px;
   background-color: #181c20;
   border-bottom: 1px solid #23282e;
@@ -252,18 +300,17 @@ thead th{
 #regIngreso {
   font-weight: bold;
   color: white;
-  height: 100px;
   width: 70%;
-  margin-left: 15%;
   border-radius: 10px;
   text-align: center;
   font-size: 18px;
+  display: inline-block;
 }
 
 #panelLogin, #panelRegister {
   background-color: #490000;
   color: white;
-  margin-top: -50px;
+  margin-top: 0px;
   border: 0px;
   font-weight: bold;
 }
@@ -280,6 +327,11 @@ thead th{
   color: white;
 }
 
+/*esto ya esta-------------------------------------------*/
+#titleHome a:hover {
+  color: rgb(218, 152, 109);
+  transition: all 0.6s ease;
+}
 #titleHome > a{
   text-align: center;
   color: white;
@@ -288,10 +340,7 @@ thead th{
 #titleHome{
   border-bottom: 1px solid white;
 }
-#titleHome > a:hover{
-  background-color: #552222;
-  transition: all 0.6s ease;
-}
+/*esto ya esta-------------------------------------------*/
 
 
 #regIngreso .fa-sign-in {
@@ -310,4 +359,44 @@ thead th{
 
 .list-group-item {
   border-bottom: 1px solid white;
+}
+
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+  background-color: #490000;
+  border: 1px solid #490000;
+}
+.pagination > li > a {
+  color: #490000;
+}
+
+.btn-primary {
+  background-color: #490000;
+  border-color: #320101;
+}
+
+.btn-primary:active, .btn-primary:active:hover {
+  background-color: #490000;
+  border-color: #320101;
+}
+
+.btn-primary:focus {
+  background-color: #490000;
+  border-color: #320101;
+}
+
+.btn-primary:hover {
+  background-color: #300101;
+  border-color: #1d0101;
+}
+
+.form-control:focus {
+  border-color: #ad0000;
+}
+
+.list-group-item:last-child {
+  border-bottom: 1px solid white;
+}
+
+.row {
+  margin: 0px;
 }
