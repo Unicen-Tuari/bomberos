@@ -4,9 +4,10 @@
 <article class="col-sm-12">
 
 <div class="panel panel-default">
-    <div class="panel-heading">
-      Responsable
-    </div>
+  <div id="breadcrumb" class="panel-heading">
+    <span class="fa fa-users" aria-hidden="true"></span>
+    <h4>Asignar responsables</h4>
+  </div>
 
   <div class="panel-body">
 

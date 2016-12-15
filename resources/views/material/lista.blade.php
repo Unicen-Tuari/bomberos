@@ -3,8 +3,9 @@
 @section('content')
 <article class="col-md-12">
   <div class="panel panel-default">
-    <div class="panel-heading">
-      Lista de materiales
+    <div id="breadcrumb" class="panel-heading">
+      <span class="fa fa-briefcase" aria-hidden="true"></span>
+      <h4>Materiales</h4>
     </div>
     <div class="panel-body">
       <table  class="table table-bordered">
