@@ -42,7 +42,7 @@
           </tbody>
           <tfoot>
             <tr>
-              <td class="text-center" colspan="9"> lista de bomberos activos </td>
+              <td class="text-center" colspan="9"> Bomberos activos </td>
             </tr>
           </tfoot>
           <br>

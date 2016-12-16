@@ -111,7 +111,7 @@ nav ul h2, nav ul h4{
 }
 
 #carouselHome {
-  margin-top: 50%;
+  margin-top: 30%;
   border-radius: 5px;
 }
 
@@ -286,7 +286,8 @@ a:hover, a:focus {
 
 .eliminar{
   padding: 0px 0px;
-  color: #337ab7;
+  color: #490000;
+  background-color: inherit;
   margin-top: -5px;
 }
 thead th{
@@ -399,4 +400,23 @@ thead th{
 
 .row {
   margin: 0px;
+}
+
+thead th {
+  border: 1px solid black !important;
+  background-color: #490000;
+  color: white;
+}
+
+tbody tr {
+  border-right: 1px solid black;
+  border-left: 1px solid black;
+}
+
+tfoot {
+  border: 1px solid black;
+}
+
+tr td .glyphicon-edit {
+  color: #490000;
 }
