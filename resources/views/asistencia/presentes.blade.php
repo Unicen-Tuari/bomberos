@@ -4,8 +4,9 @@
 
 <article class="col-md-12">
   <div class="panel panel-default">
-    <div class="panel-heading">
-      Presentes
+    <div id="breadcrumb" class="panel-heading">
+      <span class="fa fa-users" aria-hidden="true"></span>
+      <h4>Presentes</h4>
     </div>
     <div class="panel-body">
       {!! Form::open([ 'route' => 'servicio.guardar_presentes', 'class' => 'form-horizontal', 'method' => 'POST']) !!}

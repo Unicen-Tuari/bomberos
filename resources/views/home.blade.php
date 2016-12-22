@@ -1,13 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
-  <article class="container">
-      <div class="col-md-10 col-md-offset-1">
+  <article class="">
+      <div class="col-md-12">
           <div class="panel panel-default">
-              <div class="panel-heading">Dashboard</div>
-
+            <div id="breadcrumb" class="panel-heading">
+              <span class="fa fa-home" aria-hidden="true"></span>
+              <h4>Inicio</h4>
+            </div>
               <div class="panel-body">
-                  Manual de ayuda!
+
               </div>
           </div>
       </div>
