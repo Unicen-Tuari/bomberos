@@ -54,7 +54,7 @@ class ServicioController extends Controller
 
         if ($data["bombero"]) {
           //creo las relaciones servicio bomberos
-          $a_cargo = BomberoServicio::create(['servicio_id'=>$servicio->id,'bombero_id'=>$data["bombero"],'tipo_id'=>2,'a_cargo'=>true]);
+          $a_cargo = BomberoServicio::create(['servicio_id'=>$servicio->id,'bombero_id'=>$data["bombero"],'tipo_id'=>2]);
           // $a_cargo->a_cargo = 1;
           // $a_cargo->save();
         }
@@ -293,7 +293,7 @@ class ServicioController extends Controller
         if ($servicio->save()) {
           if ($data["bombero"]) {
             //creo las relaciones servicio bomberos
-            BomberoServicio::create(['servicio_id'=>$servicio->id,'bombero_id'=>$data['bombero'],'tipo_id'=>2,'a_cargo'=>true]);
+            BomberoServicio::create(['servicio_id'=>$servicio->id,'bombero_id'=>$data['bombero'],'tipo_id'=>2]);
           }
           // if ($data["vehiculo"]) {
           //   //creo las relaciones servicio bomberos
