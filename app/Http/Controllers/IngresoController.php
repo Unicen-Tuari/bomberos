@@ -24,7 +24,7 @@ class IngresoController extends Controller
         {
             $tipos_asist[$tipo_asist->id] = $tipo_asist->nombre;
         }
-        return view('asistencia/listar',compact('ingresados', 'tipos_asist'));
+        return view('asistencia/presentes',compact('ingresados', 'tipos_asist'));
     }
 
     public function guardarIngreso(Request $request){

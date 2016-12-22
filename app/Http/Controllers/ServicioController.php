@@ -211,6 +211,8 @@ class ServicioController extends Controller
 
     public function edit($id)
     {
+      $bomberoserv=BomberoServicio::where('servicio_id',$id)->get();
+      $bombero=$bomberoserv[0]->bombero_id;
       $servicio=Servicio::find($id);
       $datasb=Bombero::all(['id', 'nombre']);
       $bomberos = array();
@@ -247,7 +249,7 @@ class ServicioController extends Controller
           $vehiculosparticipantes[] = $data->vehiculo_id;
       }
       $finalizado='editar';
-      return view('servicio/editar',compact('tipos','servicio','bomberos','vehiculos','bomberosparticipantes','vehiculosparticipantes','finalizado'));
+      return view('servicio/editar',compact('tipos','servicio','bombero','bomberos','vehiculos','bomberosparticipantes','vehiculosparticipantes','finalizado'));
     }
 
     public function update(ServicioRequest $request, $id)
@@ -321,7 +323,7 @@ class ServicioController extends Controller
           //     }
           //   }
           // }
-         return redirect()->route('servicio.presentes');
+         return redirect()->route('ingreso.listar');
         }else {
           dd('fallo');
         }
@@ -340,7 +342,7 @@ class ServicioController extends Controller
 
     public function guardar_presentes(Request $request)
     {
-        dd( $request->all());
+        // dd( $request->all());
         return redirect()->route('servicio.index');
     }
 

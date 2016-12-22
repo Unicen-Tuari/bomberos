@@ -8,11 +8,7 @@ $(document).ready(function () {
     var url = formIngresar.attr('action');
     var data = formIngresar.serialize();
     $.post(url, data, function(result){
-<<<<<<< HEAD
-      alert(result + "ingresado");
-=======
       alert("Se registro el ingreso");
->>>>>>> 7a4b9d0466be6fc41a158b951eb133a62ca00a60
     });
 
   });
@@ -24,11 +20,7 @@ $(document).ready(function () {
     var data = formDelete.serialize();
     alert(url);
     $.post(url, data, function(result){
-<<<<<<< HEAD
-      alert(result + "retirado" );
-=======
       alert("Se registro el egreso");
->>>>>>> 7a4b9d0466be6fc41a158b951eb133a62ca00a60
     });
   });
 

@@ -66,7 +66,7 @@
         <div class="{{ $errors->has('bombero') ? ' has-error' : '' }}">
           {!! Form::label('bombero', 'Bombero a cargo',['class' => 'col-sm-2 col-sm-offset-2 control-label']) !!}
           <div class="col-sm-1">
-            {{Form::select('bombero', $bomberos,null,['class' => 'selectMultiple'])}}
+            {{Form::select('bombero', $bomberos,$bombero or null,['class' => 'selectMultiple'])}}
             @if ($errors->has('bombero'))
                 <span class="help-block">
                     <strong>{{ $errors->first('bombero') }}</strong>

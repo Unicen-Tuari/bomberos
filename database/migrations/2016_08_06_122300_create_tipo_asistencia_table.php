@@ -12,11 +12,11 @@ class CreateTipoAsistenciaTable extends Migration
      */
     public function up()
     {
-        Schema::create('tipo_asistencia', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('tipo', 100);
-            $table->timestamps();
-        });
+      Schema::create('tipo_asistencia', function (Blueprint $table) {
+          $table->increments('id');
+          $table->string('nombre', 100);
+          $table->timestamps();
+      });
     }
 
     /**
