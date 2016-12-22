@@ -14,6 +14,7 @@
     @php
     $numero=$servicio->id;
     $tipo=$servicio->tipo_servicio_id;
+    $tipo_alarma=$servicio->tipo_alarma;
     $llamada=$servicio->autor_llamada;
     $direccion=$servicio->direccion;
     $ilesos=$servicio->ilesos;

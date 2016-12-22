@@ -11,6 +11,10 @@ use App\TipoAsistencia;
 class IngresoController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function listarIngresos()
     {
         $ingresados=Ingreso::all();
@@ -20,7 +24,7 @@ class IngresoController extends Controller
         {
             $tipos_asist[$tipo_asist->id] = $tipo_asist->nombre;
         }
-        return view('asistencia/listar',compact('ingresados', 'tipos_asist'));
+        return view('asistencia/presentes',compact('ingresados', 'tipos_asist'));
     }
 
     public function guardarIngreso(Request $request){

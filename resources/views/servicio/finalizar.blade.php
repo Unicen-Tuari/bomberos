@@ -12,7 +12,7 @@
   {!! Form::open([ 'route' => ['servicio.update', $servicio], 'class' => 'form-horizontal', 'method' => 'PUT']) !!}
 
     @php
-    $superficie=$cuartel=$reconocimiento=$disposiciones=$jefe=$oficial=$jcuerpo=null;
+    $superficie=$cuartel=$reconocimiento=$disposiciones=$jefe=$oficial=$jcuerpo=$bombero=null;
     $ilesos=$lesionados=$quemados=$muertos=$otros=$combustible=0;
     $regreso=\Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires'))->addSeconds(30)->toDateTimeString();
     @endphp
@@ -23,6 +23,7 @@
     $direccion=$servicio->direccion;
     $hora=$servicio->hora_alarma;
     $salida=$servicio->hora_salida;
+    $tipo_alarma=$servicio->tipo_alarma;
     @endphp
 
     @if(!$servicio->hora_salida)

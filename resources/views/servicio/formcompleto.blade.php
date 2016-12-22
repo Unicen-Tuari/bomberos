@@ -25,7 +25,7 @@
       <div class="{{ $errors->has('tipo_alarma') ? ' has-error' : '' }}">
         {!! Form::label('tipo_alarma', 'Tipo alarma',['class' => 'col-sm-2 control-label']) !!}
         <div class="col-sm-2">
-          {{Form::select('tipo_alarma', ['Ninguna','Interna','Selectiva','General'],null,['class' => 'form-control'])}}
+          {{Form::select('tipo_alarma', [null =>'Ninguna',1 => 'Interna',2 => 'Selectiva',3 => 'General'],$tipo_alarma or 1,['class' => 'form-control'])}}
 
           @if ($errors->has('tipo_alarma'))
               <span class="help-block">
@@ -66,7 +66,7 @@
         <div class="{{ $errors->has('bombero') ? ' has-error' : '' }}">
           {!! Form::label('bombero', 'Bombero a cargo',['class' => 'col-sm-2 col-sm-offset-2 control-label']) !!}
           <div class="col-sm-1">
-            {{Form::select('bombero', $bomberos,null,['class' => 'selectMultiple'])}}
+            {{Form::select('bombero', $bomberos,$bombero or null,['class' => 'selectMultiple'])}}
             @if ($errors->has('bombero'))
                 <span class="help-block">
                     <strong>{{ $errors->first('bombero') }}</strong>
