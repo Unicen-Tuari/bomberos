@@ -3,8 +3,9 @@
 @section('content')
 <article class="col-md-12">
   <div class="panel panel-default">
-    <div class="panel-heading">
-      Formulario de alta bombero
+    <div id="breadcrumb" class="panel-heading">
+      <span class="fa fa-user" aria-hidden="true"></span>
+      <h4>Alta bombero</h4>
     </div>
     <div class="panel-body">
       {!! Form::open([ 'route' => 'bombero.store', 'class' => 'form-horizontal', 'method' => 'POST', 'files' => true]) !!}

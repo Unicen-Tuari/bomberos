@@ -3,11 +3,12 @@
 @section('content')
 <article class="col-sm-12">
   <div class="panel panel-default">
-    <div class="panel-heading">
-      Lista de bomberos
+    <div id="breadcrumb" class="panel-heading">
+      <span class="fa fa-user" aria-hidden="true"></span>
+      <h4>Bomberos</h4>
     </div>
     <div class="panel-body">
-      <table  class="table table-bordered">
+      <table class="table table-striped">
         <thead><!--Titulos de la tabla-->
           <tr>
             <th class="text-center">Numero Legajo</th>
@@ -41,7 +42,7 @@
           </tbody>
           <tfoot>
             <tr>
-              <td class="text-center" colspan="9"> lista de bomberos activos </td>
+              <td class="text-center" colspan="9"> Bomberos activos </td>
             </tr>
           </tfoot>
           <br>

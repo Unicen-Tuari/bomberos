@@ -3,8 +3,9 @@
 @section('content')
 <article class="col-md-12">
 <div class="panel panel-default">
-  <div class="panel-heading">
-    Alta de vehiculo
+  <div id="breadcrumb" class="panel-heading">
+    <span class="fa fa-car" aria-hidden="true"></span>
+    <h4>Alta de vehiculo</h4>
   </div>
   <div class="panel-body">
     {!! Form::open([ 'route' => 'vehiculo.store', 'class' => 'form-horizontal', 'method' => 'POST']) !!}

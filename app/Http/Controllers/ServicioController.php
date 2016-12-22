@@ -52,24 +52,26 @@ class ServicioController extends Controller
       $servicio->jefe_de_cuerpo=$data['jefe_de_cuerpo'];
       if ($servicio->save()) {
 
-        // if ($data["bombero"]) {
-        //   //creo las relaciones servicio bomberos
-        //   BomberoServicio::create(['servicio_id'=>$servicio->id,'bombero_id'=>$bombero,'tipo_asistencia'=>2,'a_cargo'=>true]);
-        // }
-        if ($data["vehiculo"]) {
+        if ($data["bombero"]) {
           //creo las relaciones servicio bomberos
-          $movil=VehiculoServicio::create(['servicio_id'=>$servicio->id,'vehiculo_id'=>$data['vehiculo']]);
-          $movil->primero= 1;
-          $movil->save();
+          $a_cargo = BomberoServicio::create(['servicio_id'=>$servicio->id,'bombero_id'=>$data["bombero"],'tipo_id'=>2,'a_cargo'=>true]);
+          // $a_cargo->a_cargo = 1;
+          // $a_cargo->save();
         }
-
-        if(array_key_exists("Vehiculos",$data)){
-          foreach ($data["Vehiculos"] as $vehiculo) {
-            //creo las relaciones servicio Vehiculos
-            VehiculoServicio::create(['servicio_id'=>$servicio->id,'vehiculo_id'=>$vehiculo]);
-          }
-        }
-       return redirect()->route('servicio.presentes');
+        // if ($data["vehiculo"]) {
+        //   //creo las relaciones servicio bomberos
+        //   $movil=VehiculoServicio::create(['servicio_id'=>$servicio->id,'vehiculo_id'=>$data['vehiculo']]);
+        //   $movil->primero= 1;
+        //   $movil->save();
+        // }
+        //
+        // if(array_key_exists("Vehiculos",$data)){
+        //   foreach ($data["Vehiculos"] as $vehiculo) {
+        //     //creo las relaciones servicio Vehiculos
+        //     VehiculoServicio::create(['servicio_id'=>$servicio->id,'vehiculo_id'=>$vehiculo]);
+        //   }
+        // }
+       return redirect()->route('ingreso.listar');
       }else {
         dd('fallo');
       }

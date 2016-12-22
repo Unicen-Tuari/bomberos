@@ -3,8 +3,9 @@
 @section('content')
 <article class="col-sm-12">
   <div class="panel panel-default">
-    <div class="panel-heading">
-      Servicio
+    <div id="breadcrumb" class="panel-heading">
+      <span class="fa fa-edit" aria-hidden="true"></span>
+      <h4>Modificar servicio</h4>
     </div>
   <div class="panel-body">
 

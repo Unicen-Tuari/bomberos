@@ -3,8 +3,9 @@
 @section('content')
 <article class="col-md-12">
   <div class="panel panel-default">
-    <div class="panel-heading">
-      Editar material
+    <div id="breadcrumb" class="panel-heading">
+      <span class="fa fa-edit" aria-hidden="true"></span>
+      <h4>Editar material</h4>
     </div>
     <div class="panel-body">
       {!! Form::open([ 'route' => ['material.update', $material ], 'class' => 'form-horizontal', 'method' => 'PUT', 'files' => true]) !!}

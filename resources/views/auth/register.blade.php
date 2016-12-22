@@ -2,8 +2,7 @@
 
 @section('content')
 <article class="container">
-  <div class="row">
-    <div class="col-xs-offset-5 col-xs-3" id="logoHome">
+    <div class="" id="logoHome">
       <img src="assets/images/logo.png" alt=""/>
     </div>
     <div class="col-md-8 col-md-offset-2">
@@ -15,7 +14,7 @@
             <div class="form-group {{ $errors->has('nombre') ? ' has-error' : '' }}">
               {!! Form::label('nombre', 'Nombre',['class' => 'col-md-4 control-label']) !!}
               <div class="col-md-6">
-                  {!! Form::text('nombre', null, ['class' => 'form-control', 'placeholder' => 'Nombre']) !!}
+                  {!! Form::text('nombre', null, ['class' => 'form-control']) !!}
 
                   @if ($errors->has('nombre'))
                       <span class="help-block">
@@ -80,6 +79,5 @@
         </div>
       </div>
     </div>
-  </div>
 </article>
 @endsection

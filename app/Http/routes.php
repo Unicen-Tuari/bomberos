@@ -10,8 +10,10 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
 Route::get('/', function () {
+  if (Auth::guest())
+    return view('auth/login');
+  else
     return view('home');
 });
 
@@ -44,6 +46,6 @@ Route::put('servicio/activo/{id}/finalizar', 'ServicioController@guardarActivo')
 Route::put('servicio/activo/{id}/salida', 'ServicioController@salida')->name('servicio.salida');
 Route::resource('servicio','ServicioController');
 
-Route::get('ingreso/listar', 'IngresoController@listarIngresos');
+Route::get('ingreso/listar', 'IngresoController@listarIngresos')->name('ingreso.listar');
 Route::post('ingreso/', 'IngresoController@guardarIngreso')->name('ingreso.guardarIngreso');
 Route::delete('ingreso/{id}', 'IngresoController@borrarIngreso')->name('ingreso.borrarIngreso');

@@ -2,8 +2,9 @@
 
 @section('content')
 <article class="panel panel-default col-md-12">
-  <div class="panel-heading text-center">
-    <h>tipos de servicios</h>
+  <div id="breadcrumb" class="panel-heading">
+    <span class="fa fa-list" aria-hidden="true"></span>
+    <h4>Tipos de servicio</h4>
   </div>
   <section class="panel-body col-md-6">
     <div class="panel panel-default">

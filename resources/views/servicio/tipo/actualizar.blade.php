@@ -3,8 +3,9 @@
 @section('content')
 <article class="col-md-12">
   <div class="panel panel-default">
-    <div class="panel-heading text-center">
-      Modificar tipo de servicio
+    <div id="breadcrumb" class="panel-heading">
+      <span class="fa fa-edit" aria-hidden="true"></span>
+      <h4>Modificar tipo de servicio</h4>
     </div>
     <div class="panel-body">
       {!! Form::open([ 'route' => ['servicio.tipo.update', $tipo], 'class' => 'form-horizontal', 'method' => 'PUT']) !!}

@@ -3,8 +3,9 @@
 @section('content')
 <article class="col-md-12">
   <div class="panel panel-default">
-    <div class="panel-heading">
-      Alta de material
+    <div id="breadcrumb" class="panel-heading">
+      <span class="fa fa-wrench" aria-hidden="true"></span>
+      <h4>Alta de material</h4>
     </div>
     <div class="panel-body">
       {!! Form::open([ 'route' => 'material.store', 'class' => 'form-horizontal', 'method' => 'POST', 'files' => true]) !!}

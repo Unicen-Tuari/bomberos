@@ -12,6 +12,6 @@ class Ingreso extends Model
     ];
 
     public function bombero(){
-      return $this->hasOne(Bombero::class,"id");
+      return $this->hasOne(Bombero::class,"id","id_bombero");
     }
 }
