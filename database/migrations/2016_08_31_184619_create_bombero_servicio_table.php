@@ -16,6 +16,7 @@ class CreateBomberoServicioTable extends Migration
             $table->integer('servicio_id')->unsigned();
             $table->integer('bombero_id')->unsigned();
             $table->integer('tipo_id')->unsigned();
+            $table->boolean('a_cargo')->default(0);;
             $table->timestamps();
             $table->primary(['servicio_id', 'bombero_id']);
             $table->foreign('servicio_id')->references('id')->on('servicio')->onDelete('cascade');

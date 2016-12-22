@@ -7,7 +7,7 @@ $(document).ready(function () {
     var url = formIngresar.attr('action');
     var data = formIngresar.serialize();
     $.post(url, data, function(result){
-        alert(result);
+      alert(result + "ingresado");
     });
 
   });
@@ -18,7 +18,7 @@ $(document).ready(function () {
     var url = formDelete.attr('action').replace(':USER_ID', id);
     var data = formDelete.serialize();
     $.post(url, data, function(result){
-        alert(result);
+      alert(result + "retirado" );
     });
   });
 

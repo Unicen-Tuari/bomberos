@@ -11,6 +11,7 @@ use App\Bombero;
 use App\Vehiculo;
 use App\BomberoServicio;
 use App\VehiculoServicio;
+use App\Ingreso;
 use Carbon\Carbon;
 use \DateTimeZone;
 
@@ -68,7 +69,7 @@ class ServicioController extends Controller
             VehiculoServicio::create(['servicio_id'=>$servicio->id,'vehiculo_id'=>$vehiculo]);
           }
         }
-       return redirect()->route('servicio.index');
+       return redirect()->route('servicio.presentes');
       }else {
         dd('fallo');
       }
@@ -288,19 +289,19 @@ class ServicioController extends Controller
         if ($servicio->save()) {
           if ($data["bombero"]) {
             //creo las relaciones servicio bomberos
-            BomberoServicio::create(['servicio_id'=>$servicio->id,'bombero_id'=>$bombero,'tipo_asistencia'=>2,'a_cargo'=>true]);
+            BomberoServicio::create(['servicio_id'=>$servicio->id,'bombero_id'=>$data['bombero'],'tipo_id'=>2,'a_cargo'=>true]);
           }
-          if ($data["vehiculo"]) {
-            //creo las relaciones servicio bomberos
-            VehiculoServicio::create(['servicio_id'=>$servicio->id,'vehiculo_id'=>$vehiculo,'primero'=>1]);
-          }
-
-          if(array_key_exists("Vehiculos",$data)){
-            foreach ($data["Vehiculos"] as $vehiculo) {
-              //creo las relaciones servicio Vehiculos
-              VehiculoServicio::create(['servicio_id'=>$servicio->id,'vehiculo_id'=>$vehiculo]);
-            }
-          }
+          // if ($data["vehiculo"]) {
+          //   //creo las relaciones servicio bomberos
+          //   VehiculoServicio::create(['servicio_id'=>$servicio->id,'vehiculo_id'=>$vehiculo,'primero'=>1]);
+          // }
+          //
+          // if(array_key_exists("Vehiculos",$data)){
+          //   foreach ($data["Vehiculos"] as $vehiculo) {
+          //     //creo las relaciones servicio Vehiculos
+          //     VehiculoServicio::create(['servicio_id'=>$servicio->id,'vehiculo_id'=>$vehiculo]);
+          //   }
+          // }
 
           // foreach ($data["Bomberos"] as $bombero) {
           //   //creo las relaciones servicio bomberos de los nuevos bomberos
@@ -318,10 +319,27 @@ class ServicioController extends Controller
           //     }
           //   }
           // }
-         return redirect()->route('servicio.index');
+         return redirect()->route('servicio.presentes');
         }else {
           dd('fallo');
         }
+    }
+
+    public function presentes()
+    {
+        $datas=Ingreso::all(['id', 'id_bombero']);
+        $ingresados = array();
+        foreach ($datas as $data)
+        {
+            $ingresados[$data->id_bombero] = $data->bombero->nombre .' ' .$data->bombero->apellido;
+        }
+        return view('servicio/presentes',compact('ingresados'));
+    }
+
+    public function guardar_presentes(Request $request)
+    {
+        dd( $request->all());
+        return redirect()->route('servicio.index');
     }
 
 
