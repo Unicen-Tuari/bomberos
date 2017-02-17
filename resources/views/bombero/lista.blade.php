@@ -22,10 +22,13 @@
           </tr>
         </thead>
         <tbody><!--Contenido de la tabla-->
+          @php
+            $jerarquias=[1 => 'Oficial Superior',2 => 'Oficial Jefe',3 => 'Oficial Subalterno',4 => 'Suboficial Superior',5 => 'Suboficial Subalterno',6 => 'Bombero',7 => 'Cadete',8 => 'Aspirante']
+          @endphp
           @foreach ($bomberos as $bombero)
             <tr>
               <td class="text-center">{{$bombero->nro_legajo}}</td>
-              <td class="text-center">{{$bombero->jerarquia}}</td>
+              <td class="text-center">{{$jerarquias[$bombero->jerarquia]}}</td>
               <td class="text-center">{{$bombero->apellido}}</td>
               <td class="text-center">{{$bombero->nombre}}</td>
               <td class="text-center">{{$bombero->direccion}}</td>

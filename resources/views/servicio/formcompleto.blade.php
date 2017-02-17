@@ -5,7 +5,9 @@
 
     <div class="form-group">
       {!! Form::label('num_servicio', 'Nº servicio:',['class' => 'col-sm-9 control-label']) !!}
-      {!! Form::label('num_servicio', $numero, ['class' => 'control-label']) !!}
+      <div class="col-sm-1">
+        {!! Form::text('num_servicio', $numero, ['class' => 'form-control']) !!}
+      </div>
     </div>
 
     <div class="form-group ">
@@ -312,7 +314,6 @@
         {!! Form::label('jefe_de_cuerpo', 'Jefe de cuerpo',['class' => 'col-sm-1 control-label']) !!}
         <div class="col-sm-2">
           {{Form::select('jefe_de_cuerpo', $bomberos,$jcuerpo,['class' => 'selectMultiple'])}}
-
           @if ($errors->has('jefe_de_cuerpo'))
               <span class="help-block">
                   <strong>{{ $errors->first('jefe_de_cuerpo') }}</strong>

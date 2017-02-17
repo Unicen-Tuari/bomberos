@@ -342,7 +342,7 @@ class ServicioController extends Controller
 
     public function guardar_presentes(Request $request)
     {
-        // dd( $request->all());
+        dd( $request->all());
         return redirect()->route('servicio.index');
     }
 
