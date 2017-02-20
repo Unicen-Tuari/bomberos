@@ -84,12 +84,12 @@ class ServicioController extends Controller
       {
           $tipos[$data->id] = $data->nombre;
       }
-      $datasb=Bombero::all(['id', 'nombre']);
+      $datasb=Bombero::orderBy('jerarquia','ASC')->get();
       $bomberos = array();
       $bomberos[0] = "bombero...";
       foreach ($datasb as $data)
       {
-          $bomberos[$data->id] = $data->nombre;
+          $bomberos[$data->id] = $data->apellido.' '.$data->nombre;
       }
       $datasv=Vehiculo::all(['id', 'patente']);
       $vehiculos = array();
@@ -128,12 +128,12 @@ class ServicioController extends Controller
         {
             $tipos[$data->id] = $data->nombre;
         }
-        $datasb=Bombero::all(['id', 'nombre']);
+        $datasb=Bombero::orderBy('jerarquia','ASC')->get();
         $bomberos = array();
         $bomberos[0] = "bombero...";
         foreach ($datasb as $data)
         {
-            $bomberos[$data->id] = $data->nombre;
+            $bomberos[$data->id] =  $data->apellido.' '.$data->nombre;
         }
         $datasv=Vehiculo::all(['id', 'patente']);
         $vehiculos = array();
@@ -214,12 +214,12 @@ class ServicioController extends Controller
       $bomberoserv=BomberoServicio::where('servicio_id',$id)->get();
       $bombero=$bomberoserv[0]->bombero_id;
       $servicio=Servicio::find($id);
-      $datasb=Bombero::all(['id', 'nombre']);
+      $datasb=Bombero::orderBy('jerarquia','ASC')->get();
       $bomberos = array();
       $bomberos[0] = "bombero...";
       foreach ($datasb as $data)
       {
-          $bomberos[$data->id] = $data->nombre;
+          $bomberos[$data->id] =  $data->apellido.' '.$data->nombre;
       }
 
       $datasv=Vehiculo::all(['id', 'patente']);
