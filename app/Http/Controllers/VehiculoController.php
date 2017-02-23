@@ -20,6 +20,11 @@ class VehiculoController extends Controller
       $vehiculos=Vehiculo::orderBy('patente','DESC')->paginate(8);
       return view('vehiculo/lista',compact('vehiculos'));
   }
+  public function info($id)
+  {
+      $vehiculo=Vehiculo::find($id);
+      return view('vehiculo/info',compact('vehiculo'));
+  }
   public function create()
   {
       return view('vehiculo/alta');
@@ -43,15 +48,45 @@ class VehiculoController extends Controller
   }
   public function update(VehiculoRequest $data, $id)
   {
-      $vehiculo=Vehiculo::findorfail($id)->update($data->all());
-      // $bombero->update();
+      $vehiculo=Vehiculo::find($id);
+      if($data['patente']!=""){
+        $vehiculo->patente=strtoupper($data->patente);
+      }else{
+          $vehiculo->patente=null;
+      }
+      $vehiculo->num_movil=$data['num_movil'];
+      $vehiculo->detalle=$data['detalle'];
+      if(!array_key_exists('activo', $data->all())){
+        $vehiculo->activo=0;
+      }else{
+        $vehiculo->activo=$data['activo'];
+      }
+      if(!array_key_exists('baja', $data->all())){
+        $vehiculo->baja=0;
+      }else{
+        $vehiculo->baja=$data['baja'];
+        $vehiculo->activo=0;
+      }
+      $vehiculo->save();
       return redirect()->route('vehiculo.index');
   }
 
   public function store(VehiculoRequest $data)
   {
-    $data['patente'] = strtoupper($data->patente);
-    Vehiculo::create($data->all());
+    $vehiculo=new Vehiculo;
+    if($data['patente']!=""){
+      $vehiculo->patente=strtoupper($data->patente);
+    }else{
+        $vehiculo->patente=null;
+    }
+    $vehiculo->num_movil=$data['num_movil'];
+    $vehiculo->detalle=$data['detalle'];
+    if(!array_key_exists('activo', $data->all())){
+      $vehiculo->activo=0;
+    }else{
+      $vehiculo->activo=$data['activo'];
+    }
+    $vehiculo->save();
     return redirect()->route('vehiculo.index');
   }
 }

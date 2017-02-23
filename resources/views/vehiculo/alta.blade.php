@@ -36,6 +36,32 @@
         </div>
       </div>
 
+      <div class="form-group {{ $errors->has('activo') ? ' has-error' : '' }}">
+        {!! Form::label('activo', "Activo", ['class' => 'col-md-4 control-label']) !!}
+        <div class="col-md-6">
+            {!! Form::checkbox('activo', 1) !!}
+
+            @if ($errors->has('activo'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('activo') }}</strong>
+                </span>
+            @endif
+        </div>
+      </div>
+
+      <div class="form-group {{ $errors->has('detalle') ? ' has-error' : '' }}">
+        {!! Form::label('detalle', 'Detalle',['class' => 'col-sm-4 control-label']) !!}
+        <div class="col-sm-6">
+            {!! Form::textarea('detalle', null, ['class' => 'form-control' , 'rows' => '8']) !!}
+
+            @if ($errors->has('detalle'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('detalle') }}</strong>
+                </span>
+            @endif
+        </div>
+      </div>
+
       <div class="form-group">
         <div class="col-md-6 col-md-offset-4">
           {{-- {!!Form::submit('Registrar', ['class' => 'btn btn-primary']) !!} --}}

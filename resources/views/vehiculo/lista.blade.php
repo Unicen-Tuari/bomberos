@@ -12,18 +12,22 @@
         <thead><!--Titulos de la tabla-->
           <tr>
             <th>
-              Patente
+              Nro. de Unidad
             </th>
             <th>
-              Nro. de Unidad
+              Patente
             </th>
           </tr>
         </thead>
         <tbody><!--Contenido de la tabla-->
           @foreach ($vehiculos as $vehiculo)
-            <tr>
+            @if ($vehiculo->activo)
+            <tr class="success">
+            @else
+            <tr class="danger">
+            @endif
+              <td class="text-center"><a href="{{ route('VehiculoController.info', $vehiculo->id) }}">{{$vehiculo->num_movil}}</a></td>
               <td class="text-center">{{$vehiculo->patente}}</td>
-              <td class="text-center">{{$vehiculo->num_movil}}</td>
               <td class="text-center">
                 {{ Form::open(['route' => ['vehiculo.destroy', $vehiculo->id], 'method' => 'delete']) }}
                     <button type="submit" class="btn glyphicon glyphicon-trash eliminar"></button>
@@ -35,7 +39,7 @@
           </tbody>
           <tfoot>
             <tr>
-              <td class="text-center" colspan="9"> Lista de vehiculos</td>
+              <td class="text-center" colspan="4"> Lista de vehiculos</td>
             </tr>
           </tfoot>
           <br>

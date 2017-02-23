@@ -63,6 +63,16 @@ $('#listavehiculos').on('change', function(){
   $('#horaSalida').on('change', function(){
     calcularCombustible()
   });
+  $('#baja').on('click', function(){
+    if ($(this).prop("checked")){
+      $("#activo").prop("checked","");
+    }
+  });
+  $('#activo').on('click', function(){
+    if ($(this).prop("checked")){
+      $("#baja").prop("checked","");
+    }
+  });
 
   // calcularCombustible();
 });
