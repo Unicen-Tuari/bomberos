@@ -48,45 +48,30 @@ class VehiculoController extends Controller
   }
   public function update(VehiculoRequest $data, $id)
   {
-      $vehiculo=Vehiculo::find($id);
       if($data['patente']!=""){
-        $vehiculo->patente=strtoupper($data->patente);
-      }else{
-          $vehiculo->patente=null;
+        $data['patente']=strtoupper($data->patente);
       }
-      $vehiculo->num_movil=$data['num_movil'];
-      $vehiculo->detalle=$data['detalle'];
       if(!array_key_exists('activo', $data->all())){
-        $vehiculo->activo=0;
-      }else{
-        $vehiculo->activo=$data['activo'];
+        $data['activo']=0;
       }
       if(!array_key_exists('baja', $data->all())){
-        $vehiculo->baja=0;
+        $data['baja']=0;
       }else{
-        $vehiculo->baja=$data['baja'];
-        $vehiculo->activo=0;
+        $data['activo']=0;
       }
-      $vehiculo->save();
+      $vehiculo=Vehiculo::findorfail($id)->update($data->all());
       return redirect()->route('vehiculo.index');
   }
 
   public function store(VehiculoRequest $data)
   {
-    $vehiculo=new Vehiculo;
     if($data['patente']!=""){
-      $vehiculo->patente=strtoupper($data->patente);
-    }else{
-        $vehiculo->patente=null;
+      $data['patente']=strtoupper($data->patente);
     }
-    $vehiculo->num_movil=$data['num_movil'];
-    $vehiculo->detalle=$data['detalle'];
     if(!array_key_exists('activo', $data->all())){
-      $vehiculo->activo=0;
-    }else{
-      $vehiculo->activo=$data['activo'];
+      $data['activo']=0;
     }
-    $vehiculo->save();
+    Vehiculo::create($data->all());
     return redirect()->route('vehiculo.index');
   }
 }

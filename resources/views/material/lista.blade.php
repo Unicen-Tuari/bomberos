@@ -21,11 +21,11 @@
         <tbody><!--Contenido de la tabla-->
           @foreach ($materiales as $material)
             <tr>
-              <td class="text-center">{{$material->nombre}}</td>
+              <td class="text-center"><a href="{{ route('material.info', $material->id) }}">{{$material->nombre}}</a></td>
               @if ($material->vehiculo_id)
                 <td class="text-center">{{$material->vehiculo->patente}}</td>
               @else
-                <td class="text-center">Sin asignado</td>
+                <td class="text-center">En Depósito</td>
               @endif
               <td class="text-center">
                 {{ Form::open(['route' => ['material.destroy', $material->id], 'method' => 'delete']) }}
@@ -38,13 +38,13 @@
           </tbody>
           <tfoot>
             <tr>
-              <td class="text-center" colspan="9"> Lista de materiales</td>
+              <td class="text-center" colspan="4"> Lista de materiales</td>
             </tr>
           </tfoot>
           <br>
         </table>
         <div class="text-center">
-          {{ $materiales->render()}}
+          {{ $materiales->links()}}
         </div>
     </div>
   </div>

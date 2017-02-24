@@ -16,9 +16,10 @@ class CreateMaterialTable extends Migration
           $table->increments('id');
           $table->rememberToken();
           $table->string('nombre', 100);
-          $table->boolean('mantenimiento')->nullable()->default(null);
-          $table->integer('reparado')->unsigned();
           $table->integer('vehiculo_id')->nullable()->unsigned()->default(null);
+          $table->boolean('mantenimiento')->default(0);
+          $table->text('detalle')->nullable();
+          $table->integer('reparado')->unsigned()->default(0);
           $table->timestamps();
           $table->foreign('vehiculo_id')->references('id')->on('vehiculo')->onDelete('set null');
       });
