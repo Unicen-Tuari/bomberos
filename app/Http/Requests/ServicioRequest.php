@@ -54,8 +54,8 @@ class ServicioRequest extends Request
               'regreso' => 'required_if:finalizado,"verdadero"|date_format:Y-m-d H:i:s|after:salida',
               'bombero' => 'required_if:finalizado,"verdadero"|exists:bombero,id',
               'jefe_servicio' => 'required_if:finalizado,"verdadero"|exists:bombero,id',
-              'oficial' => 'required_if:finalizado,"verdadero"|exists:bombero,id|different:jefe_servicio',
-              'jefe_de_cuerpo' => 'required_if:finalizado,"verdadero"|exists:bombero,id|different:jefe_servicio|different:oficial',
+              'oficial' => 'required_if:finalizado,"verdadero"|exists:bombero,id',
+              'jefe_de_cuerpo' => 'required_if:finalizado,"verdadero"|exists:bombero,id',
           ];
         }
 
@@ -81,8 +81,8 @@ class ServicioRequest extends Request
               'salida' => 'required|date_format:Y-m-d H:i:s|after:alarma',
               'regreso' => 'required|date_format:Y-m-d H:i:s|after:salida',
               'jefe_servicio' => 'required|exists:bombero,id',
-              'oficial' => 'required|exists:bombero,id|different:jefe_servicio',
-              'jefe_de_cuerpo' => 'required|exists:bombero,id|different:jefe_servicio|different:oficial',
+              'oficial' => 'required|exists:bombero,id',
+              'jefe_de_cuerpo' => 'required|exists:bombero,id|different:jefe_servicio',
           ];
         }
         default:break;

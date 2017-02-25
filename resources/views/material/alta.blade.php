@@ -33,6 +33,19 @@
             @endif
           </div>
 
+          <div class="form-group {{ $errors->has('detalle') ? ' has-error' : '' }}">
+            {!! Form::label('detalle', 'Detalle',['class' => 'col-sm-4 control-label']) !!}
+            <div class="col-sm-6">
+                {!! Form::textarea('detalle', null, ['class' => 'form-control' , 'rows' => '8']) !!}
+
+                @if ($errors->has('detalle'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('detalle') }}</strong>
+                    </span>
+                @endif
+            </div>
+          </div>
+
         <div class="form-group">
           <div class="col-md-6 col-md-offset-4">
             {{-- {!!Form::submit('Registrar', ['class' => 'btn btn-primary']) !!} --}}

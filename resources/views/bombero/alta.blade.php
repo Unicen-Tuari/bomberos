@@ -56,7 +56,7 @@
         <div class="form-group {{ $errors->has('jerarquia') ? ' has-error' : '' }}">
           {!! Form::label('jerarquia', 'Jerarquía',['class' => 'col-md-4 control-label']) !!}
           <div class="col-md-6">
-          {!! Form::text('jerarquia', null, ['class' => 'form-control']) !!}
+          {{Form::select('jerarquia', config('jerarquias.types'),6, ['class' => 'form-control'])}}
 
               @if ($errors->has('jerarquia'))
                   <span class="help-block">
@@ -100,6 +100,19 @@
               @if ($errors->has('fecha_nacimiento'))
                   <span class="help-block">
                       <strong>{{ $errors->first('fecha_nacimiento') }}</strong>
+                  </span>
+              @endif
+          </div>
+        </div>
+
+        <div class="form-group {{ $errors->has('activo') ? ' has-error' : '' }}">
+          {!! Form::label('activo', "Activo", ['class' => 'col-md-4 control-label']) !!}
+          <div class="col-md-6">
+              {!! Form::checkbox('activo', 1) !!}
+
+              @if ($errors->has('activo'))
+                  <span class="help-block">
+                      <strong>{{ $errors->first('activo') }}</strong>
                   </span>
               @endif
           </div>

@@ -39,13 +39,21 @@ class BomberoController extends Controller
   }
   public function update(BomberoRequest  $data, $id)
   {
-      $bombero=Bombero::find($id)->update($data->all());
-      return redirect()->route('bombero.index');
+    $bombero=$data->all();
+    if (!array_key_exists('activo', $bombero)){
+      $bombero["activo"]=0;
+    }
+    Bombero::find($id)->update($bombero);
+    return redirect()->route('bombero.index');
   }
 
   public function store(BomberoRequest  $data)
   {
-    Bombero::create($data->all());
+    $bombero=$data->all();
+    if (!array_key_exists('activo', $bombero)){
+      $bombero["activo"]=0;
+    }
+    Bombero::create($bombero);
     return redirect()->route('bombero.index');
   }
 

@@ -51,7 +51,7 @@
       <div class="form-group {{ $errors->has('jerarquia') ? ' has-error' : '' }}">
         {!! Form::label('jerarquia', 'Jerarquía',['class' => 'col-md-4 control-label']) !!}
         <div class="col-md-6">
-        {!! Form::text('jerarquia', $bombero->jerarquia, ['class' => 'form-control']) !!}
+        {{Form::select('jerarquia', [1 => 'Oficial Superior',2 => 'Oficial Jefe',3 => 'Oficial Subalterno',4 => 'Suboficial Superior',5 => 'Suboficial Subalterno',6 => 'Bombero',7 => 'Cadete',8 => 'Aspirante'],$bombero->jerarquia, ['class' => 'form-control'])}}
 
             @if ($errors->has('jerarquia'))
                 <span class="help-block">

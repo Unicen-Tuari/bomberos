@@ -23,7 +23,7 @@
           </div>
         </div>
 
-        <div class="form-group  {{ $errors->has('vehiculo_id') ? ' has-error' : '' }}">
+        <div class="form-group {{ $errors->has('vehiculo_id') ? ' has-error' : '' }}">
           {!! Form::label('vehiculo_id', 'Esta en el vehiculo: ',['class' => 'col-md-4 control-label']) !!}
           <div class="col-md-2">
             {{Form::select('vehiculo_id',['' => 'Ninguno'] + $vehiculos, $material->vehiculo_id, ['class' => 'form-control'])}}
@@ -34,6 +34,42 @@
               </span>
           @endif
         </div>
+
+        <div class="form-group">
+          <div class="{{ $errors->has('mantenimiento') ? ' has-error' : '' }}">
+            {!! Form::label('mantenimiento', "Mantenimiento", ['class' => 'col-md-4 control-label']) !!}
+            <div class="col-md-2">
+                {!! Form::checkbox('mantenimiento', 1,$material->mantenimiento) !!}
+
+                @if ($errors->has('mantenimiento'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('mantenimiento') }}</strong>
+                    </span>
+                @endif
+            </div>
+          </div>
+
+          <div>
+            {!! Form::label('reparado', "Veces reparado", ['class' => 'col-md-2 control-label']) !!}
+            <div class="col-sm-1 ">
+              {!! Form::text('reparado', $material->reparado,['class' => 'form-control','disabled' => 'disabled']) !!}
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group {{ $errors->has('detalle') ? ' has-error' : '' }}">
+          {!! Form::label('detalle', 'Detalle',['class' => 'col-sm-4 control-label']) !!}
+          <div class="col-sm-6">
+              {!! Form::textarea('detalle', $material->detalle, ['class' => 'form-control' , 'rows' => '8']) !!}
+
+              @if ($errors->has('detalle'))
+                  <span class="help-block">
+                      <strong>{{ $errors->first('detalle') }}</strong>
+                  </span>
+              @endif
+          </div>
+        </div>
+
 
         <div class="form-group">
           <div class="col-md-6 col-md-offset-4">

@@ -35,14 +35,15 @@ class VehiculoRequest extends Request
         case 'POST':
         {
           return [
-              'patente' => array('required','min:6','unique:vehiculo', 'regex:/^\w{2}\s\d{3}\s\w{2}$|\w{3}\s\d{3}$/'),
+              'patente' => array('min:6','unique:vehiculo', 'regex:/^\w{2}\s\d{3}\s\w{2}$|\w{3}\s\d{3}$/'),
+              'activo' => array('required_with:patente'),
           ];
         }
 
         case 'PUT':
         {
           return [
-              'patente' => array('required','min:6','unique:vehiculo', 'regex:/^\w{2}\s\d{3}\s\w{2}$|\w{3}\s\d{3}$/'),
+              'patente' => array('min:6','unique:vehiculo,patente,'.$vehiculo->id, 'regex:/^\w{2}\s\d{3}\s\w{2}$|\w{3}\s\d{3}$/'),
           ];
         }
         default:break;

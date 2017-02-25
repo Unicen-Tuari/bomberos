@@ -54,7 +54,7 @@ class ServicioController extends Controller
 
         if ($data["bombero"]) {
           //creo las relaciones servicio bomberos
-          $a_cargo = BomberoServicio::create(['servicio_id'=>$servicio->id,'bombero_id'=>$data["bombero"],'tipo_id'=>2]);
+          $a_cargo = BomberoServicio::create(['servicio_id'=>$servicio->id,'bombero_id'=>$data["bombero"],'tipo_id'=>2,'a_cargo'=>true]);
           // $a_cargo->a_cargo = 1;
           // $a_cargo->save();
         }
@@ -84,12 +84,12 @@ class ServicioController extends Controller
       {
           $tipos[$data->id] = $data->nombre;
       }
-      $datasb=Bombero::all(['id', 'nombre']);
+      $datasb=Bombero::orderBy('jerarquia','ASC')->get();
       $bomberos = array();
       $bomberos[0] = "bombero...";
       foreach ($datasb as $data)
       {
-          $bomberos[$data->id] = $data->nombre;
+          $bomberos[$data->id] = $data->apellido.' '.$data->nombre;
       }
       $datasv=Vehiculo::all(['id', 'patente']);
       $vehiculos = array();
@@ -128,12 +128,12 @@ class ServicioController extends Controller
         {
             $tipos[$data->id] = $data->nombre;
         }
-        $datasb=Bombero::all(['id', 'nombre']);
+        $datasb=Bombero::orderBy('jerarquia','ASC')->get();
         $bomberos = array();
         $bomberos[0] = "bombero...";
         foreach ($datasb as $data)
         {
-            $bomberos[$data->id] = $data->nombre;
+            $bomberos[$data->id] =  $data->apellido.' '.$data->nombre;
         }
         $datasv=Vehiculo::all(['id', 'patente']);
         $vehiculos = array();
@@ -214,12 +214,12 @@ class ServicioController extends Controller
       $bomberoserv=BomberoServicio::where('servicio_id',$id)->get();
       $bombero=$bomberoserv[0]->bombero_id;
       $servicio=Servicio::find($id);
-      $datasb=Bombero::all(['id', 'nombre']);
+      $datasb=Bombero::orderBy('jerarquia','ASC')->get();
       $bomberos = array();
       $bomberos[0] = "bombero...";
       foreach ($datasb as $data)
       {
-          $bomberos[$data->id] = $data->nombre;
+          $bomberos[$data->id] =  $data->apellido.' '.$data->nombre;
       }
 
       $datasv=Vehiculo::all(['id', 'patente']);
@@ -293,7 +293,7 @@ class ServicioController extends Controller
         if ($servicio->save()) {
           if ($data["bombero"]) {
             //creo las relaciones servicio bomberos
-            BomberoServicio::create(['servicio_id'=>$servicio->id,'bombero_id'=>$data['bombero'],'tipo_id'=>2]);
+            BomberoServicio::create(['servicio_id'=>$servicio->id,'bombero_id'=>$data['bombero'],'tipo_id'=>2,'a_cargo'=>true]);
           }
           // if ($data["vehiculo"]) {
           //   //creo las relaciones servicio bomberos
@@ -342,7 +342,7 @@ class ServicioController extends Controller
 
     public function guardar_presentes(Request $request)
     {
-        // dd( $request->all());
+        dd( $request->all());
         return redirect()->route('servicio.index');
     }
 

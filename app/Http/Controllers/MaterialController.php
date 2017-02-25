@@ -18,8 +18,13 @@ class MaterialController extends Controller
   }
   public function index()
   {
-      $materiales=Material::orderBy('vehiculo_id','DESC')->paginate(8);
+      $materiales=Material::orderBy('id','DESC')->paginate(10);
       return view('material/lista',compact('materiales'));
+  }
+  public function info($id)
+  {
+      $material=Material::find($id);
+      return view('material/info',compact('material'));
   }
   public function create()
   {
@@ -52,7 +57,18 @@ class MaterialController extends Controller
 
   public function update(MaterialRequest $data, $id)
   {
-      $material=Material::findorfail($id)->update($data->all());
+      if ($data['vehiculo_id'] == ""){
+        $data['vehiculo_id'] = null;
+      }
+      if(!array_key_exists('mantenimiento', $data->all())){
+        $data['mantenimiento']=0;
+      }
+
+      $material=Material::find($id);
+      if (  $material->mantenimiento != $data['mantenimiento'] && $data['mantenimiento']==0) {
+        $material->reparado+=1;
+      }
+      $material->update($data->all());
 
       return redirect()->route('material.index');
   }
@@ -61,7 +77,6 @@ class MaterialController extends Controller
   {
     if ($data['vehiculo_id'] == ""){
       $data['vehiculo_id'] = null;
-
     }
     Material::create($data->all());
     return redirect()->route('material.index');
