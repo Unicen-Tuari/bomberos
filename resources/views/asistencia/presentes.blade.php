@@ -6,10 +6,12 @@
   <div class="panel panel-default">
     <div id="breadcrumb" class="panel-heading">
       <span class="fa fa-users" aria-hidden="true"></span>
-      <h4>Presentes</h4>
+      <h4>Presentes al Servicio N° {{$servicio}}</h4>
     </div>
     <div class="panel-body">
       {!! Form::open([ 'route' => 'servicio.guardar_presentes', 'class' => 'form-horizontal', 'method' => 'POST']) !!}
+
+        {!! Form::hidden('servicio', $servicio) !!}
 
         @foreach($ingresados as $ingresado)
           <div class="col-sm-6 control-label {{ $errors->has('bombero-'.$ingresado->bombero->id) ? ' has-error' : '' }}">
