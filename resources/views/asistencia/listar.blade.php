@@ -19,7 +19,7 @@
           @foreach ($ingresados as $ingresado)
             <tr>
               <td class="text-center">{{$ingresado->bombero->nombre." ". $ingresado->bombero->apellido}}</td>
-              <td>{{Form::select('TipoAsistencia', $tipos_asist, 4,['class' => 'col-xs-12'])}}</td>
+              <td class="text-center"> En el Cuartel</td>
             </tr>
           @endforeach
         </tbody>
@@ -29,9 +29,6 @@
           </tr>
         </tfoot>
         </table>
-        <button type="button" class="btn btn-primary pull-right">
-            <i class="glyphicon glyphicon-ok"></i> Finalizar
-        </button>
     </div>
   </div>
 </article>
