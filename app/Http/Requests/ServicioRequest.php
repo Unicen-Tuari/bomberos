@@ -14,7 +14,7 @@ class ServicioRequest extends Request
      */
     public function authorize()
     {
-        return "verdadero";
+        return "1";
     }
 
     /**
@@ -39,23 +39,23 @@ class ServicioRequest extends Request
               'tipo_alarma' => 'required_if:tipo,1,2,3',
               'autor_llamada' => 'max:100',
               'direccion' => 'required|max:255',
-              'ilesos' => 'required_if:finalizado,"verdadero"|numeric',
-              'lesionados' => 'required_if:finalizado,"verdadero"|numeric',
-              'quemados' => 'required_if:finalizado,"verdadero"|numeric',
-              'muertos' => 'required_if:finalizado,"verdadero"|numeric',
-              'otros' => 'required_if:finalizado,"verdadero"|numeric',
-              'combustible' => 'required_if:finalizado,"verdadero"|numeric',
-              'reconocimiento' => 'required_if:finalizado,"verdadero"|min:5',
-              'disposiciones' => 'required_if:finalizado,"verdadero"|min:5',
+              'ilesos' => 'required_if:finalizar,true|numeric',
+              'lesionados' => 'required_if:finalizar,true|numeric',
+              'quemados' => 'required_if:finalizar,true|numeric',
+              'muertos' => 'required_if:finalizar,true|numeric',
+              'otros' => 'required_if:finalizar,true|numeric',
+              'combustible' => 'required_if:finalizar,true|numeric',
+              'reconocimiento' => 'required_if:finalizar,true|min:5',
+              'disposiciones' => 'required_if:finalizar,true|min:5',
               'alarma' => 'required|date_format:Y-m-d H:i:s',
               'cuartel_colaborador' => 'max:20',
               'superficie' => 'numeric|required_if:tipo,11',
-              'salida' => 'required_if:finalizado,"verdadero"|date_format:Y-m-d H:i:s|after:alarma',
-              'regreso' => 'required_if:finalizado,"verdadero"|date_format:Y-m-d H:i:s|after:salida',
-              'bombero' => 'required_if:finalizado,"verdadero"|exists:bombero,id',
-              'jefe_servicio' => 'required_if:finalizado,"verdadero"|exists:bombero,id',
-              'oficial' => 'required_if:finalizado,"verdadero"|exists:bombero,id',
-              'jefe_de_cuerpo' => 'required_if:finalizado,"verdadero"|exists:bombero,id',
+              'salida' => 'required_if:finalizar,true|date_format:Y-m-d H:i:s|after:alarma',
+              'regreso' => 'required_if:finalizar,true|date_format:Y-m-d H:i:s|after:salida',
+              'bombero' => 'required_if:finalizar,true|exists:bombero,id',
+              'jefe_servicio' => 'required_if:finalizar,true|exists:bombero,id',
+              'oficial' => 'required_if:finalizar,true|exists:bombero,id',
+              'jefe_de_cuerpo' => 'required_if:finalizar,true|exists:bombero,id',
           ];
         }
 

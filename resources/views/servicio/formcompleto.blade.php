@@ -1,8 +1,4 @@
 
-    <div hidden>
-      {!! Form::text($finalizado, 'verdadero', ['class' => 'form-control']) !!}
-    </div>
-
     <div class="form-group">
       {!! Form::label('num_servicio', 'Nº servicio:',['class' => 'col-sm-8 control-label']) !!}
       <div class="col-sm-1">

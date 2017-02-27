@@ -35,6 +35,7 @@
     $jcuerpo=$servicio->jefe_de_cuerpo;
     @endphp
 
+    {!! Form::hidden('finalizar', 0) !!}
     @include('servicio.formcompleto')
   {!! Form::close() !!}
 

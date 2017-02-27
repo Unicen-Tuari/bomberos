@@ -20,7 +20,8 @@ class IngresoController extends Controller
         $ingresados=Ingreso::all();
         return view('asistencia/listar',compact('ingresados'));
     }
-    public function presentes($servicio)
+
+    public function indexPresentes($servicio)
     {
         $ingresados=Ingreso::all();
         $tipos_asistencia=TipoAsistencia::all(['id', 'nombre']);
@@ -32,6 +33,17 @@ class IngresoController extends Controller
         return view('asistencia/presentes',compact('ingresados', 'tipos_asist','servicio'));
     }
 
+    public function editPresentes($servicio)
+    {
+        $presentes=BomberoServicio::where('servicio_id',$servicio)->get();
+        $tipos_asistencia=TipoAsistencia::all(['id', 'nombre']);
+        $tipos_asist = array();
+        foreach ($tipos_asistencia as $tipo_asist)
+        {
+            $tipos_asist[$tipo_asist->id] = $tipo_asist->nombre;
+        }
+        return view('asistencia/presentes',compact('ingresados', 'tipos_asist','servicio'));
+    }
     public function guardarIngreso(Request $request){
       Ingreso::create($request->all());
     }
