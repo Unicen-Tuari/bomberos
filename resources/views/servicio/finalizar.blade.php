@@ -32,6 +32,7 @@
       @endphp
     @endif
 
+    {!! Form::hidden('finalizar', 1) !!}
     @include('servicio.formcompleto')
   {!! Form::close() !!}
 

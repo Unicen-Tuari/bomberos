@@ -49,6 +49,7 @@ Route::put('servicio/activo/{id}/salida', 'ServicioController@salida')->name('se
 Route::resource('servicio','ServicioController');
 
 Route::get('ingreso/listar', 'IngresoController@listarIngresos')->name('ingreso.listar');
-Route::get('ingreso/presentes/{servicio}', 'IngresoController@presentes')->name('ingreso.presentes');
+Route::get('ingreso/presentes/{servicio}', 'IngresoController@indexPresentes')->name('ingreso.indexPresentes');
+Route::get('ingreso/presentes/edit/{servicio}', 'IngresoController@editPresentes')->name('ingreso.editPresentes');
 Route::post('ingreso', 'IngresoController@guardarIngreso')->name('ingreso.guardarIngreso');
 Route::delete('ingreso/{id}', 'IngresoController@borrarIngreso')->name('ingreso.borrarIngreso');
