@@ -76,7 +76,7 @@
         <div class="{{ $errors->has('vehiculo') ? ' has-error' : '' }}">
           {!! Form::label('vehiculo', 'Movil',['class' => 'col-sm-1 control-label']) !!}
           <div class="col-sm-1">
-            {{Form::select('vehiculo', $vehiculos,null,['class' => 'selectMultiple', 'id'=>'listavehiculo'])}}
+            {{Form::select('vehiculo', $vehiculos,$primero,['class' => 'selectMultiple', 'id'=>'listavehiculo'])}}
             @if ($errors->has('vehiculo'))
                 <span class="help-block">
                     <strong>{{ $errors->first('vehiculo') }}</strong>
@@ -90,7 +90,7 @@
           <div class="col-sm-1">
             @php unset($vehiculos[0])
             @endphp
-            {{Form::select('Vehiculos[]', $vehiculos,null,['class' => 'selectMultiple', 'multiple'=>'multiple', 'id'=>'listavehiculos'])}}
+            {{Form::select('vehiculos[]', $vehiculos,$involucrados,['class' => 'selectMultiple', 'multiple'=>'multiple', 'id'=>'listavehiculos'])}}
             @if ($errors->has('vehiculos'))
                 <span class="help-block">
                     <strong>{{ $errors->first('vehiculos') }}</strong>
