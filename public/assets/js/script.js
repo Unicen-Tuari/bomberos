@@ -35,8 +35,21 @@ $(document).ready(function () {
   $('#listavehiculos').on('change', function(){
     calcularCombustible()
   });
+    var anterior=$('#listavehiculo').val();
   $('#listavehiculo').on('change', function(){
-    $('#listavehiculos').val($(this).val());
+    var primero = $(this).val();
+    var array=[];
+    array=$('#listavehiculos').val();
+    var pos=array.indexOf(anterior);
+    if (pos>-1) {
+      array.splice(pos,1);
+    }
+    if (array.indexOf(primero)<0) {
+      anterior=primero;
+      array.unshift(primero);
+      $('#listavehiculos').val(array);
+      $('#listavehiculos').multiselect("refresh");
+    }
     calcularCombustible()
   });
   function calcularCombustible(){

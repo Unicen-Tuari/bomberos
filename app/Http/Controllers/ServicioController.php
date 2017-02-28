@@ -60,11 +60,9 @@ class ServicioController extends Controller
         if ($data["vehiculo"]) {
           //creo las relaciones servicio Vehiculo primera dotacion
           VehiculoServicio::create(['servicio_id'=>$servicio->id,'vehiculo_id'=>$data['vehiculo'],'primero'=>true]);
-        }
-        if(array_key_exists("Vehiculos",$data)){
-          foreach ($data["Vehiculos"] as $vehiculo) {
+          foreach ($data["vehiculos"] as $vehiculo) {
             //creo las relaciones servicio Vehiculos
-            if ($data["vehiculo"]!=$vehiculo) {
+            if ($data["vehiculo"]!=$vehiculo) {//evitamos el que salio primero
               VehiculoServicio::create(['servicio_id'=>$servicio->id,'vehiculo_id'=>$vehiculo,'primero'=>false]);
             }
           }
@@ -213,13 +211,7 @@ class ServicioController extends Controller
       $bombero=$bomberoserv->bombero_id;
       $servicio=Servicio::find($id);
       $bomberos=Bombero::getBomberos();
-      $ing=Ingreso::all();
-      $ingresados = array();
-      $ingresados[0] = "bombero...";
-      foreach ($ing as $data)
-      {
-          $ingresados[$data->id_bombero] = $data->bombero->nombre . " " . $data->bombero->apellido;
-      }
+      $ingresados = $bomberos;
 
       $datasv=Vehiculo::all();
       $vehiculos = array();
@@ -228,6 +220,16 @@ class ServicioController extends Controller
       {
           $vehiculos[$data->id] = $data->patente;
       }
+      $vehiculosSer=VehiculoServicio::where('servicio_id',$servicio->id)->get();
+      $involucrados = array();
+      foreach ($vehiculosSer as $data)
+      {
+          if ($data->primero) {
+            $primero=$data->vehiculo_id;
+          }
+          $involucrados[] = $data->vehiculo_id;
+      }
+
 
       $datas=TipoServicio::all(['id', 'nombre']);
       $tipos = array();
@@ -247,7 +249,8 @@ class ServicioController extends Controller
       {
           $vehiculosparticipantes[] = $data->vehiculo_id;
       }
-      return view('servicio/editar',compact('tipos','servicio','bombero','bomberos','vehiculos','bomberosparticipantes','vehiculosparticipantes','ingresados'));
+      return view('servicio/editar',compact('tipos','servicio','bombero',
+      'bomberos','vehiculos','bomberosparticipantes','vehiculosparticipantes','ingresados','involucrados','primero'));
     }
 
     public function update(ServicioRequest $request, $id)
@@ -272,21 +275,6 @@ class ServicioController extends Controller
         $servicio->oficial=$data['oficial'];
         $servicio->jefe_de_cuerpo=$data['jefe_de_cuerpo'];
 
-
-        // foreach ($eliminarb as $value) {
-        //   if (!in_array ( $value->bombero_id , $data["Bomberos"])) {
-        //     BomberoServicio::where('servicio_id',$servicio->id)->where('bombero_id',$value->bombero_id)->delete();
-        //   }
-        // }
-
-        // Eliminamos los vehiculo que han sido descartado por la edicion
-        // $eliminarv=VehiculoServicio::where('servicio_id',$servicio->id)->get();
-        // foreach ($eliminarv as $value) {
-        //   if (!in_array ( $value->vehiculo_id , $data["Vehiculos"])) {
-        //     VehiculoServicio::where('servicio_id',$servicio->id)->where('vehiculo_id',$value->vehiculo_id)->delete();
-        //   }
-        // }
-
         if ($servicio->save()) {
 
           $bomberoacargo=BomberoServicio::where([['servicio_id',$servicio->id],['a_cargo',1]])->first();
@@ -295,48 +283,31 @@ class ServicioController extends Controller
             if (!$bomberoacargo) {
               BomberoServicio::create(['servicio_id'=>$servicio->id,'bombero_id'=>$data["bombero"],'tipo_id'=>2,'a_cargo'=>true]);
             }else {
-              dd("$bomberoacargo");
               $bomberoacargo->bombero_id=$data['bombero'];
               $bomberoacargo->save();
             }
           }
-          // if ($data["vehiculo"]) {
-          //   //creo las relaciones servicio bomberos
-          //   VehiculoServicio::create(['servicio_id'=>$servicio->id,'vehiculo_id'=>$vehiculo,'primero'=>1]);
-          // }
-          //
-          // if(array_key_exists("Vehiculos",$data)){
-          //   foreach ($data["Vehiculos"] as $vehiculo) {
-          //     //creo las relaciones servicio Vehiculos
-          //     VehiculoServicio::create(['servicio_id'=>$servicio->id,'vehiculo_id'=>$vehiculo]);
-          //   }
-          // }
 
-          // if(array_key_exists("Vehiculos",$data)){
-          //   foreach ($data["Vehiculos"] as $vehiculo) {
-          //     //creo las relaciones servicio Vehiculos de los nuevos Vehiculos
-          //     if (!VehiculoServicio::where('servicio_id',$servicio->id)->where('vehiculo_id',$vehiculo)->count()) {
-          //       VehiculoServicio::create(['servicio_id'=>$servicio->id,'vehiculo_id'=>$vehiculo]);
-          //     }
-          //   }
-          // }
-          // $vehiculos=VehiculoServicio::where('servicio_id',$servicio->id)->get();
-          $primeradotacion=VehiculoServicio::where([['servicio_id',$servicio->id],['primero',1]])->first();
-          if ($data["vehiculo"]) {
-            //creo las relaciones servicio Vehiculo primera dotacion
-            if (condition) {
-              # code...
-            }
-            VehiculoServicio::create(['servicio_id'=>$servicio->id,'vehiculo_id'=>$data['vehiculo'],'primero'=>true]);
-          }
-          if(array_key_exists("Vehiculos",$data)){
-            foreach ($data["Vehiculos"] as $vehiculo) {
-              //creo las relaciones servicio Vehiculos
-              if ($data["vehiculo"]!=$vehiculo) {
-                VehiculoServicio::create(['servicio_id'=>$servicio->id,'vehiculo_id'=>$vehiculo,'primero'=>false]);
-              }
+          $vehiculos=VehiculoServicio::where('servicio_id',$servicio->id)->get();
+          $mantengo= array();
+          foreach ($vehiculos as $value) {
+            if (!in_array ( $value->vehiculo_id , $data["vehiculos"])) {
+              $value->delete();
+            }elseif($value->primero && $value->vehiculo_id!=$data["vehiculo"]){
+              $mantengo[]=$value->vehiculo_id;
+              $value->primero=false;
+              $value->save();
+            }else {
+              $mantengo[]=$value->vehiculo_id;
             }
           }
+          $mantengo = array_diff($data["vehiculos"],$mantengo);
+          foreach ($mantengo as $vehiculo) {
+            VehiculoServicio::create(['servicio_id'=>$servicio->id,'vehiculo_id'=>$vehiculo,'primero'=>false]);
+          }
+          $primerv=VehiculoServicio::where([['servicio_id',$servicio->id],['vehiculo_id',$data["vehiculo"]]])->first();
+          $primerv->primero=true;
+          $primerv->save();
           if ($data["finalizar"]) {
             return redirect()->route('ingreso.indexPresentes',$servicio->id);
           }else {
