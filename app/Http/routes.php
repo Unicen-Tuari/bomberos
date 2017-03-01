@@ -36,19 +36,20 @@ Route::resource('material','MaterialController');
 
 Route::resource('servicio/tipo','TipoServicioController',['except' => ['create']]);
 
-Route::get('servicio/presentes', 'ServicioController@presentes')->name('servicio.presentes');
 Route::get('servicio/llamada', 'ServicioController@llamada')->name('servicio.llamada');
 Route::get('servicio/activo/{id}', 'ServicioController@finalizarActivo')->name('servicio.finalizarActivo');
 route::get('servicio/finalizado', 'ServicioController@finalizado')->name('servicio.finalizado');
 Route::get('servicio/estadistica', 'ServicioController@estadistica')->name('servicio.estadistica');
 Route::get('servicio/{mes}/{anio}/tabla', 'ServicioController@tabla')->name('servicio.tabla');
-Route::post('servicio/guardar_presentes', 'ServicioController@guardar_presentes')->name('servicio.guardar_presentes');
+Route::post('servicio/guardarPresentes', 'ServicioController@guardar_presentes')->name('servicio.guardar_presentes');
 Route::post('servicio/iniciado', 'ServicioController@iniciado')->name('servicio.iniciado');
+Route::put('servicio/editarPresentes', 'ServicioController@editar_presentes')->name('servicio.editar_presentes');
 Route::put('servicio/activo/{id}/finalizar', 'ServicioController@guardarActivo')->name('servicio.guardarActivo');
 Route::put('servicio/activo/{id}/salida', 'ServicioController@salida')->name('servicio.salida');
 Route::resource('servicio','ServicioController');
 
 Route::get('ingreso/listar', 'IngresoController@listarIngresos')->name('ingreso.listar');
+Route::get('ingreso/nuevo/{bombero}', 'IngresoController@addbombero')->name('ingreso.addbombero');
 Route::get('ingreso/presentes/{servicio}', 'IngresoController@indexPresentes')->name('ingreso.indexPresentes');
 Route::get('ingreso/presentes/edit/{servicio}', 'IngresoController@editPresentes')->name('ingreso.editPresentes');
 Route::post('ingreso', 'IngresoController@guardarIngreso')->name('ingreso.guardarIngreso');

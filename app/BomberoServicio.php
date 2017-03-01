@@ -11,9 +11,12 @@ class BomberoServicio extends Model
     protected $fillable = ['servicio_id','bombero_id','tipo_id','a_cargo'];
     protected $primarykey = ['servicio_id','bombero_id'];
 
+    public function bombero(){
+      return $this->hasOne(Bombero::class,"id","bombero_id");
+    }
+
     public function servicio(){
       return $this->belongsTo(Servicio::class);
     }
-
 
 }
