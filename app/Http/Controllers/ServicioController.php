@@ -318,17 +318,6 @@ class ServicioController extends Controller
         }
     }
 
-    public function presentes()
-    {
-        $datas=Ingreso::all(['id', 'id_bombero']);
-        $ingresados = array();
-        foreach ($datas as $data)
-        {
-            $ingresados[$data->id_bombero] = $data->bombero->nombre .' ' .$data->bombero->apellido;
-        }
-        return view('servicio/presentes',compact('ingresados'));
-    }
-
     public function guardar_presentes(Request $request)
     {
         $data=$request->all();
@@ -348,6 +337,23 @@ class ServicioController extends Controller
         return redirect()->route('servicio.index');
     }
 
+    public function editar_presentes(Request $request)
+    {
+      $data=$request->all();
+      foreach ($data as $key => $value) {
+        if (strstr($key, '-', true)=="bombero") {
+          $idbombero=substr($key, 8);
+          $involucrado=BomberoServicio::where([['servicio_id',$data['servicio']],['bombero_id',$idbombero]])->first();
+          if (!$involucrado) {
+            BomberoServicio::create(['servicio_id'=>$data['servicio'],'bombero_id'=>$idbombero,'tipo_id'=>$value]);
+          }elseif((integer)$involucrado->tipo_id!=(integer)$value){
+            $involucrado->tipo_id=$value;
+            $involucrado->save();
+          }
+        }
+      }
+      return redirect()->route('servicio.index');
+    }
 
     public function destroy($id)
     {
