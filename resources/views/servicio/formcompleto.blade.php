@@ -1,4 +1,3 @@
-
     <div hidden>
       {!! Form::text($finalizado, 'verdadero', ['class' => 'form-control']) !!}
     </div>
@@ -10,65 +9,72 @@
       </div>
     </div>
 
-    <div class="form-group ">
-      <div class="{{ $errors->has('tipo_servicio_id') ? ' has-error' : '' }}">
-        {!! Form::label('tipo', 'Tipo de servicio',['class' => 'col-sm-2 col-sm-offset-2 control-label']) !!}
-        <div class="col-sm-2">
-          {{Form::select('tipo', $tipos,$tipo,['class' => 'form-control'])}}
+    @if(Request::url() === 'http://localhost/bomberos/public/servicio/activo/1')
+      <div class="form-group">
+        <button class="col-sm-offset-10 btn btn-primary glyphicon glyphicon-plus toggleDetails"></button>
+      </div>
+    @endif
+    <div class="dataLlamada" hidden>
+      <div class="form-group">
+        <div class="{{ $errors->has('tipo_servicio_id') ? ' has-error' : '' }}">
+          {!! Form::label('tipo', 'Tipo de servicio',['class' => 'col-sm-2 col-sm-offset-2 control-label']) !!}
+          <div class="col-sm-2">
+            {{Form::select('tipo', $tipos,$tipo,['class' => 'form-control'])}}
 
-          @if ($errors->has('tipo_servicio_id'))
-              <span class="help-block">
-                  <strong>{{ $errors->first('tipo_servicio_id') }}</strong>
-              </span>
-          @endif
+            @if ($errors->has('tipo_servicio_id'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('tipo_servicio_id') }}</strong>
+                </span>
+            @endif
+          </div>
+        </div>
+
+        <div class="{{ $errors->has('tipo_alarma') ? ' has-error' : '' }}">
+          {!! Form::label('tipo_alarma', 'Tipo alarma',['class' => 'col-sm-2 control-label']) !!}
+          <div class="col-sm-2">
+            {{Form::select('tipo_alarma', [null =>'Ninguna',1 => 'Interna',2 => 'Selectiva',3 => 'General'],$tipo_alarma or 1,['class' => 'form-control'])}}
+
+            @if ($errors->has('tipo_alarma'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('tipo_alarma') }}</strong>
+                </span>
+            @endif
+          </div>
         </div>
       </div>
 
-      <div class="{{ $errors->has('tipo_alarma') ? ' has-error' : '' }}">
-        {!! Form::label('tipo_alarma', 'Tipo alarma',['class' => 'col-sm-2 control-label']) !!}
-        <div class="col-sm-2">
-          {{Form::select('tipo_alarma', [null =>'Ninguna',1 => 'Interna',2 => 'Selectiva',3 => 'General'],$tipo_alarma or 1,['class' => 'form-control'])}}
+      <div class="form-group {{ $errors->has('autor_llamada') ? ' has-error' : '' }}">
+        {!! Form::label('autor_llamada', 'Autor llamada',['class' => 'col-sm-4 control-label']) !!}
+        <div class="col-sm-6">
+            {!! Form::text('autor_llamada', $llamada, ['class' => 'form-control']) !!}
 
-          @if ($errors->has('tipo_alarma'))
-              <span class="help-block">
-                  <strong>{{ $errors->first('tipo_alarma') }}</strong>
-              </span>
-          @endif
+            @if ($errors->has('autor_llamada'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('autor_llamada') }}</strong>
+                </span>
+            @endif
         </div>
       </div>
-    </div>
 
-    <div class="form-group {{ $errors->has('autor_llamada') ? ' has-error' : '' }}">
-      {!! Form::label('autor_llamada', 'Autor llamada',['class' => 'col-sm-4 control-label']) !!}
-      <div class="col-sm-6">
-          {!! Form::text('autor_llamada', $llamada, ['class' => 'form-control']) !!}
+      <div class="form-group {{ $errors->has('direccion') ? ' has-error' : '' }}">
+        {!! Form::label('direccion', 'Direccion',['class' => 'col-sm-4 control-label']) !!}
+        <div class="col-sm-6">
+            {!! Form::text('direccion', $direccion, ['class' => 'form-control']) !!}
 
-          @if ($errors->has('autor_llamada'))
-              <span class="help-block">
-                  <strong>{{ $errors->first('autor_llamada') }}</strong>
-              </span>
-          @endif
-      </div>
-    </div>
-
-    <div class="form-group {{ $errors->has('direccion') ? ' has-error' : '' }}">
-      {!! Form::label('direccion', 'Direccion',['class' => 'col-sm-4 control-label']) !!}
-      <div class="col-sm-6">
-          {!! Form::text('direccion', $direccion, ['class' => 'form-control']) !!}
-
-          @if ($errors->has('direccion'))
-              <span class="help-block">
-                  <strong>{{ $errors->first('direccion') }}</strong>
-              </span>
-          @endif
+            @if ($errors->has('direccion'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('direccion') }}</strong>
+                </span>
+            @endif
+        </div>
       </div>
     </div>
 
     <div class="form-group">
         <div class="{{ $errors->has('bombero') ? ' has-error' : '' }}">
           {!! Form::label('bombero', 'Bombero a cargo',['class' => 'col-sm-2 col-sm-offset-2 control-label']) !!}
-          <div class="col-sm-1">
-            {{Form::select('bombero', $bomberos,$bombero or null,['class' => 'selectMultiple'])}}
+          <div class="col-sm-8">
+            {{Form::select('bombero', $bomberos, $bombero or null, ['class' => 'selectMultiple'])}}
             @if ($errors->has('bombero'))
                 <span class="help-block">
                     <strong>{{ $errors->first('bombero') }}</strong>
@@ -76,33 +82,34 @@
             @endif
           </div>
         </div>
+      </div>
 
-        <div class="{{ $errors->has('vehiculo') ? ' has-error' : '' }}">
-          {!! Form::label('vehiculo', 'Movil',['class' => 'col-sm-1 control-label']) !!}
-          <div class="col-sm-1">
-            {{Form::select('vehiculo', $vehiculos,null,['class' => 'selectMultiple', 'id'=>'listavehiculos'])}}
-            @if ($errors->has('vehiculo'))
-                <span class="help-block">
-                    <strong>{{ $errors->first('vehiculo') }}</strong>
-                </span>
-            @endif
-          </div>
+    <div class="form-group">
+      <div class="{{ $errors->has('vehiculo') ? ' has-error' : '' }}">
+        {!! Form::label('vehiculo', 'Movil',['class' => 'col-sm-2  col-sm-offset-2 control-label']) !!}
+        <div class="col-sm-2">
+          {{Form::select('vehiculo', $vehiculos,null,['class' => 'selectMultiple', 'id'=>'listavehiculos'])}}
+          @if ($errors->has('vehiculo'))
+              <span class="help-block">
+                  <strong>{{ $errors->first('vehiculo') }}</strong>
+              </span>
+          @endif
         </div>
+      </div>
 
-        <div class="{{ $errors->has('vehiculos') ? ' has-error' : '' }}">
-          {!! Form::label('vehiculos', 'Vehiculos involucrados',['class' => 'col-sm-2 control-label']) !!}
-          <div class="col-sm-1">
-            @php unset($vehiculos[0])
-            @endphp
-            {{Form::select('Vehiculos[]', $vehiculos,null,['class' => 'selectMultiple', 'multiple'=>'multiple', 'id'=>'listavehiculos'])}}
-            @if ($errors->has('vehiculos'))
-                <span class="help-block">
-                    <strong>{{ $errors->first('vehiculos') }}</strong>
-                </span>
-            @endif
-          </div>
+      <div class="{{ $errors->has('vehiculos') ? ' has-error' : '' }}">
+        {!! Form::label('vehiculos', 'Vehiculos involucrados',['class' => 'col-sm-2 control-label']) !!}
+        <div class="col-sm-2">
+          @php unset($vehiculos[0])
+          @endphp
+          {{Form::select('Vehiculos[]', $vehiculos,null,['class' => 'selectMultiple', 'multiple'=>'multiple', 'id'=>'listavehiculos'])}}
+          @if ($errors->has('vehiculos'))
+              <span class="help-block">
+                  <strong>{{ $errors->first('vehiculos') }}</strong>
+              </span>
+          @endif
         </div>
-
+      </div>
     </div>
 
     <div class="form-group">

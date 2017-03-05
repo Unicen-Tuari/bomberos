@@ -26,6 +26,7 @@ Route::get('bombero/responsable', 'BomberoController@altaResponsable')->name('bo
 Route::resource('bombero','BomberoController',['except' => ['show']]);
 
 Route::get('asistencia/puntuacion', 'AsistenciaController@puntuacion')->name('asistencia.puntuacion');
+Route::get('asistencia/obligatoria', 'IngresoController@listarIngresos')->name('asistencia.obligatoria');
 Route::resource('asistencia','AsistenciaController');
 
 Route::get('vehiculo/info/{vehiculo}', 'VehiculoController@info')->name('vehiculo.info');
