@@ -10,7 +10,7 @@
       <div class="{{ $errors->has('tipo_servicio_id') ? ' has-error' : '' }}">
         {!! Form::label('tipo', 'Tipo de servicio',['class' => 'col-sm-2 col-sm-offset-1 control-label']) !!}
         <div class="col-sm-2">
-          {{Form::select('tipo', $tipos,$tipo,['class' => 'form-control'])}}
+          {{Form::select('tipo', config('selects.tipoServicio'),$tipo,['class' => 'form-control'])}}
 
           @if ($errors->has('tipo_servicio_id'))
               <span class="help-block">
@@ -23,7 +23,7 @@
       <div class="{{ $errors->has('tipo_alarma') ? ' has-error' : '' }}">
         {!! Form::label('tipo_alarma', 'Tipo alarma',['class' => 'col-sm-2 control-label']) !!}
         <div class="col-sm-2">
-          {{Form::select('tipo_alarma', [null =>'Ninguna',1 => 'Interna',2 => 'Selectiva',3 => 'General'],$tipo_alarma or 1,['class' => 'form-control'])}}
+          {{Form::select('tipo_alarma', config('selects.tipoAlarma'),$tipo_alarma or 1,['class' => 'form-control'])}}
 
           @if ($errors->has('tipo_alarma'))
               <span class="help-block">
