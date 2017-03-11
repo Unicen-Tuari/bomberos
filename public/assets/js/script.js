@@ -31,18 +31,36 @@ $(document).ready(function () {
         selectAllJustVisible: true,
         maxHeight: 300,
   });
-$('#listavehiculos').on('change', function(){
-  calcularCombustible()
-});
+
+  $('#listavehiculos').on('change', function(){
+    calcularCombustible()
+  });
+    var anterior=$('#listavehiculo').val();
+  $('#listavehiculo').on('change', function(){
+    var primero = $(this).val();
+    var array=[];
+    array=$('#listavehiculos').val();
+    var pos=array.indexOf(anterior);
+    if (pos>-1) {
+      array.splice(pos,1);
+    }
+    if (array.indexOf(primero)<0) {
+      anterior=primero;
+      array.unshift(primero);
+      $('#listavehiculos').val(array);
+      $('#listavehiculos').multiselect("refresh");
+    }
+    calcularCombustible()
+  });
   function calcularCombustible(){
     var factor = $('#combustible').attr('idfactor');
-    var inicio = $('#horaAlarma').val();
+    var inicio = $('#horaSalida').val();
     var horaInicio = inicio.split(' ');
     var fechaInicio = horaInicio[0].split('-');
     var diaInicio = fechaInicio[2];
     var secondsHoraInicio = horaInicio[1].split(':');
     var secondsI = (+secondsHoraInicio[0]) * 60 * 60 + (+secondsHoraInicio[1]) * 60 + (+secondsHoraInicio[2]);
-    var fin = $('#horaSalida').val();
+    var fin = $('#horaRegreso').val();
     var horaFin = fin.split(' ');
     var fechaFin = horaFin[0].split('-');
     var diaFin = fechaFin[2];
@@ -56,11 +74,11 @@ $('#listavehiculos').on('change', function(){
      $('#combustible').val((factor * (secondsF-secondsI)/60)*cantVehiculos);
   };
 
-  $('#horaAlarma').on('change', function(){
+  $('#horaSalida').on('change', function(){
     calcularCombustible()
   });
 
-  $('#horaSalida').on('change', function(){
+  $('#horaRegreso').on('change', function(){
     calcularCombustible()
   });
   $('#baja').on('click', function(){
