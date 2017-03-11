@@ -9,7 +9,7 @@
       </div>
     </div>
 
-    @if(Request::url() === 'http://localhost/bomberos/public/servicio/activo/1')
+    @if(Request::url() === 'http://localhost/bomberos/public/servicio/activo/2')
       <div class="form-group">
         <button class="col-sm-offset-10 btn btn-primary glyphicon glyphicon-plus toggleDetails"></button>
       </div>
