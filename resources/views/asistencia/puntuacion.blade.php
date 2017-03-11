@@ -39,6 +39,7 @@
           </tr>
         </thead>
         <tbody>
+          {{-- @foreach ($bomberos as $bombero) --}}
           <tr>
             <th class="text-center">033-041</th>
             <th class="text-center">Apellido Nombre</th>
@@ -56,6 +57,7 @@
             <th class="text-center">452</th>
             <th class="text-center">15 dias lic. Anual </th>
           </tr>
+          {{-- @endforeach --}}
         </tbody>
         <tfoot>
           <tr>

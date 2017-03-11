@@ -9,14 +9,15 @@
       <h4>Presentes al Servicio N° {{$servicio}}</h4>
     </div>
     <div class="panel-body">
-      {!! Form::open([ 'route' => 'servicio.guardar_presentes', 'class' => 'form-horizontal', 'method' => 'POST']) !!}
+
+      {!! Form::open([ 'route' => 'servicio.editar_presentes', 'class' => 'form-horizontal', 'method' => 'PUT']) !!}
 
         {!! Form::hidden('servicio', $servicio) !!}
 
         <div class="form-group bomberosparticipantes">
           @foreach($ingresados as $ingresado)
             @php
-              $asistselec=5;
+              $asistselec=$ingresado->tipo_id;
             @endphp
             @include('asistencia.bombero')
           @endforeach
