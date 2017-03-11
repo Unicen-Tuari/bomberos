@@ -37,6 +37,7 @@
   </thead>
   <tbody>
     <?php
+      // variables para la sumatorias total del mes
       $cantVehiculos = $cantCombustible = $cantBomberos = $totalMinutos = $totalMinutosBomberos = $cantIlesos = $cantMuertos = $cantQuemados = $cantLesionados = $cantOtros =0;
       $tipo1 = $tipo2 = $tipo3 = $tipo4 = $tipo5 = $tipo6 = $tipo7 = $tipo8 = $tipo9 = $tipo10 = $tipo11 = 0;
     ?>
@@ -175,7 +176,7 @@
           <th class="text-center">{{$tipo11}}</th>
           <th class="text-center">#</th>
           <th class="text-center">#</th>
-          <th class="text-center"></th>
+          <th class="text-center">{{count($servicios)}}</th>
       </tr>
       <tr>
         <td class="text-center" colspan="28"> Estadisticas de #</td>

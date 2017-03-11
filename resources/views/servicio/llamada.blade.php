@@ -17,7 +17,7 @@
         <div class="form-group">
           {!! Form::label('Tipo', 'Tipo de servicio',['class' => 'col-md-2 col-md-offset-2 control-label']) !!}
           <div class="col-md-2">
-            {{Form::select('tipo', $tipos,null,['class' => 'form-control'])}}
+            {{Form::select('tipo', config('selects.tiposServicios'),null,['class' => 'form-control'])}}
           </div>
 
           <div class="{{ $errors->has('tipo_alarma') ? ' has-error' : '' }}">

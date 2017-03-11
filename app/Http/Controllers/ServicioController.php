@@ -74,12 +74,6 @@ class ServicioController extends Controller
     }
 
     public function create(){
-      $datas=TipoServicio::all();
-      $tipos = array();
-      foreach ($datas as $data)
-      {
-          $tipos[$data->id] = $data->nombre;
-      }
       $bomberos=Bombero::getBomberos();
       $ing=Ingreso::all();
       $ingresados = array();
@@ -88,7 +82,7 @@ class ServicioController extends Controller
       {
           $ingresados[$data->id_bombero] = $data->bombero->nombre . " " . $data->bombero->apellido;
       }
-      $datasv=Vehiculo::all(['id', 'patente']);
+      $datasv=Vehiculo::where('activo',1)->get();
       $vehiculos = array();
       $vehiculos[0] = "vehiculo...";
       foreach ($datasv as $data)
@@ -101,29 +95,17 @@ class ServicioController extends Controller
       }else {
         $ultimo=1;
       }
-      return view('servicio/finalizado',compact('tipos','bomberos','vehiculos','ultimo','ingresados'));
+      return view('servicio/finalizado',compact('bomberos','vehiculos','ultimo','ingresados'));
     }
 
     public function llamada()
     {
-        $datas=TipoServicio::all(['id', 'nombre']);
-        $tipos = array();
-        foreach ($datas as $data)
-        {
-            $tipos[$data->id] = $data->nombre;
-        }
-        return view('servicio/llamada',compact('tipos'));
+        return view('servicio/llamada');
     }
     public function finalizarActivo($id)
     {
       // cambiar conteniado
         $servicio=Servicio::find($id);
-        $datas=TipoServicio::all(['id', 'nombre']);
-        $tipos = array();
-        foreach ($datas as $data)
-        {
-            $tipos[$data->id] = $data->nombre;
-        }
         $bomberos=Bombero::getBomberos();
         $ing=Ingreso::all();
         $ingresados = array();
@@ -139,7 +121,7 @@ class ServicioController extends Controller
         {
             $vehiculos[$data->id] = $data->patente;
         }
-        return view('servicio/finalizar',compact('tipos','bomberos','vehiculos','servicio','ingresados'));
+        return view('servicio/finalizar',compact('bomberos','vehiculos','servicio','ingresados'));
     }
 
 
@@ -230,14 +212,6 @@ class ServicioController extends Controller
           $involucrados[] = $data->vehiculo_id;
       }
 
-
-      $datas=TipoServicio::all(['id', 'nombre']);
-      $tipos = array();
-      foreach ($datas as $data)
-      {
-          $tipos[$data->id] = $data->nombre;
-      }
-
       $bomberosparticipantes=array();
       foreach ($servicio->bomberos as $data)
       {
@@ -249,8 +223,8 @@ class ServicioController extends Controller
       {
           $vehiculosparticipantes[] = $data->vehiculo_id;
       }
-      return view('servicio/editar',compact('tipos','servicio','bombero',
-      'bomberos','vehiculos','bomberosparticipantes','vehiculosparticipantes','ingresados','involucrados','primero'));
+      return view('servicio/editar',compact('servicio','bombero','bomberos',
+      'vehiculos','bomberosparticipantes','vehiculosparticipantes','ingresados','involucrados','primero'));
     }
 
     public function update(ServicioRequest $request, $id)
