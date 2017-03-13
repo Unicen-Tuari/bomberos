@@ -55,13 +55,13 @@
             <th class="text-center">35,00</th>
             <th class="text-center"> </th>
             <th class="text-center">452</th>
-            <th class="text-center">15 dias lic. Anual </th>
+            <th class="text-center">30 dias lic. Anual </th>
           </tr>
           {{-- @endforeach --}}
         </tbody>
         <tfoot>
           <tr>
-            <td class="text-center" colspan="9"> lista de bomberos activos </td>
+            <td class="text-center" colspan="15"> lista de bomberos activos </td>
           </tr>
         </tfoot>
         <br>

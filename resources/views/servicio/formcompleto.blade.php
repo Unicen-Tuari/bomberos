@@ -8,7 +8,7 @@
 
     <div class="form-group ">
       <div class="{{ $errors->has('tipo_servicio_id') ? ' has-error' : '' }}">
-        {!! Form::label('tipo', 'Tipo de servicio',['class' => 'col-sm-2 col-sm-offset-1 control-label']) !!}
+        {!! Form::label('tipo', 'Tipo de servicio',['class' => 'col-sm-2 control-label']) !!}
         <div class="col-sm-2">
           {{Form::select('tipo', config('selects.tipoServicio'),$tipo,['class' => 'form-control'])}}
 
@@ -21,7 +21,7 @@
       </div>
 
       <div class="{{ $errors->has('tipo_alarma') ? ' has-error' : '' }}">
-        {!! Form::label('tipo_alarma', 'Tipo alarma',['class' => 'col-sm-2 control-label']) !!}
+        {!! Form::label('tipo_alarma', 'Tipo alarma',['class' => 'col-sm-2 col-sm-offset-1 control-label']) !!}
         <div class="col-sm-2">
           {{Form::select('tipo_alarma', config('selects.tipoAlarma'),$tipo_alarma or 1,['class' => 'form-control'])}}
 
@@ -35,8 +35,8 @@
     </div>
 
     <div class="form-group {{ $errors->has('autor_llamada') ? ' has-error' : '' }}">
-      {!! Form::label('autor_llamada', 'Autor llamada',['class' => 'col-sm-3 control-label']) !!}
-      <div class="col-sm-6">
+      {!! Form::label('autor_llamada', 'Autor llamada',['class' => 'col-sm-2 control-label']) !!}
+      <div class="col-sm-8">
           {!! Form::text('autor_llamada', $llamada, ['class' => 'form-control']) !!}
 
           @if ($errors->has('autor_llamada'))
@@ -48,8 +48,8 @@
     </div>
 
     <div class="form-group {{ $errors->has('direccion') ? ' has-error' : '' }}">
-      {!! Form::label('direccion', 'Direccion',['class' => 'col-sm-3 control-label']) !!}
-      <div class="col-sm-6">
+      {!! Form::label('direccion', 'Direccion',['class' => 'col-sm-2 control-label']) !!}
+      <div class="col-sm-8">
           {!! Form::text('direccion', $direccion, ['class' => 'form-control']) !!}
 
           @if ($errors->has('direccion'))
@@ -62,7 +62,7 @@
 
     <div class="form-group">
         <div class="{{ $errors->has('bombero') ? ' has-error' : '' }}">
-          {!! Form::label('bombero', 'Bombero a cargo',['class' => 'col-sm-2 col-sm-offset-1 control-label']) !!}
+          {!! Form::label('bombero', 'Bombero a cargo',['class' => 'col-sm-2 control-label']) !!}
           <div class="col-sm-1">
             {{Form::select('bombero', $ingresados,$bombero,['class' => 'selectMultiple'])}}
             @if ($errors->has('bombero'))
@@ -74,7 +74,7 @@
         </div>
 
         <div class="{{ $errors->has('vehiculo') ? ' has-error' : '' }}">
-          {!! Form::label('vehiculo', 'Movil',['class' => 'col-sm-1 control-label']) !!}
+          {!! Form::label('vehiculo', 'Movil',['class' => 'col-sm-1 col-sm-offset-1 control-label']) !!}
           <div class="col-sm-1">
             {{Form::select('vehiculo', $vehiculos,$primero,['class' => 'selectMultiple', 'id'=>'listavehiculo'])}}
             @if ($errors->has('vehiculo'))
@@ -86,7 +86,7 @@
         </div>
 
         <div class="{{ $errors->has('vehiculos') ? ' has-error' : '' }}">
-          {!! Form::label('vehiculos', 'Vehiculos involucrados',['class' => 'col-sm-2 control-label']) !!}
+          {!! Form::label('vehiculos', 'Vehiculos involucrados',['class' => 'col-sm-2 col-sm-offset-1 control-label']) !!}
           <div class="col-sm-1">
             @php unset($vehiculos[0])
             @endphp
@@ -103,7 +103,7 @@
 
     <div class="form-group">
       <div class="{{ $errors->has('ilesos') ? ' has-error' : '' }}">
-        {!! Form::label('ilesos', 'Ilesos',['class' => 'col-sm-2 col-sm-offset-1 control-label']) !!}
+        {!! Form::label('ilesos', 'Ilesos',['class' => 'col-sm-2 control-label']) !!}
         <div class="col-md-1">
             {!! Form::text('ilesos', $ilesos , ['class' => 'form-control']) !!}
 
@@ -116,7 +116,7 @@
       </div>
 
       <div class="{{ $errors->has('lesionados') ? ' has-error' : '' }}">
-        {!! Form::label('lesionados', 'Lesionados',['class' => 'col-md-1 control-label']) !!}
+        {!! Form::label('lesionados', 'Lesionados',['class' => 'col-md-1 col-sm-offset-1 control-label']) !!}
         <div class="col-md-1">
             {!! Form::text('lesionados', $lesionados , ['class' => 'form-control']) !!}
 
@@ -129,7 +129,7 @@
       </div>
 
       <div class="{{ $errors->has('quemados') ? ' has-error' : '' }}">
-        {!! Form::label('quemados', 'Quemados',['class' => 'col-md-1 control-label']) !!}
+        {!! Form::label('quemados', 'Quemados',['class' => 'col-md-1 col-sm-offset-1 control-label']) !!}
         <div class="col-md-1">
             {!! Form::text('quemados', $quemados , ['class' => 'form-control']) !!}
 
@@ -145,7 +145,7 @@
 
     <div class="form-group">
       <div class="{{ $errors->has('muertos') ? ' has-error' : '' }}">
-        {!! Form::label('muertos', 'Muertos',['class' => 'col-sm-2 col-sm-offset-1 control-label']) !!}
+        {!! Form::label('muertos', 'Muertos',['class' => 'col-sm-2 control-label']) !!}
         <div class="col-sm-1">
             {!! Form::text('muertos', $muertos , ['class' => 'form-control']) !!}
 
@@ -158,7 +158,7 @@
       </div>
 
       <div class="{{ $errors->has('otros') ? ' has-error' : '' }}">
-        {!! Form::label('otros', 'Otros',['class' => 'col-sm-1 control-label']) !!}
+        {!! Form::label('otros', 'Otros',['class' => 'col-sm-1 col-sm-offset-1 control-label']) !!}
         <div class="col-sm-1">
             {!! Form::text('otros', $otros , ['class' => 'form-control']) !!}
 
@@ -171,7 +171,7 @@
       </div>
 
       <div class="{{ $errors->has('superficie') ? ' has-error' : '' }}">
-        {!! Form::label('superficie', 'Superficie',['class' => 'col-sm-1 control-label']) !!}
+        {!! Form::label('superficie', 'Superficie',['class' => 'col-sm-1 col-sm-offset-1 control-label']) !!}
         <div class="col-sm-1">
             {!! Form::text('superficie', $superficie , ['class' => 'form-control']) !!}
 
@@ -186,8 +186,8 @@
     </div>
 
     <div class="form-group {{ $errors->has('cuartel_colaborador') ? ' has-error' : '' }}">
-      {!! Form::label('cuartel_colaborador', 'Cuartel colaborador',['class' => 'col-sm-3 control-label']) !!}
-      <div class="col-sm-6">
+      {!! Form::label('cuartel_colaborador', 'Cuartel colaborador',['class' => 'col-sm-2 control-label']) !!}
+      <div class="col-sm-8">
           {!! Form::text('cuartel_colaborador', $cuartel, ['class' => 'form-control']) !!}
 
           @if ($errors->has('cuartel_colaborador'))
@@ -199,8 +199,8 @@
     </div>
 
     <div class="form-group {{ $errors->has('combustible') ? ' has-error' : '' }}">
-      {!! Form::label('combustible', 'Combustible',['class' => 'col-sm-3 control-label']) !!}
-      <div class="col-sm-6">
+      {!! Form::label('combustible', 'Combustible',['class' => 'col-sm-2 control-label']) !!}
+      <div class="col-sm-8">
           {!! Form::text('combustible', $combustible , ['class' => 'form-control', 'id'=>'combustible', 'idfactor'=> 0.3333]) !!}
 
           @if ($errors->has('combustible'))
@@ -212,8 +212,8 @@
     </div>
 
     <div class="form-group {{ $errors->has('reconocimiento') ? ' has-error' : '' }}">
-      {!! Form::label('reconocimiento', 'Reconocimiento',['class' => 'col-sm-3 control-label']) !!}
-      <div class="col-sm-6">
+      {!! Form::label('reconocimiento', 'Reconocimiento',['class' => 'col-sm-2 control-label']) !!}
+      <div class="col-sm-8">
           {!! Form::textarea('reconocimiento', $reconocimiento, ['class' => 'form-control' , 'rows' => '8']) !!}
 
           @if ($errors->has('reconocimiento'))
@@ -225,8 +225,8 @@
     </div>
 
     <div class="form-group {{ $errors->has('disposiciones') ? ' has-error' : '' }}">
-      {!! Form::label('disposiciones', 'Disposiciones',['class' => 'col-sm-3 control-label']) !!}
-      <div class="col-sm-6">
+      {!! Form::label('disposiciones', 'Disposiciones',['class' => 'col-sm-2 control-label']) !!}
+      <div class="col-sm-8">
         {!! Form::textarea('disposiciones', $disposiciones, ['class' => 'form-control', 'rows' => '4']) !!}
 
         @if ($errors->has('disposiciones'))
