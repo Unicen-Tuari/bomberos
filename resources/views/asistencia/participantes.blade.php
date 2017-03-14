@@ -27,7 +27,7 @@
         <div class="form-group">
           <div class="col-md-3 col-md-offset-6">
             <button type="submit" class="btn btn-primary">
-                <i class="glyphicon glyphicon-bell"></i> Finalizar Edit
+                <i class="glyphicon glyphicon-bell"></i> Finalizar
             </button>
           </div>
         </div>
