@@ -35,7 +35,7 @@ class IngresoController extends Controller
         return view('asistencia/participantes',compact('bomberos','servicio'));
     }
 
-    // esto esta en ajax era cuando no interesaba marcar ausentes  
+    // esto esta en ajax era cuando no interesaba marcar ausentes
     // public function addbombero($bombero)
     // {
     //   $bombero=Bombero::find($bombero);

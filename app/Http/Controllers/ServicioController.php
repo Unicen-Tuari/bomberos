@@ -24,7 +24,7 @@ class ServicioController extends Controller
 
     public function index()
     {
-      $servicios=Servicio::orderBy('hora_regreso','DESC')->paginate(12);
+      $servicios=Servicio::paginate(12);
       return view('servicio/servicios',compact('servicios'));
     }
 
@@ -284,8 +284,8 @@ class ServicioController extends Controller
           $primerv=VehiculoServicio::where([['servicio_id',$servicio->id],['vehiculo_id',$data["vehiculo"]]])->first();
           $primerv->primero=true;
           $primerv->save();
-          if ($data["finalizar"]) {
-            return redirect()->route('ingreso.indexPresentes',$servicio->id);
+          if ($data["finalizar"]!=0) {
+            return redirect()->route('ingreso.indexPresentes',[0=>$servicio->id,1=>$data['bombero']]);
           }else {
             return redirect()->route('ingreso.editPresentes',$servicio->id);
           }
@@ -315,8 +315,7 @@ class ServicioController extends Controller
 
     public function editar_presentes(Request $request)
     {
-      $data=$request->all();
-      foreach ($data as $key => $value) {
+      foreach ($request as $key => $value) {
         if (strstr($key, '-', true)=="bombero") {
           $idbombero=substr($key, 8);
           $involucrado=BomberoServicio::where([['servicio_id',$data['servicio']],['bombero_id',$idbombero]])->first();

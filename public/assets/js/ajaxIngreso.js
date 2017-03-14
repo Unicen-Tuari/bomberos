@@ -18,7 +18,6 @@ $(document).ready(function () {
     var formDelete = $('#form-delete');
     var url = formDelete.attr('action').replace(':USER_ID', id);
     var data = formDelete.serialize();
-    alert(url);
     $.post(url, data, function(result){
       alert("Se registro el egreso");
     });
