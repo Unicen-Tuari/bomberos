@@ -39,7 +39,7 @@
         <div class="form-group">
           <div class="col-md-3 col-md-offset-6">
             <button type="submit" class="btn btn-primary">
-                <i class="glyphicon glyphicon-bell"></i> Finalizar
+                <i class="glyphicon glyphicon-bell"></i> Finalizar guar
             </button>
           </div>
         </div>
