@@ -53,10 +53,6 @@ class ServicioController extends Controller
       $servicio->jefe_de_cuerpo=$data['jefe_de_cuerpo'];
       if ($servicio->save()) {
 
-        if ($data["bombero"]) {
-          //creo las relaciones servicio bomberos                                          tipo_id es tipo asistencia 2 primera dotacion
-          $a_cargo = BomberoServicio::create(['servicio_id'=>$servicio->id,'bombero_id'=>$data["bombero"],'tipo_id'=>2,'a_cargo'=>true]);
-        }
         if ($data["vehiculo"]) {
           //creo las relaciones servicio Vehiculo primera dotacion
           VehiculoServicio::create(['servicio_id'=>$servicio->id,'vehiculo_id'=>$data['vehiculo'],'primero'=>true]);
@@ -67,7 +63,8 @@ class ServicioController extends Controller
             }
           }
         }
-       return redirect()->route('ingreso.indexPresentes',$servicio->id);
+
+       return redirect()->route('ingreso.indexPresentes',[0=>$servicio->id,1=>$data['bombero']]);
       }else {
         dd('fallo');
       }
@@ -164,11 +161,11 @@ class ServicioController extends Controller
         return view('servicio/estadistica');
     }
 
-    public function tabla($mes,$anio)
+    public function tabla($mes,$año)
     {
         $servicios=Servicio::all();
         foreach ($servicios as $key => $servicio) {
-          if (!((\Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$servicio->hora_alarma)->format('m')==$mes ) &&  (\Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$servicio->hora_alarma)->format('Y')==$anio)))
+          if (!((\Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$servicio->hora_alarma)->format('m')==$mes ) &&  (\Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$servicio->hora_alarma)->format('Y')==$año)))
           {
             unset($servicios[$key]);
           }

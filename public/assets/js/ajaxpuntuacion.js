@@ -1,13 +1,15 @@
 $(document).ready(function () {
-  function cargarTabla(){
+  function cargarPuntuacion(){
+    var URLactual = window.location.href;
+    var ruta=URLactual.substring(0, URLactual.indexOf("asistencia"));
     var mes=$('#mes').val();
     var año=$('#año').val();
 		$.ajax({
 			type: 'GET',
 			dataType: 'HTML',
-			url: '../servicio/'+mes+'/'+año+'/tabla',
+			url: ruta+'asistencia/'+mes+'/'+año+'/puntuacionmes',
 			success: function(data){
-						$('#estadistica').html(data);
+						$('#puntuacion').html(data);
 					},
 			error: function(){
 						alert('Error al Cargar la tabla ');
@@ -15,12 +17,13 @@ $(document).ready(function () {
 		});
   };
 
+  cargarPuntuacion();
+
   $('#mes').on('change',function(){
-    cargarTabla();
+    cargarPuntuacion();
   });
 
   $('#año').on('change',function(){
-    cargarTabla();
+    cargarPuntuacion();
   });
-  cargarTabla();
 });

@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Ingresado;
 
 class Bombero extends Model
 {
@@ -28,6 +29,6 @@ class Bombero extends Model
   }
 
   public function ingresado(){
-      return $this->belongsTo(Ingreso::class);
+      return $this->hasOne(Ingreso::class,"id_bombero","id");
   }
 }
