@@ -47,6 +47,20 @@ return ['jerarquia' => [1 => 'Oficial Superior',
                     9 => 'ELEMENTOS DE COMPAÑIA',
                     10 => 'LOGISTICA - TRANSPORTE',
                     11 => 'EQUIPOS DE PROTECCIÓN PERSONAL',
-                    12 => 'VARIOS']
+                    12 => 'VARIOS'],
+
+'meses' => [1 => 'ENERO',
+                    2 => 'FEBRERO',
+                    3 => 'MARZO',
+                    4 => 'ABRIL',
+                    5 => 'MAYO',
+                    6 => 'JUNIO',
+                    7 => 'JULIO',
+                    8 => 'AGOSTO',
+                    9 => 'SEPTIEMBRE',
+                    10 => 'OCTUBRE',
+                    11 => 'NOVIEMBRE',
+                    12 => 'DICIEMBRE'],
+
 
       ];

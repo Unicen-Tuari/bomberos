@@ -1,9 +1,9 @@
 <table  class="table table-bordered">
   <thead><!--Titulos de la tabla-->
     <tr>
-      <th colspan="2" class="text-center">Periodo</th>
-      <th colspan="3" class="text-center">asist Oblig</th>
-      <th colspan="2" class="text-center">Accid 14</th>
+      <th colspan="2" class="text-center">Periodo {{config('selects.meses')[$mes].'-'.$año}}</th>
+      <th colspan="3" class="text-center">ASIST OBLIG</th>
+      <th colspan="2" class="text-center">ACCID. {{count($servicios)}}</th>
       <th class="text-center">Dedicación</th>
       <th colspan="2" class="text-center">Asist. Guardias</th>
       <th class="text-center">Especiales</th>
@@ -36,8 +36,8 @@
       <th class="text-center">1320</th>
       <th class="text-center">12</th>
       <th class="text-center">5,00</th>
-      <th class="text-center">13</th>
-      <th class="text-center">25.57</th>
+      <th class="text-center">{{count($bombero->cantServicios($mes,$año))}}</th>
+      <th class="text-center">{{(40/count($servicios))*count($bombero->cantServicios($mes,$año))}}</th>
       <th class="text-center">15</th>
       <th class="text-center">430,00</th>
       <th class="text-center">10,00</th>

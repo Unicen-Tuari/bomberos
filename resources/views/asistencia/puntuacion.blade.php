@@ -11,13 +11,13 @@
       <div class="form-group col-sm-2">
         {{ Form::label('mess', 'Mes:',['class' => 'control-label col-sm-2 col-sm-offset-1']) }}
         <div class="col-sm-9">
-          {{Form::selectMonth('mes', \Carbon\Carbon::now()->format('m'), ['class' => 'form-control','id' => 'mesp'])}}
+          {{Form::select('mes', config('selects.meses'),\Carbon\Carbon::now()->format('m'), ['class' => 'form-control','id' => 'mes'])}}
         </div>
       </div>
       <div class="form-group col-sm-2">
         {{ Form::label('añoo', 'Año:',['class' => 'control-label col-sm-2 col-sm-offset-1']) }}
         <div class="col-sm-9">
-          {{Form::text('año', \Carbon\Carbon::now()->format('Y'), ['class' => 'form-control','id'=>"añop"])}}
+          {{Form::text('año', \Carbon\Carbon::now()->format('Y'), ['class' => 'form-control','id'=>"año"])}}
         </div>
       </div>
       <div id="puntuacion">

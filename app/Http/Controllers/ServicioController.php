@@ -53,6 +53,11 @@ class ServicioController extends Controller
       $servicio->jefe_de_cuerpo=$data['jefe_de_cuerpo'];
       if ($servicio->save()) {
 
+        if ($data["bombero"]) {
+           //creo las relaciones servicio bomberos                                          tipo_id es tipo asistencia 2 primera dotacion
+           $a_cargo = BomberoServicio::create(['servicio_id'=>$servicio->id,'bombero_id'=>$data["bombero"],'tipo_id'=>2,'a_cargo'=>true]);
+         }
+
         if ($data["vehiculo"]) {
           //creo las relaciones servicio Vehiculo primera dotacion
           VehiculoServicio::create(['servicio_id'=>$servicio->id,'vehiculo_id'=>$data['vehiculo'],'primero'=>true]);
@@ -170,7 +175,7 @@ class ServicioController extends Controller
             unset($servicios[$key]);
           }
         }
-        return view('servicio/estadisticasMes',compact('servicios'));
+        return view('servicio/estadisticasMes',compact('servicios','mes','año'));
     }
 
     /**
