@@ -6,20 +6,15 @@
   <div class="panel panel-default">
     <div id="breadcrumb" class="panel-heading">
       <span class="fa fa-users" aria-hidden="true"></span>
-      <h4>Presentes al Servicio N° {{$servicio}}</h4>
+      <h4>Asistencia Obligatoria</h4>
     </div>
     <div class="panel-body">
 
-      {!! Form::open([ 'route' => 'servicio.editar_presentes', 'class' => 'form-horizontal', 'method' => 'PUT']) !!}
-
-        {!! Form::hidden('servicio', $servicio) !!}
+      {!! Form::open([ 'route' => 'asistencia.presentes', 'class' => 'form-horizontal', 'method' => 'POST']) !!}
 
         <div class="form-group bomberosparticipantes">
-          @foreach($bomberos as $ingresado)
-            @php
-              $asistselec=$ingresado->tipo_id;
-            @endphp
-            @include('asistencia.bombero')
+          @foreach($bomberos as $bombero)
+            @include('asistencia.asistencia')
           @endforeach
         </div>
 
@@ -36,8 +31,4 @@
     </div>
   </div>
 </article>
-@endsection
-
-@section('js')
-  {!! Html::script('assets/js/ajaxbombero.js') !!}
 @endsection
