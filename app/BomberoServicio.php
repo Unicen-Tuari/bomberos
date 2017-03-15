@@ -16,7 +16,7 @@ class BomberoServicio extends Model
     }
 
     public function servicio(){
-      return $this->belongsTo(Servicio::class);
+      return $this->hasOne(Servicio::class,"id","servicio_id");
     }
 
 }

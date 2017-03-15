@@ -1,37 +1,34 @@
 @extends('layouts.app')
 
 @section('content')
-<article class="col-sm-12">
+
+<article class="col-md-12">
   <div class="panel panel-default">
     <div id="breadcrumb" class="panel-heading">
-      <span class="fa fa-share" aria-hidden="true"></span>
-      <h4>Bomberos ingresados</h4>
+      <span class="fa fa-users" aria-hidden="true"></span>
+      <h4>Asistencia Obligatoria</h4>
     </div>
     <div class="panel-body">
-      <table  class="table table-striped">
-        <thead><!--Titulos de la tabla-->
-          <tr>
-            <th class="text-center">Bombero</th>
-            <th class="text-center col-xs-6">Presencia</th>
-          </tr>
-        </thead>
-        <tbody><!--Contenido de la tabla-->
-          @foreach ($ingresados as $ingresado)
-            <tr>
-              <td class="text-center">{{$ingresado->bombero->nombre." ". $ingresado->bombero->apellido}}</td>
-              <td>{{Form::select('TipoAsistencia', $tipos_asist, 4,['class' => 'col-xs-12'])}}</td>
-            </tr>
+
+      {!! Form::open([ 'route' => 'asistencia.presentes', 'class' => 'form-horizontal', 'method' => 'POST']) !!}
+
+        <div class="form-group bomberosparticipantes">
+          @foreach($bomberos as $bombero)
+            @include('asistencia.asistencia')
           @endforeach
-        </tbody>
-        <tfoot>
-          <tr>
-            <td colspan="2" class="text-center">Bomberos ingresados</td>
-          </tr>
-        </tfoot>
-        </table>
-        <button type="button" class="btn btn-primary pull-right">
-            <i class="glyphicon glyphicon-ok"></i> Finalizar
-        </button>
+        </div>
+
+
+        <div class="form-group">
+          <div class="col-md-3 col-md-offset-6">
+            <button type="submit" class="btn btn-primary">
+                <i class="glyphicon glyphicon-bell"></i> Finalizar
+            </button>
+          </div>
+        </div>
+
+      {!! Form::close() !!}
+
     </div>
   </div>
 </article>

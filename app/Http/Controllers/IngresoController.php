@@ -22,30 +22,30 @@ class IngresoController extends Controller
         $ingresados=Ingreso::all();
         return view('asistencia/listar',compact('ingresados'));
     }
-    public function indexPresentes($servicio)
+    public function indexPresentes($servicio,$acargo)
     {
         $ingresados=Ingreso::all();
-        $bomberos=Bombero::getBomberos();
-        return view('asistencia/presentes',compact('ingresados','bomberos','servicio'));
+        $bomberos=Bombero::where('activo',1)->get();
+        return view('asistencia/presentes',compact('ingresados','bomberos','servicio','acargo'));
     }
 
     public function editPresentes($servicio)
     {
-      // ver esto para todos los que participaron
-        $ingresados=BomberoServicio::where('servicio_id',$servicio)->get();
-        $bomberos=Bombero::getBomberos();
-        return view('asistencia/participantes',compact('ingresados','bomberos','servicio'));
-    }
-    public function guardarIngreso(Request $request){
-      Ingreso::create($request->all());
+        $bomberos=BomberoServicio::where('servicio_id',$servicio)->get();
+        return view('asistencia/participantes',compact('bomberos','servicio'));
     }
 
-    public function addbombero($bombero)
-    {
-      $bombero=Bombero::find($bombero);
-      $ingresado = (object) array('bombero' => $bombero);
-      $asistselec=4;
-      return view('asistencia/bombero',compact('ingresado','asistselec'));
+    // esto esta en ajax era cuando no interesaba marcar ausentes
+    // public function addbombero($bombero)
+    // {
+    //   $bombero=Bombero::find($bombero);
+    //   // $ingresado = (object) array('bombero' => $bombero);
+    //   $asistselec=4;
+    //   return view('asistencia/bombero',compact('bombero','asistselec'));
+    // }
+
+    public function guardarIngreso(Request $request){
+      Ingreso::create($request->all());
     }
 
     public function borrarIngreso($id_bombero){

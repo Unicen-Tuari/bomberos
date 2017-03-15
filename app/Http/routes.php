@@ -26,7 +26,9 @@ Route::get('bombero/responsable', 'BomberoController@altaResponsable')->name('bo
 Route::resource('bombero','BomberoController',['except' => ['show']]);
 
 Route::get('asistencia/puntuacion', 'AsistenciaController@puntuacion')->name('asistencia.puntuacion');
-Route::get('asistencia/obligatoria', 'IngresoController@listarIngresos')->name('asistencia.obligatoria');
+
+Route::get('asistencia/{mes}/{anio}/puntuacionmes', 'AsistenciaController@puntuacionmes')->name('asistencia.puntuacionmes');
+
 Route::resource('asistencia','AsistenciaController');
 
 Route::get('vehiculo/info/{vehiculo}', 'VehiculoController@info')->name('vehiculo.info');
@@ -51,7 +53,7 @@ Route::resource('servicio','ServicioController');
 
 Route::get('ingreso/listar', 'IngresoController@listarIngresos')->name('ingreso.listar');
 Route::get('ingreso/nuevo/{bombero}', 'IngresoController@addbombero')->name('ingreso.addbombero');
-Route::get('ingreso/presentes/{servicio}', 'IngresoController@indexPresentes')->name('ingreso.indexPresentes');
 Route::get('ingreso/presentes/edit/{servicio}', 'IngresoController@editPresentes')->name('ingreso.editPresentes');
+Route::get('ingreso/presentes/{servicio}/{acargo}', 'IngresoController@indexPresentes')->name('ingreso.indexPresentes');
 Route::post('ingreso', 'IngresoController@guardarIngreso')->name('ingreso.guardarIngreso');
 Route::delete('ingreso/{id}', 'IngresoController@borrarIngreso')->name('ingreso.borrarIngreso');
