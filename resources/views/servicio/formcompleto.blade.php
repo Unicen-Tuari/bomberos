@@ -4,8 +4,7 @@
         {!! Form::text('num_servicio', $numero, ['class' => 'form-control']) !!}
       </div>
     </div>
-
-    @if(Request::url() === 'http://localhost/bomberos/public/servicio/activo/2')
+    @if(strpos(Request::url(), 'servicio/activo'))
       <div class="form-group">
         <button class="col-sm-offset-10 btn btn-primary glyphicon glyphicon-plus toggleDetails"></button>
       </div>

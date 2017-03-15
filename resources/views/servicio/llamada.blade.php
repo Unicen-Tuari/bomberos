@@ -17,13 +17,13 @@
         <div class="form-group">
           {!! Form::label('Tipo', 'Tipo de servicio',['class' => 'col-md-2 col-md-offset-2 control-label']) !!}
           <div class="col-md-2">
-            {{Form::select('tipo', config('selects.tiposServicios'),null,['class' => 'form-control'])}}
+            {{Form::select('tipo', config('selects.tipoServicio'),null,['class' => 'form-control'])}}
           </div>
 
           <div class="{{ $errors->has('tipo_alarma') ? ' has-error' : '' }}">
             {!! Form::label('tipo_alarma', 'Tipo alarma',['class' => 'col-sm-2 control-label']) !!}
             <div class="col-sm-2">
-              {{Form::select('tipo_alarma', [null =>'Ninguna',1 => 'Interna',2 => 'Selectiva',3 => 'General'],null,['class' => 'form-control'])}}
+              {{Form::select('tipo_alarma', config('selects.tipoAlarma'),null,['class' => 'form-control'])}}
 
               @if ($errors->has('tipo_alarma'))
                   <span class="help-block">
