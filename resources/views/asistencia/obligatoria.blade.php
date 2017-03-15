@@ -28,6 +28,7 @@
         </div>
 
       {!! Form::close() !!}
+
     </div>
   </div>
 </article>

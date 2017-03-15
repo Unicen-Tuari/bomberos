@@ -31,13 +31,18 @@
         $salida=\Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires'))->toDateTimeString();
       @endphp
     @endif
-
     {!! Form::hidden('finalizar', 1) !!}
     @include('servicio.formcompleto')
-  {!! Form::close() !!}
+    {!! Form::close() !!}
 
+      @include('servicio.formcompleto')
+    {!! Form::close() !!}
     </div>
   </div>
 </article>
 
+@endsection
+
+@section('js')
+{!! Html::script('assets/js/toggleDetails.js') !!}
 @endsection

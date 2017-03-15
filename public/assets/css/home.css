@@ -290,9 +290,6 @@ a:hover, a:focus {
   background-color: inherit;
   margin-top: -5px;
 }
-thead th{
-  border:2px solid rgb(0, 0, 0) !important;
-}
 
 .serviciosActivos li a, .serviciosActivos li form{
   display: inline-block;
@@ -301,8 +298,10 @@ thead th{
 #regIngreso {
   font-weight: bold;
   color: white;
-  width: 70%;
-  border-radius: 10px;
+  background-color: #2e353d;
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+  width: 100%;
   text-align: center;
   font-size: 18px;
   display: inline-block;
@@ -404,8 +403,6 @@ thead th{
 
 thead th {
   border: 1px solid black !important;
-  background-color: #490000;
-  color: white;
 }
 
 tbody tr {
