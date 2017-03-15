@@ -107,7 +107,6 @@
           <div class="collapse" id="asistenciasSubMenu">
             <a href="" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Asistencia?</a>
             <a  href="{{route('asistencia.puntuacion')}}"  class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Puntuacion?</a>
-            <a  href="{{route('asistencia.obligatoria')}}"  class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Obligatoria</a>
             <a  href="{{route('ingreso.listar')}}"  class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Lista de ingresados</a>
           </div>
 
