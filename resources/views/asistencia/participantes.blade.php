@@ -15,7 +15,7 @@
         {!! Form::hidden('servicio', $servicio) !!}
 
         <div class="form-group bomberosparticipantes">
-          @foreach($ingresados as $ingresado)
+          @foreach($bomberos as $ingresado)
             @php
               $asistselec=$ingresado->tipo_id;
             @endphp
@@ -23,12 +23,6 @@
           @endforeach
         </div>
 
-        <div class="form-group">
-          {!! Form::label('agregar', 'Agregar bombero participante',['class' => 'col-sm-2 col-sm-offset-1 control-label']) !!}
-          <div class="col-sm-2">
-            {{Form::select('agregarb', $bomberos,null,['class' => 'selectMultiple','id'=>'nuevobombero'])}}
-          </div>
-        </div>
 
         <div class="form-group">
           <div class="col-md-3 col-md-offset-6">

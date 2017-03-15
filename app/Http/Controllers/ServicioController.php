@@ -24,7 +24,7 @@ class ServicioController extends Controller
 
     public function index()
     {
-      $servicios=Servicio::orderBy('hora_regreso','DESC')->paginate(12);
+      $servicios=Servicio::paginate(12);
       return view('servicio/servicios',compact('servicios'));
     }
 
@@ -54,9 +54,10 @@ class ServicioController extends Controller
       if ($servicio->save()) {
 
         if ($data["bombero"]) {
-          //creo las relaciones servicio bomberos                                          tipo_id es tipo asistencia 2 primera dotacion
-          $a_cargo = BomberoServicio::create(['servicio_id'=>$servicio->id,'bombero_id'=>$data["bombero"],'tipo_id'=>2,'a_cargo'=>true]);
-        }
+           //creo las relaciones servicio bomberos                                          tipo_id es tipo asistencia 2 primera dotacion
+           $a_cargo = BomberoServicio::create(['servicio_id'=>$servicio->id,'bombero_id'=>$data["bombero"],'tipo_id'=>2,'a_cargo'=>true]);
+         }
+
         if ($data["vehiculo"]) {
           //creo las relaciones servicio Vehiculo primera dotacion
           VehiculoServicio::create(['servicio_id'=>$servicio->id,'vehiculo_id'=>$data['vehiculo'],'primero'=>true]);
@@ -67,7 +68,8 @@ class ServicioController extends Controller
             }
           }
         }
-       return redirect()->route('ingreso.indexPresentes',$servicio->id);
+
+       return redirect()->route('ingreso.indexPresentes',[0=>$servicio->id,1=>$data['bombero']]);
       }else {
         dd('fallo');
       }
@@ -164,16 +166,16 @@ class ServicioController extends Controller
         return view('servicio/estadistica');
     }
 
-    public function tabla($mes,$anio)
+    public function tabla($mes,$año)
     {
         $servicios=Servicio::all();
         foreach ($servicios as $key => $servicio) {
-          if (!((\Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$servicio->hora_alarma)->format('m')==$mes ) &&  (\Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$servicio->hora_alarma)->format('Y')==$anio)))
+          if (!((\Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$servicio->hora_alarma)->format('m')==$mes ) &&  (\Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$servicio->hora_alarma)->format('Y')==$año)))
           {
             unset($servicios[$key]);
           }
         }
-        return view('servicio/estadisticasMes',compact('servicios'));
+        return view('servicio/estadisticasMes',compact('servicios','mes','año'));
     }
 
     /**
@@ -282,8 +284,8 @@ class ServicioController extends Controller
           $primerv=VehiculoServicio::where([['servicio_id',$servicio->id],['vehiculo_id',$data["vehiculo"]]])->first();
           $primerv->primero=true;
           $primerv->save();
-          if ($data["finalizar"]) {
-            return redirect()->route('ingreso.indexPresentes',$servicio->id);
+          if ($data["finalizar"]!=0) {
+            return redirect()->route('ingreso.indexPresentes',[0=>$servicio->id,1=>$data['bombero']]);
           }else {
             return redirect()->route('ingreso.editPresentes',$servicio->id);
           }
@@ -313,8 +315,7 @@ class ServicioController extends Controller
 
     public function editar_presentes(Request $request)
     {
-      $data=$request->all();
-      foreach ($data as $key => $value) {
+      foreach ($request as $key => $value) {
         if (strstr($key, '-', true)=="bombero") {
           $idbombero=substr($key, 8);
           $involucrado=BomberoServicio::where([['servicio_id',$data['servicio']],['bombero_id',$idbombero]])->first();

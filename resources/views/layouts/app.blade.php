@@ -18,14 +18,14 @@
 <body id="app-layout">
     <nav>
 
-      <div id="titleHome" class="col-lg-2 col-md-2 col-sm-4 hidden-xs hidden-sm">
+      <div id="titleHome" class="col-md-2 col-sm-4 hidden-xs hidden-sm">
         <a href="{{route('home.index')}}">
           <h2>Bomberos</h2>
           <h4>Trenque Lauquen</h4>
         </a>
       </div>
 
-      <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+      <div class="col-md-10 col-sm-12 col-xs-12">
         @if (!Auth::guest())
           <ul class="col-xs-10">
               <li id="first-icon" class="navIcon odd text-center">
@@ -70,12 +70,12 @@
         @endif
 
         @if (Auth::guest())
-        <ul class="pull-right col-lg-2 col-md-2 col-sm-2 col-xs-2 rightNav">
+        <ul class="pull-right col-xs-2 rightNav">
             <!-- Authentication Links -->
             <li><a href="{{ url('/login') }}">Iniciar sesión</a></li>
             <li><a href="{{ url('/register') }}">Registrarse</a></li>
         @else
-        <ul class="pull-right col-lg-2 col-md-2 col-sm-2 col-xs-2 rightNav">
+        <ul class="pull-right col-xs-2 rightNav">
             <!-- Authentication Links -->
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -93,7 +93,7 @@
 
     @if (!Auth::guest())
 
-      <div id="MainMenu" class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+      <div id="MainMenu" class="col-sm-2 col-xs-12">
         <div class="list-group panel">
 
           <a href="#bomberosSubMenu" id="bomberoMenu" class="list-group-item" data-toggle="collapse" data-parent="#MainMenu"><i class="fa fa-user fa-lg"></i> Bomberos<span class="arrow"></span></a>
@@ -131,7 +131,7 @@
           </div>
         </div>
 
-        <div id="regIngreso" class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+        <div id="regIngreso" class="col-sm-2 col-xs-12">
           <div class="">
             {{Form::select('Bomberos', App\Bombero::getBomberos(), null,['class' => 'col-sm-2 selectMultiple', 'id' => 'bomberoIngreso'])}}
             @if ($errors->has('Bomberos'))
@@ -152,7 +152,7 @@
           {{Form::close()}}
         </div>
       </div>
-      <div class="right-panel col-lg-10 col-md-9 col-sm-9 col-xs-12">
+      <div class="right-panel col-sm-10 col-xs-12">
     @else
       <div class="row">
     @endif

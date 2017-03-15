@@ -14,19 +14,26 @@
         {!! Form::hidden('servicio', $servicio) !!}
 
         <div class="form-group bomberosparticipantes">
-          @foreach($ingresados as $ingresado)
+          {{--  esto tengo que acomodar: todos los bomberos--}}
+          @foreach($bomberos as $bombero)
+            @if ($bombero->ingresado)
+              @php
+                if ($acargo==$bombero->id) {
+                  $asistselec=2;
+                }else {
+                  $asistselec=5;
+                }
+              @endphp
+            @else
+              @php
+                $asistselec=10;
+              @endphp
+            @endif
             @php
-              $asistselec=5;
+              $ingresado = (object) array('bombero' => $bombero);
             @endphp
             @include('asistencia.bombero')
           @endforeach
-        </div>
-
-        <div class="form-group">
-          {!! Form::label('agregar', 'Agregar bombero participante',['class' => 'col-sm-2 col-sm-offset-1 control-label']) !!}
-          <div class="col-sm-2">
-            {{Form::select('agregarb', $bomberos,null,['class' => 'selectMultiple','id'=>'nuevobombero'])}}
-          </div>
         </div>
 
         <div class="form-group">
