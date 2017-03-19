@@ -124,6 +124,7 @@ nav ul h2, nav ul h4{
   /*background-color: #490000;*/
   color: #490000;
   height: 40px;
+  font-weight: bold;
   padding-top: 0px;
   border-bottom: 1px solid #490000;
   border-left: 1px solid white;
@@ -241,7 +242,7 @@ a.list-group-item{
 }
 
 .activo {
-  border-left: 4px solid #490000;
+  border-left: 6px solid #337ab7;
   background-color: #4f5b69;
 }
 
@@ -252,12 +253,12 @@ a.list-group-item:focus{
 a.list-group-item:hover{
   background-color: #4f5b69;
   color:white;
-  border-left: 4px solid #490000;
-  -webkit-transition: all 0.6s ease;
-  -moz-transition: all 0.6s ease;
-  -o-transition: all 0.6s ease;
-  -ms-transition: all 0.6s ease;
-  transition: all 0.6s ease;
+  border-left: 6px solid #337ab7;
+  -webkit-transition: all 0.2s ease;
+  -moz-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
+  -ms-transition: all 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 a:hover, a:focus {
@@ -284,9 +285,13 @@ a:hover, a:focus {
   margin-top: 1.5px;
 }
 
+.btn:hover {
+  color: #337ab7;
+}
+
 .eliminar{
   padding: 0px 0px;
-  color: #490000;
+  color: #337ab7;
   background-color: inherit;
   margin-top: -5px;
 }
@@ -296,11 +301,9 @@ a:hover, a:focus {
 }
 
 #regIngreso {
+  margin-top: 20px;
   font-weight: bold;
   color: white;
-  background-color: #2e353d;
-  border-top: 1px solid white;
-  border-bottom: 1px solid white;
   width: 100%;
   text-align: center;
   font-size: 18px;
@@ -345,33 +348,22 @@ a:hover, a:focus {
 
 #regIngreso .fa-sign-in {
   background-color: inherit;
-  font-size: 30px;
+  font-size: 35px;
   border: 0px;
-  color: green;
-  margin-top: 10px;
+  color: #bcf5c7;
+  margin-top: 30px;
 }
 #regIngreso .fa-sign-out {
   background-color: inherit;
-  font-size: 30px;
+
+  margin-top: 10px;
+  font-size: 35px;
   border: 0px;
-  color: red;
+  color: #e2b8b8;
 }
 
 .list-group-item {
   border-bottom: 1px solid white;
-}
-
-.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
-  background-color: #490000;
-  border: 1px solid #490000;
-}
-.pagination > li > a {
-  color: #490000;
-}
-
-.btn-primary {
-  background-color: #490000;
-  border-color: #320101;
 }
 
 .btn-primary:active, .btn-primary:active:hover {
@@ -382,15 +374,6 @@ a:hover, a:focus {
 .btn-primary:focus {
   background-color: #490000;
   border-color: #320101;
-}
-
-.btn-primary:hover {
-  background-color: #300101;
-  border-color: #1d0101;
-}
-
-.form-control:focus {
-  border-color: #ad0000;
 }
 
 .list-group-item:last-child {
@@ -415,5 +398,22 @@ tfoot {
 }
 
 tr td .glyphicon-edit {
-  color: #490000;
+  color: #337ab7;
+}
+
+#inputFilterPuntuacion {
+  background-position: 10px 12px; /* Position the search icon */
+  background-repeat: no-repeat; /* Do not repeat the icon image */
+  width: 100%; /* Full-width */
+  font-size: 16px; /* Increase font-size */
+  /*padding: 12px 20px 12px 40px; /* Add some padding */
+  border: 1px solid #ddd; /* Add a grey border */
+  margin-bottom: 12px; /* Add some space below the input */
+}
+.panel {
+  margin-bottom: 0px;
+}
+
+#tablaPuntuacion tr:hover {
+  background: #f1f1f1;
 }

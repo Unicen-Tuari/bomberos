@@ -1,4 +1,4 @@
-<table  class="table table-bordered">
+<table  class="table table-bordered" id="tablaPuntuacion">
   <thead><!--Titulos de la tabla-->
     <tr>
       <th colspan="2" class="text-center">Periodo {{config('selects.meses')[$mes].'-'.$año}}</th>
@@ -31,21 +31,21 @@
   <tbody>
     @foreach ($bomberos as $bombero)
     <tr>
-      <th class="text-center">{{$bombero->nro_legajo}}</th>
-      <th class="text-center">{{$bombero->apellido.' '.$bombero->nombre}}</th>
-      <th class="text-center">1320</th>
-      <th class="text-center">12</th>
-      <th class="text-center">5,00</th>
-      <th class="text-center">{{count($bombero->cantServicios($mes,$año))}}</th>
-      <th class="text-center">{{(40/count($servicios))*count($bombero->cantServicios($mes,$año))}}</th>
-      <th class="text-center">15</th>
-      <th class="text-center">430,00</th>
-      <th class="text-center">10,00</th>
-      <th class="text-center"> </th>
-      <th class="text-center">35,00</th>
-      <th class="text-center"> </th>
-      <th class="text-center">452</th>
-      <th class="text-center">30 dias lic. Anual </th>
+      <td class="text-center">{{$bombero->nro_legajo}}</td>
+      <td class="text-center">{{$bombero->apellido.' '.$bombero->nombre}}</td>
+      <td class="text-center">1320</td>
+      <td class="text-center">12</td>
+      <td class="text-center">5,00</td>
+      <td class="text-center">{{count($bombero->cantServicios($mes,$año))}}</td>
+      <td class="text-center">{{(40/count($servicios))*count($bombero->cantServicios($mes,$año))}}</td>
+      <td class="text-center">15</td>
+      <td class="text-center">430,00</td>
+      <td class="text-center">10,00</td>
+      <td class="text-center"> </td>
+      <td class="text-center">35,00</td>
+      <td class="text-center"> </td>
+      <td class="text-center">452</td>
+      <td class="text-center">30 dias lic. Anual </td>
     </tr>
     @endforeach
   </tbody>
