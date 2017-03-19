@@ -96,34 +96,34 @@
       <div id="MainMenu" class="col-sm-2 col-xs-12">
         <div class="list-group panel">
 
-          <a href="#bomberosSubMenu" id="bomberoMenu" class="list-group-item" data-toggle="collapse" data-parent="#MainMenu"><i class="fa fa-user fa-lg"></i> Bomberos<span class="arrow"></span></a>
+          <a href="#bomberosSubMenu" id="bomberoMenu" class="list-group-item" data-toggle="collapse" data-parent="#MainMenu"><i class="fa fa-user fa-lg" style="padding-right: 10px;"></i> Bomberos<span class="arrow"></span></a>
           <div class="collapse" id="bomberosSubMenu">
             <a href="{{route('bombero.index')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Listar bomberos</a>
             <a href="{{route('bombero.create')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Alta bombero</a>
             <a href="{{route('bombero.altaResponsable')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Asignar responsables </a>
           </div>
 
-          <a href="#asistenciasSubMenu" id="asistenciaMenu" class="list-group-item" data-toggle="collapse" data-parent="#MainMenu"><i class="fa fa-users fa-lg"></i> Asistencia<span class="arrow"></span></a>
+          <a href="#asistenciasSubMenu" id="asistenciaMenu" class="list-group-item" data-toggle="collapse" data-parent="#MainMenu"><i class="fa fa-users fa-lg" style="padding-right: 10px;"></i> Asistencia<span class="arrow"></span></a>
           <div class="collapse" id="asistenciasSubMenu">
             <a href="" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Asistencia?</a>
             <a  href="{{route('asistencia.puntuacion')}}"  class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Puntuacion?</a>
             <a  href="{{route('ingreso.listar')}}"  class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Lista de ingresados</a>
           </div>
 
-          <a href="#serviciosSubMenu" id="servicioMenu" class="list-group-item" data-toggle="collapse" data-parent="#MainMenu"><i class="fa fa-cog fa-lg"></i>  Servicios<span class="arrow"></span></a>
+          <a href="#serviciosSubMenu" id="servicioMenu" class="list-group-item" data-toggle="collapse" data-parent="#MainMenu"><i class="fa fa-cog fa-lg" style="padding-right: 10px;"></i>  Servicios<span class="arrow"></span></a>
           <div class="collapse" id="serviciosSubMenu">
             <a href="{{route('servicio.tipo.index')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Tipos de servicios</a>
             <a href="{{route('servicio.index')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Últimos servicios</a>
             <a href="{{route('servicio.estadistica')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Estadísticas</a>
           </div>
 
-          <a href="#vehiculosSubMenu" id="vehiculoMenu" class="list-group-item" data-toggle="collapse" data-parent="#MainMenu"><i class="fa fa-car fa-lg"></i> Vehículos<span class="arrow"></span></a>
+          <a href="#vehiculosSubMenu" id="vehiculoMenu" class="list-group-item" data-toggle="collapse" data-parent="#MainMenu"><i class="fa fa-car fa-lg" style="padding-right: 10px;"></i> Vehículos<span class="arrow"></span></a>
           <div class="collapse" id="vehiculosSubMenu">
             <a href="{{route('vehiculo.index')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Lista de vehículos</a>
             <a href="{{route('vehiculo.create')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Alta vehículo</a>
           </div>
 
-          <a href="#materialesSubMenu" id="materialMenu" class="list-group-item" data-toggle="collapse" data-parent="#MainMenu"><i class="fa fa-wrench fa-lg"></i> Materiales<span class="arrow"></span></a>
+          <a href="#materialesSubMenu" id="materialMenu" class="list-group-item" data-toggle="collapse" data-parent="#MainMenu"><i class="fa fa-wrench fa-lg" style="padding-right: 10px;"></i> Materiales<span class="arrow"></span></a>
           <div class="collapse" id="materialesSubMenu">
             <a href="{{route('material.index')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Lista de materiales</a>
             <a href="{{route('material.create')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Alta material</a>
@@ -139,15 +139,16 @@
                 </span>
             @endif
           </div>
-          <p>Ingresar <button class="fa fa-sign-in" type="button" title="Registrar ingreso" id="ingresar" name="button"></button></p>
+          <button class="fa fa-sign-in" type="button" title="Registrar ingreso" id="ingresar" name="button"></button>
+          <p>Entrar</p>
           {{Form::open(['route' => ['ingreso.guardarIngreso'], 'method' => 'POST', 'id' => 'form-ingresar'])}}
             <div hidden>
               {!! Form::text('id_bombero', ':USER_ID', ['class' => 'form-control','id' => 'ingresado']) !!}
             </div>
           {{Form::close()}}
-
           {{Form::open(['route' => ['ingreso.borrarIngreso', ':USER_ID'], 'method' => 'DELETE', 'id' => 'form-delete'])}}
-            <p>Egresar <button class="fa fa-sign-out" type="button" title="Registrar egreso" id="egresar" name="button"></button></p>
+            <button class="fa fa-sign-out" type="button" title="Registrar egreso" id="egresar" name="button"></button>
+            <p>Salir</p>
           {{Form::close()}}
         </div>
       </div>
