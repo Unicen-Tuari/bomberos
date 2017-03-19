@@ -8,16 +8,24 @@
       <h4>Puntuaciones</h4>
     </div>
     <div class="panel-body">
-      <div class="form-group col-sm-2">
-        {{ Form::label('mess', 'Mes:',['class' => 'control-label col-sm-2 col-sm-offset-1']) }}
-        <div class="col-sm-9">
+      <div class="form-group col-sm-4">
+        {{ Form::label('mess', 'Elija el mes: ',['class' => 'control-label col-sm-4']) }}
+        <div class="col-sm-8">
           {{Form::select('mes', config('selects.meses'),\Carbon\Carbon::now()->format('m'), ['class' => 'form-control','id' => 'mes'])}}
         </div>
       </div>
-      <div class="form-group col-sm-2">
-        {{ Form::label('añoo', 'Año:',['class' => 'control-label col-sm-2 col-sm-offset-1']) }}
-        <div class="col-sm-9">
+      <div class="form-group col-sm-4">
+        {{ Form::label('añoo', 'Elija el año: ',['class' => 'control-label col-sm-4']) }}
+        <div class="col-sm-8">
           {{Form::text('año', \Carbon\Carbon::now()->format('Y'), ['class' => 'form-control','id'=>"año"])}}
+        </div>
+      </div>
+      <div class="form-group col-sm-4">
+        <div class="col-sm-3">
+          <span>Buscar:</span>
+        </div>
+        <div class="col-sm-9">
+          <input type="text" id="inputFilterPuntuacion" class="form-control" placeholder="Search for names.."></input>
         </div>
       </div>
       <div id="puntuacion">
@@ -29,5 +37,6 @@
 @endsection
 
 @section('js')
+  {!! Html::script('assets/js/filterTable.js') !!}
   {!! Html::script('assets/js/ajaxpuntuacion.js') !!}
 @endsection

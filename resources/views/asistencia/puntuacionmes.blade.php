@@ -33,7 +33,7 @@
     <tr>
       <td class="text-center">{{$bombero->nro_legajo}}</td>
       <td class="text-center">{{$bombero->apellido.' '.$bombero->nombre}}</td>
-      <td class="text-center">1320</td>
+      <td class="text-center">5</td>
       <td class="text-center">12</td>
       <td class="text-center">5,00</td>
       @php
