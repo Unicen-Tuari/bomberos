@@ -33,7 +33,6 @@ Route::resource('asistencia','AsistenciaController');
 
 Route::resource('vehiculo','VehiculoController');
 
-
 Route::resource('material','MaterialController');
 
 Route::resource('servicio/tipo','TipoServicioController',['except' => ['create']]);

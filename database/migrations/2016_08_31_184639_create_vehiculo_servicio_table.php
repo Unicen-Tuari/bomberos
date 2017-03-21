@@ -18,8 +18,8 @@ class CreateVehiculoServicioTable extends Migration
             $table->boolean('primero')->default(0);
             $table->timestamps();
             $table->primary(['servicio_id', 'vehiculo_id']);
-            $table->foreign('servicio_id')->references('id')->on('servicio')->onDelete('cascade');
-            $table->foreign('vehiculo_id')->references('id')->on('vehiculo')->onDelete('cascade');
+            $table->foreign('servicio_id')->references('id')->on('servicio')->onDelete('restrict');
+            $table->foreign('vehiculo_id')->references('id')->on('vehiculo')->onDelete('restrict');
         });
     }
 

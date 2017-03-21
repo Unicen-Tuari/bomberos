@@ -13,4 +13,9 @@ class Vehiculo extends Model
   public function materiales(){
     return $this->hasMany(Material::class);
   }
+
+  public function servicios(){
+    return $this->hasMany(VehiculoServicio::class);
+  }
+
 }

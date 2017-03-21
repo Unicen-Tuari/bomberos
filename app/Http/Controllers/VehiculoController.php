@@ -35,10 +35,12 @@ class VehiculoController extends Controller
       return view('vehiculo/info',compact('vehiculo'));
   }
 
-  public function destroy($id)
+  public function destroy(Request $request,$id)
   {
       $vehiculo=Vehiculo::find($id);
-      $vehiculo->delete();
+      if (count($vehiculo->servicios)==0) {
+        $vehiculo->delete();
+      }
       return redirect()->route('vehiculo.index');
   }
   public function update(VehiculoRequest $data, $id)
