@@ -31,10 +31,8 @@ Route::get('asistencia/{mes}/{anio}/puntuacionmes', 'AsistenciaController@puntua
 
 Route::resource('asistencia','AsistenciaController');
 
-Route::get('vehiculo/info/{vehiculo}', 'VehiculoController@info')->name('vehiculo.info');
 Route::resource('vehiculo','VehiculoController');
 
-Route::get('material/info/{material}', 'MaterialController@info')->name('material.info');
 Route::resource('material','MaterialController');
 
 Route::resource('servicio/tipo','TipoServicioController',['except' => ['create']]);

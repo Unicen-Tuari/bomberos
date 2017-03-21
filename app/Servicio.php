@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Servicio extends Model
 {
   protected $table = 'servicio';
-  protected $fillable = ['tipo_servicio_id, direccion, descripcion,
+  protected $fillable = ['tipo_servicio_id, tipo_alarma, direccion, descripcion,
             hora_alarma, hora_salida, hora_regreso, ilesos, otros, muertos,
             quemados, lesionados, combustible, disposiciones, reconocimiento'];
 

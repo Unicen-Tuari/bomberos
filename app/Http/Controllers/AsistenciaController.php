@@ -27,7 +27,7 @@ class AsistenciaController extends Controller
     {
         $bomberos=Bombero::all();
 
-        $servicios=Servicio::all();
+        $servicios=Servicio::where('tipo_alarma', 3)->get();
         foreach ($servicios as $key => $servicio) {
           if (!((\Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$servicio->hora_alarma)->format('m')==$mes ) &&
            (\Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$servicio->hora_alarma)->format('Y')==$año)))

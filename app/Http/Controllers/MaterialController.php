@@ -21,7 +21,7 @@ class MaterialController extends Controller
       $materiales=Material::orderBy('id','DESC')->paginate(10);
       return view('material/lista',compact('materiales'));
   }
-  public function info($id)
+  public function show($id)
   {
       $material=Material::find($id);
       return view('material/info',compact('material'));

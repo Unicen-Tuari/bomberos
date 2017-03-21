@@ -12,7 +12,11 @@ class VehiculoServicio extends Model
   protected $fillable = ['servicio_id' , 'vehiculo_id','primero'];
   protected $primaryKey = ['servicio_id','vehiculo_id'];
 
+  public function vehiculos(){
+    return $this->hasOne(Vehiculo::class,"id","vehiculo_id");
+  }
+
   public function servicio(){
-    return $this->belongsTo(Servicio::class);
+    return $this->hasOne(Servicio::class,"id","servicio_id");
   }
 }

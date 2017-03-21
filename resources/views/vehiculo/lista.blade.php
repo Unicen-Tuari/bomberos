@@ -28,12 +28,17 @@
             @else
             <tr class="danger">
             @endif
-              <td class="text-center"><a href="{{ route('vehiculo.info', $vehiculo->id) }}">{{$vehiculo->num_movil}}</a></td>
+              <td class="text-center"><a href="{{ route('vehiculo.show', $vehiculo->id) }}">{{$vehiculo->num_movil}}</a>
+              </td>
               <td class="text-center">{{$vehiculo->patente}}</td>
               <td class="text-center">
+                @if (count($vehiculo->servicios)==0)
                 {{ Form::open(['route' => ['vehiculo.destroy', $vehiculo->id], 'method' => 'delete']) }}
-                    <button type="submit" class="btn glyphicon glyphicon-trash eliminar"></button>
+                  <button type="submit" class="btn glyphicon glyphicon-trash eliminar"></button>
                 {{ Form::close() }}
+                @else
+                  <button type="submit" class="btn glyphicon glyphicon-ban-circle ban" title="imposible eliminar"></button>
+                @endif
               </td>
               <td class="text-center"><a class="glyphicon glyphicon-edit" href="{{ route('vehiculo.edit', $vehiculo->id) }}"></a></td>
             </tr>

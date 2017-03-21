@@ -296,6 +296,16 @@ a:hover, a:focus {
   margin-top: -5px;
 }
 
+.ban{
+  padding: 0px 0px;
+  color: #a80e0e;
+  background-color: inherit;
+  margin-top: -5px;
+}
+.ban:hover{
+  color: #a80e0e;
+}
+
 .serviciosActivos li a, .serviciosActivos li form{
   display: inline-block;
 }

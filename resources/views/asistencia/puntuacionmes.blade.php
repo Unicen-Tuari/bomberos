@@ -3,7 +3,10 @@
     <tr>
       <th colspan="2" class="text-center">Periodo {{config('selects.meses')[$mes].'-'.$año}}</th>
       <th colspan="3" class="text-center">ASIST OBLIG</th>
-      <th colspan="2" class="text-center">ACCID. {{count($servicios)}}</th>
+      @php
+        $cantserv=count($servicios);
+      @endphp
+      <th colspan="2" class="text-center">ACCID. {{$cantserv}}</th>
       <th class="text-center">Dedicación</th>
       <th colspan="2" class="text-center">Asist. Guardias</th>
       <th class="text-center">Especiales</th>
@@ -15,12 +18,12 @@
     <tr>
       <th class="text-center">leg.</th>
       <th class="text-center">Apellido Nombre</th>
-      <th colspan="2" class="text-center">Min/OI/Pts</th>
+      <th colspan="2" class="text-center">Cant./OI/Pts</th>
       <th class="text-center">ACAD</th>
       <th class="text-center">Cant.</th>
       <th class="text-center">Ptos.</th>
       <th class="text-center">OI ACAD</th>
-      <th class="text-center">Min</th>
+      <th class="text-center">Cant.</th>
       <th class="text-center">Ptos.</th>
       <th class="text-center">Ptos.</th>
       <th class="text-center">Ptos.</th>
@@ -30,19 +33,32 @@
   </thead>
   <tbody>
     @foreach ($bomberos as $bombero)
+    @php
+      $accid=count($bombero->accidentales($mes,$año));
+      $guardia=count($bombero->guardias($mes,$año));
+      if ($accid!=0) {
+        if ($cantserv<7 && $cantserv!=$accid) {
+          $puntuacion=35-(5*($cantserv-$accid));
+        }else {
+          $puntuacion=(35/$cantserv)*$accid;
+        }
+      }else {
+        $puntuacion=0;
+      }
+    @endphp
     <tr>
       <td class="text-center">{{$bombero->nro_legajo}}</td>
       <td class="text-center">{{$bombero->apellido.' '.$bombero->nombre}}</td>
-      <td class="text-center">1320</td>
+      <td class="text-center">5</td>
       <td class="text-center">12</td>
       <td class="text-center">5,00</td>
-      <td class="text-center">{{count($bombero->cantServicios($mes,$año))}}</td>
-      <td class="text-center">{{(40/count($servicios))*count($bombero->cantServicios($mes,$año))}}</td>
+      <td class="text-center">{{$accid}}</td>
+      <td class="text-center">{{$puntuacion}}</td>
       <td class="text-center">15</td>
-      <td class="text-center">430,00</td>
+      <td class="text-center">{{$guardia}}</td>
       <td class="text-center">10,00</td>
       <td class="text-center"> </td>
-      <td class="text-center">35,00</td>
+      <td class="text-center">70,00</td>
       <td class="text-center"> </td>
       <td class="text-center">452</td>
       <td class="text-center">30 dias lic. Anual </td>
