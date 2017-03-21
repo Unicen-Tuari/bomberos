@@ -28,7 +28,7 @@
             @else
             <tr class="danger">
             @endif
-              <td class="text-center"><a href="{{ route('vehiculo.info', $vehiculo->id) }}">{{$vehiculo->num_movil}}</a></td>
+              <td class="text-center"><a href="{{ route('vehiculo.show', $vehiculo->id) }}">{{$vehiculo->num_movil}}</a></td>
               <td class="text-center">{{$vehiculo->patente}}</td>
               <td class="text-center">
                 {{ Form::open(['route' => ['vehiculo.destroy', $vehiculo->id], 'method' => 'delete']) }}

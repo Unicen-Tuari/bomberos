@@ -31,7 +31,7 @@
         <tbody><!--Contenido de la tabla-->
           @foreach ($vehiculo->materiales as $material)
             <tr>
-              <td class="text-center"><a href="{{ route('material.info', $material->id) }}">{{$material->nombre}}</a></td>
+              <td class="text-center"><a href="{{ route('material.show', $material->id) }}">{{$material->nombre}}</a></td>
               <td class="text-center"><a class="glyphicon glyphicon-edit" href="{{ route('material.edit', $material->id) }}"></a></td>
             </tr>
           @endforeach

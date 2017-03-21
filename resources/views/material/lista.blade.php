@@ -21,7 +21,7 @@
         <tbody><!--Contenido de la tabla-->
           @foreach ($materiales as $material)
             <tr>
-              <td class="text-center"><a href="{{ route('material.info', $material->id) }}">{{$material->nombre}}</a></td>
+              <td class="text-center"><a href="{{ route('material.show', $material->id) }}">{{$material->nombre}}</a></td>
               @if ($material->vehiculo_id)
                 <td class="text-center">{{$material->vehiculo->patente}}</td>
               @else

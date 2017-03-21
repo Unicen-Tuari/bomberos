@@ -1,9 +1,12 @@
-<table  class="table table-bordered">
+<table  class="table table-bordered" id="tablaPuntuacion">
   <thead><!--Titulos de la tabla-->
     <tr>
       <th colspan="2" class="text-center">Periodo {{config('selects.meses')[$mes].'-'.$año}}</th>
       <th colspan="3" class="text-center">ASIST OBLIG</th>
-      <th colspan="2" class="text-center">ACCID. {{count($servicios)}}</th>
+      @php
+        $cantserv=count($servicios);
+      @endphp
+      <th colspan="2" class="text-center">ACCID. {{$cantserv}}</th>
       <th class="text-center">Dedicación</th>
       <th colspan="2" class="text-center">Asist. Guardias</th>
       <th class="text-center">Especiales</th>
@@ -30,19 +33,29 @@
   </thead>
   <tbody>
     @foreach ($bomberos as $bombero)
+    @php
+      $accid=count($bombero->accidentales($mes,$año));
+      $guardia=count($bombero->guardias($mes,$año));
+      if ($accid!=0) {
+        if ($cantserv<7 && $cantserv!=$accid) {
+          $puntuacion=35-(5*($cantserv-$accid));
+        }else {
+          $puntuacion=(35/$cantserv)*$accid;
+        }
+      }else {
+        $puntuacion=0;
+      }
+    @endphp
     <tr>
       <td class="text-center">{{$bombero->nro_legajo}}</td>
       <td class="text-center">{{$bombero->apellido.' '.$bombero->nombre}}</td>
       <td class="text-center">5</td>
       <td class="text-center">12</td>
       <td class="text-center">5,00</td>
-      @php
-        $cant=count($bombero->cantServicios($mes,$año));
-      @endphp
-      <td class="text-center">{{$cant}}</td>
-      <td class="text-center">{{(35/count($servicios))*$cant}}</td>
+      <td class="text-center">{{$accid}}</td>
+      <td class="text-center">{{$puntuacion}}</td>
       <td class="text-center">15</td>
-      <td class="text-center">430,00</td>
+      <td class="text-center">{{$guardia}}</td>
       <td class="text-center">10,00</td>
       <td class="text-center"> </td>
       <td class="text-center">70,00</td>

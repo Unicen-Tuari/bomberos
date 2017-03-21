@@ -20,11 +20,6 @@ class VehiculoController extends Controller
       $vehiculos=Vehiculo::orderBy('patente','DESC')->paginate(8);
       return view('vehiculo/lista',compact('vehiculos'));
   }
-  public function info($id)
-  {
-      $vehiculo=Vehiculo::find($id);
-      return view('vehiculo/info',compact('vehiculo'));
-  }
   public function create()
   {
       return view('vehiculo/alta');

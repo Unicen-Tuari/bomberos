@@ -21,11 +21,9 @@
         </div>
       </div>
       <div class="form-group col-sm-4">
-        <div class="col-sm-3">
-          <span>Buscar:</span>
-        </div>
+        {{ Form::label('Buscar', 'Buscar: ',['class' => 'control-label col-sm-3']) }}
         <div class="col-sm-9">
-          <input type="text" id="inputFilterPuntuacion" class="form-control" placeholder="Search for names.."></input>
+          {{Form::text('busqueda', null, ['placeholder'=>"Buscar por nombre",'id'=>"inputFilterPuntuacion",'class' => 'form-control'])}}
         </div>
       </div>
       <div id="puntuacion">
@@ -37,6 +35,5 @@
 @endsection
 
 @section('js')
-  {!! Html::script('assets/js/filterTable.js') !!}
   {!! Html::script('assets/js/ajaxpuntuacion.js') !!}
 @endsection
