@@ -48,14 +48,6 @@ class VehiculoController extends Controller
       if($data['patente']!=""){
         $data['patente']=strtoupper($data->patente);
       }
-      if(!array_key_exists('activo', $data->all())){
-        $data['activo']=0;
-      }
-      if(!array_key_exists('baja', $data->all())){
-        $data['baja']=0;
-      }else{
-        $data['activo']=0;
-      }
       $vehiculo=Vehiculo::findorfail($id)->update($data->all());
       return redirect()->route('vehiculo.index');
   }
@@ -64,9 +56,6 @@ class VehiculoController extends Controller
   {
     if($data['patente']!=""){
       $data['patente']=strtoupper($data->patente);
-    }
-    if(!array_key_exists('activo', $data->all())){
-      $data['activo']=0;
     }
     Vehiculo::create($data->all());
     return redirect()->route('vehiculo.index');

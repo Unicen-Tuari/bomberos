@@ -4,7 +4,6 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 use App\Vehiculo;
-use App\VehiculoServicio;
 
 class VehiculoRequest extends Request
 {
@@ -34,17 +33,18 @@ class VehiculoRequest extends Request
             return [];
         }
         case 'POST':
-        {
+        {//formato arry para que funcione la expresion regular
           return [
-              'patente' => 'min:6|unique:vehiculo|regex:/^\w{2}\s\d{3}\s\w{2}$|\w{3}\s\d{3}$/',
-              'activo' => 'required_with:patente',
+              'patente' => array('required_if:estado,1','min:6','unique:vehiculo', 'regex:/^\w{2}\s\d{3}\s\w{2}$|\w{3}\s\d{3}$/'),
+              'estado' => array('required','not_in:3'),
           ];
         }
 
         case 'PUT':
         {
           return [
-              'patente' => 'min:6|unique:vehiculo,patente|'.$vehiculo->id.'regex:/^\w{2}\s\d{3}\s\w{2}$|\w{3}\s\d{3}$/',
+              'patente' => array('required_if:estado,1','min:6','unique:vehiculo,patente,'.$vehiculo->id, 'regex:/^\w{2}\s\d{3}\s\w{2}$|\w{3}\s\d{3}$/'),
+              'estado' => array('required'),
           ];
         }
         default:break;

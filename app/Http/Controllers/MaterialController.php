@@ -39,7 +39,7 @@ class MaterialController extends Controller
 
   public function edit($id)
   {
-      $datas=Vehiculo::all(['id', 'patente']);
+      $datas=Vehiculo::where('estado','<',3)->get();
       $vehiculos = array();
       foreach ($datas as $data)
       {

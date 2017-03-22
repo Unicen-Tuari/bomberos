@@ -84,7 +84,7 @@ class ServicioController extends Controller
       {
           $ingresados[$data->id_bombero] = $data->bombero->nombre . " " . $data->bombero->apellido;
       }
-      $datasv=Vehiculo::where('activo',1)->get();
+      $datasv=Vehiculo::where('estado',1)->get();
       $vehiculos = array();
       $vehiculos[0] = "vehiculo...";
       foreach ($datasv as $data)
