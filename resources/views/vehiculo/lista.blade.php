@@ -23,7 +23,7 @@
         </thead>
         <tbody><!--Contenido de la tabla-->
           @foreach ($vehiculos as $vehiculo)
-            @if ($vehiculo->activo)
+            @if ($vehiculo->estado==1)
             <tr class="success">
             @else
             <tr class="danger">

@@ -36,16 +36,16 @@
         </div>
       </div>
 
-      <div class="form-group {{ $errors->has('activo') ? ' has-error' : '' }}">
-        {!! Form::label('activo', "Activo", ['class' => 'col-md-4 control-label']) !!}
-        <div class="col-md-6">
-            {!! Form::checkbox('activo', 1) !!}
+      <div class="form-group {{ $errors->has('estado') ? ' has-error' : '' }}">
+        {!! Form::label('estado', "Estado", ['class' => 'col-md-4 control-label']) !!}
+        <div class="col-md-2">
+          {{Form::select('estado',config('selects.estadovehiculo'), 2, ['class' => 'form-control'])}}
 
-            @if ($errors->has('activo'))
-                <span class="help-block">
-                    <strong>{{ $errors->first('activo') }}</strong>
-                </span>
-            @endif
+          @if ($errors->has('estado'))
+              <span class="help-block">
+                  <strong>{{ $errors->first('estado') }}</strong>
+              </span>
+          @endif
         </div>
       </div>
 

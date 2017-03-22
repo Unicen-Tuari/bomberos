@@ -8,7 +8,7 @@ class Vehiculo extends Model
 {
   protected $table = 'vehiculo';
   protected $fillable = [
-      'patente','num_movil','detalle','activo','baja',
+      'patente','num_movil','detalle','estado',
   ];
   public function materiales(){
     return $this->hasMany(Material::class);

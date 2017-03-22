@@ -36,31 +36,16 @@
           </div>
         </div>
 
-        <div class="form-group">
-          <div class="{{ $errors->has('activo') ? ' has-error' : '' }}">
-            {!! Form::label('activo', "Activo", ['class' => 'col-md-4 control-label']) !!}
-            <div class="col-md-2">
-                {!! Form::checkbox('activo', 1,$vehiculo->activo,['id'=>'activo']) !!}
+        <div class="form-group {{ $errors->has('estado') ? ' has-error' : '' }}">
+          {!! Form::label('estado', "Estado", ['class' => 'col-md-4 control-label']) !!}
+          <div class="col-md-2">
+            {{Form::select('estado',config('selects.estadovehiculo'), $vehiculo->estado, ['class' => 'form-control'])}}
 
-                @if ($errors->has('activo'))
-                    <span class="help-block">
-                        <strong>{{ $errors->first('activo') }}</strong>
-                    </span>
-                @endif
-            </div>
-          </div>
-
-          <div class="{{ $errors->has('baja') ? ' has-error' : '' }}">
-            {!! Form::label('baja', "Baja", ['class' => 'col-md-2 control-label']) !!}
-            <div class="col-md-3">
-                {!! Form::checkbox('baja', 1,$vehiculo->baja,['id'=>'baja']) !!}
-
-                @if ($errors->has('baja'))
-                    <span class="help-block">
-                        <strong>{{ $errors->first('baja') }}</strong>
-                    </span>
-                @endif
-            </div>
+            @if ($errors->has('estado'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('estado') }}</strong>
+                </span>
+            @endif
           </div>
         </div>
 
