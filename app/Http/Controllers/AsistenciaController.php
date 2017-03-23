@@ -13,19 +13,21 @@ use \DateTimeZone;
 
 class AsistenciaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
-        //
+        $bomberos=Bombero::where('activo', 1)->get();
+        return view('asistencia/obligatoria',compact('bomberos'));
     }
 
     public function puntuacionmes($mes,$año)
     {
-        $bomberos=Bombero::all();
+        $bomberos=Bombero::where('activo', 1)->get();
 
         $servicios=Servicio::where('tipo_alarma', 3)->get();
         foreach ($servicios as $key => $servicio) {
