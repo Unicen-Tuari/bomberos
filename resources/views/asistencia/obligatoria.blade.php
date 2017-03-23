@@ -10,7 +10,13 @@
     </div>
     <div class="panel-body">
 
-      {!! Form::open([ 'route' => 'asistencia.presentes', 'class' => 'form-horizontal', 'method' => 'POST']) !!}
+      <div class="form-group col-sm-12">
+        {{ Form::label('Buscar', 'Buscar: ',['class' => 'control-label col-sm-1 col-sm-offset-2']) }}
+        <div class="col-sm-3">
+          {{Form::text('busqueda', null, ['placeholder'=>"Buscar por nombre",'id'=>"inputFilterPuntuacion",'class' => 'form-control'])}}
+        </div>
+      </div>
+      {!! Form::open([ 'route' => 'asistencia.store', 'class' => 'form-horizontal', 'method' => 'POST']) !!}
 
         <div class="form-group bomberosparticipantes">
           @foreach($bomberos as $bombero)

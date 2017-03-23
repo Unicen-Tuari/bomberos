@@ -77,13 +77,7 @@ class ServicioController extends Controller
 
     public function create(){
       $bomberos=Bombero::getBomberos();
-      $ing=Ingreso::all();
-      $ingresados = array();
-      $ingresados[0] = "bombero...";
-      foreach ($ing as $data)
-      {
-          $ingresados[$data->id_bombero] = $data->bombero->nombre . " " . $data->bombero->apellido;
-      }
+      $ingresados = $bomberos;
       $datasv=Vehiculo::where('estado',1)->get();
       $vehiculos = array();
       $vehiculos[0] = "vehiculo...";
