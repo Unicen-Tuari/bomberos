@@ -105,7 +105,7 @@
 
           <a href="#asistenciasSubMenu" id="asistenciaMenu" class="list-group-item" data-toggle="collapse" data-parent="#MainMenu"><i class="fa fa-users fa-lg" style="padding-right: 10px;"></i> Asistencia<span class="arrow"></span></a>
           <div class="collapse" id="asistenciasSubMenu">
-            <a href="{{route('asistencia.index')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Asistencia?</a>
+            <a href="{{route('asistencia.create')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Cargar</a>
             <a  href="{{route('asistencia.puntuacion')}}"  class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Puntuacion?</a>
             <a  href="{{route('ingreso.listar')}}"  class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Lista de ingresados</a>
           </div>

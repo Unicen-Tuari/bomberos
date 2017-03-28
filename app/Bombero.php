@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Ingresado;
 use App\BomberoServicio;
+use App\asistencia;
 use Carbon\Carbon;
 use \DateTimeZone;
 
@@ -35,8 +36,11 @@ class Bombero extends Model
     return $this->hasMany(BomberoServicio::class)->where('tipo_id','<',6);
   }
 
+  public function asistencias(){
+    return $this->hasMany(asistencia::class,"id_bombero","id");
+  }
+
   public function accidentales($mes,$año){
-    // $servicios=BomberoServicio::where('bombero_id',$this->id)->where('tipo_id','<',6)->get();
     $servicios=$this->serviciosAsistidos;
     foreach ($servicios as $key => $servicio) {
       if (!($servicio->servicio->tipo_alarma==3 &&
@@ -46,7 +50,7 @@ class Bombero extends Model
         unset($servicios[$key]);
       }
     }
-    return $servicios;
+    return $servicios->count();
   }
 
   public function guardias($mes,$año){
@@ -60,7 +64,11 @@ class Bombero extends Model
         unset($guardias[$key]);
       }
     }
-    return $guardias;
+    return $guardias->count();
+  }
+
+  public function asistenciasmes($mes,$año){
+    return $this->hasMany(asistencia::class,"id_bombero","id")->whereYear('created_at','=',$año)->whereMonth('created_at','=',$mes)->count();
   }
 
   public function ingresado(){

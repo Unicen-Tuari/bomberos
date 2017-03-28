@@ -34,8 +34,10 @@
   <tbody>
     @foreach ($bomberos as $bombero)
     @php
-      $accid=count($bombero->accidentales($mes,$año));
-      $guardia=count($bombero->guardias($mes,$año));
+      $accid=$bombero->accidentales($mes,$año);
+      $guardia=$bombero->guardias($mes,$año);
+      $asistencia=$bombero->asistenciasmes($mes,$año);
+      $puntasis=(10/$dias)*$asistencia;
       if ($accid!=0) {
         if ($cantserv<7 && $cantserv!=$accid) {
           $puntuacion=35-(5*($cantserv-$accid));
@@ -49,9 +51,9 @@
     <tr>
       <td class="text-center">{{$bombero->nro_legajo}}</td>
       <td class="text-center">{{$bombero->apellido.' '.$bombero->nombre}}</td>
-      <td class="text-center">5</td>
-      <td class="text-center">12</td>
-      <td class="text-center">5,00</td>
+      <td class="text-center">{{$asistencia}}</td>
+      <td class="text-center">{{$puntasis}}</td>
+      <td class="text-center">20,00</td>
       <td class="text-center">{{$accid}}</td>
       <td class="text-center">{{$puntuacion}}</td>
       <td class="text-center">15</td>
