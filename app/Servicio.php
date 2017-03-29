@@ -13,7 +13,7 @@ class Servicio extends Model
 
   protected function getActivos()
   {   //servicios activos son aquellos que no tengan hora de regreso marcada
-      return $this->whereNull('hora_regreso')->orderBy('id','ASC')->get();
+      return $this->whereNull('hora_regreso')->orderBy('id','ASC')->get()->all();
   }
 
   public function bomberos(){
