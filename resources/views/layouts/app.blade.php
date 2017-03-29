@@ -38,21 +38,23 @@
                 <a class="dropdown-toggle" href="#" title="Servicios activos" data-toggle="dropdown">
                   <span class="cantidad">{{count(App\Servicio::getActivos())}}</span><p><span class="glyphicon glyphicon-fire"></span></p><p><span class="icon-title">Activos</span></p>
                 </a>
+                @if(App\Servicio::getActivos() != null)
                 <ul class="dropdown-menu serviciosActivos">
-                  @foreach( App\Servicio::getActivos() as $servicio)
-                    <li>
-                      <a href="{{route('servicio.finalizarActivo', $servicio->id)}}">{{$servicio->direccion}}
-                        @if(!$servicio->hora_salida)
-                          {{ Form::open(['route' => ['servicio.salida',$servicio->id], 'method' => 'PUT']) }}
-                            <button type="submit" class="btn fa fa-bus salida" title="Cargar hora de salida"></button>
-                          {{ Form::close() }}
-                        @else
-                          <button type="submit" class="btn fa fa-bus salidaok"></button>
-                        @endif
-                      </a>
-                    </li>
-                  @endforeach
+                      @foreach(App\Servicio::getActivos() as $servicio)
+                        <li style="">
+                          <a href="{{route('servicio.finalizarActivo', $servicio->id)}}">{{$servicio->direccion}}
+                            @if(!$servicio->hora_salida)
+                              {{ Form::open(['route' => ['servicio.salida',$servicio->id], 'method' => 'PUT']) }}
+                                <button type="submit" class="btn fa fa-bus salida" title="Cargar hora de salida"></button>
+                              {{ Form::close() }}
+                            @else
+                              <button type="submit" class="btn fa fa-bus salidaok"></button>
+                            @endif
+                          </a>
+                        </li>
+                      @endforeach
                 </ul>
+                @endif
               </li>
 
               <li class="navIcon odd text-center">
