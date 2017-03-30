@@ -275,14 +275,12 @@ a:hover, a:focus {
   margin-top: 1.5px;
 }
 .salida{
-  padding: 0px 0px;
+  background-color: white;
   color: #ff0000;
-  margin-top: 1.5px;
 }
 .salidaok{
-  padding: 0px 0px;
+  background-color: white;
   color: #008301;
-  margin-top: 1.5px;
 }
 
 .btn:hover {
@@ -426,4 +424,14 @@ tr td .glyphicon-edit {
 
 #tablaPuntuacion tr:hover {
   background: #f1f1f1;
+}
+.presentesOn {
+    color:green;
+    margin-top: 8px;
+    font-size: 20px;
+}
+.presentesOff{
+    color:red;
+    margin-top: 8px;
+    font-size: 20px;
 }
