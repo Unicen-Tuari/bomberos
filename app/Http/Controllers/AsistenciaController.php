@@ -49,7 +49,7 @@ class AsistenciaController extends Controller
       foreach ($data as $key => $value) {
         if (strstr($key, '-', true)=="bombero") {
           $idbombero=substr($key, 8);
-          asistencia::create(['id_bombero'=>$idbombero]);
+          asistencia::create(['id_bombero'=>$idbombero,'fecha_reunion'=>$data['fecha_reunion']]);
         }
       }
       return redirect()->route('home.index');

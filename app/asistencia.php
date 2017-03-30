@@ -8,7 +8,7 @@ class asistencia extends Model
 {
   protected $table = 'asistencia';
   protected $fillable = [
-    'id', 'id_bombero'
+    'id', 'id_bombero','fecha_reunion'
   ];
 
   public function bombero(){

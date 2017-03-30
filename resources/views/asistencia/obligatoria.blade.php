@@ -10,13 +10,26 @@
     </div>
     <div class="panel-body">
 
-      <div class="form-group col-sm-12">
-        {{ Form::label('Buscar', 'Buscar: ',['class' => 'control-label col-sm-1 col-sm-offset-2']) }}
-        <div class="col-sm-3">
+      <div class="form-group col-sm-6">
+        {{ Form::label('Buscar', 'Buscar: ',['class' => 'control-label col-sm-2 col-sm-offset-2']) }}
+        <div class="col-sm-5">
           {{Form::text('busqueda', null, ['placeholder'=>"Buscar por nombre",'id'=>"inputFilterPuntuacion",'class' => 'form-control'])}}
         </div>
       </div>
       {!! Form::open([ 'route' => 'asistencia.store', 'class' => 'form-horizontal', 'method' => 'POST']) !!}
+
+        <div class="form-group {{ $errors->has('fecha_reunion') ? ' has-error' : '' }}">
+          {!! Form::label('fecha_reunion', 'Fecha reunion',['class' => 'col-sm-2 control-label']) !!}
+          <div class="col-sm-3">
+            {!! Form::date('fecha_reunion', \Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires')) ,['class' => 'form-control']) !!}
+
+            @if ($errors->has('fecha_reunion'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('fecha_reunion') }}</strong>
+                </span>
+            @endif
+          </div>
+        </div>
 
         <div class="form-group bomberosparticipantes">
           @foreach($bomberos as $bombero)

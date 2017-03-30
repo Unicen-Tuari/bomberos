@@ -38,6 +38,7 @@
                 <a class="dropdown-toggle" href="#" title="Servicios activos" data-toggle="dropdown">
                   <span class="cantidad">{{count(App\Servicio::getActivos())}}</span><p><span class="glyphicon glyphicon-fire"></span></p><p><span class="icon-title">Activos</span></p>
                 </a>
+                @if ((App\Servicio::getActivos())!=null)
                 <ul class="dropdown-menu serviciosActivos">
                   @foreach( App\Servicio::getActivos() as $servicio)
                     <li>
@@ -53,6 +54,7 @@
                     </li>
                   @endforeach
                 </ul>
+                @endif
               </li>
 
               <li class="navIcon odd text-center">

@@ -82,7 +82,7 @@ class ServicioRequest extends Request
               'regreso' => 'required|date_format:Y-m-d H:i:s|after:salida',
               'jefe_servicio' => 'required|exists:bombero,id',
               'oficial' => 'required|exists:bombero,id',
-              'jefe_de_cuerpo' => 'required|exists:bombero,id|different:jefe_servicio',
+              'jefe_de_cuerpo' => 'required|exists:bombero,id',
           ];
         }
         default:break;
