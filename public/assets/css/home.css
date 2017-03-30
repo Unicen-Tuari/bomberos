@@ -45,6 +45,7 @@ nav div:first-child, nav div:last-child{
   list-style: none;
   margin: 0px;
   padding-top: 20px;
+
 }
 
 .rightNav .dropdown-menu {
@@ -52,7 +53,7 @@ nav div:first-child, nav div:last-child{
 }
 
 .rightNav .dropdown-menu li a{
-  color: black;
+    color: black;
 }
 .rightNav .dropdown-menu li{
   padding: 0px;
@@ -60,6 +61,15 @@ nav div:first-child, nav div:last-child{
 
 .rightNav li a {
   color: white;
+}
+nav .rightNav li{
+    text-align: right;
+    padding-right: 35px;
+}
+.rightNav ul.dropdown-menu {
+    left: auto;
+    right: 0;
+    margin-right: 20px;
 }
 
 nav div ul:not([class*="dropdown-menu"]), nav div {
@@ -265,15 +275,38 @@ a:hover, a:focus {
   text-decoration: none;
 }
 
-.dropdown-menu{
-      padding: 5px 15px 5px 5px;
-      margin-left: 25%;
+.serviciosActivos{
+      text-align: center;
+      padding: 0px;
+      border: 1px solid grey;
+      box-shadow: 8px 8px 4px rgba(172, 172, 172, 0.44);
 }
-.dropdown-menu li a{
-  padding: 0px 0px;
-  margin-left: 10px;
-  margin-top: 1.5px;
+
+.serviciosActivos li button {
+    position: relative;
+    right: 0px;
+    top: 0px;
 }
+
+.serviciosActivos li a {
+    font-weight: bold;
+    width: 100%;
+    border-bottom: 1px solid grey;
+}
+
+.serviciosActivos li a, .serviciosActivos li form{
+  display: inline-block;
+}
+
+.serviciosActivos li a:hover button {
+    background-color: #f5f5f5;
+}
+
+.btn.salida:hover {
+    font-size: 20px;
+    color: #337ab7;
+}
+
 .salida{
   background-color: white;
   color: #ff0000;
@@ -281,10 +314,6 @@ a:hover, a:focus {
 .salidaok{
   background-color: white;
   color: #008301;
-}
-
-.btn:hover {
-  color: #337ab7;
 }
 
 .eliminar{
@@ -302,10 +331,6 @@ a:hover, a:focus {
 }
 .ban:hover{
   color: #a80e0e;
-}
-
-.serviciosActivos li a, .serviciosActivos li form{
-  display: inline-block;
 }
 
 #regIngreso {
@@ -372,16 +397,6 @@ a:hover, a:focus {
 
 .list-group-item {
   border-bottom: 1px solid white;
-}
-
-.btn-primary:active, .btn-primary:active:hover {
-  background-color: #490000;
-  border-color: #320101;
-}
-
-.btn-primary:focus {
-  background-color: #490000;
-  border-color: #320101;
 }
 
 .list-group-item:last-child {
