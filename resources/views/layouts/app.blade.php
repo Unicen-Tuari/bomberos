@@ -42,14 +42,14 @@
                 @if(App\Servicio::getActivos() != null)
                 <ul class="dropdown-menu serviciosActivos">
                       @foreach(App\Servicio::getActivos() as $servicio)
-                        <li style="">
+                        <li>
                           <a href="{{route('servicio.finalizarActivo', $servicio->id)}}">{{$servicio->direccion}}
                             @if(!$servicio->hora_salida)
                               {{ Form::open(['route' => ['servicio.salida',$servicio->id], 'method' => 'PUT']) }}
-                                <button type="submit" class="btn fa fa-bus salida" title="Cargar hora de salida"></button>
+                                <button type="submit" class="btn fa fa-minus salida" title="Cargar hora de salida"></button>
                               {{ Form::close() }}
                             @else
-                              <button type="submit" class="btn fa fa-bus salidaok"></button>
+                              <button type="submit" class="btn fa fa-check salidaok"></button>
                             @endif
                           </a>
                         </li>
@@ -78,13 +78,12 @@
             <li><a href="{{ url('/login') }}">Iniciar sesión</a></li>
             <li><a href="{{ url('/register') }}">Registrarse</a></li>
         @else
-        <ul class="pull-right col-xs-2 rightNav">
+        <ul class="col-xs-2 rightNav">
             <!-- Authentication Links -->
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                     {{ Auth::user()->nombre }} <span class="caret"></span>
                 </a>
-
                 <ul class="dropdown-menu" role="menu">
                     <li><a href="{{ url('/logout') }}"><i class="glyphicon glyphicon-log-out"></i> Salir</a></li>
                 </ul>
