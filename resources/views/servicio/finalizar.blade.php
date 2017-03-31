@@ -14,7 +14,6 @@
       @php
       $superficie=$cuartel=$reconocimiento=$disposiciones=$jefe=$oficial=$jcuerpo=$bombero=$involucrados=$primero=null;
       $ilesos=$lesionados=$quemados=$muertos=$otros=$combustible=0;
-      $regreso=\Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires'))->addSeconds(30)->toDateTimeString();
       @endphp
       @php
       $numero=$servicio->id;
@@ -24,11 +23,12 @@
       $hora=$servicio->hora_alarma;
       $salida=$servicio->hora_salida;
       $tipo_alarma=$servicio->tipo_alarma;
+      $regreso=\Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires'))->toDateTimeString();
       @endphp
 
-      @if(!$servicio->hora_salida)
+      @if(!$salida)
         @php
-          $salida=\Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires'))->toDateTimeString();
+          $salida=\Carbon\Carbon::parse($hora)->addSeconds(60)->toDateTimeString();
         @endphp
       @endif
       {!! Form::hidden('finalizar', 1) !!}

@@ -22,7 +22,7 @@ class CreateBomberoServicioTable extends Migration
             $table->unique(['servicio_id', 'bombero_id']);
             $table->foreign('servicio_id')->references('id')->on('servicio')->onDelete('restrict');
             $table->foreign('bombero_id')->references('id')->on('bombero')->onDelete('restrict');
-            $table->foreign('tipo_id')->references('id')->on('tipo_asistencia')->onDelete('cascade');
+            $table->foreign('tipo_id')->references('id')->on('tipo_asistencia')->onDelete('restrict');
         });
     }
 

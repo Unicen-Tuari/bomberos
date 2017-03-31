@@ -20,7 +20,7 @@ class IngresoController extends Controller
     public function listarIngresos()
     {
         $ingresados=Ingreso::all();
-        return view('asistencia/listar',compact('ingresados'));
+        return view('asistencia/ingresados',compact('ingresados'));
     }
     public function indexPresentes($servicio,$acargo)
     {
@@ -31,7 +31,11 @@ class IngresoController extends Controller
 
     public function editPresentes($servicio)
     {
-        $bomberos=BomberoServicio::where('servicio_id',$servicio)->get();
+        $bomberos=BomberoServicio::where('servicio_id',$servicio)->orderBy('tipo_id')->get();
+        if (count($bomberos)<2) {
+          $bomberos=Bombero::where('activo',1)->get();
+          return view('asistencia/presentes',compact('ingresados','bomberos','servicio','acargo'));
+        }
         return view('asistencia/participantes',compact('bomberos','servicio'));
     }
 

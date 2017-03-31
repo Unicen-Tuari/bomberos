@@ -9,8 +9,6 @@ use App\asistencia;
 use App\Bombero;
 use App\Servicio;
 use App\BomberoServicio;
-use Carbon\Carbon;
-use \DateTimeZone;
 
 class AsistenciaController extends Controller
 {
@@ -22,6 +20,13 @@ class AsistenciaController extends Controller
 
     public function index()
     {
+      $reuniones=asistencia::all()->groupBy('fecha_reunion');
+      return view('asistencia/listar',compact('reuniones'));
+    }
+
+    public function editar()
+    {
+
     }
 
     public function puntuacionmes($mes,$año)

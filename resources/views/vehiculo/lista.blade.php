@@ -34,7 +34,7 @@
               <td class="text-center">
                 @if (count($vehiculo->servicios)==0)
                 {{ Form::open(['route' => ['vehiculo.destroy', $vehiculo->id], 'method' => 'delete']) }}
-                  <button type="submit" class="btn glyphicon glyphicon-trash eliminar"></button>
+                  <button type="submit" class="btn glyphicon glyphicon-trash simulara"></button>
                 {{ Form::close() }}
                 @else
                   <button type="submit" class="btn glyphicon glyphicon-ban-circle ban" title="imposible eliminar"></button>
