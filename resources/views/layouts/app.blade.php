@@ -38,6 +38,7 @@
                 <a class="dropdown-toggle" href="#" title="Servicios activos" data-toggle="dropdown">
                   <span class="cantidad">{{count(App\Servicio::getActivos())}}</span><p><span class="glyphicon glyphicon-fire"></span></p><p><span class="icon-title">Activos</span></p>
                 </a>
+
                 @if(App\Servicio::getActivos() != null)
                 <ul class="dropdown-menu serviciosActivos">
                       @foreach(App\Servicio::getActivos() as $servicio)
@@ -108,6 +109,7 @@
           <div class="collapse" id="asistenciasSubMenu">
             <a href="{{route('asistencia.create')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Cargar</a>
             <a  href="{{route('asistencia.puntuacion')}}"  class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Puntuacion?</a>
+            <a  href="{{route('asistencia.index')}}"  class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Lista de reuniones</a>
             <a  href="{{route('ingreso.listar')}}"  class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Lista de ingresados</a>
           </div>
 

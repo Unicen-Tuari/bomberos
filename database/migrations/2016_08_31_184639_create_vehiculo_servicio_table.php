@@ -13,11 +13,12 @@ class CreateVehiculoServicioTable extends Migration
     public function up()
     {
         Schema::create('vehiculo_servicio', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('servicio_id')->unsigned();
             $table->integer('vehiculo_id')->unsigned();
             $table->boolean('primero')->default(0);
             $table->timestamps();
-            $table->primary(['servicio_id', 'vehiculo_id']);
+            $table->unique(['servicio_id', 'vehiculo_id']);
             $table->foreign('servicio_id')->references('id')->on('servicio')->onDelete('restrict');
             $table->foreign('vehiculo_id')->references('id')->on('vehiculo')->onDelete('restrict');
         });

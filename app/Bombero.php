@@ -32,12 +32,20 @@ class Bombero extends Model
     return $this->hasMany(BomberoServicio::class);
   }
 
+  public function acargo($servicio){
+    return $this->hasMany(BomberoServicio::class)->where('servicio_id',$servicio)->first();
+  }
+
   protected function serviciosAsistidos(){
     return $this->hasMany(BomberoServicio::class)->where('tipo_id','<',6);
   }
 
   public function asistencias(){
     return $this->hasMany(asistencia::class,"id_bombero","id");
+  }
+
+  public function presente($reunion){
+    return $this->hasMany(asistencia::class,"id_bombero","id")->where('fecha_reunion',$reunion)->count();
   }
 
   public function accidentales($mes,$año){

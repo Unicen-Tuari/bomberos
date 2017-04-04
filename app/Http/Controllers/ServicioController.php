@@ -247,8 +247,13 @@ class ServicioController extends Controller
             if (!$bomberoacargo) {
               BomberoServicio::create(['servicio_id'=>$servicio->id,'bombero_id'=>$data["bombero"],'tipo_id'=>2,'a_cargo'=>true]);
             }else {
-              $bomberoacargo->bombero_id=$data['bombero'];
-              $bomberoacargo->save();
+              if ($bomberoacargo->bombero_id!=$data['bombero']) {
+                $bomberoacargo->a_cargo=false;
+                $bomberoacargo->save();
+                $actual=BomberoServicio::where([['servicio_id',$servicio->id],['bombero_id',$data['bombero']]])->first();
+                $actual->a_cargo=true;
+                $actual->save();
+              };
             }
           }
 
@@ -303,16 +308,16 @@ class ServicioController extends Controller
 
     public function editar_presentes(Request $request)
     {
-      foreach ($request as $key => $value) {
+      $data=$request->all();
+      foreach ($data as $key => $value) {
         if (strstr($key, '-', true)=="bombero") {
           $idbombero=substr($key, 8);
           $involucrado=BomberoServicio::where([['servicio_id',$data['servicio']],['bombero_id',$idbombero]])->first();
-          if (!$involucrado) {
-            BomberoServicio::create(['servicio_id'=>$data['servicio'],'bombero_id'=>$idbombero,'tipo_id'=>$value]);
-          }elseif((integer)$involucrado->tipo_id!=(integer)$value){
-            $involucrado->tipo_id=$value;
-            $involucrado->save();
+          if($involucrado->tipo_id != $value)
+          {
+            $involucrado->tipo_id = $value;
           }
+          $involucrado->save();
         }
       }
       return redirect()->route('servicio.index');

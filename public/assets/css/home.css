@@ -316,7 +316,11 @@ a:hover, a:focus {
   color: #008301;
 }
 
-.eliminar{
+.btn:hover {
+  color: #337ab7;
+}
+
+.simulara{
   padding: 0px 0px;
   color: #337ab7;
   background-color: inherit;

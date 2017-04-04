@@ -27,7 +27,7 @@
                 <td class="text-center">{{$servicio->hora_regreso}}</td>
                 <td class="text-center">
                   {{ Form::open(['route' => ['servicio.destroy', $servicio->id], 'method' => 'delete']) }}
-                      <button type="submit" class="btn glyphicon glyphicon-trash eliminar"></button>
+                      <button type="submit" class="btn glyphicon glyphicon-trash simulara"></button>
                   {{ Form::close() }}
                 </td>
                 {{-- finalizarActivo implementar Update --}}

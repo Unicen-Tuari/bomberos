@@ -39,6 +39,7 @@ class ServicioRequest extends Request
               'tipo_alarma' => 'required_if:tipo,1,2,3',
               'autor_llamada' => 'max:100',
               'direccion' => 'required|max:255',
+              'vehiculo' => 'required_if:finalizar,true|exists:vehiculo,id',
               'ilesos' => 'required_if:finalizar,true|numeric',
               'lesionados' => 'required_if:finalizar,true|numeric',
               'quemados' => 'required_if:finalizar,true|numeric',
@@ -66,6 +67,7 @@ class ServicioRequest extends Request
               'tipo_alarma' => 'required',
               'autor_llamada' => 'max:100',
               'direccion' => 'required|max:255',
+              'vehiculo' => 'required|exists:vehiculo,id',
               'ilesos' => 'required|numeric',
               'lesionados' => 'required|numeric',
               'quemados' => 'required|numeric',
@@ -82,7 +84,7 @@ class ServicioRequest extends Request
               'regreso' => 'required|date_format:Y-m-d H:i:s|after:salida',
               'jefe_servicio' => 'required|exists:bombero,id',
               'oficial' => 'required|exists:bombero,id',
-              'jefe_de_cuerpo' => 'required|exists:bombero,id|different:jefe_servicio',
+              'jefe_de_cuerpo' => 'required|exists:bombero,id',
           ];
         }
         default:break;

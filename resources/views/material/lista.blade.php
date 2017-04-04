@@ -29,7 +29,7 @@
               @endif
               <td class="text-center">
                 {{ Form::open(['route' => ['material.destroy', $material->id], 'method' => 'delete']) }}
-                    <button type="submit" class="btn glyphicon glyphicon-trash eliminar"></button>
+                    <button type="submit" class="btn glyphicon glyphicon-trash simulara"></button>
                 {{ Form::close() }}
               </td>
               <td class="text-center"><a class="glyphicon glyphicon-edit" href="{{ route('material.edit', $material->id) }}"></a></td>

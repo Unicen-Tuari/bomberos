@@ -40,7 +40,7 @@
               <td class="text-center">{{$bombero->fecha_nacimiento}}</td>
               <td class="text-center">
                 {{ Form::open(['route' => ['bombero.destroy', $bombero->id], 'method' => 'DELETE']) }}
-                    <button type="submit" class="btn glyphicon glyphicon-trash eliminar"></button>
+                    <button type="submit" class="btn glyphicon glyphicon-trash simulara"></button>
                 {{ Form::close() }}
               </td>
               <td class="text-center"><a class="glyphicon glyphicon-edit" href="{{ route('bombero.edit', $bombero->id) }}"></a></td>
