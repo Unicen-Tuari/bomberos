@@ -24,11 +24,6 @@ class AsistenciaController extends Controller
       return view('asistencia/listar',compact('reuniones'));
     }
 
-    public function editar()
-    {
-
-    }
-
     public function puntuacionmes($mes,$año)
     {
         $bomberos=Bombero::where('activo', 1)->get();
@@ -60,20 +55,39 @@ class AsistenciaController extends Controller
       return redirect()->route('home.index');
     }
 
-    public function show($id)
+    public function show($reunion)
     {
-        //
+      $bomberos=Bombero::where('activo', 1)->get();
+      return view('asistencia/info',compact('bomberos','reunion'));
     }
 
-    public function edit($id)
+    public function edit($reunion)
     {
-        //
+      $bomberos=Bombero::where('activo', 1)->get();
+      return view('asistencia/editar',compact('bomberos','reunion'));
     }
 
 
     public function update(Request $request, $id)
     {
-        //
+      $data=$request->all();
+      $reunion=asistencia::where('fecha_reunion',$id)->get();
+      $presentes=[];
+      foreach ($data as $key => $value) {
+        if (strstr($key, '-', true)=="bombero") {
+          $idbombero=(integer)substr($key, 8);
+          $presentes[]=$idbombero;
+          if (!$reunion->where('id_bombero',$idbombero)->first()) {
+            asistencia::create(['id_bombero'=>$idbombero,'fecha_reunion'=>$id]);
+          }
+        }
+      }
+      foreach ($reunion as $value) {
+        if (!in_array($value->id_bombero,$presentes)) {
+          $value->delete();
+        }
+      }
+      return redirect()->route('asistencia.index');
     }
 
 

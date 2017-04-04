@@ -44,6 +44,10 @@ class Bombero extends Model
     return $this->hasMany(asistencia::class,"id_bombero","id");
   }
 
+  public function presente($reunion){
+    return $this->hasMany(asistencia::class,"id_bombero","id")->where('fecha_reunion',$reunion)->count();
+  }
+
   public function accidentales($mes,$año){
     $servicios=$this->serviciosAsistidos;
     foreach ($servicios as $key => $servicio) {

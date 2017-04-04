@@ -6,7 +6,7 @@
   <div class="panel panel-default">
     <div id="breadcrumb" class="panel-heading">
       <span class="fa fa-users" aria-hidden="true"></span>
-      <h4>Asistencia Obligatoria</h4>
+      <h4>Editar Asistencia</h4>
     </div>
     <div class="panel-body">
 
@@ -16,13 +16,11 @@
           {{Form::text('busqueda', null, ['placeholder'=>"Buscar por nombre",'id'=>"inputFilterPuntuacion",'class' => 'form-control'])}}
         </div>
       </div>
-      {!! Form::open([ 'route' => 'asistencia.store', 'class' => 'form-horizontal', 'method' => 'POST']) !!}
-
+      {!! Form::open([ 'route' => ['asistencia.update',$reunion], 'class' => 'form-horizontal', 'method' => 'PUT']) !!}
         <div class="form-group {{ $errors->has('fecha_reunion') ? ' has-error' : '' }}">
           {!! Form::label('fecha_reunion', 'Fecha reunion',['class' => 'col-sm-2 control-label']) !!}
           <div class="col-sm-3">
-            {!! Form::date('fecha_reunion', \Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires')) ,['class' => 'form-control']) !!}
-
+            {!! Form::label('fecha_reunion', \Carbon\Carbon::parse($reunion)->format('d-m-Y') ,['class' => 'control-label']) !!}
             @if ($errors->has('fecha_reunion'))
                 <span class="help-block">
                     <strong>{{ $errors->first('fecha_reunion') }}</strong>
@@ -34,7 +32,7 @@
         <div class="form-group bomberosparticipantes">
           @foreach($bomberos as $bombero)
             @php
-              $vino=0;
+              $vino=$bombero->presente($reunion);
             @endphp
             @include('asistencia.asistencia')
           @endforeach

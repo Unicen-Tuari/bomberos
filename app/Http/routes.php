@@ -26,14 +26,11 @@ Route::get('bombero/responsable', 'BomberoController@altaResponsable')->name('bo
 Route::resource('bombero','BomberoController',['except' => ['show']]);
 
 Route::get('asistencia/puntuacion', 'AsistenciaController@puntuacion')->name('asistencia.puntuacion');
-
 Route::get('asistencia/{mes}/{anio}/puntuacionmes', 'AsistenciaController@puntuacionmes')->name('asistencia.puntuacionmes');
-
 Route::resource('asistencia','AsistenciaController');
 
 Route::resource('vehiculo','VehiculoController');
 
-Route::put('material/editar', 'MaterialController@editar')->name('material.editar');
 Route::resource('material','MaterialController');
 
 Route::resource('servicio/tipo','TipoServicioController',['except' => ['create']]);
