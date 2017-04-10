@@ -35,7 +35,9 @@ $(document).ready(function () {
   $('#listavehiculos').on('change', function(){
     calcularCombustible()
   });
-    var anterior=$('#listavehiculo').val();
+
+  var anterior=$('#listavehiculo').val();
+
   $('#listavehiculo').on('change', function(){
     var primero = $(this).val();
     var array=[];
@@ -50,7 +52,7 @@ $(document).ready(function () {
       $('#listavehiculos').val(array);
       $('#listavehiculos').multiselect("refresh");
     }
-    calcularCombustible()
+  calcularCombustible()
   });
   function calcularCombustible(){
     var factor = $('#combustible').attr('idfactor');

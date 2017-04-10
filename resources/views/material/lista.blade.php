@@ -23,7 +23,7 @@
             <tr>
               <td class="text-center"><a href="{{ route('material.show', $material->id) }}">{{$material->nombre}}</a></td>
               @if ($material->vehiculo_id)
-                <td class="text-center">{{$material->vehiculo->patente}}</td>
+                <td class="text-center">{{$material->vehiculo->num_movil}}</td>
               @else
                 <td class="text-center">En Depósito</td>
               @endif

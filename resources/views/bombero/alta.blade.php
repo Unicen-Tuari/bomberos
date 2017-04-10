@@ -8,7 +8,7 @@
       <h4>Alta bombero</h4>
     </div>
     <div class="panel-body">
-      {!! Form::open([ 'route' => 'bombero.store', 'class' => 'form-horizontal', 'method' => 'POST', 'files' => true]) !!}
+      {!! Form::open([ 'route' => 'bombero.store', 'class' => 'form-horizontal', 'method' => 'POST']) !!}
 
         <div hidden>
           {!! Form::checkbox('activo', 1) !!}

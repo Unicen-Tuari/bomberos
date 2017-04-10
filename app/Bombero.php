@@ -36,7 +36,7 @@ class Bombero extends Model
     return $this->hasMany(BomberoServicio::class)->where('servicio_id',$servicio)->first();
   }
 
-  protected function serviciosAsistidos(){
+  public function serviciosAsistidos(){
     return $this->hasMany(BomberoServicio::class)->where('tipo_id','<',6);
   }
 
@@ -62,10 +62,9 @@ class Bombero extends Model
   }
 
   public function guardias($mes,$año){
-    // $servicios=BomberoServicio::where('bombero_id',$this->id)->where('tipo_id','<',6)->get();
-    $guardias=$this->serviciosAsistidos;
+    $guardias=BomberoServicio::where('bombero_id',$this->id)->where('tipo_id','<',6)->get();
     foreach ($guardias as $key => $guardia) {
-      if (!($guardia->servicio->tipo_alarma!=3 &&
+      if (!($guardia->servicio->tipo_alarma<3 &&
        (\Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$guardia->servicio->hora_alarma)->format('m')==$mes ) &&
        (\Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$guardia->servicio->hora_alarma)->format('Y')==$año)))
       {

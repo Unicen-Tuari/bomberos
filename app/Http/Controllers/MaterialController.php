@@ -28,11 +28,11 @@ class MaterialController extends Controller
   }
   public function create()
   {
-      $datas=Vehiculo::all(['id', 'patente']);
+      $datas=Vehiculo::all(['id', 'num_movil']);
       $vehiculos = array();
       foreach ($datas as $data)
       {
-          $vehiculos[$data->id] = $data->patente;
+          $vehiculos[$data->id] = $data->num_movil;
       }
       return view('material/alta',compact('vehiculos'));
   }

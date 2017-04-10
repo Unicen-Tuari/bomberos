@@ -37,15 +37,17 @@
       $accid=$bombero->accidentales($mes,$año);
       $guardia=$bombero->guardias($mes,$año);
       $asistencia=$bombero->asistenciasmes($mes,$año);
-      $puntasis=(10/$dias)*$asistencia;
+      $puntasis=0;
+      if ($dias!=0) {
+        $puntasis=(10/$dias)*$asistencia;
+      }
+      $puntuacion=0;
       if ($accid!=0) {
         if ($cantserv<7 && $cantserv!=$accid) {
           $puntuacion=35-(5*($cantserv-$accid));
         }else {
           $puntuacion=(35/$cantserv)*$accid;
         }
-      }else {
-        $puntuacion=0;
       }
     @endphp
     <tr>
@@ -59,7 +61,7 @@
       <td class="text-center">15</td>
       <td class="text-center">{{$guardia}}</td>
       <td class="text-center">10,00</td>
-      <td class="text-center"> </td>
+      <td class="text-center">10,00</td>
       <td class="text-center">70,00</td>
       <td class="text-center"> </td>
       <td class="text-center">452</td>

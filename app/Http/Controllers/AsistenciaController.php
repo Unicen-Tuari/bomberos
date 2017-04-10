@@ -15,7 +15,7 @@ class AsistenciaController extends Controller
 
     public function __construct()
     {
-        // $this->middleware('auth');
+        $this->middleware('auth');
     }
 
     public function index()
@@ -23,19 +23,6 @@ class AsistenciaController extends Controller
       $reuniones=asistencia::all()->groupBy('fecha_reunion');
       return view('asistencia/listar',compact('reuniones'));
     }
-
-    public function puntuacionmes($mes,$año)
-    {
-        $bomberos=Bombero::where('activo', 1)->get();
-        $dias=asistencia::select(\DB::raw('COUNT(*) as cant, id_bombero'))->whereYear('created_at','=',$año)->whereMonth('created_at','=',$mes)->groupBy('id_bombero')->get()->max('cant');
-        $servicios=Servicio::where('tipo_alarma', 3)->whereYear('hora_alarma','=',$año)->whereMonth('hora_alarma','=',$mes)->get();
-        return view('asistencia/puntuacionmes',compact('bomberos','servicios','mes','año','dias'));
-    }
-
-     public function puntuacion()
-     {
-         return view('asistencia/puntuacion');
-     }
 
     public function create()
     {
