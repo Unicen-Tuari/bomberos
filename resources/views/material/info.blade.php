@@ -10,7 +10,7 @@
     <div class="panel-body">
         {!! Form::label('nombre', 'Nombre: '.$material->nombre,['class' => 'col-sm-10 col-sm-offset-1 control-label']) !!}
         @if ($material->vehiculo_id)
-          {!! Form::label('vehiculo_id', 'Esta en el vehiculo: '.$material->vehiculo->patente,['class' => 'col-sm-10 col-sm-offset-1 control-label']) !!}
+          {!! Form::label('vehiculo_id', 'Esta en el vehiculo: '.$material->vehiculo->num_movil.' - '.$material->vehiculo->patente,['class' => 'col-sm-10 col-sm-offset-1 control-label']) !!}
         @else
           {!! Form::label('vehiculo_id', 'Esta en depósito',['class' => 'col-sm-10 col-sm-offset-1 control-label']) !!}
         @endif

@@ -20,11 +20,6 @@
             <tr>
               <td class="text-center"><a href="{{ route('asistencia.show', $key) }}">{{\Carbon\Carbon::parse($key)->format('d-m-Y')}}</a></td>
               <td class="text-center"><a class="glyphicon glyphicon-edit" href="{{ route('asistencia.edit', $key) }}"></a></td>
-              {{-- <td class="text-center">
-              {{ Form::open(['route' => ['asistencia.edit',$key], 'method' => 'PUT']) }}
-                <button type="submit" class="btn glyphicon glyphicon-edit simulara"></button>
-              {{ Form::close() }}
-              </td> --}}
             </tr>
           @endforeach
         </tbody>

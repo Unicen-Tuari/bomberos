@@ -11,11 +11,11 @@
       <table  class="table table-bordered">
         <thead><!--Titulos de la tabla-->
           <tr>
-            <th>
+            <th class="text-center">
               Nro. de Unidad
             </th>
-            <th>
-              Patente
+            <th class="text-center">
+              Numero Movil
             </th>
             <th colspan="2">
             </th>
@@ -30,7 +30,7 @@
             @endif
               <td class="text-center"><a href="{{ route('vehiculo.show', $vehiculo->id) }}">{{$vehiculo->num_movil}}</a>
               </td>
-              <td class="text-center">{{$vehiculo->patente}}</td>
+              <td class="text-center">{{$vehiculo->num_movil}}</td>
               <td class="text-center">
                 @if (count($vehiculo->servicios)==0)
                 {{ Form::open(['route' => ['vehiculo.destroy', $vehiculo->id], 'method' => 'delete']) }}

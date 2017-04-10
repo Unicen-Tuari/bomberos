@@ -1,19 +1,15 @@
 $(document).ready(function () {
   function cargarPuntuacion(){
-    var URLactual = window.location.href;
-    var ruta=URLactual.substring(0, URLactual.indexOf("asistencia"));
+    var url = window.location.href;
     var mes=$('#mes').val();
     var año=$('#año').val();
 		$.ajax({
 			type: 'GET',
 			dataType: 'HTML',
-			url: ruta+'asistencia/'+mes+'/'+año+'/puntuacionmes',
+			url: url+'/'+mes+'/'+año+'/puntuacionmes',
 			success: function(data){
 						$('#puntuacion').html(data);
 					},
-			error: function(){
-						alert('Error al Cargar la tabla ');
-					}
 		});
   };
 
@@ -25,6 +21,24 @@ $(document).ready(function () {
 
   $('#año').on('change',function(){
     cargarPuntuacion();
+  });
+
+  function cargarResultado(bombero){
+    var URLactual = window.location.href;
+    var ruta=URLactual.substring(0, URLactual.indexOf("create"));
+    var fecha=$('#fecha').val();
+		$.ajax({
+			type: 'GET',
+			dataType: 'HTML',
+			url: ruta+'bombero/'+bombero+'/'+fecha,
+			success: function(data){
+						$('#resultado').html(data);
+					},
+		});
+  };
+
+  $('#id_bombero').on('change',function(){
+    cargarResultado($(this).val())
   });
 
   function filterTablePuntuacion() {

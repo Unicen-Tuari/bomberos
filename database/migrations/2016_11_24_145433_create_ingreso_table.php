@@ -16,7 +16,7 @@ class CreateIngresoTable extends Migration
           $table->increments('id');
           $table->integer('id_bombero')->unique();
           $table->timestamps();
-          $table->foreign('id_bombero')->references('id')->on('bombero')->onDelete('cascade');
+          $table->foreign('id_bombero')->references('id')->on('bombero')->onDelete('restrict');
       });
     }
 

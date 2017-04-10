@@ -16,7 +16,7 @@ class CreateVehiculoTable extends Migration
           $table->increments('id');
           $table->rememberToken();
           $table->integer('estado')->unsigned()->default(1);
-          $table->integer('num_movil')->unsigned();
+          $table->integer('num_movil')->unsigned()->unique();
           $table->string('patente', 20)->unique()->nullable();
           $table->text('detalle')->nullable();
           $table->timestamps();

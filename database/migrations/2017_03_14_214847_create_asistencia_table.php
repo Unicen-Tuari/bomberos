@@ -17,7 +17,7 @@ class CreateAsistenciaTable extends Migration
           $table->integer('id_bombero');
           $table->dateTime('fecha_reunion');
           $table->timestamps();
-          $table->foreign('id_bombero')->references('id')->on('bombero')->onDelete('cascade');
+          $table->foreign('id_bombero')->references('id')->on('bombero')->onDelete('restrict');
       });
     }
 
