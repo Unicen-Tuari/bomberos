@@ -114,7 +114,8 @@
 
           <a href="#puntuacionSubMenu" id="puntuacionMenu" class="list-group-item" data-toggle="collapse" data-parent="#MainMenu"><i class="fa fa-calendar fa-lg" style="padding-right: 10px;"></i> Puntuacion<span class="arrow"></span></a>
           <div class="collapse" id="puntuacionSubMenu">
-            <a  href="{{route('puntuacion.index')}}"  class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Cargar</a>
+            <a  href="{{route('puntuacion.create')}}"  class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Cargar</a>
+            <a  href="{{route('puntuacion.index')}}"  class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Listar</a>
           </div>
 
           <a href="#serviciosSubMenu" id="servicioMenu" class="list-group-item" data-toggle="collapse" data-parent="#MainMenu"><i class="fa fa-cog fa-lg" style="padding-right: 10px;"></i>  Servicios<span class="arrow"></span></a>
@@ -163,13 +164,13 @@
     @else
       <div class="row">
     @endif
-        @yield('content')
-      </div>
-    {!!HTML::script('assets/js/jquery.js')!!}
-    {!!HTML::script('assets/js/bootstrap.js')!!}
-    {!!HTML::script('assets/js/bootstrap-multiselect.js')!!}
-    {!!HTML::script('assets/js/script.js')!!}
-    {!!HTML::script('assets/js/ajaxIngreso.js')!!}
+      @yield('content')
+    </div>
+      {!!HTML::script('assets/js/jquery.js')!!}
+      {!!HTML::script('assets/js/bootstrap.js')!!}
+      {!!HTML::script('assets/js/bootstrap-multiselect.js')!!}
+      {!!HTML::script('assets/js/script.js')!!}
+      {!!HTML::script('assets/js/ajaxIngreso.js')!!}
     @yield('js')
     <!-- JavaScripts -->
 </body>

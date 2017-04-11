@@ -1,26 +1,44 @@
 $(document).ready(function () {
   function cargarPuntuacion(){
-    var url = window.location.href;
+    var ruta= window.location.href;
+    var url=ruta.substring(0, ruta.indexOf("create"));
     var mes=$('#mes').val();
     var año=$('#año').val();
 		$.ajax({
 			type: 'GET',
 			dataType: 'HTML',
-			url: url+'/'+mes+'/'+año+'/puntuacionmes',
+			url: url+mes+'/'+año+'/puntuacionmes',
 			success: function(data){
 						$('#puntuacion').html(data);
 					},
 		});
   };
 
+  function listarPuntuacion(){
+    var url= window.location.href;
+    var mes=$('#mes').val();
+    var año=$('#año').val();
+		$.ajax({
+			type: 'GET',
+			dataType: 'HTML',
+			url: url+'/listar/'+mes+'/'+año,
+			success: function(data){
+						$('#tabla').html(data);
+					},
+		});
+  };
+
+  listarPuntuacion();
   cargarPuntuacion();
 
   $('#mes').on('change',function(){
     cargarPuntuacion();
+    listarPuntuacion();
   });
 
   $('#año').on('change',function(){
     cargarPuntuacion();
+    listarPuntuacion();
   });
 
   function cargarResultado(bombero){
