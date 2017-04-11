@@ -1,6 +1,6 @@
 
   @foreach ($bomberos as $bombero)
-  <div class="col-sm-12 form-group" id="bloque{{$bombero->id}}">
+  <div class="col-sm-12 form-group grupo" id="bloque{{$bombero->id}}">
     {!! Form::open([ 'route' => 'puntuacion.store', 'class' => 'form-horizontal', 'method' => 'POST', 'id' => 'save-'.$bombero->id]) !!}
 
     {!! Form::hidden('mes', $mes) !!}

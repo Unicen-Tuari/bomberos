@@ -13,7 +13,6 @@ $(document).ready(function () {
 
   function suma(puntos,id){
     var total=parseInt($('#total'+id).val());
-    var
     if((total+puntos)>0 && (total+puntos)<100){
       total=total+puntos;
     }else if ((total+puntos)<0) {
@@ -26,7 +25,6 @@ $(document).ready(function () {
   };
 
   $('#puntuacion').on('change','input.ao_acad',function(){
-    alert("asd");
     var id= this.getAttribute('idacad');
     var puntos = parseInt($(this).val());
     suma(puntos,id);
