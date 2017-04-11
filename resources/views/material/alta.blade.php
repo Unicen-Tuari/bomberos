@@ -33,6 +33,18 @@
             @endif
           </div>
 
+          <div class="form-group  {{ $errors->has('rubro') ? ' has-error' : '' }}">
+            {!! Form::label('rubro', 'Rubro: ',['class' => 'col-md-4 control-label']) !!}
+            <div class="col-md-2">
+              {{Form::select('rubro',config('selects.rubro'), 1, ['class' => 'form-control'])}}
+            </div>
+            @if ($errors->has('rubro'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('rubro') }}</strong>
+                </span>
+            @endif
+          </div>
+
           <div class="form-group {{ $errors->has('detalle') ? ' has-error' : '' }}">
             {!! Form::label('detalle', 'Detalle',['class' => 'col-sm-4 control-label']) !!}
             <div class="col-sm-6">
