@@ -32,7 +32,8 @@
     @foreach ($bomberos as $bombero)
     @if ($bombero->puntuo($mes,$año)!=0)
     <tr>
-      <td class="text-center">{{$bombero->nro_legajo}}</td>
+      <td class="text-center">{{$bombero->nro_legajo}}
+      <a class="glyphicon glyphicon-edit" href="{{ route('puntuacion.edit', $bombero->puntuacion($mes,$año)->id) }}"></a></td>
       <td class="text-center">{{$bombero->apellido.' '.$bombero->nombre}}</td>
       <td class="text-center">{{$bombero->puntuacion($mes,$año)->ao_cant}}</td>
       <td class="text-center">{{$bombero->puntuacion($mes,$año)->ao_punt}}</td>

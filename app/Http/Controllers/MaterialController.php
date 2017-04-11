@@ -43,7 +43,7 @@ class MaterialController extends Controller
       $vehiculos = array();
       foreach ($datas as $data)
       {
-          $vehiculos[$data->id] = $data->patente;
+          $vehiculos[$data->id] = $data->num_movil;
       }
       $material=Material::findorfail($id);
       return view('material/editar',compact('material', 'vehiculos'));
