@@ -1,7 +1,4 @@
 
-@php
-  $cantserv=count($servicios);
-@endphp
   @foreach ($bomberos as $bombero)
   <div class="col-sm-12 form-group alert-success" id="bloque{{$bombero->id}}">
     {!! Form::open([ 'route' => 'puntuacion.store', 'class' => 'form-horizontal', 'method' => 'POST', 'id' => 'save-'.$bombero->id]) !!}
@@ -132,7 +129,4 @@
   </div>
   @endforeach
 
-@extends('layouts.app')
-  @section('js')
-    {!! Html::script('assets/js/post.js') !!}
-  @endsection
+  {!! Html::script('assets/js/post.js') !!}

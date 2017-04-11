@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Ingresado;
 use App\BomberoServicio;
 use App\asistencia;
+use App\Puntuacion;
 use Carbon\Carbon;
 use \DateTimeZone;
 
@@ -72,6 +73,14 @@ class Bombero extends Model
       }
     }
     return $guardias->count();
+  }
+
+  public function puntuo($mes,$año){
+    return $this->hasMany(Puntuacion::class,"id_bombero","id")->whereYear('fecha','=',$año)->whereMonth('fecha','=',$mes)->count();
+  }
+
+  public function puntuacion($mes,$año){
+    return $this->hasMany(Puntuacion::class,"id_bombero","id")->whereYear('fecha','=',$año)->whereMonth('fecha','=',$mes)->first();
   }
 
   public function asistenciasmes($mes,$año){
