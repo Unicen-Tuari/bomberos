@@ -77,7 +77,7 @@ $(document).ready(function () {
         }
       }
     }
-  }
+  };
 
   $('#inputFilterPuntuacion').on('keyup',function(){
     filterTablePuntuacion();
