@@ -59,7 +59,6 @@ class PuntuacionController extends Controller
         $fecha=\Carbon\Carbon::parse($date['año'].'-'.$date['mes'])->format('d-m-Y');
         $date['fecha']=$fecha;
         unset($date['mes'],$date['año']);
-        dd($date);
         Puntuacion::create($date);
     }
 
