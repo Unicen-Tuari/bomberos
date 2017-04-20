@@ -105,8 +105,7 @@
         </div>
 
         <div class="col-sm-1">
-          {!! Form::hidden('total', round($puntasis+$puntuacion+$puntguar, 2),['id'=>'total'.$bombero->id]) !!}
-          {!! Form::text('tota', round($puntasis+$puntuacion+$puntguar, 2) , ['class' => 'control-label col-sm-12','disabled' => 'disabled','id'=>'totalv'.$bombero->id]) !!}
+          {!! Form::text('total', round($puntasis+$puntuacion+$puntguar, 2) , ['class' => 'control-label col-sm-12','id'=>'total'.$bombero->id]) !!}
         </div>
       </div>
     </div>
