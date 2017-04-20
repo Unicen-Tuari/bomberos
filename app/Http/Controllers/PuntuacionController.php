@@ -14,7 +14,7 @@ class PuntuacionController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     public function index()
@@ -59,6 +59,7 @@ class PuntuacionController extends Controller
         $fecha=\Carbon\Carbon::parse($date['año'].'-'.$date['mes'])->format('d-m-Y');
         $date['fecha']=$fecha;
         unset($date['mes'],$date['año']);
+        dd($date);
         Puntuacion::create($date);
     }
 

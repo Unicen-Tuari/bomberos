@@ -123,9 +123,9 @@
         @endif
       </div>
     </div>
+    <button type="submit" class="col-sm-1 btn btn-lg glyphicon glyphicon-floppy-saved simulara save" bombero={{$bombero->id}}></button>
 
   {!! Form::close() !!}
-  <button type="submit" class="col-sm-1 btn btn-lg glyphicon glyphicon-floppy-saved simulara save" bombero={{$bombero->id}}></button>
   </div>
   @endforeach
 
