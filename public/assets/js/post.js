@@ -20,7 +20,6 @@ $(document).ready(function () {
     }else {
       total=100;
     }
-    $('#totalv'+id).val(total);
     $('#total'+id).val(total);
   };
 

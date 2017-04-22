@@ -14,7 +14,7 @@ class PuntuacionController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     public function index()
@@ -30,17 +30,12 @@ class PuntuacionController extends Controller
     public function puntuacionmes($mes,$año)
     {
         $bomberos=Bombero::where('activo', 1)->get();
-        foreach ($bomberos as $key => $value) {
-          if($value->puntuo($mes,$año)!=0){
-            unset($bomberos[$key]);//no mostramos los bomberos que ya fueron puntuados ese mes
-          }
-        }
         $dias=asistencia::select(\DB::raw('COUNT(*) as cant, id_bombero'))->whereYear('created_at','=',$año)->whereMonth('created_at','=',$mes)->groupBy('id_bombero')->get()->max('cant');
         if ($dias==null) {
           $dias=0;
         }
-        $cantserv=count(Servicio::where('tipo_alarma', 3)->whereYear('hora_alarma','=',$año)->whereMonth('hora_alarma','=',$mes)->get());
-        $cantguar=count(Servicio::where('tipo_alarma','<', 3)->whereYear('hora_alarma','=',$año)->whereMonth('hora_alarma','=',$mes)->get());
+        $cantserv=Servicio::where('tipo_alarma', 3)->whereYear('hora_alarma','=',$año)->whereMonth('hora_alarma','=',$mes)->count();
+        $cantguar=Servicio::where('tipo_alarma','<', 3)->whereYear('hora_alarma','=',$año)->whereMonth('hora_alarma','=',$mes)->count();
         return view('puntuacion/puntuacionmes',compact('bomberos','cantserv','cantguar','mes','año','dias'));
     }
 
@@ -48,15 +43,18 @@ class PuntuacionController extends Controller
     {
         $bomberos=Bombero::where('activo', 1)->get();
         $dias=asistencia::select(\DB::raw('COUNT(*) as cant, id_bombero'))->whereYear('created_at','=',$año)->whereMonth('created_at','=',$mes)->groupBy('id_bombero')->get()->max('cant');
-        $cantserv=count(Servicio::where('tipo_alarma', 3)->whereYear('hora_alarma','=',$año)->whereMonth('hora_alarma','=',$mes)->get());
-        $cantguar=count(Servicio::where('tipo_alarma','<', 3)->whereYear('hora_alarma','=',$año)->whereMonth('hora_alarma','=',$mes)->get());
+        if ($dias==null) {
+          $dias=0;
+        }
+        $cantserv=Servicio::where('tipo_alarma', 3)->whereYear('hora_alarma','=',$año)->whereMonth('hora_alarma','=',$mes)->count();
+        $cantguar=Servicio::where('tipo_alarma','<', 3)->whereYear('hora_alarma','=',$año)->whereMonth('hora_alarma','=',$mes)->count();
         return view('puntuacion/tabla',compact('bomberos','cantserv','cantguar','mes','año','dias'));
     }
 
     public function store(Request $request)
     {
         $date=$request->all();
-        $fecha=\Carbon\Carbon::parse($date['año'].'-'.$date['mes'])->format('d-m-Y');
+        $fecha=\Carbon\Carbon::parse($date['año'].'-'.$date['mes'].'-'.'1');
         $date['fecha']=$fecha;
         unset($date['mes'],$date['año']);
         Puntuacion::create($date);
@@ -66,8 +64,11 @@ class PuntuacionController extends Controller
     {
         $bombero=Bombero::find($id);
         $dias=asistencia::select(\DB::raw('COUNT(*) as cant, id_bombero'))->whereYear('created_at','=',$año)->whereMonth('created_at','=',$mes)->groupBy('id_bombero')->get()->max('cant');
-        $cantserv=count(Servicio::where('tipo_alarma', 3)->whereYear('hora_alarma','=',$año)->whereMonth('hora_alarma','=',$mes)->get());
-        $cantguar=count(Servicio::where('tipo_alarma','<', 3)->whereYear('hora_alarma','=',$año)->whereMonth('hora_alarma','=',$mes)->get());
+        if ($dias==null) {
+          $dias=0;
+        }
+        $cantserv=Servicio::where('tipo_alarma', 3)->whereYear('hora_alarma','=',$año)->whereMonth('hora_alarma','=',$mes)->count();
+        $cantguar=Servicio::where('tipo_alarma','<', 3)->whereYear('hora_alarma','=',$año)->whereMonth('hora_alarma','=',$mes)->count();
         return view('puntuacion/resultado',compact('bombero','cantserv','cantguar','mes','año','dias'));
     }
 
@@ -82,8 +83,11 @@ class PuntuacionController extends Controller
         $mes=\Carbon\Carbon::parse($puntuacion->fecha)->format('m');
         $año=\Carbon\Carbon::parse($puntuacion->fecha)->format('Y');
         $dias=asistencia::select(\DB::raw('COUNT(*) as cant, id_bombero'))->whereYear('created_at','=',$año)->whereMonth('created_at','=',$mes)->groupBy('id_bombero')->get()->max('cant');
-        $cantserv=count(Servicio::where('tipo_alarma', 3)->whereYear('hora_alarma','=',$año)->whereMonth('hora_alarma','=',$mes)->get());
-        $cantguar=count(Servicio::where('tipo_alarma','<', 3)->whereYear('hora_alarma','=',$año)->whereMonth('hora_alarma','=',$mes)->get());
+        if ($dias==null) {
+          $dias=0;
+        }
+        $cantserv=Servicio::where('tipo_alarma', 3)->whereYear('hora_alarma','=',$año)->whereMonth('hora_alarma','=',$mes)->count();
+        $cantguar=Servicio::where('tipo_alarma','<', 3)->whereYear('hora_alarma','=',$año)->whereMonth('hora_alarma','=',$mes)->count();
         return view('puntuacion/edit',compact('bombero','puntuacion','cantserv','cantguar','mes','año','dias'));
     }
 
