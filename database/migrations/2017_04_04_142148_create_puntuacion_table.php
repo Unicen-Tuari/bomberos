@@ -14,7 +14,8 @@ class CreatePuntuacionTable extends Migration
     {
       Schema::create('puntuacion', function (Blueprint $table) {
           $table->increments('id');
-          $table->integer('id_bombero');
+          $table->rememberToken();
+          $table->integer('id_bombero')->unsigned();
           $table->integer('ao_cant')->unsigned();
           $table->decimal('ao_punt',5,2)->unsigned();
           $table->decimal('ao_acad',5,2)->unsigned();
@@ -28,11 +29,10 @@ class CreatePuntuacionTable extends Migration
           $table->decimal('castigo',5,2)->unsigned();
           $table->decimal('total',5,2)->unsigned();
           $table->text('detalle');
-          $table->dateTime('fecha');
-          $table->rememberToken();
+          $table->date('fecha');
           $table->timestamps();
-          $table->unique(['id_bombero', 'fecha']);
           $table->foreign('id_bombero')->references('id')->on('bombero')->onDelete('restrict');
+          $table->unique(['id_bombero', 'fecha']);
       });
     }
 

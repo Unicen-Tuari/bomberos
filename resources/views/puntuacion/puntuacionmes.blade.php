@@ -1,5 +1,6 @@
 
   @foreach ($bomberos as $bombero)
+  @if (!$bombero->puntuo($mes,$año))
   <div class="col-sm-12 form-group grupo" id="bloque{{$bombero->id}}">
     {!! Form::open([ 'route' => 'puntuacion.store', 'class' => 'form-horizontal', 'method' => 'POST', 'id' => 'save-'.$bombero->id]) !!}
 
@@ -122,10 +123,11 @@
         @endif
       </div>
     </div>
-    <button type="submit" class="col-sm-1 btn btn-lg glyphicon glyphicon-floppy-saved simulara save" bombero={{$bombero->id}}></button>
 
   {!! Form::close() !!}
+  <button type="submit" class="col-sm-1 btn btn-lg glyphicon glyphicon-floppy-saved simulara save" bombero={{$bombero->id}}></button>
   </div>
+  @endif
   @endforeach
 
   {!! Html::script('assets/js/post.js') !!}

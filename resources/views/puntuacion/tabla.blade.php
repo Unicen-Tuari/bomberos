@@ -30,7 +30,7 @@
   </thead>
   <tbody>
     @foreach ($bomberos as $bombero)
-    @if ($bombero->puntuo($mes,$año)!=0)
+    @if ($bombero->puntuo($mes,$año))
     <tr>
       <td class="text-center">{{$bombero->nro_legajo}}
       <a class="glyphicon glyphicon-edit" href="{{ route('puntuacion.edit', $bombero->puntuacion($mes,$año)->id) }}"></a></td>

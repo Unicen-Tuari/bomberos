@@ -76,7 +76,7 @@ class Bombero extends Model
   }
 
   public function puntuo($mes,$año){
-    return $this->hasMany(Puntuacion::class,"id_bombero","id")->whereYear('fecha','=',$año)->whereMonth('fecha','=',$mes)->count();
+    return $this->hasMany(Puntuacion::class,"id_bombero","id")->whereYear('fecha','=',$año)->whereMonth('fecha','=',$mes)->count()>0;
   }
 
   public function puntuacion($mes,$año){
