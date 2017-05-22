@@ -38,7 +38,6 @@ class CreateServicioTable extends Migration
             $table->foreign('jefe_servicio')->references('id')->on('bombero')->onDelete('cascade');
             $table->foreign('oficial')->references('id')->on('bombero')->onDelete('cascade');
             $table->foreign('jefe_de_cuerpo')->references('id')->on('bombero')->onDelete('cascade');
-            $table->foreign('tipo_servicio_id')->references('id')->on('tipo_servicio')->onDelete('cascade');
         });
     }
 

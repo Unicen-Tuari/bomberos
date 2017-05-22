@@ -14,6 +14,7 @@ use App\VehiculoServicio;
 use App\Ingreso;
 use Carbon\Carbon;
 use \DateTimeZone;
+use Illuminate\Support\Facades\Auth;
 
 class ServicioController extends Controller
 {
@@ -76,48 +77,62 @@ class ServicioController extends Controller
     }
 
     public function create(){
-      $bomberos=Bombero::getBomberos();
-      $ingresados = $bomberos;
-      $datasv=Vehiculo::where('estado',1)->get();
-      $vehiculos = array();
-      $vehiculos[0] = "vehiculo...";
-      foreach ($datasv as $data)
-      {
-          $vehiculos[$data->id] = $data->patente;
-      }
-      $ultimo=Servicio::select('id')->orderBy('id','desc')->first();
-      if($ultimo){
-        $ultimo=$ultimo->id+1;
-      }else {
-        $ultimo=1;
-      }
-      return view('servicio/finalizado',compact('bomberos','vehiculos','ultimo','ingresados'));
-    }
-
-    public function llamada()
-    {
-        return view('servicio/llamada');
-    }
-    public function finalizarActivo($id)
-    {
-      // cambiar conteniado
-        $servicio=Servicio::find($id);
+      if(Auth::user()->admin){
         $bomberos=Bombero::getBomberos();
-        $ing=Ingreso::all();
-        $ingresados = array();
-        $ingresados[0] = "bombero...";
-        foreach ($ing as $data)
-        {
-            $ingresados[$data->id_bombero] = $data->bombero->nombre . " " . $data->bombero->apellido;
-        }
-        $datasv=Vehiculo::all(['id', 'patente']);
+        $ingresados = $bomberos;
+        $datasv=Vehiculo::where('estado',1)->get();
         $vehiculos = array();
         $vehiculos[0] = "vehiculo...";
         foreach ($datasv as $data)
         {
-            $vehiculos[$data->id] = $data->patente;
+            $vehiculos[$data->id] = 'Nº - '.$data->num_movil;
+        }
+        $ultimo=Servicio::select('id')->orderBy('id','desc')->first();
+        if($ultimo){
+          $ultimo=$ultimo->id+1;
+        }else {
+          $ultimo=1;
+        }
+        return view('servicio/finalizado',compact('bomberos','vehiculos','ultimo','ingresados'));
+      }
+      return view('auth/alerta');
+    }
+
+    public function llamada()
+    {
+      if(Auth::user()->admin){
+        return view('servicio/llamada');
+      }
+      return view('auth/alerta');
+    }
+
+    public function finalizarActivo($id)
+    {
+      if(Auth::user()->admin){
+        // cambiar conteniado
+        $servicio=Servicio::find($id);
+        $bomberos=Bombero::getBomberos();
+        $ing=Ingreso::all();
+        $ingresados = array();
+        if ($ing!=null) {
+          $ingresados[0] = "bombero...";
+          foreach ($ing as $data)
+          {
+              $ingresados[$data->id_bombero] = $data->bombero->nombre . " " . $data->bombero->apellido;
+          }
+        }else {
+          $ingresados = $bomberos;
+        }
+        $datasv=Vehiculo::all(['id', 'num_movil']);
+        $vehiculos = array();
+        $vehiculos[0] = "vehiculo...";
+        foreach ($datasv as $data)
+        {
+            $vehiculos[$data->id] = 'Nº - '.$data->num_movil;
         }
         return view('servicio/finalizar',compact('bomberos','vehiculos','servicio','ingresados'));
+      }
+      return view('auth/alerta');
     }
 
 
@@ -179,42 +194,45 @@ class ServicioController extends Controller
 
     public function edit($id)
     {
-      $bomberoserv=BomberoServicio::where([['servicio_id',$id],['a_cargo',1]])->first();
-      $bombero=$bomberoserv->bombero_id;
-      $servicio=Servicio::find($id);
-      $bomberos=Bombero::getBomberos();
-      $ingresados = $bomberos;
+      if(Auth::user()->admin){
+        $bomberoserv=BomberoServicio::where([['servicio_id',$id],['a_cargo',1]])->first();
+        $bombero=$bomberoserv->bombero_id;
+        $servicio=Servicio::find($id);
+        $bomberos=Bombero::getBomberos();
+        $ingresados = $bomberos;
 
-      $datasv=Vehiculo::all();
-      $vehiculos = array();
-      $vehiculos[0] = "vehiculo...";
-      foreach ($datasv as $data)
-      {
-          $vehiculos[$data->id] = $data->patente;
-      }
-      $vehiculosSer=VehiculoServicio::where('servicio_id',$servicio->id)->get();
-      $involucrados = array();
-      foreach ($vehiculosSer as $data)
-      {
-          if ($data->primero) {
-            $primero=$data->vehiculo_id;
-          }
-          $involucrados[] = $data->vehiculo_id;
-      }
+        $datasv=Vehiculo::all();
+        $vehiculos = array();
+        $vehiculos[0] = "vehiculo...";
+        foreach ($datasv as $data)
+        {
+            $vehiculos[$data->id] =  'Nº - '.$data->num_movil;
+        }
+        $vehiculosSer=VehiculoServicio::where('servicio_id',$servicio->id)->get();
+        $involucrados = array();
+        foreach ($vehiculosSer as $data)
+        {
+            if ($data->primero) {
+              $primero=$data->vehiculo_id;
+            }
+            $involucrados[] = $data->vehiculo_id;
+        }
 
-      $bomberosparticipantes=array();
-      foreach ($servicio->bomberos as $data)
-      {
-          $bomberosparticipantes[] = $data->bombero_id;
-      }
+        $bomberosparticipantes=array();
+        foreach ($servicio->bomberos as $data)
+        {
+            $bomberosparticipantes[] = $data->bombero_id;
+        }
 
-      $vehiculosparticipantes=array();
-      foreach ($servicio->vehiculos as $data)
-      {
-          $vehiculosparticipantes[] = $data->vehiculo_id;
+        $vehiculosparticipantes=array();
+        foreach ($servicio->vehiculos as $data)
+        {
+            $vehiculosparticipantes[] = $data->vehiculo_id;
+        }
+        return view('servicio/editar',compact('servicio','bombero','bomberos',
+        'vehiculos','bomberosparticipantes','vehiculosparticipantes','ingresados','involucrados','primero'));
       }
-      return view('servicio/editar',compact('servicio','bombero','bomberos',
-      'vehiculos','bomberosparticipantes','vehiculosparticipantes','ingresados','involucrados','primero'));
+      return view('auth/alerta');
     }
 
     public function update(ServicioRequest $request, $id)

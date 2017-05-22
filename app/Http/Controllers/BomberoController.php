@@ -9,6 +9,7 @@ use App\Bombero;
 use App\Material;
 use App\Vehiculo;
 use App\Http\Requests\BomberoRequest;
+use Illuminate\Support\Facades\Auth;
 
 class BomberoController extends Controller
 {
@@ -23,13 +24,19 @@ class BomberoController extends Controller
   }
   public function create()
   {
-      return view('bombero/alta');
+      if(Auth::user()->admin){
+        return view('bombero/alta');
+      }
+      return view('auth/alerta');
   }
 
   public function edit($id)
   {
-      $bombero=Bombero::findorfail($id);
-      return view('bombero/editar',compact('bombero'));
+      if(Auth::user()->admin){
+        $bombero=Bombero::findorfail($id);
+        return view('bombero/editar',compact('bombero'));
+      }
+      return view('auth/alerta');
   }
   public function destroy($id)
   {
@@ -57,32 +64,4 @@ class BomberoController extends Controller
     return redirect()->route('bombero.index');
   }
 
-  public function altaResponsable()
-  {
-    $dataM=Material::all(['id', 'nombre']);
-    $materiales = array();
-    foreach ($dataM as $data)
-    {
-        $materiales[$data->id] = $data->nombre;
-    }
-    $dataV=Vehiculo::all(['id', 'patente']);
-    $vehiculos = array();
-    $vehiculosA = array();
-    $vehiculosB = array();
-    foreach ($dataV as $key => $data)
-    {
-      $vehiculos[$data->id] = $data->patente;
-      if ($key <= (count($dataV)/2))
-        $vehiculosA[] = $data->id;
-      else
-        $vehiculosB[] = $data->id;
-    }
-    $dataB=Bombero::all(['id', 'nombre']);
-    $bomberos = array();
-    foreach ($dataB as $data)
-    {
-        $bomberos[$data->id] = $data->nombre;
-    }
-      return view('bombero/responsable/alta', compact('materiales', 'vehiculos', 'vehiculosA', 'vehiculosB', 'bomberos'));
-  }
 }

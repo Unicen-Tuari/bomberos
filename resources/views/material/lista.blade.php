@@ -27,12 +27,18 @@
               @else
                 <td class="text-center">En Depósito</td>
               @endif
-              <td class="text-center">
-                {{ Form::open(['route' => ['material.destroy', $material->id], 'method' => 'delete']) }}
-                    <button type="submit" class="btn glyphicon glyphicon-trash simulara"></button>
-                {{ Form::close() }}
-              </td>
-              <td class="text-center"><a class="glyphicon glyphicon-edit" href="{{ route('material.edit', $material->id) }}"></a></td>
+              @if (Auth::user()->admin)
+                <td class="text-center">
+                  {{ Form::open(['route' => ['material.destroy', $material->id], 'method' => 'delete']) }}
+                      <button type="submit" class="btn glyphicon glyphicon-trash simulara"></button>
+                  {{ Form::close() }}
+                </td>
+                <td class="text-center"><a class="glyphicon glyphicon-edit" href="{{ route('material.edit', $material->id) }}"></a></td>
+              @else
+                <td class="text-center" colspan="2">
+                  <button type="submit" class="btn glyphicon glyphicon-ban-circle ban" title="Sin permisos para eliminar/modificar"></button>
+                </td>
+              @endif
             </tr>
           @endforeach
           </tbody>

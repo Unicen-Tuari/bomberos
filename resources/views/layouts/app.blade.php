@@ -28,6 +28,7 @@
       <div class="col-md-10 col-sm-12 col-xs-12">
         @if (!Auth::guest())
           <ul class="col-xs-10">
+            @if (Auth::user()->admin)
               <li id="first-icon" class="navIcon odd text-center">
                 <a href="{{route('servicio.llamada')}}" title="Cargar llamada">
                   <p><span class="glyphicon glyphicon-phone-alt"></span></p><p><span>Llamada</span><p>
@@ -65,6 +66,9 @@
               </li>
 
               <li class="navIcon text-center">
+            @else
+              <li id="first-icon"  class="navIcon text-center">
+            @endif
                 <a href="{{route('servicio.index')}}" title="Ultimos servicios realizados">
                   <p><span class="glyphicon glyphicon-list"></span></p><p><span class="icon-title">Últimos</span></p>
                 </a>
@@ -94,33 +98,36 @@
     </nav>
 
     @if (!Auth::guest())
-
       <div id="MainMenu" class="col-sm-2 col-xs-12">
         <div class="list-group panel">
 
           <a href="#bomberosSubMenu" id="bomberoMenu" class="list-group-item" data-toggle="collapse" data-parent="#MainMenu"><i class="fa fa-user fa-lg" style="padding-right: 10px;"></i> Bomberos<span class="arrow"></span></a>
           <div class="collapse" id="bomberosSubMenu">
             <a href="{{route('bombero.index')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Listar bomberos</a>
-            <a href="{{route('bombero.create')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Alta bombero</a>
-            <a href="{{route('bombero.altaResponsable')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Asignar responsables </a>
+            @if (Auth::user()->admin)
+              <a href="{{route('bombero.create')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Alta bombero</a>
+            @endif
           </div>
 
           <a href="#asistenciasSubMenu" id="asistenciaMenu" class="list-group-item" data-toggle="collapse" data-parent="#MainMenu"><i class="fa fa-users fa-lg" style="padding-right: 10px;"></i> Asistencia<span class="arrow"></span></a>
           <div class="collapse" id="asistenciasSubMenu">
-            <a href="{{route('asistencia.create')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Cargar</a>
+            @if (Auth::user()->admin)
+              <a href="{{route('asistencia.create')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Cargar</a>
+            @endif
             <a  href="{{route('asistencia.index')}}"  class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Lista de reuniones</a>
             <a  href="{{route('ingreso.listar')}}"  class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Lista de ingresados</a>
           </div>
 
           <a href="#puntuacionSubMenu" id="puntuacionMenu" class="list-group-item" data-toggle="collapse" data-parent="#MainMenu"><i class="fa fa-calendar fa-lg" style="padding-right: 10px;"></i> Puntuacion<span class="arrow"></span></a>
           <div class="collapse" id="puntuacionSubMenu">
-            <a  href="{{route('puntuacion.create')}}"  class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Cargar</a>
+            @if (Auth::user()->admin)
+              <a  href="{{route('puntuacion.create')}}"  class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Cargar</a>
+            @endif
             <a  href="{{route('puntuacion.index')}}"  class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Listar</a>
           </div>
 
           <a href="#serviciosSubMenu" id="servicioMenu" class="list-group-item" data-toggle="collapse" data-parent="#MainMenu"><i class="fa fa-cog fa-lg" style="padding-right: 10px;"></i>  Servicios<span class="arrow"></span></a>
           <div class="collapse" id="serviciosSubMenu">
-            <a href="{{route('servicio.tipo.index')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Tipos de servicios</a>
             <a href="{{route('servicio.index')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Últimos servicios</a>
             <a href="{{route('servicio.estadistica')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Estadísticas</a>
           </div>
@@ -128,13 +135,17 @@
           <a href="#vehiculosSubMenu" id="vehiculoMenu" class="list-group-item" data-toggle="collapse" data-parent="#MainMenu"><i class="fa fa-car fa-lg" style="padding-right: 10px;"></i> Vehículos<span class="arrow"></span></a>
           <div class="collapse" id="vehiculosSubMenu">
             <a href="{{route('vehiculo.index')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Lista de vehículos</a>
-            <a href="{{route('vehiculo.create')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Alta vehículo</a>
+            @if (Auth::user()->admin)
+              <a href="{{route('vehiculo.create')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Alta vehículo</a>
+            @endif
           </div>
 
           <a href="#materialesSubMenu" id="materialMenu" class="list-group-item" data-toggle="collapse" data-parent="#MainMenu"><i class="fa fa-wrench fa-lg" style="padding-right: 10px;"></i> Materiales<span class="arrow"></span></a>
           <div class="collapse" id="materialesSubMenu">
             <a href="{{route('material.index')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Lista de materiales</a>
-            <a href="{{route('material.create')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Alta material</a>
+            @if (Auth::user()->admin)
+              <a href="{{route('material.create')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Alta material</a>
+            @endif
           </div>
         </div>
 

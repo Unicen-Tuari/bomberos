@@ -9,6 +9,7 @@ use App\Http\Requests;
 use App\Http\Requests\MaterialRequest;
 use App\Material;
 use App\Vehiculo;
+use Illuminate\Support\Facades\Auth;
 
 class MaterialController extends Controller
 {
@@ -28,25 +29,31 @@ class MaterialController extends Controller
   }
   public function create()
   {
-      $datas=Vehiculo::all(['id', 'num_movil']);
-      $vehiculos = array();
-      foreach ($datas as $data)
-      {
-          $vehiculos[$data->id] = $data->num_movil;
+      if(Auth::user()->admin){
+        $datas=Vehiculo::all(['id', 'num_movil']);
+        $vehiculos = array();
+        foreach ($datas as $data)
+        {
+            $vehiculos[$data->id] = 'Nº - '.$data->num_movil;
+        }
+        return view('material/alta',compact('vehiculos'));
       }
-      return view('material/alta',compact('vehiculos'));
+      return view('auth/alerta');
   }
 
   public function edit($id)
   {
-      $datas=Vehiculo::where('estado','<',3)->get();
-      $vehiculos = array();
-      foreach ($datas as $data)
-      {
-          $vehiculos[$data->id] = $data->num_movil;
+      if(Auth::user()->admin){
+        $datas=Vehiculo::where('estado','<',3)->get();
+        $vehiculos = array();
+        foreach ($datas as $data)
+        {
+            $vehiculos[$data->id] = $data->num_movil;
+        }
+        $material=Material::findorfail($id);
+        return view('material/editar',compact('material', 'vehiculos'));
       }
-      $material=Material::findorfail($id);
-      return view('material/editar',compact('material', 'vehiculos'));
+      return view('auth/alerta');
   }
   public function destroy($id)
   {
