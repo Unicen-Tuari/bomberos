@@ -35,7 +35,7 @@ class ServicioRequest extends Request
         case 'POST':
         {
           return [
-              'tipo' => 'required|exists:tipo_servicio,id',
+              'tipo' => 'required|max:11',
               'tipo_alarma' => 'required_if:tipo,1,2,3',
               'autor_llamada' => 'max:100',
               'direccion' => 'required|max:255',
@@ -63,7 +63,7 @@ class ServicioRequest extends Request
         case 'PUT':
         {
           return [
-              'tipo' => 'required|exists:tipo_servicio,id',
+              'tipo' => 'required|max:11',
               'tipo_alarma' => 'required',
               'autor_llamada' => 'max:100',
               'direccion' => 'required|max:255',

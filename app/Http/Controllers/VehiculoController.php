@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Vehiculo;
 use Validator;
 use App\Http\Requests\VehiculoRequest;
+use Illuminate\Support\Facades\Auth;
 
 class VehiculoController extends Controller
 {
@@ -22,12 +23,18 @@ class VehiculoController extends Controller
   }
   public function create()
   {
-      return view('vehiculo/alta');
+      if(Auth::user()->admin){
+        return view('vehiculo/alta');
+      }
+      return view('auth/alerta');
   }
   public function edit($id)
   {
-      $vehiculo=Vehiculo::find($id);
-      return view('vehiculo/editar',compact('vehiculo'));
+      if(Auth::user()->admin){
+        $vehiculo=Vehiculo::find($id);
+        return view('vehiculo/editar',compact('vehiculo'));
+      }
+      return view('auth/alerta');
   }
 
   public function show($id){

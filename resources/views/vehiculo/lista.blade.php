@@ -15,9 +15,9 @@
               Nro. de Unidad
             </th>
             <th class="text-center">
-              Numero Movil
+              Patente
             </th>
-            <th colspan="2">
+            <th class="text-center" colspan="2">
             </th>
           </tr>
         </thead>
@@ -30,8 +30,9 @@
             @endif
               <td class="text-center"><a href="{{ route('vehiculo.show', $vehiculo->id) }}">{{$vehiculo->num_movil}}</a>
               </td>
-              <td class="text-center">{{$vehiculo->num_movil}}</td>
-              <td class="text-center">
+              <td class="text-center">{{$vehiculo->patente}}</td>
+              @if (Auth::user()->admin)
+                <td class="text-center">
                 @if (count($vehiculo->servicios)==0)
                 {{ Form::open(['route' => ['vehiculo.destroy', $vehiculo->id], 'method' => 'delete']) }}
                   <button type="submit" class="btn glyphicon glyphicon-trash simulara"></button>
@@ -39,8 +40,13 @@
                 @else
                   <button type="submit" class="btn glyphicon glyphicon-ban-circle ban" title="imposible eliminar"></button>
                 @endif
-              </td>
-              <td class="text-center"><a class="glyphicon glyphicon-edit" href="{{ route('vehiculo.edit', $vehiculo->id) }}"></a></td>
+                </td>
+                <td class="text-center"><a class="glyphicon glyphicon-edit" href="{{ route('vehiculo.edit', $vehiculo->id) }}"></a></td>
+              @else
+                <td class="text-center" colspan="2">
+                  <button type="submit" class="btn glyphicon glyphicon-ban-circle ban" title="Sin permisos para eliminar/modificar"></button>
+                </td>
+              @endif
             </tr>
           @endforeach
           </tbody>

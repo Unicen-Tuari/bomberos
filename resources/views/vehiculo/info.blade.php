@@ -32,7 +32,13 @@
           @foreach ($vehiculo->materiales as $material)
             <tr>
               <td class="text-center"><a href="{{ route('material.show', $material->id) }}">{{$material->nombre}}</a></td>
-              <td class="text-center"><a class="glyphicon glyphicon-edit" href="{{ route('material.edit', $material->id) }}"></a></td>
+              @if (Auth::user()->admin)
+                <td class="text-center"><a class="glyphicon glyphicon-edit" href="{{ route('material.edit', $material->id) }}"></a></td>
+              @else
+                <td class="text-center">
+                  <button type="submit" class="btn glyphicon glyphicon-ban-circle ban" title="Sin permisos para eliminar/modificar"></button>
+                </td>
+              @endif
             </tr>
           @endforeach
           </tbody>
