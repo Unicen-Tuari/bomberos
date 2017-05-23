@@ -4,7 +4,7 @@
 <article class="col-md-12">
 <div class="panel panel-default">
   <div id="breadcrumb" class="panel-heading">
-    <span class="fa fa-car" aria-hidden="true"></span>
+    <span class="fa fa-truck" aria-hidden="true"></span>
     <h4>Alta de vehiculo</h4>
   </div>
   <div class="panel-body">
@@ -66,7 +66,7 @@
         <div class="col-md-6 col-md-offset-4">
           {{-- {!!Form::submit('Registrar', ['class' => 'btn btn-primary']) !!} --}}
           <button type="submit" class="btn btn-primary">
-              <i class=" glyphicon glyphicon-user"></i> Registrar
+              <i class=" glyphicon glyphicon-floppy-save"></i> Registrar
           </button>
         </div>
       </div>

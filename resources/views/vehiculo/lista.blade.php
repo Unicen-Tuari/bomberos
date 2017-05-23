@@ -4,7 +4,7 @@
 <article class="col-md-12">
   <div class="panel panel-default">
     <div id="breadcrumb" class="panel-heading">
-      <span class="fa fa-list" aria-hidden="true"></span>
+      <span class="fa fa-truck" aria-hidden="true"></span>
       <h4>Vehiculos</h4>
     </div>
     <div class="panel-body">

@@ -5,7 +5,7 @@
   <div class="panel panel-default">
     <div id="breadcrumb" class="panel-heading">
       <span class="fa fa-user" aria-hidden="true"></span>
-      <h4>Cargar puntuacion</h4>
+      <h4>Modificar puntuacion de : {{$bombero->apellido .' '.$bombero->nombre .'-'.$bombero->nro_legajo}}</h4>
     </div>
     <div class="panel-body">
       {!! Form::open([ 'route' => ['puntuacion.update',$puntuacion->id], 'class' => 'form-horizontal', 'method' => 'PUT']) !!}
@@ -38,7 +38,7 @@
 
           <div class="form-group">
             <div class="{{ $errors->has('ao_cant') ? ' has-error' : '' }}">
-              {!! Form::label('ao_cant', 'Cantidad: '.$asistencia,['class' => 'col-sm-4 control-label']) !!}
+              {!! Form::label('ao_cant', 'Cantidad asistencia: '.$asistencia,['class' => 'col-sm-4 control-label']) !!}
               <div class="col-sm-1">
                 {!! Form::hidden('ao_cant', $asistencia) !!}
                 @if ($errors->has('ao_cant'))
@@ -207,7 +207,7 @@
           <div class="form-group {{ $errors->has('total') ? ' has-error' : '' }}">
             {!! Form::label('total', 'Total',['class' => 'col-sm-4 control-label']) !!}
             <div class="col-sm-1">
-                {!! Form::text('total', 0 , ['class' => 'form-control']) !!}
+                {!! Form::text('total', $puntuacion->total , ['class' => 'form-control']) !!}
 
                 @if ($errors->has('total'))
                     <span class="help-block">
@@ -221,17 +221,23 @@
         <div class="form-group {{ $errors->has('fecha') ? ' has-error' : '' }}">
           {!! Form::label('fecha', 'Fecha',['class' => 'col-sm-4 control-label']) !!}
           <div class="col-sm-1">
-              {!! Form::text('fecha', $puntuacion->fecha, ['class' => 'form-control']) !!}
+            {!! Form::label('fecha', $puntuacion->fecha, ['class' => 'form-control']) !!}
 
-              @if ($errors->has('fecha'))
-                  <span class="help-block">
-                      <strong>{{ $errors->first('fecha') }}</strong>
-                  </span>
-              @endif
+            @if ($errors->has('fecha'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('fecha') }}</strong>
+                </span>
+            @endif
           </div>
         </div>
 
-        <button type="submit" class="col-sm-offset-6 btn btn-lg glyphicon glyphicon-floppy-saved simulara"></button>
+        <div class="form-group">
+          <div class="col-md-offset-6">
+            <button type="submit" class="btn btn-primary">
+                <i class=" glyphicon glyphicon-floppy-saved"></i> Editar
+            </button>
+          </div>
+        </div>
 
       {!! Form::close() !!}
     </div>

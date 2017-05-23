@@ -22,7 +22,7 @@
           @foreach ($servicios as $servicio)
             @if ($servicio->hora_regreso)
               <tr>
-                <td class="text-center">{{$servicio->tipoServicio->nombre}}</td>
+                <td class="text-center">{{config('selects.tipoServicio')[$servicio->tipo_servicio_id]}}</td>
                 <td class="text-center">{{$servicio->direccion}}</td>
                 <td class="text-center">{{$servicio->hora_regreso}}</td>
                 <td class="text-center">

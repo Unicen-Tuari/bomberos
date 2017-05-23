@@ -9,6 +9,7 @@ use App\asistencia;
 use App\Bombero;
 use App\Servicio;
 use App\BomberoServicio;
+use Illuminate\Support\Facades\Auth;
 
 class AsistenciaController extends Controller
 {
@@ -26,8 +27,11 @@ class AsistenciaController extends Controller
 
     public function create()
     {
-      $bomberos=Bombero::where('activo', 1)->get();
-      return view('asistencia/obligatoria',compact('bomberos'));
+      if(Auth::user()->admin){
+        $bomberos=Bombero::where('activo', 1)->get();
+        return view('asistencia/obligatoria',compact('bomberos'));
+      }
+      return view('auth/alerta');
     }
 
     public function store(Request $request)
@@ -50,8 +54,11 @@ class AsistenciaController extends Controller
 
     public function edit($reunion)
     {
-      $bomberos=Bombero::where('activo', 1)->get();
-      return view('asistencia/editar',compact('bomberos','reunion'));
+      if(Auth::user()->admin){
+        $bomberos=Bombero::where('activo', 1)->get();
+        return view('asistencia/editar',compact('bomberos','reunion'));
+      }
+      return view('auth/alerta');
     }
 
 

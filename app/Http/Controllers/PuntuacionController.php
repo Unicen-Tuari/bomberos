@@ -103,6 +103,8 @@ class PuntuacionController extends Controller
 
     public function update(Request $request, $id)
     {
+      Puntuacion::find($id)->update($request->all());
+      return redirect()->route('puntuacion.index');
     }
 
     public function destroy($id)

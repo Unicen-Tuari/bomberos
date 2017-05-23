@@ -5,7 +5,7 @@
   <div class="panel panel-default">
     <div id="breadcrumb" class="panel-heading">
       <span class="fa fa-table" aria-hidden="true"></span>
-      <h4>Puntuaciones</h4>
+      <h4>Puntuar Bomberos</h4>
     </div>
     <div class="panel-body">
       <div class="form-group col-sm-4">
