@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\TipoServicio;
 use App\Http\Requests;
 use App\Http\Requests\ServicioRequest;
 use App\Servicio;
@@ -152,21 +151,21 @@ class ServicioController extends Controller
      */
     public function iniciado(ServicioRequest $data)
     {
-      $tipo= TipoServicio::find($data['tipo']);
-      if($tipo){
+      if(array_key_exists($data['tipo'], config('selects.tipoServicio'))){
         $servicio=new Servicio;
-        $servicio->tipo_servicio_id=$tipo->id;
+        $servicio->tipo_servicio_id=$data['tipo'];
+        $servicio->tipo_alarma=$data['tipo_alarma'];
         $servicio->direccion=$data['direccion'];
         $servicio->autor_llamada=$data['autor_llamada'];
         $servicio->hora_alarma=$data['alarma'];
         if ($servicio->save()) {
          return redirect()->route('servicio.index');
         }else {
-          dd('fallo');
+          return view('errors/falla');
         }
       }
       else {
-        dd('no existe tipo');
+        return view('errors/alteracion');
       }
 
     }

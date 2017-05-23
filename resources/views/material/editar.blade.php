@@ -87,7 +87,7 @@
           <div class="col-md-6 col-md-offset-4">
             {{-- {!!Form::submit('Registrar', ['class' => 'btn btn-primary']) !!} --}}
             <button type="submit" class="btn btn-primary">
-                <i class=" glyphicon glyphicon-user"></i> Editar
+                <i class=" glyphicon glyphicon-wrench"></i> Editar
             </button>
           </div>
         </div>
