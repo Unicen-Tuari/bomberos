@@ -1,7 +1,7 @@
 
   @foreach ($bomberos as $bombero)
   @if (!$bombero->puntuo($mes,$año))
-  <div class="col-sm-12 form-group grupo" id="bloque{{$bombero->id}}">
+  <div class="col-sm-12 form-group grupo" id="bloque{{$bombero->id}}" nombre="{{$bombero->apellido}} {{$bombero->nombre}}">
     {!! Form::open([ 'route' => 'puntuacion.store', 'class' => 'form-horizontal', 'method' => 'POST', 'id' => 'save-'.$bombero->id]) !!}
 
     {!! Form::hidden('mes', $mes) !!}
@@ -71,42 +71,42 @@
           {!! Form::hidden('ao_cant', $asistencia) !!}
           {!! Form::text('aocant', $asistencia , ['class' => 'control-label col-sm-4','disabled' => 'disabled']) !!}
           {!! Form::hidden('ao_punt', round($puntasis, 2)) !!}
-          {!! Form::text('aopunt', round($puntasis, 2) , ['class' => 'control-label col-sm-4','disabled' => 'disabled']) !!}
-          {!! Form::text('ao_acad', 0, ['class' => 'control-label col-sm-4 ao_acad','idacad'=>$bombero->id]) !!}
+          {!! Form::text('aopunt', round($puntasis, 2) , ['class' => 'control-label col-sm-4','disabled' => 'disabled', 'id' => 'asistencia' . $bombero->id]) !!}
+          {!! Form::text('ao_acad', 0, ['class' => 'control-label col-sm-4 ao_acad','idacad'=>$bombero->id, 'id' => 'academia' . $bombero->id]) !!}
         </div>
 
         <div class="col-sm-2">
           {!! Form::hidden('accid_cant', $accid) !!}
           {!! Form::text('accidcant', $accid , ['class' => 'control-label col-sm-6','disabled' => 'disabled']) !!}
           {!! Form::hidden('accid_punt', round($puntuacion, 2)) !!}
-          {!! Form::text('accidpunt', round($puntuacion, 2) , ['class' => 'control-label col-sm-6','disabled' => 'disabled']) !!}
+          {!! Form::text('accidpunt', round($puntuacion, 2) , ['class' => 'control-label col-sm-6','disabled' => 'disabled', 'id' => 'accidpunt' . $bombero->id]) !!}
         </div>
 
         <div class="col-sm-1">
-          {!! Form::text('dedicacion', 0 , ['class' => 'control-label col-sm-12 dedicacion','iddedicacion'=>$bombero->id]) !!}
+          {!! Form::text('dedicacion', 0 , ['class' => 'control-label col-sm-12 dedicacion','iddedicacion'=>$bombero->id, 'id' => 'dedicacion' . $bombero->id]) !!}
         </div>
 
         <div class="col-sm-2">
           {!! Form::hidden('guar_cant', $guardia) !!}
           {!! Form::text('guarcant', $guardia , ['class' => 'control-label col-sm-6','disabled' => 'disabled']) !!}
           {!! Form::hidden('guar_punt', round($puntguar, 2)) !!}
-          {!! Form::text('guarpunt', round($puntguar, 2) , ['class' => 'control-label col-sm-6','disabled' => 'disabled']) !!}
+          {!! Form::text('guarpunt', round($puntguar, 2) , ['class' => 'control-label col-sm-6','disabled' => 'disabled', 'id' => 'guardia' . $bombero->id]) !!}
         </div>
 
         <div class="col-sm-1">
-          {!! Form::text('especiales', 0 , ['class' => 'control-label col-sm-12 especiales','idespeciales'=>$bombero->id]) !!}
+          {!! Form::text('especiales', 0 , ['class' => 'control-label col-sm-12 especiales','idespeciales'=>$bombero->id, 'id' => 'especiales' . $bombero->id]) !!}
         </div>
 
         <div class="col-sm-1">
-          {!! Form::text('licencia', 0 , ['class' => 'control-label col-sm-12 licencia','idlicencia'=>$bombero->id]) !!}
+          {!! Form::text('licencia', 0 , ['class' => 'control-label col-sm-12 licencia','idlicencia'=>$bombero->id, 'id' => 'licencia' . $bombero->id]) !!}
         </div>
 
         <div class="col-sm-1">
-          {!! Form::text('castigo', 0 , ['class' => 'control-label col-sm-12 castigo','idcastigo'=>$bombero->id]) !!}
+          {!! Form::text('castigo', 0 , ['class' => 'control-label col-sm-12 castigo','idcastigo'=>$bombero->id, 'id' => 'castigo' . $bombero->id]) !!}
         </div>
 
         <div class="col-sm-1">
-          {!! Form::text('total', round($puntasis+$puntuacion+$puntguar, 2) , ['class' => 'control-label col-sm-12','id'=>'total'.$bombero->id]) !!}
+          {!! Form::text('total', round($puntasis+$puntuacion+$puntguar, 2) , ['class' => 'control-label col-sm-12', 'id' => 'total' . $bombero->id]) !!}
         </div>
       </div>
     </div>
@@ -130,4 +130,4 @@
   @endif
   @endforeach
 
-  {!! Html::script('assets/js/post.js') !!}
+  {!! Html::script('assets/js/puntuacion-post.js') !!}

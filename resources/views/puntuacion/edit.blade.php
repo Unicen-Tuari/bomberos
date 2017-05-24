@@ -38,7 +38,7 @@
 
           <div class="form-group">
             <div class="{{ $errors->has('ao_cant') ? ' has-error' : '' }}">
-              {!! Form::label('ao_cant', 'Cantidad asistencia: '.$asistencia,['class' => 'col-sm-4 control-label']) !!}
+              {!! Form::label('aocant', 'Cantidad asistencia: '.$asistencia,['class' => 'col-sm-4 control-label']) !!}
               <div class="col-sm-1">
                 {!! Form::hidden('ao_cant', $asistencia) !!}
                 @if ($errors->has('ao_cant'))
@@ -63,9 +63,9 @@
             </div>
 
             <div class="{{ $errors->has('ao_acad') ? ' has-error' : '' }}">
-              {!! Form::label('ao_acad', 'Academia',['class' => 'col-sm-1 control-label']) !!}
+              {!! Form::label('aoacad', 'Academia',['class' => 'col-sm-1 control-label']) !!}
               <div class="col-sm-1">
-                  {!! Form::text('ao_acad', 0 , ['class' => 'form-control']) !!}
+                  {!! Form::text('ao_acad', $puntuacion->ao_acad , ['class' => 'form-control','id'=>'ao_acad']) !!}
 
                   @if ($errors->has('ao_acad'))
                       <span class="help-block">
@@ -111,7 +111,7 @@
           <div class="form-group {{ $errors->has('dedicacion') ? ' has-error' : '' }}">
             {!! Form::label('dedicacion', 'Dedicacion',['class' => 'col-sm-4 control-label']) !!}
             <div class="col-sm-1">
-                {!! Form::text('dedicacion', 0 , ['class' => 'form-control']) !!}
+                {!! Form::text('dedicacion', $puntuacion->dedicacion , ['class' => 'form-control']) !!}
 
                 @if ($errors->has('dedicacion'))
                     <span class="help-block">
@@ -124,7 +124,7 @@
           <div class="form-group {{ $errors->has('especiales') ? ' has-error' : '' }}">
             {!! Form::label('especiales', 'Especiales',['class' => 'col-sm-4 control-label']) !!}
             <div class="col-sm-1">
-                {!! Form::text('especiales', 0 , ['class' => 'form-control']) !!}
+                {!! Form::text('especiales', $puntuacion->especiales , ['class' => 'form-control']) !!}
 
                 @if ($errors->has('especiales'))
                     <span class="help-block">
@@ -168,7 +168,7 @@
           <div class="form-group {{ $errors->has('licencia') ? ' has-error' : '' }}">
             {!! Form::label('licencia', 'Licencia',['class' => 'col-sm-4 control-label']) !!}
             <div class="col-sm-1">
-                {!! Form::text('licencia', 0 , ['class' => 'form-control']) !!}
+                {!! Form::text('licencia', $puntuacion->licencia , ['class' => 'form-control']) !!}
 
                 @if ($errors->has('licencia'))
                     <span class="help-block">
@@ -181,7 +181,7 @@
           <div class="form-group {{ $errors->has('castigo') ? ' has-error' : '' }}">
             {!! Form::label('castigo', 'Castigo',['class' => 'col-sm-4 control-label']) !!}
             <div class="col-sm-1">
-                {!! Form::text('castigo', 0 , ['class' => 'form-control']) !!}
+                {!! Form::text('castigo', $puntuacion->castigo , ['class' => 'form-control']) !!}
 
                 @if ($errors->has('castigo'))
                     <span class="help-block">
@@ -194,7 +194,7 @@
           <div class="form-group {{ $errors->has('detalle') ? ' has-error' : '' }}">
             {!! Form::label('detalle', 'Detalle',['class' => 'col-sm-4 control-label']) !!}
             <div class="col-sm-5">
-                {!! Form::textarea('detalle', null, ['class' => 'form-control' , 'rows' => '6']) !!}
+                {!! Form::textarea('detalle', $puntuacion->detalle , ['class' => 'form-control' , 'rows' => '6']) !!}
 
                 @if ($errors->has('detalle'))
                     <span class="help-block">
@@ -243,4 +243,9 @@
     </div>
   </div>
 </article>
+
+@endsection
+
+@section('js')
+  {!! Html::script('assets/js/puntuacion-put.js') !!}
 @endsection
