@@ -11,13 +11,19 @@ $(document).ready(function () {
     });
   });
 
-  function suma(puntos,id){
-    var total=parseInt($('#total'+id).val());
-    if((total+puntos)>0 && (total+puntos)<100){
-      total=total+puntos;
-    }else if ((total+puntos)<0) {
+  function suma(id){
+    var asistencia = parseInt($('#asistencia'+id).val());
+    var academia = parseInt($('#academia'+id).val());
+    var accidpunt = parseInt($('#accidpunt'+id).val());
+    var dedicacion = parseInt($('#dedicacion'+id).val());
+    var guardia = parseInt($('#guardia'+id).val());
+    var especiales = parseInt($('#especiales'+id).val());
+    var licencia = parseInt($('#licencia'+id).val());
+    var castigo = parseInt($('#castigo'+id).val() * (-1));
+    var total = asistencia + academia + accidpunt + dedicacion + guardia + especiales + licencia + castigo;
+    if (total < 0) {
       total=0;
-    }else {
+    }else if (total > 100) {
       total=100;
     }
     $('#total'+id).val(total);
@@ -25,32 +31,27 @@ $(document).ready(function () {
 
   $('#puntuacion').on('change','input.ao_acad',function(){
     var id= this.getAttribute('idacad');
-    var puntos = parseInt($(this).val());
-    suma(puntos,id);
+    suma(id);
   });
 
   $('#puntuacion').on('change','input.dedicacion',function(){
     var id= this.getAttribute('iddedicacion');
-    var puntos = parseInt($(this).val());
-    suma(puntos,id);
+    suma(id);
   });
 
   $('#puntuacion').on('change','input.especiales',function(){
     var id= this.getAttribute('idespeciales');
-    var puntos = parseInt($(this).val());
-    suma(puntos,id);
+    suma(id);
   });
 
   $('#puntuacion').on('change','input.licencia',function(){
     var id= this.getAttribute('idlicencia');
-    var puntos = parseInt($(this).val());
-    suma(puntos,id);
+    suma(id);
   });
 
   $('#puntuacion').on('change','input.castigo',function(){
     var id= this.getAttribute('idcastigo');
-    var puntos = parseInt($(this).val())*(-1);
-    suma(puntos,id);
+    suma(id);
   });
 
 });
