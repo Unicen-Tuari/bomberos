@@ -4,14 +4,19 @@ $(document).ready(function () {
     var url=ruta.substring(0, ruta.indexOf("create"));
     var mes=$('#mes').val();
     var año=$('#año').val();
-		$.ajax({
-			type: 'GET',
-			dataType: 'HTML',
-			url: url+mes+'/'+año+'/puntuacionmes',
-			success: function(data){
-						$('#puntuacion').html(data);
-					},
-		});
+    var bomberos=[];
+    $('#bomberos option').prop('selected', true);
+    var bomberos=$('#bomberos').val();
+    for (var i = 0; i < bomberos.length; i++) {
+  		$.ajax({
+  			type: 'GET',
+  			dataType: 'HTML',
+  			url: url+mes+'/'+año+'/'+bomberos[i]+'/puntuacionmes',
+  			success: function(data){
+  						$('#puntuacion').append(data);
+  					},
+  		});
+    }
   };
 
   function listarPuntuacion(){

@@ -26,6 +26,10 @@
           {{Form::text('busqueda', null, ['placeholder'=>"Buscar por nombre",'id'=>"inputFilterPuntuacion",'class' => 'form-control'])}}
         </div>
       </div>
+      <div hidden>
+        {{Form::select('bomberos[]', $bomberos,1,['class' => 'selectMultiple', 'multiple'=>'multiple', 'id'=>"bomberos"])}}
+      </div>
+
       <div id="puntuacion">
 
       </div>
