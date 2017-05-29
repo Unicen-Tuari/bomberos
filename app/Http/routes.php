@@ -25,7 +25,7 @@ Route::resource('bombero','BomberoController',['except' => ['show']]);
 
 Route::resource('asistencia','AsistenciaController');
 
-Route::get('puntuacion/bombero/{id}/{mes}/{anio}', 'PuntuacionController@bombero')->name('puntuacion.bombero');
+Route::get('puntuacion/bomberos/{mes}/{anio}', 'PuntuacionController@bomberos')->name('puntuacion.bomberos');
 Route::get('puntuacion/listar/{mes}/{anio}', 'PuntuacionController@listar')->name('puntuacion.listar');
 Route::get('puntuacion/{mes}/{anio}/{bombero}/puntuacionmes', 'PuntuacionController@puntuacionmes')->name('puntuacion.puntuacionmes');
 Route::resource('puntuacion','PuntuacionController');

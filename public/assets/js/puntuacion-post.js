@@ -7,7 +7,7 @@ $(document).ready(function () {
     var data = formPuntuacion.serialize();
     $.post(url, data, function(result){
       alert("Se guardo la puntuacion");
-		  $('#bloque'+id).remove();
+		  $('#modal'+id).remove();
     });
   });
 

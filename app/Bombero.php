@@ -84,7 +84,7 @@ class Bombero extends Model
   }
 
   public function asistenciasmes($mes,$año){
-    return $this->hasMany(asistencia::class,"id_bombero","id")->whereYear('created_at','=',$año)->whereMonth('created_at','=',$mes)->count();
+    return $this->hasMany(asistencia::class,"id_bombero","id")->whereYear('fecha_reunion','=',$año)->whereMonth('fecha_reunion','=',$mes)->count();
   }
 
   public function ingresado(){
