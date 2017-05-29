@@ -26,7 +26,7 @@
           {{Form::text('busqueda', null, ['placeholder'=>"Buscar por nombre",'id'=>"inputFilterPuntuacion",'class' => 'form-control'])}}
         </div>
       </div>
-      <div id="puntuacion">
+      <div id="lista">
 
       </div>
     </div>

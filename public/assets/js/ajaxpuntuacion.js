@@ -1,5 +1,6 @@
 $(document).ready(function () {
-  function cargarPuntuacion(){
+
+  function listarBomberos(){
     var ruta= window.location.href;
     var url=ruta.substring(0, ruta.indexOf("create"));
     var mes=$('#mes').val();
@@ -7,14 +8,14 @@ $(document).ready(function () {
 		$.ajax({
 			type: 'GET',
 			dataType: 'HTML',
-			url: url+mes+'/'+año+'/puntuacionmes',
+			url: url+'bomberos/'+mes+'/'+año,
 			success: function(data){
-						$('#puntuacion').html(data);
+						$('#lista').html(data);
 					},
 		});
   };
 
-  function listarPuntuacion(){
+  function listarPuntuaciones(){
     var url= window.location.href;
     var mes=$('#mes').val();
     var año=$('#año').val();
@@ -28,36 +29,27 @@ $(document).ready(function () {
 		});
   };
 
-  listarPuntuacion();
-  cargarPuntuacion();
-
   $('#mes').on('change',function(){
-    cargarPuntuacion();
-    listarPuntuacion();
+    if(window.location.href.indexOf("create") == -1){
+      listarPuntuaciones();
+    }else{
+      listarBomberos();
+    }
   });
 
   $('#año').on('change',function(){
-    cargarPuntuacion();
-    listarPuntuacion();
+    if(window.location.href.indexOf("create") == -1){
+      listarPuntuaciones();
+    }else{
+      listarBomberos();
+    }
   });
 
-  function cargarResultado(bombero){
-    var URLactual = window.location.href;
-    var ruta=URLactual.substring(0, URLactual.indexOf("create"));
-    var fecha=$('#fecha').val();
-		$.ajax({
-			type: 'GET',
-			dataType: 'HTML',
-			url: ruta+'bombero/'+bombero+'/'+fecha,
-			success: function(data){
-						$('#resultado').html(data);
-					},
-		});
-  };
-
-  $('#id_bombero').on('change',function(){
-    cargarResultado($(this).val())
-  });
+  if(window.location.href.indexOf("create") == -1){
+    listarPuntuaciones();
+  }else{
+    listarBomberos();
+  }
 
   function filterTablePuntuacion() {
     // Declare variables

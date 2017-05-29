@@ -10,28 +10,7 @@
     <div class="panel-body">
       {!! Form::open([ 'route' => ['puntuacion.update',$puntuacion->id], 'class' => 'form-horizontal', 'method' => 'PUT']) !!}
 
-          @php
-            $accid=$bombero->accidentales($mes,$año);
-            $guardia=$bombero->guardias($mes,$año);
-            $asistencia=$bombero->asistenciasmes($mes,$año);
-            $puntasis=0;
-            if ($dias!=0) {
-              $puntasis=(10/$dias)*$asistencia;
-            }
-            $puntaccid=0;
-            if ($accid!=0) {
-              if ($cantserv<7 && $cantserv!=$accid) {
-                $puntaccid=35-(5*($cantserv-$accid));
-              }else {
-                $puntaccid=(35/$cantserv)*$accid;
-              }
-            }
-            $puntguar=0;
-            if ($guardia!=0) {
-                $puntguar=(10/$cantguar)*$guardia;
-            }
-          @endphp
-
+          
           <div class="form-group {{ $errors->has('nombre') ? ' has-error' : '' }}">
             {!! Form::label('asistencia', 'Asistencia Obligatoria: '.$dias,['class' => 'col-sm-4 control-label']) !!}
           </div>

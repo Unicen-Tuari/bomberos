@@ -239,6 +239,7 @@ class ServicioController extends Controller
         $data=$request->all();//obtengo todos los atributos
         $servicio= Servicio::find($id);
         $servicio->tipo_servicio_id=$data['tipo'];
+        $servicio->tipo_alarma=$data['tipo_alarma'];
         $servicio->direccion=$data['direccion'];
         $servicio->autor_llamada=$data['autor_llamada'];
         $servicio->ilesos=$data['ilesos'];

@@ -12,6 +12,6 @@ class BomberoTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Bombero::class)->times(50)->create();
+        factory(Bombero::class)->times(25)->create();
     }
 }
