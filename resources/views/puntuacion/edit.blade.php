@@ -5,100 +5,71 @@
   <div class="panel panel-default">
     <div id="breadcrumb" class="panel-heading">
       <span class="fa fa-user" aria-hidden="true"></span>
-      <h4>Modificar puntuacion de : {{$bombero->apellido .' '.$bombero->nombre .'-'.$bombero->nro_legajo}}</h4>
+      <h4>Modificar puntuacion de : {{$puntuacion->bombero->apellido .' '.$puntuacion->bombero->nombre .'- Nº '.$puntuacion->bombero->nro_legajo}}</h4>
     </div>
     <div class="panel-body">
       {!! Form::open([ 'route' => ['puntuacion.update',$puntuacion->id], 'class' => 'form-horizontal', 'method' => 'PUT']) !!}
 
-          
-          <div class="form-group {{ $errors->has('nombre') ? ' has-error' : '' }}">
-            {!! Form::label('asistencia', 'Asistencia Obligatoria: '.$dias,['class' => 'col-sm-4 control-label']) !!}
+        <div class="form-group">
+          {!! Form::label('asistencia', 'Asistencia obligatoria',['class' => 'col-sm-4 control-label']) !!}
+          {!! Form::label('asistencia', 'reuniones: '.$dias,['class' => 'col-sm-2 control-label']) !!}
+        </div>
+
+        <div class="form-group">
+          {!! Form::label('aocant', 'Cantidad asistidas',['class' => 'col-sm-4 control-label']) !!}
+          <div class="col-sm-1">
+            {!! Form::text('ao_cant', $asistencia , ['class' => 'form-control','disabled' => 'disabled']) !!}
           </div>
 
-          <div class="form-group">
-            <div class="{{ $errors->has('ao_cant') ? ' has-error' : '' }}">
-              {!! Form::label('aocant', 'Cantidad asistencia: '.$asistencia,['class' => 'col-sm-4 control-label']) !!}
-              <div class="col-sm-1">
-                {!! Form::hidden('ao_cant', $asistencia) !!}
-                @if ($errors->has('ao_cant'))
-                    <span class="help-block">
-                        <strong>{{ $errors->first('ao_cant') }}</strong>
-                    </span>
-                @endif
-              </div>
-            </div>
-
-            <div class="{{ $errors->has('ao_punt') ? ' has-error' : '' }}">
-              {!! Form::label('ao_punt', 'Puntos: '.$puntasis,['class' => 'col-sm-1 control-label']) !!}
-              <div class="col-sm-1">
-                {!! Form::hidden('ao_punt', $puntasis) !!}
-
-                @if ($errors->has('ao_punt'))
-                    <span class="help-block">
-                        <strong>{{ $errors->first('ao_punt') }}</strong>
-                    </span>
-                @endif
-              </div>
-            </div>
-
-            <div class="{{ $errors->has('ao_acad') ? ' has-error' : '' }}">
-              {!! Form::label('aoacad', 'Academia',['class' => 'col-sm-1 control-label']) !!}
-              <div class="col-sm-1">
-                  {!! Form::text('ao_acad', $puntuacion->ao_acad , ['class' => 'form-control','id'=>'ao_acad']) !!}
-
-                  @if ($errors->has('ao_acad'))
-                      <span class="help-block">
-                          <strong>{{ $errors->first('ao_acad') }}</strong>
-                      </span>
-                  @endif
-              </div>
-            </div>
-
+          {!! Form::label('ao_punt', 'Puntos',['class' => 'col-sm-1 control-label']) !!}
+          <div class="col-sm-1">
+            {!! Form::text('ao_punt', $puntasis , ['class' => 'form-control','disabled' => 'disabled']) !!}
           </div>
 
-          <div class="form-group {{ $errors->has('nombre') ? ' has-error' : '' }}">
-            {!! Form::label('accidentales', 'Accidentales: '.$cantserv,['class' => 'col-sm-4 control-label']) !!}
-          </div>
-
-          <div class="form-group">
-            <div class="{{ $errors->has('accid_cant') ? ' has-error' : '' }}">
-              {!! Form::label('accid_cant', 'Cantidad: '.$accid,['class' => 'col-sm-4 control-label']) !!}
-              <div class="col-sm-1">
-                {!! Form::hidden('accid_cant', $accid) !!}
-                @if ($errors->has('accid_cant'))
-                    <span class="help-block">
-                        <strong>{{ $errors->first('accid_cant') }}</strong>
-                    </span>
-                @endif
-              </div>
-            </div>
-
-            <div class="{{ $errors->has('accid_punt') ? ' has-error' : '' }}">
-              {!! Form::label('accid_punt', 'Puntos: '.$puntaccid,['class' => 'col-sm-1 control-label']) !!}
-              <div class="col-sm-1">
-                {!! Form::hidden('accid_punt', $puntaccid) !!}
-
-                @if ($errors->has('accid_punt'))
-                    <span class="help-block">
-                        <strong>{{ $errors->first('accid_punt') }}</strong>
-                    </span>
-                @endif
-              </div>
-            </div>
-          </div>
-
-          <div class="form-group {{ $errors->has('dedicacion') ? ' has-error' : '' }}">
-            {!! Form::label('dedicacion', 'Dedicacion',['class' => 'col-sm-4 control-label']) !!}
+          <div class="{{$errors->has('ao_acad') ? ' has-error' : '' }}">
+            {!! Form::label('aoacad', 'Academia',['class' => 'col-sm-1 control-label']) !!}
             <div class="col-sm-1">
-                {!! Form::text('dedicacion', $puntuacion->dedicacion , ['class' => 'form-control']) !!}
-
-                @if ($errors->has('dedicacion'))
-                    <span class="help-block">
-                        <strong>{{ $errors->first('dedicacion') }}</strong>
-                    </span>
-                @endif
+              {!! Form::text('ao_acad', $puntuacion->ao_acad , ['class' => 'form-control','id'=>'ao_acad']) !!}
+              @if ($errors->has('ao_acad'))
+                  <span class="help-block">
+                      <strong>{{ $errors->first('ao_acad') }}</strong>
+                  </span>
+              @endif
             </div>
           </div>
+
+        </div>
+
+        <div class="form-group">
+          {!! Form::label('accidentales', 'Servicios Accidentales',['class' => 'col-sm-4 control-label']) !!}
+          {!! Form::label('accidentales', 'realizados: '.$cantserv,['class' => 'col-sm-2 control-label']) !!}
+        </div>
+
+        <div class="form-group">
+          {!! Form::label('accid_cant', 'Cantidad asistidas',['class' => 'col-sm-4 control-label']) !!}
+          <div class="col-sm-1">
+            {!! Form::text('accid_cant', $accid , ['class' => 'form-control','disabled' => 'disabled']) !!}
+          </div>
+
+          {!! Form::label('accid_punt', 'Puntos',['class' => 'col-sm-1 control-label']) !!}
+          <div class="col-sm-1">
+            {!! Form::text('accid_punt', $puntaccid , ['class' => 'form-control','disabled' => 'disabled']) !!}
+          </div>
+
+        </div>
+
+        <div class="form-group {{$errors->has('dedicacion') ? ' has-error' : '' }}">
+          {!! Form::label('dedicacion', 'Dedicacion',['class' => 'col-sm-4 control-label']) !!}
+          <div class="col-sm-1">
+              {!! Form::text('dedicacion', $puntuacion->dedicacion , ['class' => 'form-control']) !!}
+
+              @if ($errors->has('dedicacion'))
+                  <span class="help-block">
+                      <strong>{{ $errors->first('dedicacion') }}</strong>
+                  </span>
+              @endif
+          </div>
+        </div>
 
           <div class="form-group {{ $errors->has('especiales') ? ' has-error' : '' }}">
             {!! Form::label('especiales', 'Especiales',['class' => 'col-sm-4 control-label']) !!}
@@ -114,34 +85,21 @@
           </div>
 
           <div class="form-group {{ $errors->has('nombre') ? ' has-error' : '' }}">
-            {!! Form::label('accidentales', 'Asistencias Guardias: '.$cantguar,['class' => 'col-sm-4 control-label']) !!}
+            {!! Form::label('accidentales', 'Servicios Guardias',['class' => 'col-sm-4 control-label']) !!}
+            {!! Form::label('accidentales', 'realizados:'.$cantguar ,['class' => 'col-sm-2 control-label']) !!}
           </div>
 
           <div class="form-group">
-            <div class="{{ $errors->has('guar_cant') ? ' has-error' : '' }}">
-              {!! Form::label('guar_cant', 'Cantidad: '.$guardia,['class' => 'col-sm-4 control-label']) !!}
-              <div class="col-sm-1">
-                {!! Form::hidden('guar_cant', $guardia) !!}
-                @if ($errors->has('guar_cant'))
-                    <span class="help-block">
-                        <strong>{{ $errors->first('guar_cant') }}</strong>
-                    </span>
-                @endif
-              </div>
+            {!! Form::label('guar_cant', 'Cantidad asistidas',['class' => 'col-sm-4 control-label']) !!}
+            <div class="col-sm-1">
+              {!! Form::text('guar_cant', $guardia , ['class' => 'form-control','disabled' => 'disabled']) !!}
             </div>
 
-            <div class="{{ $errors->has('guar_punt') ? ' has-error' : '' }}">
-              {!! Form::label('guar_punt', 'Puntos: '.$puntguar,['class' => 'col-sm-1 control-label']) !!}
-              <div class="col-sm-1">
-                {!! Form::hidden('guar_punt', $puntguar) !!}
-
-                @if ($errors->has('guar_punt'))
-                    <span class="help-block">
-                        <strong>{{ $errors->first('guar_punt') }}</strong>
-                    </span>
-                @endif
-              </div>
+            {!! Form::label('guar_punt', 'Puntos',['class' => 'col-sm-1 control-label']) !!}
+            <div class="col-sm-1">
+              {!! Form::text('guar_punt', $puntguar , ['class' => 'form-control','disabled' => 'disabled']) !!}
             </div>
+
           </div>
 
           <div class="form-group {{ $errors->has('licencia') ? ' has-error' : '' }}">
@@ -197,16 +155,10 @@
           </div>
 
 
-        <div class="form-group {{ $errors->has('fecha') ? ' has-error' : '' }}">
+        <div class="form-group">
           {!! Form::label('fecha', 'Fecha',['class' => 'col-sm-4 control-label']) !!}
           <div class="col-sm-1">
-            {!! Form::label('fecha', $puntuacion->fecha, ['class' => 'form-control']) !!}
-
-            @if ($errors->has('fecha'))
-                <span class="help-block">
-                    <strong>{{ $errors->first('fecha') }}</strong>
-                </span>
-            @endif
+            {!! Form::text('fecha', \Carbon\Carbon::parse($puntuacion->fecha)->format('d/m/y') , ['class' => 'form-control','disabled' => 'disabled']) !!}
           </div>
         </div>
 

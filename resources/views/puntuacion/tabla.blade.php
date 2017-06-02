@@ -1,4 +1,4 @@
-<table  class="table table-bordered" id="tablaPuntuacion">
+<table  class="table table-bordered">
   <thead><!--Titulos de la tabla-->
     <tr>
       <th colspan="2" class="text-center">Periodo {{config('selects.meses')[$mes].'-'.$año}}</th>
@@ -28,7 +28,7 @@
       <th class="text-center">Ptos.</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody id="tablaPuntuacion">
     @foreach ($bomberos as $bombero)
     @if ($bombero->puntuo($mes,$año))
     <tr>

@@ -10,34 +10,56 @@
     </div>
     <div class="panel-body">
 
-      <div class="form-group col-sm-12">
+      <div class="form-group">
         {{ Form::label('Buscar', 'Buscar: ',['class' => 'control-label col-sm-2 col-sm-offset-2']) }}
         <div class="col-sm-4">
-          {{Form::text('busqueda', null, ['placeholder'=>"Buscar por nombre",'id'=>"inputFilterPuntuacion",'class' => 'form-control'])}}
+          {{Form::text('busqueda', null, ['placeholder'=>"Buscar por apellido/nombre",'id'=>"inputFilterPuntuacion",'class' => 'form-control'])}}
+        </div>
+        <div class="col-sm-2">
+          <a class="glyphicon glyphicon-ok-circle presentesOn" id="on"></a>
+          <a class="glyphicon glyphicon-remove-circle presentesOff"id="off"></a>
+          <a class="glyphicon glyphicon-ban-circle presentesall" id="all"></a>
         </div>
       </div>
 
-      <div class="form-group bomberosparticipantes">
-        @foreach($bomberos as $bombero)
-          <div class="col-lg-6 col-md-12 control-label {{ $errors->has('bombero-'.$bombero->id) ? ' has-error' : '' }}" id="bombero-{{$bombero->id}}">
-            {!! Form::label('bombero-'.$bombero->id, $bombero->nombre." ". $bombero->apellido,['class' => 'col-lg-7 col-md-5 control-label']) !!}
-            <div class="col-sm-4">
-              @if ($bombero->presente($reunion))
-                <i class="glyphicon glyphicon-ok-circle presentesOn"></i>
-              @else
-                <i class="glyphicon glyphicon-remove-circle presentesOff"></i>
-              @endif
-              @if ($errors->has('bombero-'.$bombero->id))
-                  <span class="help-block">
-                      <strong>{{ $errors->first('bombero-'.$bombero->id) }}</strong>
-                  </span>
-              @endif
-            </div>
-          </div>
-        @endforeach
+      <div class="form-group">
+      <table  class="table table-bordered" id="tablaPuntuacion">
+        <thead><!--Titulos de la tabla-->
+          <tr>
+            <th class="text-center">Nº legajo</th>
+            <th class="text-center">Apellido Nombre</th>
+            <th class="text-center">asistió</th>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach ($bomberos as $bombero)
+            <tr id = "modal{{$bombero->id}}">
+              <td class="text-center">{{$bombero->nro_legajo}}</td>
+              <td class="text-center">{{$bombero->apellido.' - '.$bombero->nombre}}</td>
+              <td class="text-center">
+                @if ($bombero->presente($reunion))
+                  <a class="glyphicon glyphicon-ok-circle presentesOn" asistencia="onn"></a>
+                @else
+                  <a class="glyphicon glyphicon-remove-circle presentesOff" asistencia="off"></a>
+                @endif
+              </td>
+            </tr>
+          @endforeach
+        </tbody>
+        <tfoot>
+          <tr>
+            <td class="text-center" colspan="3"> lista de bomberos activos </td>
+          </tr>
+        </tfoot>
+        <br>
+      </table>
       </div>
 
     </div>
   </div>
 </article>
+@endsection
+
+@section('js')
+  {!! Html::script('assets/js/ajaxpuntuacion.js') !!}
 @endsection

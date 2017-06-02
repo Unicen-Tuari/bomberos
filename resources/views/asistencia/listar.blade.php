@@ -18,20 +18,21 @@
         <tbody><!--Contenido de la tabla-->
           @foreach ($reuniones as $key => $asistencias)
             <tr>
-              <td class="text-center"><a href="{{ route('asistencia.show', $key) }}">{{\Carbon\Carbon::parse($key)->format('d-m-Y')}}</a></td>
+              <td class="text-center"><a href="{{ route('asistencia.show', $key) }}">{{\Carbon\Carbon::parse($key)->format('d/m/Y')}}
+              </a></td>
+              <td class="text-center">
               @if (Auth::user()->admin)
-                <td class="text-center"><a class="glyphicon glyphicon-edit" href="{{ route('asistencia.edit', $key) }}"></a></td>
+                <a class="glyphicon glyphicon-edit" href="{{ route('asistencia.edit', $key) }}"></a>
               @else
-                <td class="text-center">
-                  <button type="submit" class="btn glyphicon glyphicon-ban-circle ban" title="Sin permisos para eliminar/modificar"></button>
-                </td>
+                <button type="submit" class="btn glyphicon glyphicon-ban-circle ban" title="Sin permisos para eliminar/modificar"></button>
               @endif
+              </td>
             </tr>
           @endforeach
         </tbody>
         <tfoot>
           <tr>
-            <td colspan="2" class="text-center">reuniones</td>
+            <td class="text-center" colspan="2">reuniones</td>
           </tr>
         </tfoot>
         </table>
