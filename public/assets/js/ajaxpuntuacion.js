@@ -51,27 +51,65 @@ $(document).ready(function () {
     listarBomberos();
   }
 
-  function filterTablePuntuacion() {
-    // Declare variables
-    var input, filter, table, tr, td, i;
-    input = document.getElementById("inputFilterPuntuacion");
-    filter = input.value.toUpperCase();
-    table = document.getElementById("tablaPuntuacion");
-    tr = table.getElementsByTagName("tr");
-    // Loop through all table rows, and hide those who don't match the search query
-    for (i = 0; i < tr.length; i++) {
-      td = tr[i].getElementsByTagName("td")[1];
-      if (td) {
-        if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-          tr[i].style.display = "";
+  function filterlista() {
+    var  filter, p;
+    filter = $("#inputFilterPuntuacion").val().toUpperCase();
+    $("#listaPuntuacion").children('div').each(function(){
+      p = $(this).children('p')[0].textContent;
+      if (p) {
+        if (p.toUpperCase().indexOf(filter) > -1) {
+          $(this).show();
         } else {
-          tr[i].style.display = "none";
+          $(this).hide();
         }
       }
-    }
+    });
+  };
+
+  function filterTablePuntuacion() {
+    // Declare variables
+    var filter, td;
+    filter = $("#inputFilterPuntuacion").val().toUpperCase();
+    $("#tablaPuntuacion").children('tr').each(function(){
+      td = $(this).children('td')[1].textContent;
+      if (td) {
+        if (td.toUpperCase().indexOf(filter) > -1) {
+          $(this).show();
+        } else {
+          $(this).hide();
+        }
+      }
+    });
   };
 
   $('#inputFilterPuntuacion').on('keyup',function(){
     filterTablePuntuacion();
+    filterlista();
+  });
+
+  function filterTableOnOff(input) {
+    // Declare variables
+    $("#tablaPuntuacion").children('tr').each(function(){
+      td = $(this).children('td')[2].textContent;
+      if (td) {
+        if (td.indexOf(filter) > -1) {
+          $(this).show();
+        } else {
+          $(this).hide();
+        }
+      }
+    });
+  };
+
+  $('#all').on('click',function(){
+    filterTableOnOff("");
+  });
+
+  $('#on').on('click',function(){
+    filterTableOnOff("onn");
+  });
+
+  $('#off').on('click',function(){
+    filterTableOnOff("off");
   });
 });

@@ -21,7 +21,7 @@ class AsistenciaController extends Controller
 
     public function index()
     {
-      $reuniones=asistencia::all()->groupBy('fecha_reunion');
+      $reuniones=asistencia::select('fecha_reunion')->orderBy('fecha_reunion', 'asc')->get()->groupBy('fecha_reunion');
       return view('asistencia/listar',compact('reuniones'));
     }
 
@@ -65,18 +65,18 @@ class AsistenciaController extends Controller
     public function update(Request $request, $id)
     {
       $data=$request->all();
-      $reunion=asistencia::where('fecha_reunion',$id)->get();
+      $reuniones=asistencia::where('fecha_reunion',$id)->get();
       $presentes=[];
       foreach ($data as $key => $value) {
         if (strstr($key, '-', true)=="bombero") {
           $idbombero=(integer)substr($key, 8);
           $presentes[]=$idbombero;
-          if (!$reunion->where('id_bombero',$idbombero)->first()) {
+          if (!$reuniones->where('id_bombero',$idbombero)->first()) {
             asistencia::create(['id_bombero'=>$idbombero,'fecha_reunion'=>$id]);
           }
         }
       }
-      foreach ($reunion as $value) {
+      foreach ($reuniones as $value) {
         if (!in_array($value->id_bombero,$presentes)) {
           $value->delete();
         }

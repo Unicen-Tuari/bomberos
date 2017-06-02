@@ -449,6 +449,11 @@ tr td .glyphicon-edit {
     margin-top: 8px;
     font-size: 20px;
 }
+.presentesall {
+    color:gray;
+    margin-top: 3px;
+    font-size: 18px;
+}
 .presentesOff{
     color:red;
     margin-top: 8px;

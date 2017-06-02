@@ -52,10 +52,10 @@ class PuntuacionController extends Controller
               $puntasis=(10/$dias)*$asistencia;
             }
             $puntuacion=0;
-            if ($cantserv<7 && $accid!=0) {
-              $puntuacion=35-(5*($cantserv-$accid));
-            }else {
+            if ($cantserv>6) {
               $puntuacion=(35/$cantserv)*$accid;
+            }elseif ($accid!=0)  {
+              $puntuacion=35-(5*($cantserv-$accid));
             }
             $puntguar=0;
             if ($guardia!=0) {
@@ -83,17 +83,24 @@ class PuntuacionController extends Controller
 
     public function store(Request $request)
     {
-        $date=$request->all();
-        $fecha=\Carbon\Carbon::parse($date['año'].'-'.$date['mes'].'-'.'1');
-        $date['fecha']=$fecha;
-        unset($date['mes'],$date['año']);
-        Puntuacion::create($date);
+        if(Auth::user()->admin){
+          $date=$request->all();
+          $fecha=\Carbon\Carbon::parse($date['año'].'-'.$date['mes'].'-'.'1');
+          $date['fecha']=$fecha;
+          unset($date['mes'],$date['año']);
+          Puntuacion::create($date);
+        }
     }
 
     public function bomberos($mes,$año)
     {
+      $mesactual=\Carbon\Carbon::now()->format('m');
+      $añoactual=\Carbon\Carbon::now()->format('Y');
+      if($año<$añoactual || ($año==$añoactual && $mes<$mesactual)){
         $bomberos=Bombero::where('activo', 1)->get();
         return view('puntuacion/puntuacionmes',compact('bomberos','mes','año'));
+      }
+      return view('errors/aviso');
     }
 
     public function show($id)
@@ -104,7 +111,6 @@ class PuntuacionController extends Controller
     {
       if(Auth::user()->admin){
         $puntuacion=Puntuacion::find($id);
-        $bombero=Bombero::find($puntuacion->bombero->id);
         $mes=\Carbon\Carbon::parse($puntuacion->fecha)->format('m');
         $año=\Carbon\Carbon::parse($puntuacion->fecha)->format('Y');
         $dias=asistencia::select(\DB::raw('COUNT(*) as cant, id_bombero'))->whereYear('fecha_reunion','=',$año)->whereMonth('fecha_reunion','=',$mes)->groupBy('id_bombero')->get()->max('cant');
@@ -114,35 +120,35 @@ class PuntuacionController extends Controller
         $cantserv=Servicio::where('tipo_alarma', 3)->whereYear('hora_alarma','=',$año)->whereMonth('hora_alarma','=',$mes)->count();
         $cantguar=Servicio::where('tipo_alarma','<', 3)->whereYear('hora_alarma','=',$año)->whereMonth('hora_alarma','=',$mes)->count();
 
-        $accid=$bombero->accidentales($mes,$año);
-        $guardia=$bombero->guardias($mes,$año);
-        $asistencia=$bombero->asistenciasmes($mes,$año);
+        $accid=$puntuacion->bombero->accidentales($mes,$año);
+        $guardia=$puntuacion->bombero->guardias($mes,$año);
+        $asistencia=$puntuacion->bombero->asistenciasmes($mes,$año);
         $puntasis=0;
         if ($dias!=0) {
           $puntasis=(10/$dias)*$asistencia;
         }
         $puntaccid=0;
-        if ($accid!=0) {
-          if ($cantserv<7 && $cantserv!=$accid) {
-            $puntaccid=35-(5*($cantserv-$accid));
-          }else {
-            $puntaccid=(35/$cantserv)*$accid;
-          }
+        if ($cantserv>6) {
+          $puntuacion=(35/$cantserv)*$accid;
+        }elseif ($accid!=0) {
+          $puntuacion=35-(5*($cantserv-$accid));
         }
         $puntguar=0;
         if ($guardia!=0) {
             $puntguar=(10/$cantguar)*$guardia;
         }
         return view('puntuacion/edit',
-        compact('bombero','puntuacion','cantserv','cantguar','dias','accid','guardia','asistencia','puntasis','puntaccid','puntguar'));
+        compact('puntuacion','cantserv','cantguar','dias','accid','guardia','asistencia','puntasis','puntaccid','puntguar'));
       }
       return view('auth/alerta');
     }
 
     public function update(Request $request, $id)
     {
-      Puntuacion::find($id)->update($request->all());
-      return redirect()->route('puntuacion.index');
+      if(Auth::user()->admin){
+        Puntuacion::find($id)->update($request->all());
+        return redirect()->route('puntuacion.index');
+      }
     }
 
     public function destroy($id)
