@@ -16,14 +16,14 @@
           {{Form::text('busqueda', null, ['placeholder'=>"Buscar por apellido/nombre",'id'=>"inputFilterPuntuacion",'class' => 'form-control'])}}
         </div>
         <div class="col-sm-2">
-          <a class="glyphicon glyphicon-ok-circle presentesOn" id="on"></a>
-          <a class="glyphicon glyphicon-remove-circle presentesOff"id="off"></a>
-          <a class="glyphicon glyphicon-ban-circle presentesall" id="all"></a>
+          <a href="#" class="glyphicon glyphicon-ok-circle presentesOn" id="on"></a>
+          <a href="#" class="glyphicon glyphicon-remove-circle presentesOff"id="off"></a>
+          <a href="#" class="glyphicon glyphicon-ban-circle presentesall" id="all"></a>
         </div>
       </div>
 
       <div class="form-group">
-      <table  class="table table-bordered" id="tablaPuntuacion">
+      <table  class="table table-bordered">
         <thead><!--Titulos de la tabla-->
           <tr>
             <th class="text-center">Nº legajo</th>
@@ -31,7 +31,7 @@
             <th class="text-center">asistió</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody id="tablaPuntuacion">
           @foreach ($bomberos as $bombero)
             <tr id = "modal{{$bombero->id}}">
               <td class="text-center">{{$bombero->nro_legajo}}</td>

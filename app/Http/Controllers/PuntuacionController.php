@@ -51,10 +51,10 @@ class PuntuacionController extends Controller
             if ($dias!=0) {
               $puntasis=(10/$dias)*$asistencia;
             }
-            $puntuacion=0;
+            $puntaccid=0;
             if ($cantserv>6) {
               $puntuacion=(35/$cantserv)*$accid;
-            }elseif ($accid!=0)  {
+            }elseif ($accid!=0) {
               $puntuacion=35-(5*($cantserv-$accid));
             }
             $puntguar=0;
@@ -62,7 +62,7 @@ class PuntuacionController extends Controller
                 $puntguar=(10/$cantguar)*$guardia;
             }
             return view('puntuacion/alta',
-            compact('bombero','cantserv','cantguar','mes','año','dias','accid','guardia','asistencia','puntasis','puntuacion','puntguar'));
+            compact('bombero','cantserv','cantguar','mes','año','dias','accid','guardia','asistencia','puntasis','puntaccid','puntguar'));
           }
           return view('errors/aviso');
         }
@@ -147,7 +147,6 @@ class PuntuacionController extends Controller
     {
       if(Auth::user()->admin){
         Puntuacion::find($id)->update($request->all());
-        return redirect()->route('puntuacion.index');
       }
     }
 

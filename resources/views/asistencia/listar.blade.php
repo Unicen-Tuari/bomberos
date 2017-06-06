@@ -8,35 +8,33 @@
       <h4>Reuniones realizadas</h4>
     </div>
     <div class="panel-body">
-      <table  class="table table-striped">
-        <thead><!--Titulos de la tabla-->
-          <tr>
-            <th class="text-center">Fechas de Reuniones</th>
-            <th class="text-center"></th>
-          </tr>
-        </thead>
-        <tbody><!--Contenido de la tabla-->
-          @foreach ($reuniones as $key => $asistencias)
-            <tr>
-              <td class="text-center"><a href="{{ route('asistencia.show', $key) }}">{{\Carbon\Carbon::parse($key)->format('d/m/Y')}}
-              </a></td>
-              <td class="text-center">
-              @if (Auth::user()->admin)
-                <a class="glyphicon glyphicon-edit" href="{{ route('asistencia.edit', $key) }}"></a>
-              @else
-                <button type="submit" class="btn glyphicon glyphicon-ban-circle ban" title="Sin permisos para eliminar/modificar"></button>
-              @endif
-              </td>
-            </tr>
-          @endforeach
-        </tbody>
-        <tfoot>
-          <tr>
-            <td class="text-center" colspan="2">reuniones</td>
-          </tr>
-        </tfoot>
-        </table>
+
+      <div class="form-group col-sm-4">
+        {!! Form::label('fecha_reunion', 'Buscar desde:',['class' => 'col-sm-6 control-label']) !!}
+        <div class="col-sm-6">
+          {!! Form::date('inicio', \Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires')) ,['class' => 'form-control','id'=>'inicio']) !!}
+        </div>
+      </div>
+      <div class="form-group col-sm-4">
+        {!! Form::label('fecha_reunion', 'hasta:',['class' => 'col-sm-6 control-label']) !!}
+        <div class="col-sm-6">
+          {!! Form::date('fin', \Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires')) ,['class' => 'form-control','id'=>'fin']) !!}
+        </div>
+      </div>
+      <div class="form-group col-sm-4 {{ $errors->has('fecha_reunion') ? ' has-error' : '' }}">
+        <button type="button" id="buscar" class="col-sm-2 btn btn-primary">Buscar</button>
+      </div>
+
+      <div class="form-group col-sm-12" id="fecha">
+
+        @include('asistencia.rango')
+        
+      </div>
     </div>
   </div>
 </article>
+@endsection
+
+@section('js')
+  {!! Html::script('assets/js/ajaxasistencia.js') !!}
 @endsection
