@@ -11,6 +11,34 @@ $(document).ready(function () {
     });
   });
 
+  $('#edit').on('click',function(){
+    var id = this.getAttribute('bombero');
+    var formPuntuacion = $('#put');
+    var url = formPuntuacion.attr('action');
+    var data = formPuntuacion.serialize();
+    $.ajax({
+			type: 'PUT',
+			url: url,
+      data : data,
+      })
+      .done(function(dd) {
+        var url= window.location.href;
+        var mes=$('#mes').val();
+        var año=$('#año').val();
+    		$.ajax({
+    			type: 'GET',
+    			dataType: 'HTML',
+    			url: url+'/listar/'+mes+'/'+año,
+    			success: function(data){
+    						$('#tabla').html(data);
+    					},
+    		});
+      })
+    .fail(function() {
+      alert('Imposible modificar producto');
+    });
+  });
+
   function suma(id){
     var asistencia = parseInt($('#asistencia'+id).val());
     var academia = parseInt($('#academia'+id).val());

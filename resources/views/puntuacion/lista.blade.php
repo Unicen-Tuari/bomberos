@@ -31,6 +31,17 @@
       </div>
     </div>
   </div>
+
+  {{-- Inicio MODAL --}}
+  <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content" id="puntuacion">
+
+      </div>
+    </div>
+  </div>
+  {{-- Fin --}}
+
 </article>
 @endsection
 

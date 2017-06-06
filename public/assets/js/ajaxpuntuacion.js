@@ -45,10 +45,17 @@ $(document).ready(function () {
     }
   });
 
-  if(window.location.href.indexOf("create") == -1){
+  $('#tabla').on('click','#edit',function(){
+    alert('afs');
     listarPuntuaciones();
-  }else{
+  });
+
+  if(window.location.href.indexOf("create") != -1){
+    //pregunto si estoy en cargar puntuacion
     listarBomberos();
+  }else if(window.location.href.indexOf("puntuacion")!=-1){
+    //pregunto si estoy en listar puntuacion
+    listarPuntuaciones();
   }
 
   function filterlista() {
@@ -87,10 +94,10 @@ $(document).ready(function () {
     filterlista();
   });
 
-  function filterTableOnOff(input) {
+  function filterTableOnOff(filter) {
     // Declare variables
     $("#tablaPuntuacion").children('tr').each(function(){
-      td = $(this).children('td')[2].textContent;
+      td = $(this).find('a')[0].getAttribute('asistencia');
       if (td) {
         if (td.indexOf(filter) > -1) {
           $(this).show();

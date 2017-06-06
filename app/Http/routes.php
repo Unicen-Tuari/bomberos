@@ -23,6 +23,7 @@ Route::get('/home', 'HomeController@index')->name('home.index');
 
 Route::resource('bombero','BomberoController',['except' => ['show']]);
 
+Route::get('asistencia/{inicio}/{fin}', 'AsistenciaController@rango')->name('AsistenciaController.rango');
 Route::resource('asistencia','AsistenciaController');
 
 Route::get('puntuacion/bomberos/{mes}/{anio}', 'PuntuacionController@bomberos')->name('puntuacion.bomberos');
@@ -33,8 +34,6 @@ Route::resource('puntuacion','PuntuacionController');
 Route::resource('vehiculo','VehiculoController');
 
 Route::resource('material','MaterialController');
-
-Route::resource('servicio/tipo','TipoServicioController',['except' => ['create']]);
 
 Route::get('servicio/llamada', 'ServicioController@llamada')->name('servicio.llamada');
 Route::get('servicio/activo/{id}', 'ServicioController@finalizarActivo')->name('servicio.finalizarActivo');
