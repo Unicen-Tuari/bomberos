@@ -61,7 +61,7 @@
     </div>
 
   @if(strpos(Request::url(), 'servicio/activo'))
-  </div>  
+  </div>
   @endif
 
     <div class="form-group">
@@ -321,11 +321,4 @@
         </div>
       </div>
 
-    </div>
-
-    <div class="col-sm-6 col-sm-offset-3">
-      {{-- {!!Form::submit('Registrar', ['class' => 'btn btn-primary']) !!} --}}
-      <button type="submit" class="btn btn-primary">
-          <i class="glyphicon glyphicon-ok"></i> Finalizar
-      </button>
     </div>

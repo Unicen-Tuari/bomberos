@@ -46,11 +46,10 @@ $(document).ready(function () {
   });
 
   $('#tabla').on('click','#edit',function(){
-    alert('afs');
     listarPuntuaciones();
   });
 
-  if(window.location.href.indexOf("create") != -1){
+  if(window.location.href.indexOf("puntuacion/create") != -1){
     //pregunto si estoy en cargar puntuacion
     listarBomberos();
   }else if(window.location.href.indexOf("puntuacion")!=-1){
@@ -58,7 +57,7 @@ $(document).ready(function () {
     listarPuntuaciones();
   }
 
-  function filterlista() {
+  function filterlist() {
     var  filter, p;
     filter = $("#inputFilterPuntuacion").val().toUpperCase();
     $("#listaPuntuacion").children('div').each(function(){
@@ -89,9 +88,26 @@ $(document).ready(function () {
     });
   };
 
+  function filterAssist() {
+    // Declare variables
+    var filter, lablel;
+    filter = $("#inputFilterPuntuacion").val().toUpperCase();
+    $(".bomberosparticipantes").children('div').each(function(){
+      lablel = $(this).children('label')[0].textContent;
+      if (lablel) {
+        if (lablel.toUpperCase().indexOf(filter) > -1) {
+          $(this).show();
+        } else {
+          $(this).hide();
+        }
+      }
+    });
+  };
+
   $('#inputFilterPuntuacion').on('keyup',function(){
     filterTablePuntuacion();
-    filterlista();
+    filterlist();
+    filterAssist();
   });
 
   function filterTableOnOff(filter) {

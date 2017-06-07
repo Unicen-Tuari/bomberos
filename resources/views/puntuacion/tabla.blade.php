@@ -33,8 +33,8 @@
     @if ($bombero->puntuo($mes,$año))
     <tr>
 
-      <td class="text-center">{{$bombero->nro_legajo}}
-      <a idmodal={{$bombero->puntuacion($mes,$año)->id}} href="" class="glyphicon glyphicon-edit mp" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"></a></td>
+      <td><a idmodal={{$bombero->puntuacion($mes,$año)->id}} href="" class="glyphicon glyphicon-edit mp" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
+      </a> {{$bombero->nro_legajo}}</td>
       <td class="text-center">{{$bombero->apellido.' '.$bombero->nombre}}</td>
       <td class="text-center">{{$bombero->puntuacion($mes,$año)->ao_cant}}</td>
       <td class="text-center">{{$bombero->puntuacion($mes,$año)->ao_punt}}</td>

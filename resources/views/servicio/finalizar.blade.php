@@ -33,6 +33,12 @@
       @endif
       {!! Form::hidden('finalizar', 1) !!}
       @include('servicio.formcompleto')
+
+      <div class="col-sm-6 col-sm-offset-3">
+        <button type="submit" class="btn btn-primary">
+            <i class="glyphicon glyphicon-ok"></i> Finalizar
+        </button>
+      </div>
     {!! Form::close() !!}
 
     </div>

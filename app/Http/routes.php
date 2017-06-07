@@ -26,6 +26,8 @@ Route::resource('bombero','BomberoController',['except' => ['show']]);
 Route::get('asistencia/{inicio}/{fin}', 'AsistenciaController@rango')->name('AsistenciaController.rango');
 Route::resource('asistencia','AsistenciaController');
 
+Route::get('puntuacion/anual', 'PuntuacionController@anual')->name('puntuacion.anual');
+Route::get('puntuacion/anual/{bombero}/{inicio}/{fin}', 'PuntuacionController@tabla_anual')->name('puntuacion.tabla_anual');
 Route::get('puntuacion/bomberos/{mes}/{anio}', 'PuntuacionController@bomberos')->name('puntuacion.bomberos');
 Route::get('puntuacion/listar/{mes}/{anio}', 'PuntuacionController@listar')->name('puntuacion.listar');
 Route::get('puntuacion/{mes}/{anio}/{bombero}/puntuacionmes', 'PuntuacionController@puntuacionmes')->name('puntuacion.puntuacionmes');
@@ -47,8 +49,8 @@ Route::put('servicio/activo/{id}/finalizar', 'ServicioController@guardarActivo')
 Route::put('servicio/activo/{id}/salida', 'ServicioController@salida')->name('servicio.salida');
 Route::resource('servicio','ServicioController');
 
+Route::get('ingreso/{id}', 'IngresoController@show')->name('ingreso.show');
 Route::get('ingreso/listar', 'IngresoController@listarIngresos')->name('ingreso.listar');
-Route::get('ingreso/nuevo/{bombero}', 'IngresoController@addbombero')->name('ingreso.addbombero');
 Route::get('ingreso/presentes/edit/{servicio}', 'IngresoController@editPresentes')->name('ingreso.editPresentes');
 Route::get('ingreso/presentes/{servicio}/{acargo}', 'IngresoController@indexPresentes')->name('ingreso.indexPresentes');
 Route::post('ingreso', 'IngresoController@guardarIngreso')->name('ingreso.guardarIngreso');
