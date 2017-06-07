@@ -1,5 +1,5 @@
 @foreach ($reuniones as $key => $asistencias)
-  <div class="col-sm-6">
+  <div class="form-group col-sm-6">
     <div class="col-sm-8 text-center">
       <a href="{{ route('asistencia.show', $asistencias->fecha_reunion) }}">{{\Carbon\Carbon::parse($asistencias->fecha_reunion)->format('d/m/Y')}}</a>
     </div>

@@ -36,21 +36,21 @@
     </tr>
   </thead>
   <tbody>
-    <?php
+    @php
       // variables para la sumatorias total del mes
       $cantVehiculos = $cantCombustible = $cantBomberos = $totalMinutos = $totalMinutosBomberos = $cantIlesos = $cantMuertos = $cantQuemados = $cantLesionados = $cantOtros =0;
-      $tipo1 = $tipo2 = $tipo3 = $tipo4 = $tipo5 = $tipo6 = $tipo7 = $tipo8 = $tipo9 = $tipo10 = $tipo11 = 0;
-    ?>
+      $tipo1 = $tipo2 = $tipo3 = $tipo4 = $tipo5 = $tipo6 = $tipo7 = $tipo8 = $tipo9 = $tipo10 = $tipo11 = $has= $general = 0;
+    @endphp
     @foreach ($servicios as $servicio)
       @if($servicio->hora_regreso)
         <tr>
           <th class="text-center">{{$servicio->id}}</th>
-          <th class="text-center">{{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$servicio->hora_alarma)->toDateString()}}</th>
+          <th class="text-center">{{\Carbon\Carbon::parse($servicio->hora_alarma)->format('d/m/y')}}</th>
           <th class="text-center">{{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$servicio->hora_alarma)->toTimeString()}}</th>
           <th class="text-center">{{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$servicio->hora_regreso)->toTimeString()}}</th>
           <th class="text-center">{{count($servicio->vehiculos)}}</th>
-          <th class="text-center">{{$servicio->combustible}}</th>
-          <?php
+          <th class="text-center">{{round($servicio->combustible, 2)}}</th>
+          @php
             $cantVehiculos+= count($servicio->vehiculos);
             $cantCombustible+= $servicio->combustible;
             $bomberosPresentes= count($servicio->bomberos);
@@ -60,7 +60,7 @@
             $totalMinutos+=$cantMinutos;
             $totalMinutosBomberos+=$cantMinutos*$bomberosPresentes;
             $cantIlesos+=$servicio->ilesos; $cantMuertos+=$servicio->muertos; $cantQuemados+=$servicio->quemados; $cantLesionados+=$servicio->lesionados; $cantOtros+=$servicio->otros;
-          ?>
+          @endphp
           <th class="text-center">{{$bomberosPresentes}}</th>
           <th class="text-center">{{$cantMinutos}}</th>
           <th class="text-center">{{$cantMinutos*$bomberosPresentes}}</th>
@@ -71,79 +71,79 @@
           <th class="text-center">{{$servicio->otros}}</th>
           @if($servicio->tipo_servicio_id==1)
             <th class="text-center">X</th>
-            <?php $tipo1++; ?>
+            @php $tipo1++; @endphp
           @else
-            <th></th>
+            <th class="text-center">-</th>
           @endif
           @if($servicio->tipo_servicio_id==2)
             <th class="text-center">X</th>
-            <?php $tipo2++; ?>
+            @php $tipo2++; @endphp
           @else
-            <th></th>
+            <th class="text-center">-</th>
           @endif
           @if($servicio->tipo_servicio_id==3)
             <th class="text-center">X</th>
-            <?php $tipo3++; ?>
+            @php $tipo3++; @endphp
           @else
-            <th></th>
+            <th class="text-center">-</th>
           @endif
           @if($servicio->tipo_servicio_id==4)
             <th class="text-center">X</th>
-            <?php $tipo4++; ?>
+            @php $tipo4++; @endphp
           @else
-            <th></th>
+            <th class="text-center">-</th>
           @endif
           @if($servicio->tipo_servicio_id==5)
             <th class="text-center">X</th>
-            <?php $tipo5++; ?>
+            @php $tipo5++; @endphp
           @else
-            <th></th>
+            <th class="text-center">-</th>
           @endif
           @if($servicio->tipo_servicio_id==6)
             <th class="text-center">X</th>
-            <?php $tipo6++; ?>
+            @php $tipo6++; @endphp
           @else
-            <th></th>
+            <th class="text-center">-</th>
           @endif
           @if($servicio->tipo_servicio_id==7)
             <th class="text-center">X</th>
-            <?php $tipo7++; ?>
+            @php $tipo7++; @endphp
           @else
-            <th></th>
+            <th class="text-center">-</th>
           @endif
           @if($servicio->tipo_servicio_id==8)
             <th class="text-center">X</th>
-            <?php $tipo8++; ?>
+            @php $tipo8++; @endphp
           @else
-            <th></th>
+            <th class="text-center">-</th>
           @endif
           @if($servicio->tipo_servicio_id==9)
             <th class="text-center">X</th>
-            <?php $tipo9++; ?>
+            @php $tipo9++; @endphp
           @else
-            <th></th>
+            <th class="text-center">-</th>
           @endif
           @if($servicio->tipo_servicio_id==10)
             <th class="text-center">X</th>
-            <?php $tipo10++; ?>
+            @php $tipo10++; @endphp
           @else
-            <th></th>
+            <th class="text-center">-</th>
           @endif
           @if($servicio->tipo_servicio_id==11)
             <th class="text-center">X</th>
-            <?php $tipo11++; ?>
+            @php $tipo11++; @endphp
           @else
-            <th></th>
+            <th class="text-center">-</th>
           @endif
-          @if($servicio->tipo_servicio_id==12)
+          @php
+            $has+=$servicio->Superficie;
+          @endphp
+          <th class="text-center">{{$servicio->Superficie}}</th>
+          @if($servicio->tipo_alarma==3)
             <th class="text-center">X</th>
+            @php $general++ @endphp
           @else
-            <th></th>
-          @endif
-          @if($servicio->tipo_servicio_id==13)
-            <th class="text-center">X</th>
-          @else
-            <th></th>
+            <th class="text-center">-</th>
           @endif
           <th class="text-center">{{$servicio->descripcion}}</th>
         </tr>
@@ -154,7 +154,7 @@
       <tr>
           <th class="text-center" colspan="4">TOTAL</th>
           <th class="text-center">{{$cantVehiculos}}</th>
-          <th class="text-center">{{$cantCombustible}}</th>
+          <th class="text-center">{{round($cantCombustible, 2)}}</th>
           <th class="text-center">{{$cantBomberos}}</th>
           <th class="text-center">{{$totalMinutos}}</th>
           <th class="text-center">{{$totalMinutosBomberos}}</th>
@@ -174,12 +174,12 @@
           <th class="text-center">{{$tipo9}}</th>
           <th class="text-center">{{$tipo10}}</th>
           <th class="text-center">{{$tipo11}}</th>
-          <th class="text-center">#</th>
-          <th class="text-center">#</th>
+          <th class="text-center">{{$has}}</th>
+          <th class="text-center">{{$general}}</th>
           <th class="text-center">{{count($servicios)}}</th>
       </tr>
       <tr>
-        <td class="text-center" colspan="28"> Estadisticas de #</td>
+        <td class="text-center" colspan="28"> Estadisticas de {{config('selects.meses')[$mes].'/'.$año}}</td>
       </tr>
   </tfoot>
   <br>

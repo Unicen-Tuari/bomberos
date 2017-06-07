@@ -34,7 +34,7 @@
         <div class="form-group bomberosparticipantes">
           @foreach($bomberos as $bombero)
             @php
-              $vino=0;
+              $vino=0;//como usasmos mismo tpl para editar en la alta asumismo que ninguno vino
             @endphp
             @include('asistencia.asistencia')
           @endforeach
@@ -54,4 +54,8 @@
     </div>
   </div>
 </article>
+@endsection
+
+@section('js')
+  {!! Html::script('assets/js/ajaxpuntuacion.js') !!}
 @endsection

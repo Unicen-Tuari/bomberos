@@ -11,9 +11,12 @@
     @include('puntuacion.form-puntuacion')
   {!! Form::close() !!}
   <div class="col-sm-12">
-    <div class="col-sm-6"></div>
-    <button class="btn btn-lg glyphicon glyphicon-remove simulara" data-dismiss="modal"></button>
-    <button type="submit" bombero='{{$bombero->id}}' class="btn btn-lg glyphicon glyphicon-floppy-saved simulara" data-dismiss="modal" id="save"></button>
+    <div class="col-sm-offset-10 col-sm-1">
+      <button class="btn btn-lg glyphicon glyphicon-remove simulara" data-dismiss="modal"></button>
+    </div>
+    <div class="col-sm-1">
+      <button type="submit" bombero='{{$bombero->id}}' class="btn btn-lg glyphicon glyphicon-floppy-saved simulara" data-dismiss="modal" id="save"></button>
+    </div>
   </div>
 </div>
 

@@ -124,6 +124,7 @@
               <a  href="{{route('puntuacion.create')}}"  class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Cargar</a>
             @endif
             <a  href="{{route('puntuacion.index')}}"  class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Listar</a>
+            <a  href="{{route('puntuacion.anual')}}"  class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Listado anual</a>
           </div>
 
           <a href="#serviciosSubMenu" id="servicioMenu" class="list-group-item" data-toggle="collapse" data-parent="#MainMenu"><i class="fa fa-cog fa-lg" style="padding-right: 10px;"></i>  Servicios<span class="arrow"></span></a>

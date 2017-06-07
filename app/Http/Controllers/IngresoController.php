@@ -32,21 +32,15 @@ class IngresoController extends Controller
     public function editPresentes($servicio)
     {
         $bomberos=BomberoServicio::where('servicio_id',$servicio)->orderBy('tipo_id')->get();
-        if (count($bomberos)<2) {
-          $bomberos=Bombero::where('activo',1)->get();
-          return view('asistencia/presentes',compact('ingresados','bomberos','servicio','acargo'));
-        }
         return view('asistencia/participantes',compact('bomberos','servicio'));
     }
 
-    // esto esta en ajax era cuando no interesaba marcar ausentes
-    // public function addbombero($bombero)
-    // {
-    //   $bombero=Bombero::find($bombero);
-    //   // $ingresado = (object) array('bombero' => $bombero);
-    //   $asistselec=4;
-    //   return view('asistencia/bombero',compact('bombero','asistselec'));
-    // }
+
+    public function show($servicio)
+    {
+        $bomberos=BomberoServicio::where('servicio_id',$servicio)->orderBy('tipo_id')->get();
+        return view('asistencia/servicio',compact('bomberos','servicio'));
+    }
 
     public function guardarIngreso(Request $request){
       Ingreso::create($request->all());

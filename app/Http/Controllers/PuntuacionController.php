@@ -23,10 +23,30 @@ class PuntuacionController extends Controller
         return view('puntuacion/lista');
     }
 
+    public function anual()
+    {
+        if(Auth::user()->admin){
+          $bomberos=Bombero::getBomberos();
+          unset ($bomberos[0]);
+          $bombero=key($bomberos);
+          return view('puntuacion/listarxanio',compact('bomberos','bombero'));
+        }
+        return view('auth/alerta');
+    }
+
+    public function tabla_anual($bombero,$inicio,$fin)
+    {
+        if(Auth::user()->admin){
+          $bombero=Bombero::find($bombero);
+          return view('puntuacion/tablaanual',compact('bombero','inicio','fin'));
+        }
+        return view('auth/alerta');
+    }
+
     public function create()
     {
         if(Auth::user()->admin){
-          return view('puntuacion/puntuacion',compact('bomberos'));
+          return view('puntuacion/puntuacion');
         }
         return view('auth/alerta');
     }

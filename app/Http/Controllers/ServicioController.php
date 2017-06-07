@@ -188,48 +188,50 @@ class ServicioController extends Controller
      */
     public function show($id)
     {
-        //
+        $servicio=Servicio::find($id);
+        $bombero=$servicio->bomberos->where('a_cargo',true)->first()->bombero_id;
+        $bomberos=$ingresados=Bombero::getBomberos();
+        $datavs=Vehiculo::all();
+        $vehiculos = array();
+        $vehiculos[0] = "vehiculo...";
+        foreach ($datavs as $data){
+          $vehiculos[$data->id] =  'Nº - '.$data->num_movil;
+        }
+        $involucrados=array();
+        foreach ($servicio->vehiculos as $data){
+          if ($data->primero) {
+            $primero=$data->vehiculo_id;
+          }
+          $involucrados[] = $data->vehiculo_id;
+        }
+        return view('servicio/info',compact('servicio','bombero','bomberos',
+        'vehiculos','ingresados','involucrados','primero'));
     }
 
     public function edit($id)
     {
       if(Auth::user()->admin){
-        $bomberoserv=BomberoServicio::where([['servicio_id',$id],['a_cargo',1]])->first();
-        $bombero=$bomberoserv->bombero_id;
         $servicio=Servicio::find($id);
-        $bomberos=Bombero::getBomberos();
-        $ingresados = $bomberos;
+        $bombero=$servicio->bomberos->where('a_cargo',true)->first()->bombero_id;
+        $bomberos=$ingresados=Bombero::getBomberos();
 
-        $datasv=Vehiculo::all();
+        $datavs=Vehiculo::all();
         $vehiculos = array();
         $vehiculos[0] = "vehiculo...";
-        foreach ($datasv as $data)
+        foreach ($datavs as $data)
         {
             $vehiculos[$data->id] =  'Nº - '.$data->num_movil;
         }
-        $vehiculosSer=VehiculoServicio::where('servicio_id',$servicio->id)->get();
-        $involucrados = array();
-        foreach ($vehiculosSer as $data)
+        $involucrados=array();
+        foreach ($servicio->vehiculos as $data)
         {
             if ($data->primero) {
               $primero=$data->vehiculo_id;
             }
             $involucrados[] = $data->vehiculo_id;
         }
-
-        $bomberosparticipantes=array();
-        foreach ($servicio->bomberos as $data)
-        {
-            $bomberosparticipantes[] = $data->bombero_id;
-        }
-
-        $vehiculosparticipantes=array();
-        foreach ($servicio->vehiculos as $data)
-        {
-            $vehiculosparticipantes[] = $data->vehiculo_id;
-        }
         return view('servicio/editar',compact('servicio','bombero','bomberos',
-        'vehiculos','bomberosparticipantes','vehiculosparticipantes','ingresados','involucrados','primero'));
+        'vehiculos','ingresados','involucrados','primero'));
       }
       return view('auth/alerta');
     }
