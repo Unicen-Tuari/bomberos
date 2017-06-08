@@ -41,7 +41,7 @@ class BomberoRequest extends Request
               'jerarquia' => 'required|max:255',
               'direccion' => 'required|max:255',
               'telefono' => 'required|min:6',
-              'fecha_nacimiento' => 'required|date_format:Y-m-d',
+              'fecha_nacimiento' => 'required|date_format:d/m/Y',
           ];
         }
 
@@ -54,7 +54,7 @@ class BomberoRequest extends Request
               'jerarquia' => 'required|max:255',
               'direccion' => 'required|max:255',
               'telefono' => 'required|min:6',
-              'fecha_nacimiento' => 'required|date_format:Y-m-d',
+              'fecha_nacimiento' => 'required|date_format:d/m/Y',
           ];
         }
         default:break;

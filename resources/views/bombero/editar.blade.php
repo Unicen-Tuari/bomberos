@@ -91,7 +91,7 @@
         <div class="form-group {{ $errors->has('fecha_nacimiento') ? ' has-error' : '' }}">
           {!! Form::label('fecha_nacimiento', 'Fecha de nacimiento',['class' => 'col-md-4 control-label']) !!}
           <div class="col-md-6">
-          {!! Form::text('fecha_nacimiento', $bombero->fecha_nacimiento, ['class' => 'form-control']) !!}
+          {!! Form::text('fecha_nacimiento', \Carbon\Carbon::parse($bombero->fecha_nacimiento)->format('d/m/Y'), ['class' => 'form-control']) !!}
 
               @if ($errors->has('fecha_nacimiento'))
                   <span class="help-block">
