@@ -30,7 +30,7 @@ $factory->define(App\Bombero::class, function (Faker\Generator $faker) {
     'jerarquia' => $faker->numberBetween($min = 1, $max = 6),
     'direccion' => $faker->address,
     'telefono' => $faker->e164PhoneNumber,
-    'fecha_nacimiento' => $faker->date($format = 'Y-d-m', $max = '1990-01-01'),
+    'fecha_nacimiento' => $faker->date($format = 'Y-m-d', $max = '1990-01-01'),
   ];
 
 });
