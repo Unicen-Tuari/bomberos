@@ -26,7 +26,7 @@
         <div class="{{ $errors->has('tipo_alarma') ? ' has-error' : '' }}">
           {!! Form::label('tipo_alarma', 'Tipo alarma',['class' => 'col-sm-2 col-sm-offset-1 control-label']) !!}
           <div class="col-sm-2">
-            {{Form::select('tipo_alarma', config('selects.tipoAlarma'),$tipo_alarma or 1,['class' => 'form-control'])}}
+            {{Form::select('tipo_alarma', config('selects.tipoAlarma'),$tipo_alarma,['class' => 'form-control'])}}
             @if ($errors->has('tipo_alarma'))
                 <span class="help-block">
                     <strong>{{ $errors->first('tipo_alarma') }}</strong>
@@ -92,7 +92,8 @@
       <div class="{{ $errors->has('vehiculos') ? ' has-error' : '' }}">
         {!! Form::label('vehiculos', 'Vehiculos involucrados',['class' => 'col-sm-2 col-sm-offset-1 control-label']) !!}
         <div class="col-sm-1">
-          @php unset($vehiculos[0])
+          @php 
+            unset($vehiculos[0])
           @endphp
           {{Form::select('vehiculos[]', $vehiculos,$involucrados,['class' => 'selectMultiple', 'multiple'=>'multiple', 'id'=>'listavehiculos'])}}
           @if ($errors->has('vehiculos'))

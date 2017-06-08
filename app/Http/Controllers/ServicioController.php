@@ -58,7 +58,7 @@ class ServicioController extends Controller
            $a_cargo = BomberoServicio::create(['servicio_id'=>$servicio->id,'bombero_id'=>$data["bombero"],'tipo_id'=>2,'a_cargo'=>true]);
          }
 
-        if ($data["vehiculo"]) {
+        if ($data["vehiculo"]!=0) {
           //creo las relaciones servicio Vehiculo primera dotacion
           VehiculoServicio::create(['servicio_id'=>$servicio->id,'vehiculo_id'=>$data['vehiculo'],'primero'=>true]);
           foreach ($data["vehiculos"] as $vehiculo) {
@@ -198,6 +198,7 @@ class ServicioController extends Controller
           $vehiculos[$data->id] =  'Nº - '.$data->num_movil;
         }
         $involucrados=array();
+        $primero=0;
         foreach ($servicio->vehiculos as $data){
           if ($data->primero) {
             $primero=$data->vehiculo_id;
@@ -223,6 +224,7 @@ class ServicioController extends Controller
             $vehiculos[$data->id] =  'Nº - '.$data->num_movil;
         }
         $involucrados=array();
+        $primero=0;
         foreach ($servicio->vehiculos as $data)
         {
             if ($data->primero) {

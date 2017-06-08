@@ -73,9 +73,9 @@ class PuntuacionController extends Controller
             }
             $puntaccid=0;
             if ($cantserv>6) {
-              $puntuacion=(35/$cantserv)*$accid;
+              $puntaccid=(35/$cantserv)*$accid;
             }elseif ($accid!=0) {
-              $puntuacion=35-(5*($cantserv-$accid));
+              $puntaccid=35-(5*($cantserv-$accid));
             }
             $puntguar=0;
             if ($guardia!=0) {

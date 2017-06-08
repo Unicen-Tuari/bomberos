@@ -15,6 +15,7 @@
               Materiales
             </th>
             <th class="text-center">Vehiculo</th>
+            <th class="text-center">Rubro</th>
             <th colspan="2"></th>
           </tr>
         </thead>
@@ -27,6 +28,7 @@
               @else
                 <td class="text-center">En Depósito</td>
               @endif
+              <th class="text-center">{{config('selects.rubro')[$material->rubro]}}</th>
               @if (Auth::user()->admin)
                 <td class="text-center">
                   {{ Form::open(['route' => ['material.destroy', $material->id], 'method' => 'delete']) }}
@@ -44,7 +46,7 @@
           </tbody>
           <tfoot>
             <tr>
-              <td class="text-center" colspan="4"> Lista de materiales</td>
+              <td class="text-center" colspan="5"> Lista de materiales</td>
             </tr>
           </tfoot>
           <br>

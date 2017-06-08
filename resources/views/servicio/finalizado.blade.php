@@ -16,9 +16,9 @@
     $disposiciones=$jefe=$oficial=$jcuerpo=$bombero=$involucrados=$primero=null;
     $ilesos=$lesionados=$quemados=$muertos=$otros=$combustible=0;
     $numero=$ultimo;
-    $hora=\Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires'))->toDateTimeString();
-    $salida=\Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires'))->addSeconds(30)->toDateTimeString();
-    $regreso=\Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires'))->addSeconds(60)->toDateTimeString();
+    $hora=\Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires'))->format('d/m/Y H:i:s');
+    $salida=\Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires'))->addSeconds(30)->format('d/m/Y H:i:s');
+    $regreso=\Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires'))->addSeconds(60)->format('d/m/Y H:i:s');
     @endphp
 
     @include('servicio.formcompleto')
