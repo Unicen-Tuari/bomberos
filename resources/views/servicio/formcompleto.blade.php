@@ -92,7 +92,8 @@
       <div class="{{ $errors->has('vehiculos') ? ' has-error' : '' }}">
         {!! Form::label('vehiculos', 'Vehiculos involucrados',['class' => 'col-sm-2 col-sm-offset-1 control-label']) !!}
         <div class="col-sm-1">
-          @php unset($vehiculos[0])
+          @php 
+            unset($vehiculos[0])
           @endphp
           {{Form::select('vehiculos[]', $vehiculos,$involucrados,['class' => 'selectMultiple', 'multiple'=>'multiple', 'id'=>'listavehiculos'])}}
           @if ($errors->has('vehiculos'))

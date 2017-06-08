@@ -63,7 +63,7 @@
         <div class="form-group {{ $errors->has('alarma') ? ' has-error' : '' }}">
           {!! Form::label('alarma', 'Hora alarma',['class' => 'col-sm-4 control-label']) !!}
           <div class="col-sm-2">
-            {!! Form::text('alarma', \Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires'))->toDateTimeString(),['class' => 'form-control']) !!}
+            {!! Form::text('alarma', \Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires'))->format('d/m/Y H:i:s'),['class' => 'form-control']) !!}
 
             @if ($errors->has('alarma'))
                 <span class="help-block">

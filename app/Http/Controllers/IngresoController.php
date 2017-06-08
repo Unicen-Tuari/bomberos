@@ -17,7 +17,7 @@ class IngresoController extends Controller
     {
         $this->middleware('auth');
     }
-    public function listarIngresos()
+    public function listar()
     {
         $ingresados=Ingreso::all();
         return view('asistencia/ingresados',compact('ingresados'));

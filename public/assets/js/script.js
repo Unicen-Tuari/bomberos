@@ -27,6 +27,7 @@ $(document).ready(function () {
 
   $('.selectMultiple').multiselect({
         enableFiltering: true,
+        enableCaseInsensitiveFiltering : true,
         includeSelectAllOption: true,
         selectAllJustVisible: true,
         maxHeight: 300,

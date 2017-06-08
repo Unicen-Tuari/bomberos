@@ -23,12 +23,12 @@
       $hora=$servicio->hora_alarma;
       $salida=$servicio->hora_salida;
       $tipo_alarma=$servicio->tipo_alarma;
-      $regreso=\Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires'))->toDateTimeString();
+      $regreso=\Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires'))->format('d/m/Y H:i:s');
       @endphp
 
       @if(!$salida)
         @php
-          $salida=\Carbon\Carbon::parse($hora)->addSeconds(60)->toDateTimeString();
+          $salida=\Carbon\Carbon::parse($hora)->addSeconds(60)->format('d/m/Y H:i:s');
         @endphp
       @endif
       {!! Form::hidden('finalizar', 1) !!}

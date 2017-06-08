@@ -25,9 +25,9 @@
       $combustible=$servicio->combustible;
       $reconocimiento=$servicio->reconocimiento;
       $disposiciones=$servicio->disposiciones;
-      $hora=$servicio->hora_alarma;
-      $salida=$servicio->hora_salida;
-      $regreso=$servicio->hora_regreso;
+      $hora=\Carbon\Carbon::parse($servicio->hora_alarma)->format('d/m/Y H:i:s');
+      $salida=\Carbon\Carbon::parse($servicio->hora_salida)->format('d/m/Y H:i:s');
+      $regreso=\Carbon\Carbon::parse($servicio->hora_regreso)->format('d/m/Y H:i:s');
       $jefe=$servicio->jefe_servicio;
       $oficial=$servicio->oficial;
       $jcuerpo=$servicio->jefe_de_cuerpo;
