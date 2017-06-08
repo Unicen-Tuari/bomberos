@@ -48,7 +48,10 @@
       <td class="text-center">{{$bombero->puntuacion($mes,$año)->licencia}}</td>
       <td class="text-center">{{$bombero->puntuacion($mes,$año)->castigo}}</td>
       <td class="text-center">{{$bombero->puntuacion($mes,$año)->total}}</td>
-      <td class="text-center">{{$bombero->puntuacion($mes,$año)->detalle}}</td>
+      <th class="text-center">
+        <a detalle='{{$bombero->puntuacion($mes,$año)->detalle}}'
+        href="" class="glyphicon glyphicon-eye-open detalle" data-toggle="modal" data-target="#exampleModal2" data-whatever="@mdo">
+      </a></th>
     </tr>
     @else
     <tr>
@@ -79,4 +82,25 @@
   <br>
 </table>
 
-  {!! Html::script('assets/js/ajaxmodal.js') !!}
+{{-- Inicio MODAL --}}
+<div class="modal fade bd-example-modal-lg" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content form-horizontal">
+      <div class="form-group">
+        <h4 class="text-center" > Observaciones</h4>
+        {!! Form::label('detalle', ' Detalle',['class' => 'col-sm-1 control-label']) !!}
+        <div class="col-sm-9 col-sm-offset-1">
+          {!! Form::textarea('detalle', null, ['class' => 'form-control', 'rows' => '4','id'=>'detalle']) !!}
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-10 col-sm-1">
+          <button class="btn btn-lg glyphicon glyphicon-remove simulara" data-dismiss="modal"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{-- Fin --}}
+
+{!! Html::script('assets/js/ajaxmodal.js') !!}

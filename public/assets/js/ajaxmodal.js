@@ -21,6 +21,18 @@ $(document).ready(function () {
     cargarPuntuacion(url+mes+'/'+año+'/'+id+'/puntuacionmes');
   });
 
+  $('.descripcion').on('click',function(){
+    var reconocimiento= this.getAttribute('reconocimiento');
+    var disposiciones= this.getAttribute('disposiciones');
+    $('#reconocimiento').val(reconocimiento);
+    $('#disposiciones').val(disposiciones);
+  });
+
+  $('.detalle').on('click',function(){
+    var detalle= this.getAttribute('detalle');
+    $('#detalle').val(detalle);
+  });
+
   $('#tablaPuntuacion').on('click','.mp',function(){
     var id= this.getAttribute('idmodal');
     var ruta= window.location.href;
