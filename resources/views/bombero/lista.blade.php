@@ -37,7 +37,7 @@
               <td class="text-center">{{$bombero->nombre}}</td>
               <td class="text-center">{{$bombero->direccion}}</td>
               <td class="text-center">{{$bombero->telefono}}</td>
-              <td class="text-center">{{$bombero->fecha_nacimiento}}</td>
+              <td class="text-center">{{\Carbon\Carbon::parse($bombero->fecha_nacimiento)->format('d/m/Y')}}</td>
               @if (Auth::user()->admin)
                 <td class="text-center">
                   {{ Form::open(['route' => ['bombero.destroy', $bombero->id], 'method' => 'DELETE']) }}

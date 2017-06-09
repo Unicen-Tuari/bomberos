@@ -46,8 +46,8 @@ $factory->define(App\Material::class, function (Faker\Generator $faker) {
 $factory->define(App\Servicio::class, function (Faker\Generator $faker) {
   $tipo=$faker->numberBetween($min = 1, $max = 11);
   $alarma = \Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires'))->addMonth(-rand(1,10))->toDateTimeString();
-  $salida =\Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$alarma)->addMinutes(rand(1,10))->toDateTimeString();
-  $regreso=\Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$alarma)->addMinutes(rand(30,480))->toDateTimeString();
+  $salida =\Carbon\Carbon::createFromFormat('d/m/Y H:i:s',$alarma)->addMinutes(rand(1,10))->toDateTimeString();
+  $regreso=\Carbon\Carbon::createFromFormat('d/m/Y H:i:s',$alarma)->addMinutes(rand(30,480))->toDateTimeString();
 
   return [
     'tipo_servicio_id' => $tipo,

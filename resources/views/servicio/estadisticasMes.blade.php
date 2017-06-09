@@ -145,7 +145,10 @@
           @else
             <th class="text-center">-</th>
           @endif
-          <th class="text-center">{{$servicio->descripcion}}</th>
+          <th class="text-center">
+            <a reconocimiento='{{$servicio->reconocimiento}}' disposiciones='{{$servicio->disposiciones}}'
+            href="" class="glyphicon glyphicon-eye-open descripcion" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
+          </a></th>
         </tr>
       @endif
     @endforeach
@@ -184,3 +187,31 @@
   </tfoot>
   <br>
 </table>
+
+{{-- Inicio MODAL --}}
+<div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content form-horizontal" id="puntuacion">
+      <div class="form-group">
+        <h4 class="text-center" > Descripcion</h4>
+        {!! Form::label('disposiciones', 'Reconocimiento',['class' => 'col-sm-2 control-label']) !!}
+        <div class="col-sm-9">
+          {!! Form::textarea('reconocimiento', null, ['class' => 'form-control', 'rows' => '4','id'=>'reconocimiento']) !!}
+        </div>
+        <div class="form-group"></div>
+        {!! Form::label('disposiciones', 'Disposiciones',['class' => 'col-sm-2 control-label']) !!}
+        <div class="col-sm-9">
+          {!! Form::textarea('disposiciones', null, ['class' => 'form-control', 'rows' => '4','id'=>'disposiciones']) !!}
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-10 col-sm-1">
+          <button class="btn btn-lg glyphicon glyphicon-remove simulara" data-dismiss="modal"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{-- Fin --}}
+
+{!! Html::script('assets/js/ajaxmodal.js') !!}

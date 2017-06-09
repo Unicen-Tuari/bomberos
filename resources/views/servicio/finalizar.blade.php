@@ -20,8 +20,8 @@
       $tipo=$servicio->tipo_servicio_id;
       $llamada=$servicio->autor_llamada;
       $direccion=$servicio->direccion;
-      $hora=$servicio->hora_alarma;
-      $salida=$servicio->hora_salida;
+      $hora=\Carbon\Carbon::parse($servicio->hora_alarma)->format('d/m/Y H:i:s');
+      $salida=\Carbon\Carbon::parse($servicio->hora_salida)->format('d/m/Y H:i:s');
       $tipo_alarma=$servicio->tipo_alarma;
       $regreso=\Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires'))->format('d/m/Y H:i:s');
       @endphp
