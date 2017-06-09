@@ -88,8 +88,8 @@
     <div class="modal-content form-horizontal">
       <div class="form-group">
         <h4 class="text-center" > Observaciones</h4>
-        {!! Form::label('detalle', ' Detalle',['class' => 'col-sm-1 control-label']) !!}
-        <div class="col-sm-9 col-sm-offset-1">
+        {!! Form::label('detalle', 'Detalle',['class' => 'col-sm-2 control-label']) !!}
+        <div class="col-sm-9">
           {!! Form::textarea('detalle', null, ['class' => 'form-control', 'rows' => '4','id'=>'detalle']) !!}
         </div>
       </div>

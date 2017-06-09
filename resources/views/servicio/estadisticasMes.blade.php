@@ -194,13 +194,13 @@
     <div class="modal-content form-horizontal" id="puntuacion">
       <div class="form-group">
         <h4 class="text-center" > Descripcion</h4>
-        {!! Form::label('disposiciones', ' Reconocimiento',['class' => 'col-sm-1 control-label']) !!}
-        <div class="col-sm-9 col-sm-offset-1">
+        {!! Form::label('disposiciones', 'Reconocimiento',['class' => 'col-sm-2 control-label']) !!}
+        <div class="col-sm-9">
           {!! Form::textarea('reconocimiento', null, ['class' => 'form-control', 'rows' => '4','id'=>'reconocimiento']) !!}
         </div>
         <div class="form-group"></div>
-        {!! Form::label('disposiciones', ' Disposiciones',['class' => 'col-sm-1 control-label']) !!}
-        <div class="col-sm-9 col-sm-offset-1">
+        {!! Form::label('disposiciones', 'Disposiciones',['class' => 'col-sm-2 control-label']) !!}
+        <div class="col-sm-9">
           {!! Form::textarea('disposiciones', null, ['class' => 'form-control', 'rows' => '4','id'=>'disposiciones']) !!}
         </div>
       </div>

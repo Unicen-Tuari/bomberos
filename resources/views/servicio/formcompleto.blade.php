@@ -92,7 +92,7 @@
       <div class="{{ $errors->has('vehiculos') ? ' has-error' : '' }}">
         {!! Form::label('vehiculos', 'Vehiculos involucrados',['class' => 'col-sm-2 col-sm-offset-1 control-label']) !!}
         <div class="col-sm-1">
-          @php 
+          @php
             unset($vehiculos[0])
           @endphp
           {{Form::select('vehiculos[]', $vehiculos,$involucrados,['class' => 'selectMultiple', 'multiple'=>'multiple', 'id'=>'listavehiculos'])}}
@@ -286,7 +286,7 @@
     <div class="form-group">
       <div class="{{ $errors->has('jefe_servicio') ? ' has-error' : '' }}">
         {!! Form::label('jefe_servicio', 'Jefe Servicio',['class' => 'col-sm-2 control-label']) !!}
-        <div class="col-sm-2">
+        <div class="col-sm-2 dropup">
           {{Form::select('jefe_servicio', $bomberos,$jefe,['class' => 'selectMultiple'])}}
 
           @if ($errors->has('jefe_servicio'))
@@ -299,7 +299,7 @@
 
       <div class="{{ $errors->has('oficial') ? ' has-error' : '' }}">
         {!! Form::label('oficial', 'Oficial',['class' => 'col-sm-1 control-label']) !!}
-        <div class="col-sm-2">
+        <div class="col-sm-2 dropup">
           {{Form::select('oficial', $bomberos,$oficial,['class' => 'selectMultiple'])}}
 
           @if ($errors->has('oficial'))
@@ -312,7 +312,7 @@
 
       <div class="{{ $errors->has('jefe_de_cuerpo') ? ' has-error' : '' }}">
         {!! Form::label('jefe_de_cuerpo', 'Jefe de cuerpo',['class' => 'col-sm-1 control-label']) !!}
-        <div class="col-sm-2">
+        <div class="col-sm-2 dropup">
           {{Form::select('jefe_de_cuerpo', $bomberos,$jcuerpo,['class' => 'selectMultiple'])}}
           @if ($errors->has('jefe_de_cuerpo'))
               <span class="help-block">
@@ -321,5 +321,4 @@
           @endif
         </div>
       </div>
-
     </div>
