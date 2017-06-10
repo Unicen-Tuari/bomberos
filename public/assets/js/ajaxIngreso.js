@@ -2,14 +2,16 @@ $(document).ready(function () {
 
   $('#ingresar').on('click',function(){
     var id = $('#bomberoIngreso').val();
-
     var formIngresar = $('#form-ingresar');
     $('#ingresado').val(id);
     var url = formIngresar.attr('action');
     var data = formIngresar.serialize();
-    $.post(url, data, function(result){
-      alert("Se registro el ingreso");
-    });
+    if (id>0) {
+      $.post(url, data, function(result){
+        $('#bomberoIngreso').val(0);
+        $('#bomberoIngreso').multiselect("refresh");
+      });
+    }
 
   });
 
@@ -19,7 +21,8 @@ $(document).ready(function () {
     var url = formDelete.attr('action').replace(':USER_ID', id);
     var data = formDelete.serialize();
     $.post(url, data, function(result){
-      alert("Se registro el egreso");
+      $('#bomberoIngreso').val(0);
+      $('#bomberoIngreso').multiselect("refresh");
     });
   });
 

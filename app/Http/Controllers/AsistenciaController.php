@@ -76,29 +76,37 @@ class AsistenciaController extends Controller
 
     public function update(Request $request, $id)
     {
-      $data=$request->all();
-      $reuniones=asistencia::where('fecha_reunion',$id)->get();
-      $presentes=[];
-      foreach ($data as $key => $value) {
-        if (strstr($key, '-', true)=="bombero") {
-          $idbombero=(integer)substr($key, 8);
-          $presentes[]=$idbombero;
-          if (!$reuniones->where('id_bombero',$idbombero)->first()) {
-            asistencia::create(['id_bombero'=>$idbombero,'fecha_reunion'=>$id]);
+      if(Auth::user()->admin){
+        $data=$request->all();
+        $reuniones=asistencia::where('fecha_reunion',$id)->get();
+        $presentes=[];
+        foreach ($data as $key => $value) {
+          if (strstr($key, '-', true)=="bombero") {
+            $idbombero=(integer)substr($key, 8);
+            $presentes[]=$idbombero;
+            if (!$reuniones->where('id_bombero',$idbombero)->first()) {
+              asistencia::create(['id_bombero'=>$idbombero,'fecha_reunion'=>$id]);
+            }
           }
         }
-      }
-      foreach ($reuniones as $value) {
-        if (!in_array($value->id_bombero,$presentes)) {
-          $value->delete();
+        foreach ($reuniones as $value) {
+          if (!in_array($value->id_bombero,$presentes)) {
+            $value->delete();
+          }
         }
+        return redirect()->route('asistencia.index');
       }
-      return redirect()->route('asistencia.index');
     }
 
 
     public function destroy($id)
     {
-        //
+      if(Auth::user()->admin){
+        $reuniones=asistencia::where('fecha_reunion',$id)->get();
+        foreach ($reuniones as $value) {
+          $value->delete();
+        }
+        return redirect()->route('asistencia.index');
+      }
     }
 }

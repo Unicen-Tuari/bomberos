@@ -9,6 +9,7 @@ use App\Ingreso;
 use App\TipoAsistencia;
 use App\Bombero;
 use App\BomberoServicio;
+use Illuminate\Support\Facades\Auth;
 
 class IngresoController extends Controller
 {
@@ -43,11 +44,15 @@ class IngresoController extends Controller
     }
 
     public function guardarIngreso(Request $request){
-      Ingreso::create($request->all());
+      if(Auth::user()->admin){
+        Ingreso::create($request->all());
+      }
     }
 
     public function borrarIngreso($id_bombero){
-      $bombero=Ingreso::where('id_bombero', $id_bombero);
-      $bombero->delete();
+      if(Auth::user()->admin){
+        $bombero=Ingreso::where('id_bombero', $id_bombero);
+        $bombero->delete();
+      }
     }
 }
