@@ -1,0 +1,15 @@
+/*tr td .glyphicon-edit {
+  color: #337ab7;
+}*/
+
+button.glyphicon-trash, button.glyphicon-edit {
+    background: transparent;
+    border: 0;
+}
+
+button.glyphicon-trash {
+    color: #c70202;
+}
+button.glyphicon-trash:hover {
+    color: #800000;
+}

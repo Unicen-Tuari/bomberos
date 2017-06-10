@@ -7,7 +7,7 @@ $(document).ready(function () {
 		$.ajax({
 			type: 'GET',
 			dataType: 'HTML',
-			url:ruta+'/'+inicio+'/'+fin,
+			url:ruta+'/rango/'+inicio+'/'+fin,
 			success: function(data){
 						$('#fecha').html(data);
 					},

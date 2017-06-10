@@ -191,11 +191,6 @@ article {
   height: calc(100% - 110px);
 }
 
-/*@media screen and (max-width: 768px) {
-    .right-panel {
-        margin-top: 40px;
-    }
-}*/
 #MainMenu .panel {
   border: 0px;
   border-radius: 0px;
@@ -320,13 +315,6 @@ a:hover, a:focus {
   color: #337ab7;
 }
 
-.simulara{
-  padding: 0px 0px;
-  color: #337ab7;
-  background-color: inherit;
-  margin-top: -5px;
-}
-
 .ban{
   padding: 0px 0px;
   color: #a80e0e;
@@ -409,23 +397,6 @@ a:hover, a:focus {
 
 .row {
   margin: 0px;
-}
-
-thead th {
-  border: 1px solid black !important;
-}
-
-tbody tr {
-  border-right: 1px solid black;
-  border-left: 1px solid black;
-}
-
-tfoot {
-  border: 1px solid black;
-}
-
-tr td .glyphicon-edit {
-  color: #337ab7;
 }
 
 #inputFilterPuntuacion {

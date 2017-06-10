@@ -59,7 +59,7 @@ $(document).ready(function () {
 
   function filterlist() {
     var  filter, p;
-    filter = $("#inputFilterPuntuacion").val().toUpperCase();
+    filter = $(".inputFilter").val().toUpperCase();
     $("#listaPuntuacion").children('div').each(function(){
       p = $(this).children('p')[0].textContent;
       if (p) {
@@ -72,12 +72,27 @@ $(document).ready(function () {
     });
   };
 
-  function filterTablePuntuacion() {
+  function filterAssist() {
     // Declare variables
+    var filter, label;
+    filter = $(".inputFilter").val().toUpperCase();
+    $(".bomberosparticipantes").children('div').each(function(){
+      label = $(this).children('label')[0].textContent;
+      if (label) {
+        if (label.toUpperCase().indexOf(filter) > -1) {
+          $(this).show();
+        } else {
+          $(this).hide();
+        }
+      }
+    });
+  };
+
+  function filterTable() {
     var filter, td;
-    filter = $("#inputFilterPuntuacion").val().toUpperCase();
-    $("#tablaPuntuacion").children('tr').each(function(){
-      td = $(this).children('td')[1].textContent;
+    filter = $(".inputFilter").val().toUpperCase();
+    $(".tableFilter").children('tr').each(function(){
+      td = $(this).children('.filtro')[0].textContent;
       if (td) {
         if (td.toUpperCase().indexOf(filter) > -1) {
           $(this).show();
@@ -88,24 +103,8 @@ $(document).ready(function () {
     });
   };
 
-  function filterAssist() {
-    // Declare variables
-    var filter, lablel;
-    filter = $("#inputFilterPuntuacion").val().toUpperCase();
-    $(".bomberosparticipantes").children('div').each(function(){
-      lablel = $(this).children('label')[0].textContent;
-      if (lablel) {
-        if (lablel.toUpperCase().indexOf(filter) > -1) {
-          $(this).show();
-        } else {
-          $(this).hide();
-        }
-      }
-    });
-  };
-
-  $('#inputFilterPuntuacion').on('keyup',function(){
-    filterTablePuntuacion();
+  $('.inputFilter').on('keyup',function(){
+    filterTable();
     filterlist();
     filterAssist();
   });

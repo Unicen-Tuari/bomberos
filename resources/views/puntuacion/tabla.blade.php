@@ -13,8 +13,8 @@
       <th rowspan="2" class="text-center">Observaciones</th>
     </tr>
     <tr>
-      <th class="text-center">leg.</th>
-      <th class="text-center">Apellido Nombre</th>
+      <th class="text-center">Legajo</th>
+      <th class="text-center">Nombre completo</th>
       <th colspan="2" class="text-center">Cant./OI/Pts</th>
       <th class="text-center">ACAD</th>
       <th class="text-center">Cant.</th>
@@ -28,14 +28,13 @@
       <th class="text-center">Ptos.</th>
     </tr>
   </thead>
-  <tbody id="tablaPuntuacion">
+  <tbody class="tableFilter">
     @foreach ($bomberos as $bombero)
     @if ($bombero->puntuo($mes,$año))
     <tr>
-
       <td><a idmodal={{$bombero->puntuacion($mes,$año)->id}} href="" class="glyphicon glyphicon-edit mp" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
       </a> {{$bombero->nro_legajo}}</td>
-      <td class="text-center">{{$bombero->apellido.' '.$bombero->nombre}}</td>
+      <td class="filtro text-center">{{$bombero->apellido.' '.$bombero->nombre}}</td>
       <td class="text-center">{{$bombero->puntuacion($mes,$año)->ao_cant}}</td>
       <td class="text-center">{{$bombero->puntuacion($mes,$año)->ao_punt}}</td>
       <td class="text-center">{{$bombero->puntuacion($mes,$año)->ao_acad}}</td>
@@ -56,7 +55,7 @@
     @else
     <tr>
       <td class="text-center">{{$bombero->nro_legajo}}</td>
-      <td class="text-center">{{$bombero->apellido.' '.$bombero->nombre}}</td>
+      <td class="filtro text-center">{{$bombero->apellido.' '.$bombero->nombre}}</td>
       <td class="text-center">0</td>
       <td class="text-center">0</td>
       <td class="text-center">0</td>

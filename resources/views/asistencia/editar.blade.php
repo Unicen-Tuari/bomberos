@@ -13,7 +13,7 @@
       <div class="form-group col-sm-6">
         {{ Form::label('Buscar', 'Buscar: ',['class' => 'control-label col-sm-2 col-sm-offset-2']) }}
         <div class="col-sm-5">
-          {{Form::text('busqueda', null, ['placeholder'=>"Buscar por nombre",'id'=>"inputFilterPuntuacion",'class' => 'form-control'])}}
+          {{Form::text('busqueda', null, ['placeholder'=>"Buscar por nombre",'class' => 'form-control inputFilter'])}}
         </div>
       </div>
       {!! Form::open([ 'route' => ['asistencia.update',$reunion], 'class' => 'form-horizontal', 'method' => 'PUT']) !!}
@@ -52,4 +52,8 @@
     </div>
   </div>
 </article>
+@endsection
+
+@section('js')
+  {!! Html::script('assets/js/ajaxpuntuacion.js') !!}
 @endsection

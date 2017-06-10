@@ -52,8 +52,8 @@ class BomberoController extends Controller
   {
     if(Auth::user()->admin){
       $bombero=$data->all();
-      list($día, $mes, $año) = explode('/', $bombero["fecha_nacimiento"]);
-      $bombero["fecha_nacimiento"]=$año.'-'.$día.'-'.$mes;
+      list($dia, $mes, $año) = explode('/', $bombero["fecha_nacimiento"]);
+      $bombero["fecha_nacimiento"]=$año.'-'.$mes.'-'.$dia;
       if (!array_key_exists('activo', $bombero)){
         $bombero["activo"]=0;
       }
@@ -66,8 +66,8 @@ class BomberoController extends Controller
   {
     if(Auth::user()->admin){
       $bombero=$data->all();
-      list($día, $mes, $año) = explode('/', $bombero["fecha_nacimiento"]);
-      $bombero["fecha_nacimiento"]=$año.'-'.$día.'-'.$mes;
+      list($dia, $mes, $año) = explode('/', $bombero["fecha_nacimiento"]);
+      $bombero["fecha_nacimiento"]=$año.'-'.$mes.'-'.$dia;
       if (!array_key_exists('activo', $bombero)){
         $bombero["activo"]=0;
       }
