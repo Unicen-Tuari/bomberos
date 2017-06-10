@@ -21,7 +21,7 @@
         <div class="form-group {{ $errors->has('fecha_reunion') ? ' has-error' : '' }}">
           {!! Form::label('fecha_reunion', 'Fecha reunion',['class' => 'col-sm-2 control-label']) !!}
           <div class="col-sm-3">
-            {!! Form::date('fecha_reunion', \Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires')) ,['class' => 'form-control']) !!}
+            {!! Form::text('fecha_reunion', \Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires'))->format('d/m/Y') ,['class' => 'form-control']) !!}
 
             @if ($errors->has('fecha_reunion'))
                 <span class="help-block">

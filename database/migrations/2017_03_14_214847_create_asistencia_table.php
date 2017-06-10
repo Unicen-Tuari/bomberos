@@ -15,7 +15,7 @@ class CreateAsistenciaTable extends Migration
       Schema::create('asistencia', function (Blueprint $table) {
           $table->increments('id');
           $table->integer('id_bombero');
-          $table->dateTime('fecha_reunion');
+          $table->date('fecha_reunion');
           $table->timestamps();
           $table->foreign('id_bombero')->references('id')->on('bombero')->onDelete('restrict');
       });

@@ -20,7 +20,7 @@
         <div class="form-group {{ $errors->has('fecha_reunion') ? ' has-error' : '' }}">
           {!! Form::label('fecha_reunion', 'Fecha reunion',['class' => 'col-sm-2 control-label']) !!}
           <div class="col-sm-3">
-            {!! Form::label('fecha_reunion', \Carbon\Carbon::parse($reunion)->format('d-m-Y') ,['class' => 'control-label']) !!}
+            {!! Form::label('fecha_reunion', \Carbon\Carbon::parse($reunion)->format('d/m/Y') ,['class' => 'control-label']) !!}
             @if ($errors->has('fecha_reunion'))
                 <span class="help-block">
                     <strong>{{ $errors->first('fecha_reunion') }}</strong>

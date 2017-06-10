@@ -12,13 +12,13 @@
         <div class="form-group col-sm-6 col-md-4">
           {!! Form::label('fecha_reunion', 'Buscar desde:',['class' => 'col-sm-6 control-label']) !!}
           <div class="col-sm-6">
-            {!! Form::date('inicio', \Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires')) ,['class' => 'form-control','id'=>'inicio']) !!}
+            {!! Form::text('inicio', \Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires'))->format('d/m/Y') ,['class' => 'form-control','id'=>'inicio']) !!}
           </div>
         </div>
         <div class="form-group col-sm-6 col-md-4">
           {!! Form::label('fecha_reunion', 'hasta:',['class' => 'col-sm-6 control-label']) !!}
           <div class="col-sm-6">
-            {!! Form::date('fin', \Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires')) ,['class' => 'form-control','id'=>'fin']) !!}
+            {!! Form::text('fin', \Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires'))->format('d/m/Y') ,['class' => 'form-control','id'=>'fin']) !!}
           </div>
         </div>
         <div class="form-group col-sm-6 col-sm-offset-6 col-md-4 col-md-offset-0">
