@@ -9,6 +9,8 @@ use App\Bombero;
 use App\Material;
 use App\Vehiculo;
 use App\Http\Requests\BomberoRequest;
+use Carbon\Carbon;
+use \DateTimeZone;
 use Illuminate\Support\Facades\Auth;
 
 class BomberoController extends Controller
@@ -40,28 +42,38 @@ class BomberoController extends Controller
   }
   public function destroy($id)
   {
+    if(Auth::user()->admin){
       $bombero=Bombero::find($id);
       $bombero->delete();
       return redirect()->route('bombero.index');
+    }
   }
   public function update(BomberoRequest  $data, $id)
   {
-    $bombero=$data->all();
-    if (!array_key_exists('activo', $bombero)){
-      $bombero["activo"]=0;
+    if(Auth::user()->admin){
+      $bombero=$data->all();
+      list($día, $mes, $año) = explode('/', $bombero["fecha_nacimiento"]);
+      $bombero["fecha_nacimiento"]=$año.'-'.$día.'-'.$mes;
+      if (!array_key_exists('activo', $bombero)){
+        $bombero["activo"]=0;
+      }
+      Bombero::find($id)->update($bombero);
+      return redirect()->route('bombero.index');
     }
-    Bombero::find($id)->update($bombero);
-    return redirect()->route('bombero.index');
   }
 
   public function store(BomberoRequest  $data)
   {
-    $bombero=$data->all();
-    if (!array_key_exists('activo', $bombero)){
-      $bombero["activo"]=0;
+    if(Auth::user()->admin){
+      $bombero=$data->all();
+      list($día, $mes, $año) = explode('/', $bombero["fecha_nacimiento"]);
+      $bombero["fecha_nacimiento"]=$año.'-'.$día.'-'.$mes;
+      if (!array_key_exists('activo', $bombero)){
+        $bombero["activo"]=0;
+      }
+      Bombero::create($bombero);
+      return redirect()->route('bombero.index');
     }
-    Bombero::create($bombero);
-    return redirect()->route('bombero.index');
   }
 
 }

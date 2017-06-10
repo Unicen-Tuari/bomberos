@@ -240,6 +240,7 @@ class ServicioController extends Controller
 
     public function update(ServicioRequest $request, $id)
     {
+      if(Auth::user()->admin){
         $data=$request->all();//obtengo todos los atributos
         $servicio= Servicio::find($id);
         $servicio->tipo_servicio_id=$data['tipo'];
@@ -292,13 +293,17 @@ class ServicioController extends Controller
               $mantengo[]=$value->vehiculo_id;
             }
           }
-          $mantengo = array_diff($data["vehiculos"],$mantengo);
+          if (array_key_exists ( "vehiculos" , $data )) {
+            $mantengo = array_diff($data["vehiculos"],$mantengo);
+          }
           foreach ($mantengo as $vehiculo) {
             VehiculoServicio::create(['servicio_id'=>$servicio->id,'vehiculo_id'=>$vehiculo,'primero'=>false]);
           }
-          $primerv=VehiculoServicio::where([['servicio_id',$servicio->id],['vehiculo_id',$data["vehiculo"]]])->first();
-          $primerv->primero=true;
-          $primerv->save();
+          if ($data["vehiculo"]!= 0) {
+            $primerv=VehiculoServicio::where([['servicio_id',$servicio->id],['vehiculo_id',$data["vehiculo"]]])->first();
+            $primerv->primero=true;
+            $primerv->save();
+          }
           if ($data["finalizar"]!=0) {
             return redirect()->route('ingreso.indexPresentes',[0=>$servicio->id,1=>$data['bombero']]);
           }else {
@@ -307,6 +312,7 @@ class ServicioController extends Controller
         }else {
           dd('fallo');
         }
+      }//cierre del if admin
     }
 
     public function guardar_presentes(Request $request)
