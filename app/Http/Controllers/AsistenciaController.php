@@ -27,8 +27,10 @@ class AsistenciaController extends Controller
 
     public function rango($inicio,$fin)
     {
-      $reuniones=asistencia::select('fecha_reunion')->orderBy('fecha_reunion', 'asc')->groupBy('fecha_reunion')->having('fecha_reunion','>=', $inicio)->having('fecha_reunion','<=', $fin)->limit(10)->get();
-      return view('asistencia/rango',compact('reuniones'));
+      if(Auth::user()->admin){
+        $reuniones=asistencia::select('fecha_reunion')->orderBy('fecha_reunion', 'asc')->groupBy('fecha_reunion')->having('fecha_reunion','>=', $inicio)->having('fecha_reunion','<=', $fin)->limit(10)->get();
+        return view('asistencia/rango',compact('reuniones'));
+      }
     }
 
     public function create()
@@ -42,14 +44,18 @@ class AsistenciaController extends Controller
 
     public function store(Request $request)
     {
-      $data=$request->all();
-      foreach ($data as $key => $value) {
-        if (strstr($key, '-', true)=="bombero") {
-          $idbombero=substr($key, 8);
-          asistencia::create(['id_bombero'=>$idbombero,'fecha_reunion'=>$data['fecha_reunion']]);
+      if(Auth::user()->admin){
+        $data=$request->all();
+        list($dia, $mes, $año) = explode('/', $data['fecha_reunion']);
+        $data['fecha_reunion']=$año.'-'.$mes.'-'.$dia;
+        foreach ($data as $key => $value) {
+          if (strstr($key, '-', true)=="bombero") {
+            $idbombero=substr($key, 8);
+            asistencia::create(['id_bombero'=>$idbombero,'fecha_reunion'=>$data['fecha_reunion']]);
+          }
         }
+        return redirect()->route('asistencia.index');
       }
-      return redirect()->route('home.index');
     }
 
     public function show($reunion)
@@ -70,29 +76,37 @@ class AsistenciaController extends Controller
 
     public function update(Request $request, $id)
     {
-      $data=$request->all();
-      $reuniones=asistencia::where('fecha_reunion',$id)->get();
-      $presentes=[];
-      foreach ($data as $key => $value) {
-        if (strstr($key, '-', true)=="bombero") {
-          $idbombero=(integer)substr($key, 8);
-          $presentes[]=$idbombero;
-          if (!$reuniones->where('id_bombero',$idbombero)->first()) {
-            asistencia::create(['id_bombero'=>$idbombero,'fecha_reunion'=>$id]);
+      if(Auth::user()->admin){
+        $data=$request->all();
+        $reuniones=asistencia::where('fecha_reunion',$id)->get();
+        $presentes=[];
+        foreach ($data as $key => $value) {
+          if (strstr($key, '-', true)=="bombero") {
+            $idbombero=(integer)substr($key, 8);
+            $presentes[]=$idbombero;
+            if (!$reuniones->where('id_bombero',$idbombero)->first()) {
+              asistencia::create(['id_bombero'=>$idbombero,'fecha_reunion'=>$id]);
+            }
           }
         }
-      }
-      foreach ($reuniones as $value) {
-        if (!in_array($value->id_bombero,$presentes)) {
-          $value->delete();
+        foreach ($reuniones as $value) {
+          if (!in_array($value->id_bombero,$presentes)) {
+            $value->delete();
+          }
         }
+        return redirect()->route('asistencia.index');
       }
-      return redirect()->route('asistencia.index');
     }
 
 
     public function destroy($id)
     {
-        //
+      if(Auth::user()->admin){
+        $reuniones=asistencia::where('fecha_reunion',$id)->get();
+        foreach ($reuniones as $value) {
+          $value->delete();
+        }
+        return redirect()->route('asistencia.index');
+      }
     }
 }

@@ -1,9 +1,9 @@
 $(document).ready(function () {
 
-  function filterFecha(){
+  $('#buscar').on('click',function(){
     var ruta= window.location.href;
-    var inicio=$('#inicio').val();
-    var fin=$('#fin').val();
+    var inicio=$('#inicio').val().replace(/\//gi, "-");
+    var fin=$('#fin').val().replace(/\//gi, "-");
 		$.ajax({
 			type: 'GET',
 			dataType: 'HTML',
@@ -12,9 +12,6 @@ $(document).ready(function () {
 						$('#fecha').html(data);
 					},
 		});
-  };
-
-  $('#buscar').on('click',function(){
-    filterFecha();
   });
+
 });
