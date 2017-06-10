@@ -13,6 +13,7 @@
     {!! Html::style('assets/css/bootstrap-multiselect.css') !!}
     {!! Html::style('assets/css/bomberos.css') !!}
     {!! Html::style('assets/css/home.css') !!}
+    {!! Html::style('assets/css/tables.css') !!}
 </head>
 
 <body id="app-layout">

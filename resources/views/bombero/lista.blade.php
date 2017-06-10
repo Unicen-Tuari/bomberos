@@ -7,21 +7,26 @@
       <span class="fa fa-users" aria-hidden="true"></span>
       <h4>Bomberos</h4>
     </div>
+    
+    <div class="col-sm-offset-9 col-sm-3">
+          <div class="text-right" style="padding-top: 20px;">
+            {{Form::text('busqueda', null, ['placeholder'=>"Buscar por legajo", 'class' => 'form-control col-sm-3 inputFilter'])}}
+          </div>
+    </div>
     <div class="panel-body">
       <table class="table table-striped">
         <thead><!--Titulos de la tabla-->
           <tr>
-            <th class="text-center">Numero Legajo</th>
-            <th class="text-center">Jerarquia</th>
-            <th class="text-center">Apellido</th>
-            <th class="text-center">Nombre</th>
-            <th class="text-center">Direccion</th>
-            <th class="text-center">Telefono</th>
-            <th class="text-center">Fecha nacimiento</th>
+            <th>Numero Legajo</th>
+            <th>Jerarquia</th>
+            <th>Apellido, nombre</th>
+            <th>Direccion</th>
+            <th>Telefono</th>
+            <th>Fecha nacimiento</th>
             <th colspan="2"></th>
           </tr>
         </thead>
-        <tbody><!--Contenido de la tabla-->
+        <tbody class="tableFilter"><!--Contenido de la tabla-->
           @php
             $jerarquias=[1 => 'Oficial Superior',2 => 'Oficial Jefe',3 => 'Oficial Subalterno',4 => 'Suboficial Superior',5 => 'Suboficial Subalterno',6 => 'Bombero',7 => 'Cadete',8 => 'Aspirante']
           @endphp
@@ -31,33 +36,27 @@
             @else
             <tr class="danger">
             @endif
-              <td class="text-center">{{$bombero->nro_legajo}}</td>
-              <td class="text-center">{{$jerarquias[$bombero->jerarquia]}}</td>
-              <td class="text-center">{{$bombero->apellido}}</td>
-              <td class="text-center">{{$bombero->nombre}}</td>
-              <td class="text-center">{{$bombero->direccion}}</td>
-              <td class="text-center">{{$bombero->telefono}}</td>
-              <td class="text-center">{{\Carbon\Carbon::parse($bombero->fecha_nacimiento)->format('d/m/Y')}}</td>
+              <td class="filtro">{{$bombero->nro_legajo}}</td>
+              <td>{{$jerarquias[$bombero->jerarquia]}}</td>
+              <td class="filtro">{{$bombero->apellido}}, {{$bombero->nombre}}</td>
+              <td>{{$bombero->direccion}}</td>
+              <td>{{$bombero->telefono}}</td>
+              <td>{{\Carbon\Carbon::parse($bombero->fecha_nacimiento)->format('d/m/Y')}}</td>
               @if (Auth::user()->admin)
-                <td class="text-center">
+                <td><a href="{{ route('bombero.edit', $bombero->id) }}"><button class="glyphicon glyphicon-edit"></button></a></td>
+                <td>
                   {{ Form::open(['route' => ['bombero.destroy', $bombero->id], 'method' => 'DELETE']) }}
-                      <button type="submit" class="btn glyphicon glyphicon-trash simulara"></button>
+                      <button type="submit" class="glyphicon glyphicon-trash"></button>
                   {{ Form::close() }}
                 </td>
-                <td class="text-center"><a class="glyphicon glyphicon-edit" href="{{ route('bombero.edit', $bombero->id) }}"></a></td>
               @else
-                <td class="text-center" colspan="2">
+                <td colspan="2">
                   <button type="submit" class="btn glyphicon glyphicon-ban-circle ban" title="Sin permisos para eliminar/modificar"></button>
                 </td>
               @endif
             </tr>
           @endforeach
           </tbody>
-          <tfoot>
-            <tr>
-              <td class="text-center" colspan="9"> Bomberos activos </td>
-            </tr>
-          </tfoot>
           <br>
         </table>
         <div class="text-center">
@@ -66,4 +65,8 @@
     </div>
   </div>
 </article>
+@endsection
+
+@section('js')
+  {!! Html::script('assets/js/ajaxpuntuacion.js') !!}
 @endsection
