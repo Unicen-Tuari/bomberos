@@ -33,28 +33,34 @@ $(document).ready(function () {
         maxHeight: 300,
   });
 
-  $('#listavehiculos').on('change', function(){
-    calcularCombustible()
-  });
+  var anterior=0;
+  var primero =0;
 
-  var anterior=$('#listavehiculo').val();
+  $('#listavehiculos').on('change', function(){
+    primero = $(this).val();
+    if (primero.length<2) {
+      $('#listavehiculo').val(primero);
+      $('#listavehiculo').multiselect("refresh");
+      anterior=$('#listavehiculo').val();
+    }
+    calcularCombustible();
+  });
 
   $('#listavehiculo').on('change', function(){
-    var primero = $(this).val();
-    var array=[];
-    array=$('#listavehiculos').val();
-    var pos=array.indexOf(anterior);
+    primero = $(this).val();
+    var vehiculos=[];
+    vehiculos=$('#listavehiculos').val();
+    var pos=vehiculos.indexOf(anterior);
     if (pos>-1) {
-      array.splice(pos,1);
+      vehiculos.splice(pos,1);
     }
-    if (array.indexOf(primero)<0) {
-      anterior=primero;
-      array.unshift(primero);
-      $('#listavehiculos').val(array);
-      $('#listavehiculos').multiselect("refresh");
-    }
-  calcularCombustible()
+    anterior=primero;
+    vehiculos.unshift(anterior);
+    $('#listavehiculos').val(vehiculos);
+    $('#listavehiculos').multiselect("refresh");
+    calcularCombustible();
   });
+
   function calcularCombustible(){
     var factor = $('#combustible').attr('idfactor');
     var inicio = $('#horaSalida').val();

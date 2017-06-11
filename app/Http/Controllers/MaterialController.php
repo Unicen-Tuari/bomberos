@@ -57,35 +57,42 @@ class MaterialController extends Controller
   }
   public function destroy($id)
   {
-      $material=Material::find($id);
-      $material->delete();
-      return redirect()->route('material.index');
+      if(Auth::user()->admin){
+        $material=Material::find($id);
+        $material->delete();
+        return redirect()->route('material.index');
+      }
   }
 
   public function update(MaterialRequest $data, $id)
   {
-      if ($data['vehiculo_id'] == ""){
-        $data['vehiculo_id'] = null;
-      }
-      if(!array_key_exists('mantenimiento', $data->all())){
-        $data['mantenimiento']=0;
-      }
+      if(Auth::user()->admin){
+        if ($data['vehiculo_id'] == ""){
+          $data['vehiculo_id'] = null;
+        }
+        if(!array_key_exists('mantenimiento', $data->all())){
+          $data['mantenimiento']=0;
+        }
 
-      $material=Material::find($id);
-      if (  $material->mantenimiento != $data['mantenimiento'] && $data['mantenimiento']==0) {
-        $material->reparado+=1;
-      }
-      $material->update($data->all());
+        $material=Material::find($id);
+        if (  $material->mantenimiento != $data['mantenimiento'] && $data['mantenimiento']==0) {
+          $material->reparado+=1;
+        }
+        $material->update($data->all());
 
-      return redirect()->route('material.index');
+        return redirect()->route('material.index');
+      }
   }
 
   public function store(MaterialRequest $data)
   {
-    if ($data['vehiculo_id'] == ""){
-      $data['vehiculo_id'] = null;
-    }
-    Material::create($data->all());
-    return redirect()->route('material.index');
+      if(Auth::user()->admin){
+        if ($data['vehiculo_id'] == ""){
+          $data['vehiculo_id'] = null;
+        }
+        Material::create($data->all());
+        return redirect()->route('material.index');
+      }
   }
+
 }

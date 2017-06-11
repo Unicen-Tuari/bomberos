@@ -30,48 +30,62 @@ class ServicioController extends Controller
 
     public function store(ServicioRequest $request)
     {
-      $data=$request->all();//obtengo todos los atributos
-      $servicio=new Servicio;
+      if(Auth::user()->admin){
+        $data=$request->all();//obtengo todos los atributos
+        $servicio=new Servicio;
 
-      $servicio->tipo_servicio_id=$data['tipo'];
-      $servicio->tipo_alarma=$data['tipo_alarma'];
-      $servicio->direccion=$data['direccion'];
-      $servicio->autor_llamada=$data['autor_llamada'];
-      $servicio->ilesos=$data['ilesos'];
-      $servicio->lesionados=$data['lesionados'];
-      $servicio->quemados=$data['quemados'];
-      $servicio->muertos=$data['muertos'];
-      $servicio->otros=$data['otros'];
-      $servicio->combustible=$data['combustible'];
-      $servicio->reconocimiento=$data['reconocimiento'];
-      $servicio->disposiciones=$data['disposiciones'];
-      $servicio->hora_alarma=$data['alarma'];
-      $servicio->hora_salida=$data['salida'];
-      $servicio->hora_regreso=$data['regreso'];
-      $servicio->jefe_servicio=$data['jefe_servicio'];
-      $servicio->oficial=$data['oficial'];
-      $servicio->jefe_de_cuerpo=$data['jefe_de_cuerpo'];
-      if ($servicio->save()) {
+        $servicio->tipo_servicio_id=$data['tipo'];
+        $servicio->tipo_alarma=$data['tipo_alarma'];
+        $servicio->direccion=$data['direccion'];
+        $servicio->autor_llamada=$data['autor_llamada'];
+        $servicio->ilesos=$data['ilesos'];
+        $servicio->lesionados=$data['lesionados'];
+        $servicio->quemados=$data['quemados'];
+        $servicio->muertos=$data['muertos'];
+        $servicio->otros=$data['otros'];
+        $servicio->combustible=$data['combustible'];
+        $servicio->reconocimiento=$data['reconocimiento'];
+        $servicio->disposiciones=$data['disposiciones'];
+        list($dia, $mes, $año) = explode('/', $data['alarma']);
+        list($año,$hora) = explode(' ', $año);
+        $data['alarma']=$año.'-'.$mes.'-'.$dia.' '.$hora;
+        $servicio->hora_alarma=$data['alarma'];
 
-        if ($data["bombero"]) {
-           //creo las relaciones servicio bomberos                                          tipo_id es tipo asistencia 2 primera dotacion
-           $a_cargo = BomberoServicio::create(['servicio_id'=>$servicio->id,'bombero_id'=>$data["bombero"],'tipo_id'=>2,'a_cargo'=>true]);
-         }
+        list($dia, $mes, $año) = explode('/', $data['salida']);
+        list($año,$hora) = explode(' ', $año);
+        $data['salida']=$año.'-'.$mes.'-'.$dia.' '.$hora;
+        $servicio->hora_salida=$data['salida'];
 
-        if ($data["vehiculo"]!=0) {
-          //creo las relaciones servicio Vehiculo primera dotacion
-          VehiculoServicio::create(['servicio_id'=>$servicio->id,'vehiculo_id'=>$data['vehiculo'],'primero'=>true]);
-          foreach ($data["vehiculos"] as $vehiculo) {
-            //creo las relaciones servicio Vehiculos
-            if ($data["vehiculo"]!=$vehiculo) {//evitamos el que salio primero
-              VehiculoServicio::create(['servicio_id'=>$servicio->id,'vehiculo_id'=>$vehiculo,'primero'=>false]);
+        list($dia, $mes, $año) = explode('/', $data['regreso']);
+        list($año,$hora) = explode(' ', $año);
+        $data['regreso']=$año.'-'.$mes.'-'.$dia.' '.$hora;
+        $servicio->hora_regreso=$data['regreso'];
+
+        $servicio->jefe_servicio=$data['jefe_servicio'];
+        $servicio->oficial=$data['oficial'];
+        $servicio->jefe_de_cuerpo=$data['jefe_de_cuerpo'];
+        if ($servicio->save()) {
+
+          if ($data["bombero"]) {
+             //creo las relaciones servicio bomberos                                          tipo_id es tipo asistencia 2 primera dotacion
+             $a_cargo = BomberoServicio::create(['servicio_id'=>$servicio->id,'bombero_id'=>$data["bombero"],'tipo_id'=>2,'a_cargo'=>true]);
+           }
+
+          if ($data["vehiculo"]!=0) {
+            //creo las relaciones servicio Vehiculo
+            //Cargamos la primera dotacion al salir
+            VehiculoServicio::create(['servicio_id'=>$servicio->id,'vehiculo_id'=>$data['vehiculo'],'primero'=>true]);
+            foreach ($data["vehiculos"] as $vehiculo) {
+              if ($data["vehiculo"]!=$vehiculo) {//cargamos todos las dotaciones que salieron luego
+                VehiculoServicio::create(['servicio_id'=>$servicio->id,'vehiculo_id'=>$vehiculo,'primero'=>false]);
+              }
             }
           }
-        }
 
-       return redirect()->route('ingreso.indexPresentes',[0=>$servicio->id,1=>$data['bombero']]);
-      }else {
-        dd('fallo');
+         return redirect()->route('ingreso.indexPresentes',[0=>$servicio->id,1=>$data['bombero']]);
+        }else {
+          return view('errors/falla');
+        }
       }
     }
 
@@ -137,35 +151,37 @@ class ServicioController extends Controller
 
     public function salida($id)
     {
+      if(Auth::user()->admin){
         $hsalida = Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires'))->toDateTimeString();
         $servicio=Servicio::find($id);
         $servicio->hora_salida=$hsalida;
         $servicio->save();
         return redirect()->route('servicio.index');
+      }
     }
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function iniciado(ServicioRequest $data)
     {
+      if(Auth::user()->admin){
       if(array_key_exists($data['tipo'], config('selects.tipoServicio'))){
         $servicio=new Servicio;
         $servicio->tipo_servicio_id=$data['tipo'];
         $servicio->tipo_alarma=$data['tipo_alarma'];
         $servicio->direccion=$data['direccion'];
         $servicio->autor_llamada=$data['autor_llamada'];
+
+        list($dia, $mes, $año) = explode('/', $data['alarma']);
+        list($año,$hora) = explode(' ', $año);
+        $data['alarma']=$año.'-'.$mes.'-'.$dia.' '.$hora;
         $servicio->hora_alarma=$data['alarma'];
         if ($servicio->save()) {
          return redirect()->route('servicio.index');
         }else {
           return view('errors/falla');
         }
-      }
-      else {
+      }else {
         return view('errors/alteracion');
+        }
       }
 
     }
@@ -180,12 +196,6 @@ class ServicioController extends Controller
         return view('servicio/estadisticasMes',compact('servicios','mes','año'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         $servicio=Servicio::find($id);
@@ -255,8 +265,19 @@ class ServicioController extends Controller
         $servicio->combustible=$data['combustible'];
         $servicio->reconocimiento=$data['reconocimiento'];
         $servicio->disposiciones=$data['disposiciones'];
+        list($dia, $mes, $año) = explode('/', $data['alarma']);
+        list($año,$hora) = explode(' ', $año);
+        $data['alarma']=$año.'-'.$mes.'-'.$dia.' '.$hora;
         $servicio->hora_alarma=$data['alarma'];
+
+        list($dia, $mes, $año) = explode('/', $data['salida']);
+        list($año,$hora) = explode(' ', $año);
+        $data['salida']=$año.'-'.$mes.'-'.$dia.' '.$hora;
         $servicio->hora_salida=$data['salida'];
+
+        list($dia, $mes, $año) = explode('/', $data['regreso']);
+        list($año,$hora) = explode(' ', $año);
+        $data['regreso']=$año.'-'.$mes.'-'.$dia.' '.$hora;
         $servicio->hora_regreso=$data['regreso'];
         $servicio->jefe_servicio=$data['jefe_servicio'];
         $servicio->oficial=$data['oficial'];
@@ -310,13 +331,14 @@ class ServicioController extends Controller
             return redirect()->route('ingreso.editPresentes',$servicio->id);
           }
         }else {
-          dd('fallo');
+          return view('auth/alerta');
         }
       }//cierre del if admin
     }
 
     public function guardar_presentes(Request $request)
     {
+      if(Auth::user()->admin){
         $data=$request->all();
         //  obtenemos el ultimo bombero en servico ya que es el a cargo que va
         // en primera dotacion para no volver a asignarlo
@@ -332,29 +354,34 @@ class ServicioController extends Controller
           }
         }
         return redirect()->route('servicio.index');
+      }
     }
 
     public function editar_presentes(Request $request)
     {
-      $data=$request->all();
-      foreach ($data as $key => $value) {
-        if (strstr($key, '-', true)=="bombero") {
-          $idbombero=substr($key, 8);
-          $involucrado=BomberoServicio::where([['servicio_id',$data['servicio']],['bombero_id',$idbombero]])->first();
-          if($involucrado->tipo_id != $value)
-          {
-            $involucrado->tipo_id = $value;
+      if(Auth::user()->admin){
+        $data=$request->all();
+        foreach ($data as $key => $value) {
+          if (strstr($key, '-', true)=="bombero") {
+            $idbombero=substr($key, 8);
+            $involucrado=BomberoServicio::where([['servicio_id',$data['servicio']],['bombero_id',$idbombero]])->first();
+            if($involucrado->tipo_id != $value)
+            {
+              $involucrado->tipo_id = $value;
+            }
+            $involucrado->save();
           }
-          $involucrado->save();
         }
+        return redirect()->route('servicio.index');
       }
-      return redirect()->route('servicio.index');
     }
 
     public function destroy($id)
     {
+      if(Auth::user()->admin){
         $servicio=Servicio::find($id);
         $servicio->delete();
         return redirect()->route('servicio.index');
+      }
     }
 }
