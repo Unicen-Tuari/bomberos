@@ -27,7 +27,7 @@ class PuntuacionController extends Controller
     {
         if(Auth::user()->admin){
           $bomberos=Bombero::getBomberos();
-          unset ($bomberos[0]);
+          unset ($bomberos[0]);//elimino el primer elemneto ya que no es un bombero y para esta tpl no es util
           $bombero=key($bomberos);
           return view('puntuacion/listarxanio',compact('bomberos','bombero'));
         }
@@ -107,7 +107,7 @@ class PuntuacionController extends Controller
           $date=$request->all();
           $fecha=\Carbon\Carbon::parse($date['año'].'-'.$date['mes'].'-'.'1');
           $date['fecha']=$fecha;
-          unset($date['mes'],$date['año']);
+          unset($date['mes'],$date['año']);//elimino los elemnetos qeu no machean con la tabla
           Puntuacion::create($date);
         }
     }
@@ -172,6 +172,6 @@ class PuntuacionController extends Controller
 
     public function destroy($id)
     {
-        //
+        //No encontramos logica para este uso ya que todo personal activo es puntuado, en el peor de los caso se editara
     }
 }
