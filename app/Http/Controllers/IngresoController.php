@@ -44,15 +44,16 @@ class IngresoController extends Controller
     }
 
     public function guardarIngreso(Request $request){
-      if(Auth::user()->admin){
+      if($request->all()['id_bombero']>0){
         Ingreso::create($request->all());
       }
     }
 
     public function borrarIngreso($id_bombero){
-      if(Auth::user()->admin){
+      if($id_bombero>0){
         $bombero=Ingreso::where('id_bombero', $id_bombero);
         $bombero->delete();
+        return redirect()->route('ingreso.listar');
       }
     }
 }

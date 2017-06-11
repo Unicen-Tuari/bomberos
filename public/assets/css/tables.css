@@ -2,9 +2,13 @@
   color: #337ab7;
 }*/
 
-button.glyphicon-trash, button.glyphicon-edit {
+button.glyphicon-trash, button.glyphicon-edit, button.glyphicon-log-out {
     background: transparent;
     border: 0;
+}
+
+button.glyphicon-log-out {
+    color: #8e1a1a;
 }
 
 button.glyphicon-trash {

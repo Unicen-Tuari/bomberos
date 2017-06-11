@@ -7,9 +7,10 @@ $(document).ready(function () {
     var url = formIngresar.attr('action');
     var data = formIngresar.serialize();
     if (id>0) {
-      $.post(url, data, function(result){
-        $('#bomberoIngreso').val(0);
-        $('#bomberoIngreso').multiselect("refresh");
+      $.post(url, data, function(){
+      }).done(function() {
+          $('#bomberoIngreso').val(0);
+          $('#bomberoIngreso').multiselect("refresh");
       });
     }
 
@@ -20,9 +21,10 @@ $(document).ready(function () {
     var formDelete = $('#form-delete');
     var url = formDelete.attr('action').replace(':USER_ID', id);
     var data = formDelete.serialize();
-    $.post(url, data, function(result){
-      $('#bomberoIngreso').val(0);
-      $('#bomberoIngreso').multiselect("refresh");
+    $.post(url, data, function(){
+    }).done(function() {
+        $('#bomberoIngreso').val(0);
+        $('#bomberoIngreso').multiselect("refresh");
     });
   });
 
