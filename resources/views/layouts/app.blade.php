@@ -30,7 +30,7 @@
         @if (!Auth::guest())
           <ul class="col-xs-10">
             @if (Auth::user()->admin)
-              <li id="first-icon" class="navIcon odd text-center">
+              <li id="first-icon" class="navIcon text-center">
                 <a href="{{route('servicio.llamada')}}" title="Cargar llamada">
                   <p><span class="glyphicon glyphicon-phone-alt"></span></p><p><span>Llamada</span><p>
                 </a>
@@ -60,7 +60,7 @@
                 @endif
               </li>
 
-              <li class="navIcon odd text-center">
+              <li class="navIcon text-center">
                 <a href="{{route('servicio.create')}}" title="Cargar servicio finalizado">
                   <p><span class="glyphicon glyphicon-file"></span></p><p><span class="icon-title">Cargar servicio</span></p>
                 </a>
@@ -149,28 +149,6 @@
               <a href="{{route('material.create')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Alta material</a>
             @endif
           </div>
-        </div>
-
-        <div id="regIngreso" class="col-sm-2 col-xs-12">
-          <div class="">
-            {{Form::select('Bomberos', App\Bombero::getBomberos(), null,['class' => 'col-sm-2 selectMultiple', 'id' => 'bomberoIngreso'])}}
-            @if ($errors->has('Bomberos'))
-                <span class="help-block">
-                    <strong>{{ $errors->first('Bomberos') }}</strong>
-                </span>
-            @endif
-          </div>
-          <button class="fa fa-sign-in" type="button" title="Registrar ingreso" id="ingresar" name="button"></button>
-          <p>Entrar</p>
-          {{Form::open(['route' => ['ingreso.guardarIngreso'], 'method' => 'POST', 'id' => 'form-ingresar'])}}
-            <div hidden>
-              {!! Form::text('id_bombero', ':USER_ID', ['class' => 'form-control','id' => 'ingresado']) !!}
-            </div>
-          {{Form::close()}}
-          {{Form::open(['route' => ['ingreso.borrarIngreso', ':USER_ID'], 'method' => 'DELETE', 'id' => 'form-delete'])}}
-            <button class="fa fa-sign-out" type="button" title="Registrar egreso" id="egresar" name="button"></button>
-            <p>Salir</p>
-          {{Form::close()}}
         </div>
       </div>
       <div class="right-panel col-sm-10 col-xs-12">

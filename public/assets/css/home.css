@@ -3,13 +3,13 @@ nav [class*='col-'] {
   margin: 0px;
 }
 
- .accidentados [class*='col-']{
-   padding-left: 0px;
-   padding-right: 0px;
- }
+.accidentados [class*='col-']{
+  padding-left: 0px;
+  padding-right: 0px;
+}
 
 nav li a:hover span{
-  color: #fff;
+  color: rgb(208, 107, 72);
   -webkit-transition: all 1s ease;
   -moz-transition: all 1s ease;
   -o-transition: all 1s ease;
@@ -23,15 +23,7 @@ nav a:focus span{
   color: #fff;
 }
 nav li a span{
-  color: rgb(208, 107, 72);
-}
-
-nav .odd a span{
-  color: rgb(218, 152, 109);
-}
-
-nav .odd {
-  background: rgba(255,255,255,0.1);
+  color: #fff;
 }
 
 nav div:first-child, nav div:last-child{
@@ -325,16 +317,6 @@ a:hover, a:focus {
   color: #a80e0e;
 }
 
-#regIngreso {
-  margin-top: 20px;
-  font-weight: bold;
-  color: white;
-  width: 100%;
-  text-align: center;
-  font-size: 18px;
-  display: inline-block;
-}
-
 #panelLogin, #panelRegister {
   background-color: #490000;
   color: white;
@@ -369,23 +351,6 @@ a:hover, a:focus {
   border-bottom: 1px solid white;
 }
 /*esto ya esta-------------------------------------------*/
-
-
-#regIngreso .fa-sign-in {
-  background-color: inherit;
-  font-size: 35px;
-  border: 0px;
-  color: #bcf5c7;
-  margin-top: 30px;
-}
-#regIngreso .fa-sign-out {
-  background-color: inherit;
-
-  margin-top: 10px;
-  font-size: 35px;
-  border: 0px;
-  color: #e2b8b8;
-}
 
 .list-group-item {
   border-bottom: 1px solid white;
@@ -429,4 +394,31 @@ a:hover, a:focus {
     color:red;
     margin-top: 8px;
     font-size: 20px;
+}
+
+
+/* Aca empiezo el refactor de este css */
+/* Dejar todo lo que esta aca abajo */
+
+#regIngreso {
+  margin-top: 20px;
+  font-weight: bold;
+  color: white;
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+  display: inline-block;
+}
+
+#regIngreso .fa-sign-in {
+  font-size: 35px;
+  border: 0px;
+  color: #00b022;
+  background-color: transparent;
+}
+#regIngreso .fa-sign-out {
+  font-size: 35px;
+  border: 0px;
+  color: #b30000;
+  background-color: transparent;
 }
