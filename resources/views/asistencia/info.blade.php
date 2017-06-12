@@ -6,14 +6,14 @@
   <div class="panel panel-default">
     <div id="breadcrumb" class="panel-heading">
       <span class="fa fa-users" aria-hidden="true"></span>
-      <h4>Asistencia del {{\Carbon\Carbon::parse($reunion)->format('d-m-Y')}}</h4>
+      <h4>Asistencia del {{\Carbon\Carbon::parse($reunion)->format('d/m/Y')}}</h4>
     </div>
     <div class="panel-body">
 
       <div class="form-group">
         {{ Form::label('Buscar', 'Buscar: ',['class' => 'control-label col-sm-2 col-sm-offset-2']) }}
         <div class="col-sm-4">
-          {{Form::text('busqueda', null, ['placeholder'=>"Buscar por apellido/nombre",'id'=>"inputFilterPuntuacion",'class' => 'form-control'])}}
+          {{Form::text('busqueda', null, ['placeholder'=>"Buscar por apellido-nombre",'class' => 'form-control inputFilter'])}}
         </div>
         <div class="col-sm-2">
           <a href="#" class="glyphicon glyphicon-ok-circle presentesOn" id="on"></a>
@@ -31,11 +31,11 @@
             <th class="text-center">asistió</th>
           </tr>
         </thead>
-        <tbody id="tablaPuntuacion">
+        <tbody class="tableFilter">
           @foreach ($bomberos as $bombero)
             <tr id = "modal{{$bombero->id}}">
               <td class="text-center">{{$bombero->nro_legajo}}</td>
-              <td class="text-center">{{$bombero->apellido.' - '.$bombero->nombre}}</td>
+              <td class="text-center filtro">{{$bombero->apellido.' - '.$bombero->nombre}}</td>
               <td class="text-center">
                 @if ($bombero->presente($reunion))
                   <a class="glyphicon glyphicon-ok-circle presentesOn" asistencia="onn"></a>

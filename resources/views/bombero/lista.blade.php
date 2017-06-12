@@ -7,11 +7,18 @@
       <span class="fa fa-users" aria-hidden="true"></span>
       <h4>Bomberos</h4>
     </div>
-    
-    <div class="col-sm-offset-9 col-sm-3">
-          <div class="text-right" style="padding-top: 20px;">
-            {{Form::text('busqueda', null, ['placeholder'=>"Buscar por legajo", 'class' => 'form-control col-sm-3 inputFilter'])}}
+
+    <div class="col-sm-12">
+      <div class="col-sm-3 text-right" style="padding-top: 20px;">
+        {{Form::model(Request::all(),['route' => 'bombero.index', 'class' => 'form-horizontal', 'method' => 'GET'])}}
+          <div class="col-sm-8">
+            {{Form::text('legajo', null, ['placeholder'=>"Buscar por legajo", 'class' => 'form-control'])}}
           </div>
+          <div class="col-sm-4">
+            {{Form::submit('Buscar', ['class' => 'btn btn-primary']) }}
+          </div>
+        {{Form::close()}}
+      </div>
     </div>
     <div class="panel-body">
       <table class="table table-striped">
@@ -26,18 +33,15 @@
             <th colspan="2"></th>
           </tr>
         </thead>
-        <tbody class="tableFilter"><!--Contenido de la tabla-->
-          @php
-            $jerarquias=[1 => 'Oficial Superior',2 => 'Oficial Jefe',3 => 'Oficial Subalterno',4 => 'Suboficial Superior',5 => 'Suboficial Subalterno',6 => 'Bombero',7 => 'Cadete',8 => 'Aspirante']
-          @endphp
+        <tbody><!--Contenido de la tabla-->
           @foreach ($bomberos as $bombero)
             @if ($bombero->activo)
             <tr>
             @else
             <tr class="danger">
             @endif
-              <td class="filtro">{{$bombero->nro_legajo}}</td>
-              <td>{{$jerarquias[$bombero->jerarquia]}}</td>
+              <td>{{$bombero->nro_legajo}}</td>
+              <td>{{config('selects.jerarquia')[$bombero->jerarquia]}}</td>
               <td class="filtro">{{$bombero->apellido}}, {{$bombero->nombre}}</td>
               <td>{{$bombero->direccion}}</td>
               <td>{{$bombero->telefono}}</td>
@@ -60,7 +64,7 @@
           <br>
         </table>
         <div class="text-center">
-          {{ $bomberos->render()}}
+          {{ $bomberos->appends(Request::only(['legajo']))->render()}}
         </div>
     </div>
   </div>
@@ -68,5 +72,5 @@
 @endsection
 
 @section('js')
-  {!! Html::script('assets/js/ajaxpuntuacion.js') !!}
+  {{ Html::script('assets/js/ajaxpuntuacion.js') }}
 @endsection

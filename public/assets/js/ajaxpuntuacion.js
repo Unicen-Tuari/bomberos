@@ -57,44 +57,12 @@ $(document).ready(function () {
     listarPuntuaciones();
   }
 
-  function filterlist() {
-    var  filter, p;
-    filter = $(".inputFilter").val().toUpperCase();
-    $("#listaPuntuacion").children('div').each(function(){
-      p = $(this).children('p')[0].textContent;
-      if (p) {
-        if (p.toUpperCase().indexOf(filter) > -1) {
-          $(this).show();
-        } else {
-          $(this).hide();
-        }
-      }
-    });
-  };
 
-  function filterAssist() {
-    // Declare variables
-    var filter, label;
-    filter = $(".inputFilter").val().toUpperCase();
-    $(".bomberosparticipantes").children('div').each(function(){
-      label = $(this).children('label')[0].textContent;
-      if (label) {
-        if (label.toUpperCase().indexOf(filter) > -1) {
-          $(this).show();
-        } else {
-          $(this).hide();
-        }
-      }
-    });
-  };
-
-  function filterTable() {
-    var filter, td;
-    filter = $(".inputFilter").val().toUpperCase();
-    $(".tableFilter").children('tr').each(function(){
-      td = $(this).children('.filtro')[0].textContent;
-      if (td) {
-        if (td.toUpperCase().indexOf(filter) > -1) {
+  function filter(palabra, dome, hijos, element) {
+    $(dome).children(hijos).each(function(){
+      var campo = $(this).children(element)[0].textContent;
+      if (campo) {
+        if (campo.toUpperCase().indexOf(palabra) > -1) {
           $(this).show();
         } else {
           $(this).hide();
@@ -104,15 +72,16 @@ $(document).ready(function () {
   };
 
   $('.inputFilter').on('keyup',function(){
-    filterTable();
-    filterlist();
-    filterAssist();
+    var palabra=$(this).val().toUpperCase();
+    filter(palabra,".tableFilter",'tr','.filtro');
+    filter(palabra,".tableFilter",'div','.filtro');
+    filter(palabra,".tableFilter",'div','.filtro');
   });
 
   function filterTableOnOff(filter) {
     // Declare variables
-    $("#tablaPuntuacion").children('tr').each(function(){
-      td = $(this).find('a')[0].getAttribute('asistencia');
+    $(".tableFilter").children('tr').each(function(){
+      var td = $(this).find('a')[0].getAttribute('asistencia');
       if (td) {
         if (td.indexOf(filter) > -1) {
           $(this).show();

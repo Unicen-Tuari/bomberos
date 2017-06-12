@@ -18,6 +18,12 @@ class Bombero extends Model
      'direccion', 'telefono', 'fecha_nacimiento','activo',
   ];
 
+  public function ScopeLegajo($query,$legajo)
+  {
+    if (trim($legajo)!="") {
+      $query->where('nro_legajo','LIKE',"%$legajo%");
+    }
+  }
   protected function getBomberos(){
       $datasb = $this->select('id', 'nombre', 'apellido')->orderBy('jerarquia','ASC')->where('activo', 1)->get();
       $bomberos = array();

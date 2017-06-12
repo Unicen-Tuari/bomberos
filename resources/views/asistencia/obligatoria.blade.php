@@ -31,7 +31,7 @@
           </div>
         </div>
 
-        <div class="form-group bomberosparticipantes">
+        <div class="form-group tableFilter">
           @foreach($bomberos as $bombero)
             @php
               $vino=0;//como usasmos mismo tpl para editar en la alta asumismo que ninguno vino

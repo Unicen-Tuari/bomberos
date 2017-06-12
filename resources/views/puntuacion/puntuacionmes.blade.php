@@ -1,9 +1,9 @@
 
-<div class="form-group col-sm-11" id="listaPuntuacion">
+<div class="form-group col-sm-11 tableFilter">
   @foreach ($bomberos as $bombero)
     @if (!$bombero->puntuo($mes,$año))
-    <div class="form-group col-sm-6" id = "modal{{$bombero->id}}">
-      <p class="text-center col-sm-10">{{$bombero->nro_legajo.' - '.$bombero->apellido.' '.$bombero->nombre}}</p>
+    <div class="form-group col-sm-6 " id = "modal{{$bombero->id}}">
+      <p class="text-center col-sm-10 filtro">{{$bombero->nro_legajo.' - '.$bombero->apellido.' '.$bombero->nombre}}</p>
       <button idmodal={{$bombero->id}} type="button" class="col-sm-2 btn btn-primary mp" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Puntuar</button>
     </div>
     @endif
