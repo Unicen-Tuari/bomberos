@@ -19,9 +19,9 @@ class BomberoController extends Controller
   {
       $this->middleware('auth');
   }
-  public function index()
+  public function index(Request $request)
   {
-      $bomberos=Bombero::paginate(12);
+      $bomberos=Bombero::legajo($request['legajo'])->orderBy('jerarquia','ASC')->paginate();
       return view('bombero/lista',compact('bomberos'));
   }
   public function create()

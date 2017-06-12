@@ -33,7 +33,7 @@ $(document).ready(function () {
     $('#detalle').val(detalle);
   });
 
-  $('#tablaPuntuacion').on('click','.mp',function(){
+  $('#tabla').on('click','.mp',function(){
     var id= this.getAttribute('idmodal');
     var ruta= window.location.href;
     cargarPuntuacion(ruta+'/'+id+'/edit');

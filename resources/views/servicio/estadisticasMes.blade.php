@@ -1,4 +1,4 @@
-<table  class="table table-striped">
+<table  class="table table-bordered">
   <thead><!--Titulos de la tabla-->
     <tr>
       <th class="text-center" rowspan="2">Nº servicio</th>

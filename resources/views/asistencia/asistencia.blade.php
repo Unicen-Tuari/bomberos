@@ -1,5 +1,5 @@
 <div class="col-lg-6 col-md-12 control-label {{ $errors->has('bombero-'.$bombero->id) ? ' has-error' : '' }}" id="bombero-{{$bombero->id}}">
-  {!! Form::label('bombero-'.$bombero->id, $bombero->nombre." ". $bombero->apellido,['class' => 'col-lg-7 col-md-5 control-label']) !!}
+  {!! Form::label('bombero-'.$bombero->id, $bombero->nombre." ". $bombero->apellido,['class' => 'col-lg-7 col-md-5 control-label filtro']) !!}
   <div class="col-sm-4">
     {!! Form::checkbox('bombero-'.$bombero->id, 1,$vino) !!}
 
