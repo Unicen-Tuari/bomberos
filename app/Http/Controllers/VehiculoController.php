@@ -44,27 +44,34 @@ class VehiculoController extends Controller
 
   public function destroy(Request $request,$id)
   {
+    if(Auth::user()->admin){
       $vehiculo=Vehiculo::find($id);
       if (count($vehiculo->servicios)==0) {
         $vehiculo->delete();
       }
       return redirect()->route('vehiculo.index');
+    }
   }
   public function update(VehiculoRequest $data, $id)
   {
+    if(Auth::user()->admin){
       if($data['patente']!=""){
         $data['patente']=strtoupper($data->patente);
       }
       $vehiculo=Vehiculo::findorfail($id)->update($data->all());
       return redirect()->route('vehiculo.index');
+    }
   }
 
   public function store(VehiculoRequest $data)
   {
-    if($data['patente']!=""){
-      $data['patente']=strtoupper($data->patente);
+    if(Auth::user()->admin){
+      if($data['patente']!=""){
+        $data['patente']=strtoupper($data->patente);
+      }
+      Vehiculo::create($data->all());
+      return redirect()->route('vehiculo.index');
     }
-    Vehiculo::create($data->all());
-    return redirect()->route('vehiculo.index');
   }
+
 }
