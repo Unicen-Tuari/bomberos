@@ -10,6 +10,22 @@ class Vehiculo extends Model
   protected $fillable = [
       'patente','num_movil','detalle','estado',
   ];
+
+  public function ScopePatente($query,$patente)
+  {
+    $patente=strtoupper($patente);
+    if (trim($patente)!="") {
+      $query->where('patente','LIKE',"%$patente%");
+    }
+  }
+
+  public function ScopeMovil($query,$movil)
+  {
+    if ($movil>0) {
+      $query->where('id',$movil);
+    }
+  }
+
   public function materiales(){
     return $this->hasMany(Material::class);
   }

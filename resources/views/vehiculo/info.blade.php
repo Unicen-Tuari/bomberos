@@ -7,19 +7,36 @@
       Materiales del movil N° {{$vehiculo->num_movil}}
     </div>
     <div class="panel-body">
-      <div class="col-sm-4 col-sm-offset-1">
+      <div class="col-sm-5 form-horizontal">
         <br>
-        {!! Form::label('patente', 'Patente: '. $vehiculo->patente,['class' => 'col-sm-8 control-label']) !!}
-        @if ($vehiculo->baja)
-          {!! Form::label('baja', "Baja", ['class' => 'col-sm-3 control-label']) !!}
-        @else
-          @if ($vehiculo->activo)
-            {!! Form::label('activo', "Activo", ['class' => 'col-sm-4 control-label']) !!}
-          @else
-            {!! Form::label('inactivo', "Inactivo", ['class' => 'col-sm-4 control-label']) !!}
-          @endif
-        @endif
-        {!! Form::label('detalle', 'Detalle: '.$vehiculo->detalle,['class' => 'col-sm-11 control-label']) !!}
+        <div class="form-group">
+          {!! Form::label('patente', 'Patente',['class' => 'col-md-4 control-label']) !!}
+          <div class="col-md-7">
+              {!! Form::text('patente', $vehiculo->patente, ['class' => 'form-control','disabled']) !!}
+          </div>
+        </div>
+
+        <div class="form-group ">
+          {!! Form::label('num_movil', 'Numero de Movil',['class' => 'col-md-4 control-label']) !!}
+          <div class="col-md-7">
+              {!! Form::text('num_movil', $vehiculo->num_movil, ['class' => 'form-control','disabled']) !!}
+          </div>
+        </div>
+
+        <div class="form-group">
+          {!! Form::label('estado', "Estado", ['class' => 'col-md-4 control-label']) !!}
+          <div class="col-md-7">
+            {{Form::select('estado',config('selects.estadovehiculo'), $vehiculo->estado, ['class' => 'form-control','disabled'])}}
+          </div>
+        </div>
+
+        <div class="form-group">
+          {!! Form::label('detalle', 'Detalle',['class' => 'col-sm-4 control-label']) !!}
+          <div class="col-sm-7">
+              {!! Form::textarea('detalle',  $vehiculo->detalle, ['class' => 'form-control' , 'rows' => '10','disabled']) !!}
+          </div>
+        </div>
+
       </div>
       <div class=" col-sm-5">
       <table  class="table table-bordered">
@@ -36,7 +53,7 @@
                 <td class="text-center"><a class="glyphicon glyphicon-edit" href="{{ route('material.edit', $material->id) }}"></a></td>
               @else
                 <td class="text-center">
-                  <button type="submit" class="btn glyphicon glyphicon-ban-circle ban" title="Sin permisos para eliminar/modificar"></button>
+                  <button type="submit" class="glyphicon glyphicon-ban-circle" title="Sin permisos para eliminar/modificar"></button>
                 </td>
               @endif
             </tr>

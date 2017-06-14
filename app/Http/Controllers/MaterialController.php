@@ -17,15 +17,30 @@ class MaterialController extends Controller
   {
       $this->middleware('auth');
   }
-  public function index()
+  public function index(Request $request)
   {
-      $materiales=Material::orderBy('id','DESC')->paginate(10);
-      return view('material/lista',compact('materiales'));
+      $materiales=Material::movil($request['movil'])->rubro($request['rubro'])
+      ->material($request['material'])->orderBy('id','DESC')->paginate(10);
+      $datas=Vehiculo::all(['id', 'num_movil']);
+      $vehiculos = array();
+      $vehiculos[0] = "Nº - Movil";
+      foreach ($datas as $data)
+      {
+          $vehiculos[$data->id] = 'Nº - '.$data->num_movil;
+      }
+      return view('material/lista',compact('materiales','vehiculos'));
   }
   public function show($id)
   {
       $material=Material::find($id);
-      return view('material/info',compact('material'));
+      $datas=Vehiculo::all(['id', 'num_movil']);
+      $vehiculos = array();
+      $vehiculos['']='En depósito'; 
+      foreach ($datas as $data)
+      {
+          $vehiculos[$data->id] = 'Nº - '.$data->num_movil;
+      }
+      return view('material/info',compact('material','vehiculos'));
   }
   public function create()
   {

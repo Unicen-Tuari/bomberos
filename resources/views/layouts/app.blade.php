@@ -70,7 +70,7 @@
             @else
               <li id="first-icon"  class="navIcon text-center">
             @endif
-                <a href="{{route('servicio.index')}}" title="Ultimos servicios realizados">
+                <a href="{{route('servicio.ultimos')}}" title="Ultimos servicios realizados">
                   <p><span class="glyphicon glyphicon-list"></span></p><p><span class="icon-title">Últimos</span></p>
                 </a>
               </li>
@@ -130,7 +130,7 @@
 
           <a href="#serviciosSubMenu" id="servicioMenu" class="list-group-item" data-toggle="collapse" data-parent="#MainMenu"><i class="fa fa-cog fa-lg" style="padding-right: 10px;"></i>  Servicios<span class="arrow"></span></a>
           <div class="collapse" id="serviciosSubMenu">
-            <a href="{{route('servicio.index')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Últimos servicios</a>
+            <a href="{{route('servicio.index')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Lista de servicios</a>
             <a href="{{route('servicio.estadistica')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Estadísticas</a>
           </div>
 

@@ -21,7 +21,8 @@ class BomberoController extends Controller
   }
   public function index(Request $request)
   {
-      $bomberos=Bombero::legajo($request['legajo'])->orderBy('jerarquia','ASC')->paginate();
+      $bomberos=Bombero::legajo($request['legajo'])->nombre($request['nombre'])
+      ->jerarquia($request['jerarquia'])->paginate(12);
       return view('bombero/lista',compact('bomberos'));
   }
   public function create()

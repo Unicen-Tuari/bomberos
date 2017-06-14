@@ -9,23 +9,31 @@
     </div>
     <div class="panel-body">
       <div class="form-group ">
-        <div class="form-group col-sm-6 col-md-4">
+        <div class="col-sm-6 col-md-4">
           {!! Form::label('fecha_reunion', 'Buscar desde:',['class' => 'col-sm-6 control-label']) !!}
           <div class="col-sm-6">
-            {!! Form::text('inicio', \Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires'))->format('d/m/Y') ,['class' => 'form-control','id'=>'inicio']) !!}
+            @if (count($reuniones)!=0)
+            {!! Form::text('inicio',\Carbon\Carbon::parse($reuniones[0]->fecha_reunion )
+              ->format('d/m/Y') ,['class' => 'form-control','id'=>'inicio']) !!}
+            @else
+              {!! Form::text('fin', \Carbon\Carbon::now()->format('d/m/Y') 
+                ,['class' => 'form-control','id'=>'fin']) !!}
+            @endif
           </div>
         </div>
-        <div class="form-group col-sm-6 col-md-4">
+        <div class="col-sm-6 col-md-4">
           {!! Form::label('fecha_reunion', 'hasta:',['class' => 'col-sm-6 control-label']) !!}
           <div class="col-sm-6">
-            {!! Form::text('fin', \Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires'))->format('d/m/Y') ,['class' => 'form-control','id'=>'fin']) !!}
+            {!! Form::text('fin', \Carbon\Carbon::now()->format('d/m/Y')
+              ,['class' => 'form-control','id'=>'fin']) !!}
           </div>
         </div>
         <div class="form-group col-sm-6 col-sm-offset-6 col-md-4 col-md-offset-0">
           <button type="button" id="buscar" class="btn btn-primary">Buscar</button>
         </div>
       </div>
-      <div class="form-group col-sm-12" id="fecha">
+
+      <div class="form-group" id="fecha">
 
         @include('asistencia.rango')
 

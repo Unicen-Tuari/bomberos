@@ -16,10 +16,17 @@ class VehiculoController extends Controller
   {
       $this->middleware('auth');
   }
-  public function index()
+  public function index(Request $request)
   {
-      $vehiculos=Vehiculo::orderBy('patente','DESC')->paginate(8);
-      return view('vehiculo/lista',compact('vehiculos'));
+      $vehiculos=Vehiculo::movil($request['movil'])->patente($request['patente'])->paginate(8);
+      $datas=Vehiculo::all();
+      $moviles = array();
+      $moviles[0] = "Nº - Movil";
+      foreach ($datas as $data)
+      {
+          $moviles[$data->id] = 'Nº - '.$data->num_movil;
+      }
+      return view('vehiculo/lista',compact('vehiculos','moviles'));
   }
   public function create()
   {

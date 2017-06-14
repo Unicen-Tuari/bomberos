@@ -76,7 +76,6 @@
 
         <div class="form-group">
           <div class="col-md-6 col-md-offset-4">
-            {{-- {!!Form::submit('Registrar', ['class' => 'btn btn-primary']) !!} --}}
             <button type="submit" class="btn btn-primary">
                 <i class="glyphicon glyphicon-bell"></i> Iniciar
             </button>

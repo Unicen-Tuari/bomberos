@@ -206,7 +206,7 @@
       </div>
       <div class="form-group">
         <div class="col-sm-offset-10 col-sm-1">
-          <button class="btn btn-lg glyphicon glyphicon-remove simulara" data-dismiss="modal"></button>
+          <button class="glyphicon glyphicon-remove" data-dismiss="modal"></button>
         </div>
       </div>
     </div>

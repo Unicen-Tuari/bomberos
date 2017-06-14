@@ -20,6 +20,7 @@
       <button type="submit" bombero='{{$bombero->id}}' class="btn btn-lg glyphicon glyphicon-floppy-saved simulara" id="edit" data-dismiss="modal"></button>
     </div>
   </div>
+  <br>
 </div>
 
 {!! Html::script('assets/js/puntuacion-post.js') !!}

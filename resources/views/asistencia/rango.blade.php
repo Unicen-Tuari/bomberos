@@ -14,7 +14,7 @@
           {{ Form::close() }}
         </div>
       @else
-        <a class="btn glyphicon glyphicon-ban-circle ban" title="Sin permisos para eliminar/modificar"></a>
+        <a class="glyphicon glyphicon-ban-circle" title="Sin permisos para eliminar/modificar"></a>
       @endif
     </div>
   </div>
