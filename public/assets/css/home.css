@@ -307,16 +307,6 @@ a:hover, a:focus {
   color: #337ab7;
 }
 
-.ban{
-  padding: 0px 0px;
-  color: #a80e0e;
-  background-color: inherit;
-  margin-top: -5px;
-}
-.ban:hover{
-  color: #a80e0e;
-}
-
 #panelLogin, #panelRegister {
   background-color: #490000;
   color: white;
@@ -401,6 +391,7 @@ a:hover, a:focus {
 /* Dejar todo lo que esta aca abajo */
 
 #regIngreso {
+  height: 350px;
   margin-top: 20px;
   font-weight: bold;
   color: white;

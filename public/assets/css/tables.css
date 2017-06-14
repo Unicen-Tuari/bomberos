@@ -1,6 +1,11 @@
-button.glyphicon-trash, button.glyphicon-edit, button.glyphicon-log-out {
+button.glyphicon-trash, button.glyphicon-edit, button.glyphicon-log-out,
+button.glyphicon-floppy-saved, button.glyphicon-remove, button.glyphicon-ban-circle {
     background: transparent;
     border: 0;
+}
+/*Botones modal*/
+button.glyphicon-floppy-saved, button.glyphicon-remove {
+    color: #337ab7;
 }
 
 button.glyphicon-log-out {
@@ -12,4 +17,8 @@ button.glyphicon-trash {
 }
 button.glyphicon-trash:hover {
     color: #800000;
+}
+
+button.glyphicon-ban-circle{
+  color: #a80e0e;
 }

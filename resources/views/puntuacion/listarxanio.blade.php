@@ -7,16 +7,16 @@
       <span class="fa fa-table" aria-hidden="true"></span>
       <h4>Resumen mensual y anual de calificaciones</h4>
     </div>
-    <div class="panel-body">
+    <div class="panel-body form-horizontal">
       <div class="form-group col-md-10 col-sm-12 ">
         {!! Form::label('fecha_reunion', 'Buscar desde:',['class' => 'col-sm-3 control-label']) !!}
         <div class="col-sm-2">
-          {{Form::text('inicio', \Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires'))->subYears(5)->format('Y'), ['class' => 'form-control','id'=>'inicio'])}}
+          {{Form::text('inicio', \Carbon\Carbon::now()->subYears(5)->format('Y'), ['class' => 'form-control','id'=>'inicio'])}}
         </div>
 
         {!! Form::label('fecha_reunion', 'hasta:',['class' => 'col-sm-2 control-label']) !!}
         <div class="col-sm-2">
-          {{Form::text('fin', \Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires'))->format('Y'), ['class' => 'form-control','id'=>'fin'])}}
+          {{Form::text('fin', \Carbon\Carbon::now()->format('Y'), ['class' => 'form-control','id'=>'fin'])}}
         </div>
 
         <div class="col-sm-2">

@@ -23,7 +23,7 @@ class MaterialController extends Controller
       ->material($request['material'])->orderBy('id','DESC')->paginate(10);
       $datas=Vehiculo::all(['id', 'num_movil']);
       $vehiculos = array();
-      $vehiculos[0] = "Nº - movil";
+      $vehiculos[0] = "Nº - Movil";
       foreach ($datas as $data)
       {
           $vehiculos[$data->id] = 'Nº - '.$data->num_movil;
@@ -33,7 +33,14 @@ class MaterialController extends Controller
   public function show($id)
   {
       $material=Material::find($id);
-      return view('material/info',compact('material'));
+      $datas=Vehiculo::all(['id', 'num_movil']);
+      $vehiculos = array();
+      $vehiculos['']='En depósito'; 
+      foreach ($datas as $data)
+      {
+          $vehiculos[$data->id] = 'Nº - '.$data->num_movil;
+      }
+      return view('material/info',compact('material','vehiculos'));
   }
   public function create()
   {

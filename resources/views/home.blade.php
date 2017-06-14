@@ -5,11 +5,11 @@
     <div class="panel panel-default">
       <div id="breadcrumb" class="panel-heading">
         <span class="fa fa-home" aria-hidden="true"></span>
-        <h4>Inicio</h4>
+        <h4>Ingreso/Egreso de bomberos</h4>
       </div>
         <div class="panel-body">
           <div id="regIngreso" class="col-sm-12">
-            <div class="col-sm-3 col-sm-offset-3">
+            <div class="col-sm-3">
               {{Form::select('Bomberos', App\Bombero::getBomberos(), null,['class' => 'col-sm-2 selectMultiple', 'id' => 'bomberoIngreso'])}}
             </div>
             <div class="col-sm-1">

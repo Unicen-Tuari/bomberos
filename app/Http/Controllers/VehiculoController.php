@@ -21,7 +21,7 @@ class VehiculoController extends Controller
       $vehiculos=Vehiculo::movil($request['movil'])->patente($request['patente'])->paginate(8);
       $datas=Vehiculo::all();
       $moviles = array();
-      $moviles[0] = "Nº - movil";
+      $moviles[0] = "Nº - Movil";
       foreach ($datas as $data)
       {
           $moviles[$data->id] = 'Nº - '.$data->num_movil;

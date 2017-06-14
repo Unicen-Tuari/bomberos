@@ -12,12 +12,13 @@
   {!! Form::close() !!}
   <div class="col-sm-12">
     <div class="col-sm-offset-10 col-sm-1">
-      <button class="btn btn-lg glyphicon glyphicon-remove simulara" data-dismiss="modal"></button>
+      <button class="btn btn-lg glyphicon glyphicon-remove" data-dismiss="modal"></button>
     </div>
     <div class="col-sm-1">
-      <button type="submit" bombero='{{$bombero->id}}' class="btn btn-lg glyphicon glyphicon-floppy-saved simulara" data-dismiss="modal" id="save"></button>
+      <button type="submit" bombero='{{$bombero->id}}' class="btn btn-lg glyphicon glyphicon-floppy-saved" data-dismiss="modal" id="save"></button>
     </div>
   </div>
+  <br>
 </div>
 
 {!! Html::script('assets/js/puntuacion-post.js') !!}

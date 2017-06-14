@@ -20,8 +20,16 @@ class Servicio extends Model
 
   public function ScopeFecha($query,$mes,$año)
   {
-    if ($mes>0 && $año > 0) {
-      $query->whereYear('hora_regreso','=',$año)->whereMonth('hora_regreso','=',$mes);
+    if ($año > 0) {
+      if ($mes>0) {
+        $query->whereYear('hora_regreso','=',$año)->whereMonth('hora_regreso','=',$mes);
+      }else {
+        $query->whereYear('hora_regreso','=',$año);
+      }
+    }else {
+      if ($mes>0) {
+        $query->whereMonth('hora_regreso','=',$mes);
+      }
     }
   }
 

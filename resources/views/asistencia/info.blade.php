@@ -21,8 +21,7 @@
           <a href="#" class="glyphicon glyphicon-ban-circle presentesall" id="all"></a>
         </div>
       </div>
-
-      <div class="form-group">
+      <br>
       <table  class="table table-bordered">
         <thead><!--Titulos de la tabla-->
           <tr>
@@ -53,7 +52,6 @@
         </tfoot>
         <br>
       </table>
-      </div>
 
     </div>
   </div>
