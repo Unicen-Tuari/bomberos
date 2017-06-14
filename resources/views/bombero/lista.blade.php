@@ -9,12 +9,22 @@
     </div>
 
     <div class="col-sm-12">
-      <div class="col-sm-3 text-right" style="padding-top: 20px;">
+      <div class="col-md-7 col-sm-12 text-right" style="padding-top: 20px;">
+        @php
+          $jerarquias[0]="Jerarquia";
+          $jerarquias=array_merge($jerarquias, config('selects.jerarquia'));
+        @endphp
         {{Form::model(Request::all(),['route' => 'bombero.index', 'class' => 'form-horizontal', 'method' => 'GET'])}}
-          <div class="col-sm-8">
-            {{Form::text('legajo', null, ['placeholder'=>"Buscar por legajo", 'class' => 'form-control'])}}
+          <div class="col-sm-3">
+            {{Form::select('jerarquia', $jerarquias,0, ['class' => 'form-control'])}}
           </div>
           <div class="col-sm-4">
+            {{Form::text('nombre', null, ['placeholder'=>"Buscar por Apellido/Nombre", 'class' => 'form-control'])}}
+          </div>
+          <div class="col-sm-4">
+            {{Form::text('legajo', null, ['placeholder'=>"Buscar por legajo", 'class' => 'form-control'])}}
+          </div>
+          <div class="col-sm-1">
             {{Form::submit('Buscar', ['class' => 'btn btn-primary']) }}
           </div>
         {{Form::close()}}
@@ -64,7 +74,7 @@
           <br>
         </table>
         <div class="text-center">
-          {{ $bomberos->appends(Request::only(['legajo']))->render()}}
+          {{ $bomberos->appends(Request::only(['legajo']))->links()}}
         </div>
     </div>
   </div>

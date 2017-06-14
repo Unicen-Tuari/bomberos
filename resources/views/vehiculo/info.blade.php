@@ -10,10 +10,10 @@
       <div class="col-sm-4 col-sm-offset-1">
         <br>
         {!! Form::label('patente', 'Patente: '. $vehiculo->patente,['class' => 'col-sm-8 control-label']) !!}
-        @if ($vehiculo->baja)
+        @if ($vehiculo->estado>2)
           {!! Form::label('baja', "Baja", ['class' => 'col-sm-3 control-label']) !!}
         @else
-          @if ($vehiculo->activo)
+          @if ($vehiculo->estado<2)
             {!! Form::label('activo', "Activo", ['class' => 'col-sm-4 control-label']) !!}
           @else
             {!! Form::label('inactivo', "Inactivo", ['class' => 'col-sm-4 control-label']) !!}

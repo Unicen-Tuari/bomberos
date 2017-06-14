@@ -7,6 +7,23 @@
       <span class="fa fa-truck" aria-hidden="true"></span>
       <h4>Vehiculos</h4>
     </div>
+
+    <div class="col-sm-12">
+      <div class="col-md-5 col-sm-12 text-right" style="padding-top: 20px;">
+        {{Form::model(Request::all(),['route' => 'vehiculo.index', 'class' => 'form-horizontal', 'method' => 'GET'])}}
+            <div class="col-sm-4">
+              {{Form::select('movil', $moviles,null, ['class' => 'form-control'])}}
+            </div>
+          <div class="col-sm-6">
+            {{Form::text('patente', null, ['placeholder'=>"Buscar por patente", 'class' => 'form-control'])}}
+          </div>
+          <div class="col-sm-1">
+            {{Form::submit('Buscar', ['class' => 'btn btn-primary']) }}
+          </div>
+        {{Form::close()}}
+      </div>
+    </div>
+
     <div class="panel-body">
       <table  class="table table-bordered">
         <thead><!--Titulos de la tabla-->
@@ -16,6 +33,9 @@
             </th>
             <th class="text-center">
               Patente
+            </th>
+            <th class="text-center">
+              Cant. Materiales
             </th>
             <th class="text-center" colspan="2">
             </th>
@@ -31,6 +51,7 @@
               <td class="text-center"><a href="{{ route('vehiculo.show', $vehiculo->id) }}">{{$vehiculo->num_movil}}</a>
               </td>
               <td class="text-center">{{$vehiculo->patente}}</td>
+              <td class="text-center">{{count($vehiculo->materiales)}}</td>
               @if (Auth::user()->admin)
                 <td class="text-center">
                 @if (count($vehiculo->servicios)==0)
@@ -52,13 +73,13 @@
           </tbody>
           <tfoot>
             <tr>
-              <td class="text-center" colspan="4"> Lista de vehiculos</td>
+              <td class="text-center" colspan="5"> Lista de vehiculos</td>
             </tr>
           </tfoot>
           <br>
         </table>
         <div class="text-center">
-          {{ $vehiculos->render()}}
+          {{ $vehiculos->appends(Request::all())->render()}}
         </div>
     </div>
   </div>

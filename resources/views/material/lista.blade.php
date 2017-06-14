@@ -7,6 +7,30 @@
       <span class="fa fa-briefcase" aria-hidden="true"></span>
       <h4>Materiales</h4>
     </div>
+
+    <div class="col-sm-12">
+      <div class="col-md-7 col-sm-12 text-right" style="padding-top: 20px;">
+        @php
+          $rubro[0]="Rubro";
+          $rubro=array_merge($rubro, config('selects.rubro'));
+        @endphp
+        {{Form::model(Request::all(),['route' => 'material.index', 'class' => 'form-horizontal', 'method' => 'GET'])}}
+          <div class="col-sm-4">
+            {{Form::select('rubro', $rubro,null, ['class' => 'form-control'])}}
+          </div>
+            <div class="col-sm-3">
+              {{Form::select('movil', $vehiculos,null, ['class' => 'form-control'])}}
+            </div>
+          <div class="col-sm-4">
+            {{Form::text('material', null, ['placeholder'=>"Buscar material", 'class' => 'form-control'])}}
+          </div>
+          <div class="col-sm-1">
+            {{Form::submit('Buscar', ['class' => 'btn btn-primary']) }}
+          </div>
+        {{Form::close()}}
+      </div>
+    </div>
+
     <div class="panel-body">
       <table  class="table table-bordered">
         <thead><!--Titulos de la tabla-->
@@ -21,7 +45,11 @@
         </thead>
         <tbody><!--Contenido de la tabla-->
           @foreach ($materiales as $material)
+            @if (!$material->mantenimiento)
             <tr>
+            @else
+            <tr class="danger">
+            @endif
               <td class="text-center"><a href="{{ route('material.show', $material->id) }}">{{$material->nombre}}</a></td>
               @if ($material->vehiculo_id)
                 <td class="text-center">{{$material->vehiculo->num_movil}}</td>
@@ -52,7 +80,7 @@
           <br>
         </table>
         <div class="text-center">
-          {{ $materiales->links()}}
+          {{ $materiales->appends(Request::only(['legajo']))->links()}}
         </div>
     </div>
   </div>

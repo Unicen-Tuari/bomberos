@@ -22,10 +22,19 @@ class ServicioController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-      $servicios=Servicio::paginate(12);
-      return view('servicio/servicios',compact('servicios'));
+      $servicios=Servicio::tipo_s($request['tipo_s'])->tipo_a($request['tipo_a'])
+      ->fecha($request['mes'],$request['año'])->paginate(12);
+      $ultimos=false;
+      return view('servicio/servicios',compact('servicios','ultimos'));
+    }
+
+    public function ultimos()
+    {
+      $servicios=Servicio::orderBy('hora_regreso','DESC')->limit(10)->get();
+      $ultimos=true;
+      return view('servicio/servicios',compact('servicios','ultimos'));
     }
 
     public function store(ServicioRequest $request)
