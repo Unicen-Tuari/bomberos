@@ -11,11 +11,11 @@
     <div class="col-sm-12">
       <div class="col-md-5 col-sm-12 text-right" style="padding-top: 20px;">
         {{Form::model(Request::all(),['route' => 'vehiculo.index', 'class' => 'form-horizontal', 'method' => 'GET'])}}
-            <div class="col-sm-4">
+            <div class="col-sm-5">
               {{Form::select('movil', $moviles,null, ['class' => 'form-control'])}}
             </div>
           <div class="col-sm-6">
-            {{Form::text('patente', null, ['placeholder'=>"Buscar por patente", 'class' => 'form-control'])}}
+            {{Form::text('patente', null, ['placeholder'=>"Patente", 'class' => 'form-control'])}}
           </div>
           <div class="col-sm-1">
             {{Form::submit('Buscar', ['class' => 'btn btn-primary']) }}

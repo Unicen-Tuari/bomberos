@@ -7,28 +7,28 @@
       <span class="fa fa-check-square-o" aria-hidden="true"></span>
       <h4>Cargar servicio finalizado</h4>
     </div>
-  <div class="panel-body">
+    <div class="panel-body">
 
-  {!! Form::open([ 'route' => 'servicio.store', 'class' => 'form-horizontal', 'method' => 'POST']) !!}
+    {!! Form::open([ 'route' => 'servicio.store', 'class' => 'form-horizontal', 'method' => 'POST']) !!}
 
-    @php
-    $tipo_alarma=$tipo=$llamada=$direccion=$superficie=$cuartel=$reconocimiento=null;
-    $disposiciones=$jefe=$oficial=$jcuerpo=$bombero=$involucrados=$primero=null;
-    $ilesos=$lesionados=$quemados=$muertos=$otros=$combustible=0;
-    $numero=$ultimo;
-    $hora=\Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires'))->format('d/m/Y H:i:s');
-    $salida=\Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires'))->addSeconds(30)->format('d/m/Y H:i:s');
-    $regreso=\Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires'))->addSeconds(60)->format('d/m/Y H:i:s');
-    @endphp
+      @php
+      $tipo_alarma=$tipo=$llamada=$direccion=$superficie=$cuartel=$reconocimiento=null;
+      $disposiciones=$jefe=$oficial=$jcuerpo=$bombero=$involucrados=$primero=null;
+      $ilesos=$lesionados=$quemados=$muertos=$otros=$combustible=0;
+      $numero=$ultimo;
+      $hora=\Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires'))->format('d/m/Y H:i:s');
+      $salida=\Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires'))->addSeconds(30)->format('d/m/Y H:i:s');
+      $regreso=\Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires'))->addSeconds(60)->format('d/m/Y H:i:s');
+      @endphp
 
-    @include('servicio.formcompleto')
+      @include('servicio.formcompleto')
 
-    <div class="col-sm-6 col-sm-offset-3">
-      <button type="submit" class="btn btn-primary">
-          <i class="glyphicon glyphicon-ok"></i> Finalizar
-      </button>
-    </div>
-  {!! Form::close() !!}
+      <div class="col-sm-1 col-sm-offset-5">
+        <button type="submit" class="btn btn-primary">
+            <i class="glyphicon glyphicon-ok"></i> Finalizar
+        </button>
+      </div>
+    {!! Form::close() !!}
 
     </div>
   </div>

@@ -21,20 +21,19 @@
       $llamada=$servicio->autor_llamada;
       $direccion=$servicio->direccion;
       $hora=\Carbon\Carbon::parse($servicio->hora_alarma)->format('d/m/Y H:i:s');
-      $salida=\Carbon\Carbon::parse($servicio->hora_salida)->format('d/m/Y H:i:s');
+      if (!$servicio->hora_salida) {
+        $salida=\Carbon\Carbon::parse($servicio->hora_alarma)->addSeconds(60)->format('d/m/Y H:i:s');
+      }else {
+        $salida=\Carbon\Carbon::parse($servicio->hora_salida)->format('d/m/Y H:i:s');
+      }
       $tipo_alarma=$servicio->tipo_alarma;
       $regreso=\Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires'))->format('d/m/Y H:i:s');
       @endphp
 
-      @if(!$salida)
-        @php
-          $salida=\Carbon\Carbon::parse($hora)->addSeconds(60)->format('d/m/Y H:i:s');
-        @endphp
-      @endif
       {!! Form::hidden('finalizar', 1) !!}
       @include('servicio.formcompleto')
 
-      <div class="col-sm-6 col-sm-offset-3">
+      <div class="col-sm-1 col-sm-offset-5">
         <button type="submit" class="btn btn-primary">
             <i class="glyphicon glyphicon-ok"></i> Finalizar
         </button>

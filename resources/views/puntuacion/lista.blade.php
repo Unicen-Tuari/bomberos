@@ -23,7 +23,7 @@
       <div class="form-group col-sm-4">
         {{ Form::label('Buscar', 'Buscar: ',['class' => 'control-label col-sm-3']) }}
         <div class="col-sm-9">
-          {{Form::text('busqueda', null, ['placeholder'=>"Buscar por nombre", 'class' => 'form-control inputFilter'])}}
+          {{Form::text('busqueda', null, ['placeholder'=>"Nombre", 'class' => 'form-control inputFilter'])}}
         </div>
       </div>
       <div id="tabla">

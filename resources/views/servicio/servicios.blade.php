@@ -10,7 +10,7 @@
     </div>
 
     <div class="col-sm-12">
-      <div class="col-md-8 col-sm-12 text-right" style="padding-top: 20px;">
+      <div class="col-md-10 col-sm-12 text-right" style="padding-top: 20px;">
         {{Form::model(Request::all(),['route' => 'servicio.index', 'class' => 'form-horizontal', 'method' => 'GET'])}}
           <div class="col-sm-3">
             {{Form::select('tipo_s',[0=>'Tipo de Servicio'] + config('selects.tipoServicio'),null, ['class' => 'form-control'])}}

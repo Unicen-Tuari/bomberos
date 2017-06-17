@@ -37,7 +37,8 @@
 
     {!! Form::hidden('finalizar', 0) !!}
     @include('servicio.formcompleto')
-    <div class="col-sm-6 col-sm-offset-3">
+    
+    <div class="col-sm-1 col-sm-offset-5">
       <button type="submit" class="btn btn-primary">
           <i class="glyphicon glyphicon-ok"></i> Finalizar
       </button>
