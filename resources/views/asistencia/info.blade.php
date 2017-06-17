@@ -13,7 +13,7 @@
       <div class="form-group">
         {{ Form::label('Buscar', 'Buscar: ',['class' => 'control-label col-sm-2 col-sm-offset-2']) }}
         <div class="col-sm-4">
-          {{Form::text('busqueda', null, ['placeholder'=>"Buscar por apellido-nombre",'class' => 'form-control inputFilter'])}}
+          {{Form::text('busqueda', null, ['placeholder'=>"Apellido - Nombre",'class' => 'form-control inputFilter'])}}
         </div>
         <div class="col-sm-2">
           <a href="#" class="glyphicon glyphicon-ok-circle presentesOn" id="on"></a>

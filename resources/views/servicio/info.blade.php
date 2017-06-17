@@ -33,10 +33,10 @@
       $jcuerpo=$servicio->jefe_de_cuerpo;
       @endphp
       @include('servicio.formcompleto')
-      <div class="col-sm-6 col-sm-offset-3">
+      <div class="col-sm-1 col-sm-offset-5">
         <a href="{{route('ingreso.show', $servicio->id)}}" class="">
-          <button type="submit" class="btn btn-primary glyphicon glyphicon-ok">
-          Involucrados</button></a>
+        <button type="submit" class="btn btn-primary glyphicon glyphicon-ok">
+        Involucrados</button></a>
       </div>
     </div>
   </div>

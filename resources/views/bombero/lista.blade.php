@@ -15,10 +15,10 @@
             {{Form::select('jerarquia', [0=>'Jerarquia'] + config('selects.jerarquia'),0, ['class' => 'form-control'])}}
           </div>
           <div class="col-sm-4">
-            {{Form::text('nombre', null, ['placeholder'=>"Buscar por Apellido/Nombre", 'class' => 'form-control'])}}
+            {{Form::text('nombre', null, ['placeholder'=>"Apellido/Nombre", 'class' => 'form-control'])}}
           </div>
           <div class="col-sm-4">
-            {{Form::text('legajo', null, ['placeholder'=>"Buscar por legajo", 'class' => 'form-control'])}}
+            {{Form::text('legajo', null, ['placeholder'=>"Nº legajo", 'class' => 'form-control'])}}
           </div>
           <div class="col-sm-1">
             {{Form::submit('Buscar', ['class' => 'btn btn-primary']) }}
