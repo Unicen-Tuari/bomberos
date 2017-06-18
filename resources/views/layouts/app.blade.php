@@ -14,6 +14,7 @@
     {!! Html::style('assets/css/bomberos.css') !!}
     {!! Html::style('assets/css/home.css') !!}
     {!! Html::style('assets/css/tables.css') !!}
+    {!! Html::style('assets/css/bootstrap-toggle.min.css') !!}
 </head>
 
 <body id="app-layout">
@@ -162,6 +163,7 @@
       {!!HTML::script('assets/js/bootstrap-multiselect.js')!!}
       {!!HTML::script('assets/js/script.js')!!}
       {!!HTML::script('assets/js/ajaxIngreso.js')!!}
+      {!! Html::script('assets/js/bootstrap-toggle.js') !!}
     @yield('js')
     <!-- JavaScripts -->
 </body>

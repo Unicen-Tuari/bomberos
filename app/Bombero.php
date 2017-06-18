@@ -51,6 +51,19 @@ class Bombero extends Model
       return $bomberos;
   }
 
+  protected function getBomberosnoIngresados(){
+      $datasb = $this->select('id', 'nombre', 'apellido')->orderBy('jerarquia','ASC')->where('activo', 1)->get();
+      $bomberos = array();
+      $bomberos[0] = "bombero...";
+      foreach ($datasb as $data)
+      {
+        if(!$data->ingresado){
+          $bomberos[$data->id] = $data->nombre . " " . $data->apellido;
+        }
+      }
+      return $bomberos;
+  }
+
   public function servicios(){
     return $this->hasMany(BomberoServicio::class);
   }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Http\Requests\AsistenciaRequest;
 use App\asistencia;
 use App\Bombero;
 use App\Servicio;
@@ -25,11 +26,11 @@ class AsistenciaController extends Controller
       return view('asistencia/listar',compact('reuniones'));
     }
 
-    public function rango($inicio,$fin)
+    public function rango(AsistenciaRequest $request)
     {
       if(Auth::user()->admin){
-        $reuniones=asistencia::select('fecha_reunion')->orderBy('fecha_reunion', 'asc')->groupBy('fecha_reunion')->having('fecha_reunion','>=', $inicio)->having('fecha_reunion','<=', $fin)->limit(10)->get();
-        return view('asistencia/rango',compact('reuniones'));
+        $reuniones=asistencia::select('fecha_reunion')->orderBy('fecha_reunion', 'asc')->groupBy('fecha_reunion')->having('fecha_reunion','>=', $request['inicio'])->having('fecha_reunion','<=', $request['fin'])->limit(10)->get();
+         return view('asistencia/listar',compact('reuniones'));
       }
     }
 
@@ -42,7 +43,7 @@ class AsistenciaController extends Controller
       return view('auth/alerta');
     }
 
-    public function store(Request $request)
+    public function store(AsistenciaRequest $request)
     {
       if(Auth::user()->admin){
         $data=$request->all();

@@ -7,7 +7,7 @@
       <span class="fa fa-table" aria-hidden="true"></span>
       <h4>Puntuaciones</h4>
     </div>
-    <div class="panel-body">
+    <div class="panel-body form-horizontal">
       <div class="form-group col-sm-4">
         {{ Form::label('mess', 'Elija el mes: ',['class' => 'control-label col-sm-4']) }}
         <div class="col-sm-8">

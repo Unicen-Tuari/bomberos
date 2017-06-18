@@ -30,7 +30,7 @@ return [
     'boolean'              => 'The :attribute field must be true or false.',
     'confirmed'            => 'La confirmacion de la :attribute no coincide.',
     'date'                 => 'The :attribute is not a valid date.',
-    'date_format'          => 'The :attribute does not match the format :format.',
+    'date_format'          => 'La fecha no coincide con el formato :format.',
     'different'            => 'The :attribute and :other must be different.',
     'digits'               => 'The :attribute must be :digits digits.',
     'digits_between'       => 'The :attribute must be between :min and :max digits.',
