@@ -15,4 +15,8 @@ class Ingreso extends Model
     public function bombero(){
       return $this->hasOne(Bombero::class,"id","id_bombero");
     }
+    
+    public static function getIngresados(){
+      return Ingreso::all();
+    }
 }

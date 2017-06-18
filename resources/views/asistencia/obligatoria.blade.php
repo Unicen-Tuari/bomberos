@@ -19,7 +19,7 @@
       {!! Form::open([ 'route' => 'asistencia.store', 'class' => 'form-horizontal', 'method' => 'POST']) !!}
 
         <div class="form-group {{ $errors->has('fecha_reunion') ? ' has-error' : '' }}">
-          {!! Form::label('fecha_reunion', 'Fecha reunion',['class' => 'col-sm-2 control-label']) !!}
+          {!! Form::label('fecha', 'Fecha reunion',['class' => 'col-sm-2 control-label']) !!}
           <div class="col-sm-3">
             {!! Form::text('fecha_reunion', \Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires'))->format('d/m/Y') ,['class' => 'form-control']) !!}
 
@@ -42,11 +42,9 @@
 
 
         <div class="form-group">
-          <div class="col-md-3 col-md-offset-6">
-            <button type="submit" class="btn btn-primary">
+            <button type="submit" class="btn btn-primary pull-right">
                 <i class="glyphicon glyphicon-bell"></i> Finalizar
             </button>
-          </div>
         </div>
 
       {!! Form::close() !!}

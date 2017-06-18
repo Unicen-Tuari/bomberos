@@ -23,7 +23,7 @@ Route::get('/home', 'HomeController@index')->name('home.index');
 
 Route::resource('bombero','BomberoController',['except' => ['show']]);
 
-Route::get('asistencia/rango/{inicio}/{fin}', 'AsistenciaController@rango')->name('AsistenciaController.rango');
+Route::get('asistencia/rango', 'AsistenciaController@rango')->name('AsistenciaController.rango');
 Route::resource('asistencia','AsistenciaController');
 
 Route::get('puntuacion/anual', 'PuntuacionController@anual')->name('puntuacion.anual');

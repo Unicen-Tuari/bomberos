@@ -1,6 +1,8 @@
 $(document).ready(function () {
 
   $('#ingresar').on('click',function(){
+    var ruta= window.location.href;
+    var urlingresados=ruta.substring(0, ruta.indexOf("home"));
     var id = $('#bomberoIngreso').val();
     var formIngresar = $('#form-ingresar');
     $('#ingresado').val(id);
@@ -9,6 +11,14 @@ $(document).ready(function () {
     if (id>0) {
       $.post(url, data, function(){
       }).done(function() {
+          $.ajax({
+            type: 'GET',
+            dataType: 'HTML',
+            url: urlingresados+'ingreso/listar',
+            success: function(data){
+                  $('#datos').html(data);
+                },
+          });
           $('#bomberoIngreso').val(0);
           $('#bomberoIngreso').multiselect("refresh");
       });

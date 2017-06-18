@@ -9,7 +9,7 @@
     </div>
     <div class="panel-body form-horizontal">
       <div class="form-group col-md-10 col-sm-12 ">
-        {!! Form::label('fecha_reunion', 'Buscar desde:',['class' => 'col-sm-3 control-label']) !!}
+        {!! Form::label('fecha_reunion', 'Buscar desde:',['class' => 'col-sm-2 control-label']) !!}
         <div class="col-sm-2">
           {{Form::text('inicio', \Carbon\Carbon::now()->subYears(5)->format('Y'), ['class' => 'form-control','id'=>'inicio'])}}
         </div>
@@ -24,7 +24,7 @@
         </div>
       </div>
       <div class="form-group col-md-10 col-sm-12 ">
-          {!! Form::label('bombero', 'Bombero',['class' => 'col-sm-3 control-label']) !!}
+          {!! Form::label('bombero', 'Bombero',['class' => 'col-sm-2 control-label']) !!}
           <div class="col-sm-2">
             {{Form::select('bombero', $bomberos,$bombero,['class' => 'selectMultiple','id'=>'bombero'])}}
           </div>

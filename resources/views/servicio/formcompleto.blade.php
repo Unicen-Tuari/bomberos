@@ -218,7 +218,7 @@
     <div class="form-group {{$errors->has('reconocimiento') ? ' has-error' : ''}}">
       {!! Form::label('reconocimiento', 'Reconocimiento',['class' => 'col-sm-2 control-label']) !!}
       <div class="col-sm-8">
-          {!! Form::textarea('reconocimiento', $reconocimiento, ['class' => 'form-control' , 'rows' => '8']) !!}
+          {!! Form::textarea('reconocimiento', $reconocimiento, ['class' => 'form-control' , 'rows' => '4']) !!}
 
           @if ($errors->has('reconocimiento'))
               <span class="help-block">
@@ -240,7 +240,7 @@
         @endif
       </div>
     </div>
-
+    <hr style="color: red;">
     <div class="form-group">
       <div class="{{$errors->has('alarma') ? ' has-error' : ''}}">
         {!! Form::label('alarma', 'Hora alarma',['class' => 'col-sm-2 control-label'])!!}
@@ -283,12 +283,7 @@
         </div>
       </div>
     </div>
-
-    <div class="form-group">
-      {!! Form::label('firmas', 'Firmas',['class' => 'col-sm-1 col-sm-offset-5 control-label']) !!}</u>
-      <span class="fa fa-pencil-square-o control-label"></span>
-    </div>
-
+    <hr>
     <div class="form-group">
       <div class="{{$errors->has('jefe_servicio') ? ' has-error' : ''}}">
         {!! Form::label('jefe_servicio', 'Jefe Servicio',['class' => 'col-sm-2 control-label']) !!}

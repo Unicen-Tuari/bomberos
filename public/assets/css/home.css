@@ -303,10 +303,6 @@ a:hover, a:focus {
   color: #008301;
 }
 
-.btn:hover {
-  color: #337ab7;
-}
-
 #panelLogin, #panelRegister {
   background-color: #490000;
   color: white;
@@ -389,9 +385,11 @@ a:hover, a:focus {
 
 /* Aca empiezo el refactor de este css */
 /* Dejar todo lo que esta aca abajo */
+.alto{
+  height: 350px;
+}
 
 #regIngreso {
-  height: 350px;
   margin-top: 20px;
   font-weight: bold;
   color: white;

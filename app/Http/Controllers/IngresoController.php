@@ -53,7 +53,7 @@ class IngresoController extends Controller
       if($id_bombero>0){
         $bombero=Ingreso::where('id_bombero', $id_bombero);
         $bombero->delete();
-        return redirect()->route('ingreso.listar');
+        return redirect()->route('home.index');
       }
     }
 }

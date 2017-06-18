@@ -108,7 +108,7 @@
         <div class="form-group {{ $errors->has('activo') ? ' has-error' : '' }}">
           {!! Form::label('activo', "Activo", ['class' => 'col-md-4 control-label']) !!}
           <div class="col-md-6">
-              {!! Form::checkbox('activo', 1) !!}
+              {!! Form::checkbox('activo', 1,'', ['data-toggle' => "toggle", 'data-onstyle'=>"success", 'data-on' => 'Sí', 'data-off' => 'No']) !!}
 
               @if ($errors->has('activo'))
                   <span class="help-block">
