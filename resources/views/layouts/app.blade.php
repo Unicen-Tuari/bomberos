@@ -13,7 +13,7 @@
     {!! Html::style('assets/css/bootstrap-multiselect.css') !!}
     {!! Html::style('assets/css/bomberos.css') !!}
     {!! Html::style('assets/css/home.css') !!}
-    {!! Html::style('assets/css/tables.css') !!}
+    {!! Html::style('assets/css/button.css') !!}
     {!! Html::style('assets/css/bootstrap-toggle.min.css') !!}
 </head>
 
@@ -117,7 +117,7 @@
               <a href="{{route('asistencia.create')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Cargar</a>
             @endif
             <a  href="{{route('asistencia.index')}}"  class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Lista de reuniones</a>
-            <a  href="{{route('ingreso.listar')}}"  class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Lista de ingresados</a>
+            <a  href="{{route('home.index')}}"  class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Ingresados</a>
           </div>
 
           <a href="#puntuacionSubMenu" id="puntuacionMenu" class="list-group-item" data-toggle="collapse" data-parent="#MainMenu"><i class="fa fa-calendar fa-lg" style="padding-right: 10px;"></i> Puntuacion<span class="arrow"></span></a>

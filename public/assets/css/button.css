@@ -1,5 +1,6 @@
 button.glyphicon-trash, button.glyphicon-edit, button.glyphicon-log-out,
-button.glyphicon-floppy-saved, button.glyphicon-remove, button.glyphicon-ban-circle {
+button.glyphicon-floppy-saved, button.glyphicon-remove, button.glyphicon-ban-circle,
+button.fa-sign-in {
     background: transparent;
     border: 0;
 }
@@ -21,4 +22,10 @@ button.glyphicon-trash:hover {
 
 button.glyphicon-ban-circle{
   color: #a80e0e;
+}
+
+button.fa-sign-in{
+  font-size: 35px;
+  color: #00b022;
+  background-color: transparent;
 }

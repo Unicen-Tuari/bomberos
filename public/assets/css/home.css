@@ -104,23 +104,6 @@ nav ul h2, nav ul h4{
   text-align: center;
 }
 
-#carouselHome {
-  margin-top: 10%;
-  border: 2px solid #690000;
-  border-radius: 2px;
-  padding-left: 0px;
-  padding-right: 0px;
-}
-
-#carouselHome {
-  margin-top: 30%;
-  border-radius: 5px;
-}
-
-#carouselHome img {
-  border-radius: 4px;
-}
-
 #breadcrumb {
   /*height: 40px;*/
   /*background-color: #490000;*/
@@ -132,6 +115,7 @@ nav ul h2, nav ul h4{
   border-left: 1px solid white;
   padding-left: 20px;
 }
+
 #breadcrumb .fa {
   vertical-align: middle;
   font-size: 28px;
@@ -387,27 +371,4 @@ a:hover, a:focus {
 /* Dejar todo lo que esta aca abajo */
 .alto{
   height: 350px;
-}
-
-#regIngreso {
-  margin-top: 20px;
-  font-weight: bold;
-  color: white;
-  width: 100%;
-  text-align: center;
-  font-size: 18px;
-  display: inline-block;
-}
-
-#regIngreso .fa-sign-in {
-  font-size: 35px;
-  border: 0px;
-  color: #00b022;
-  background-color: transparent;
-}
-#regIngreso .fa-sign-out {
-  font-size: 35px;
-  border: 0px;
-  color: #b30000;
-  background-color: transparent;
 }

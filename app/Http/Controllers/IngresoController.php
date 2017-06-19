@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Http\Requests\IngresoRequest;
 use App\Ingreso;
 use App\TipoAsistencia;
 use App\Bombero;
@@ -17,11 +18,6 @@ class IngresoController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-    }
-    public function listar()
-    {
-        $ingresados=Ingreso::all();
-        return view('asistencia/ingresados',compact('ingresados'));
     }
     public function indexPresentes($servicio,$acargo)
     {
@@ -43,9 +39,10 @@ class IngresoController extends Controller
         return view('asistencia/servicio',compact('bomberos','servicio'));
     }
 
-    public function guardarIngreso(Request $request){
+    public function guardarIngreso(IngresoRequest $request){
       if($request->all()['id_bombero']>0){
         Ingreso::create($request->all());
+        return redirect()->route('home.index');
       }
     }
 
