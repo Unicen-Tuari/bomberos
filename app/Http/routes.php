@@ -50,7 +50,6 @@ Route::put('servicio/activo/{id}/finalizar', 'ServicioController@guardarActivo')
 Route::put('servicio/activo/{id}/salida', 'ServicioController@salida')->name('servicio.salida');
 Route::resource('servicio','ServicioController');
 
-Route::get('ingreso/listar', 'IngresoController@listar')->name('ingreso.listar');
 Route::get('ingreso/{id}', 'IngresoController@show')->name('ingreso.show');
 Route::get('ingreso/presentes/edit/{servicio}', 'IngresoController@editPresentes')->name('ingreso.editPresentes');
 Route::get('ingreso/presentes/{servicio}/{acargo}', 'IngresoController@indexPresentes')->name('ingreso.indexPresentes');

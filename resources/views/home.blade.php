@@ -8,36 +8,28 @@
         <h4>Ingreso/Egreso de bomberos</h4>
       </div>
       <div class="panel-body">
-        <div id="regIngreso" class="col-sm-12">
-          @php 
-            $bomberos =  App\Bombero::getBomberosnoIngresados();
-          @endphp
-          <div class="col-sm-3">
-            {{Form::select('Bomberos', $bomberos, null,['class' => 'col-sm-2 selectMultiple', 'id' => 'bomberoIngreso'])}}
-          </div>
-          <div class="col-sm-1">
-            <button class="fa fa-sign-in" type="button" title="Registrar ingreso" id="ingresar" name="button"></button>
-            <p>Entrar</p>
-            {{Form::open(['route' => ['ingreso.guardarIngreso'], 'method' => 'POST', 'id' => 'form-ingresar'])}}
-              <div hidden>
-                {!! Form::text('id_bombero', ':USER_ID', ['class' => 'form-control','id' => 'ingresado']) !!}
-              </div>
-            {{Form::close()}}
-            </div>
+        <div class="col-sm-12">
+          {{Form::open(['route' => 'ingreso.guardarIngreso', 'method' => 'POST'])}}
             <div class="col-sm-1">
-            {{Form::open(['route' => ['ingreso.borrarIngreso', ':USER_ID'], 'method' => 'DELETE', 'id' => 'form-delete'])}}
-              <button class="fa fa-sign-out" type="button" title="Registrar egreso" id="egresar" name="button"></button>
-              <p>Salir</p>
-            {{Form::close()}}
-          </div>
+              <button class="fa fa-sign-in" type="submit" title="Registrar ingreso"></button>
+            </div>
+            <div class="col-sm-3 {{$errors->has('id_bombero') ? ' has-error' : ''}}">
+              {{Form::select('id_bombero', App\Bombero::getBomberosnoIngresados(), null,['class' => 'col-sm-2 selectMultiple'])}}
+              @if ($errors->has('id_bombero'))
+                <span class="help-block">
+                    <strong>No se elijio bombero</strong>
+                </span>
+              @endif
+            </div>
+          {{Form::close()}}
         </div>
         @php
           $ingresados= App\Ingreso::getIngresados();
         @endphp
         @if(count($ingresados)<=6)
-          <div class="col-sm-12 alto" id="datos">
+          <div class="col-sm-12 alto">
         @else
-          <div class="col-sm-12" id="datos">
+          <div class="col-sm-12">
         @endif
             @include('asistencia.ingresados')
           </div>

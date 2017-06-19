@@ -65,7 +65,7 @@
     <div class="form-group">
       <div class="{{$errors->has('bombero') ? ' has-error' : ''}}">
         {!! Form::label('bombero', 'Bombero a cargo',['class' => 'col-sm-2 control-label']) !!}
-        <div class="col-sm-1">
+        <div class="col-sm-3">
           {{Form::select('bombero', $ingresados,$bombero,['class' => 'selectMultiple'])}}
           @if ($errors->has('bombero'))
               <span class="help-block">
@@ -154,9 +154,9 @@
             {!! Form::text('muertos', $muertos , ['class' => 'form-control']) !!}
 
             @if ($errors->has('muertos'))
-                <span class="help-block">
-                    <strong>{{$errors->first('muertos')}}</strong>
-                </span>
+              <span class="help-block">
+                  <strong>{{$errors->first('muertos')}}</strong>
+              </span>
             @endif
         </div>
       </div>
@@ -167,9 +167,9 @@
             {!! Form::text('otros', $otros , ['class' => 'form-control']) !!}
 
             @if ($errors->has('otros'))
-                <span class="help-block">
-                    <strong>{{$errors->first('otros')}}</strong>
-                </span>
+              <span class="help-block">
+                  <strong>{{$errors->first('otros')}}</strong>
+              </span>
             @endif
         </div>
       </div>
@@ -181,7 +181,7 @@
 
             @if ($errors->has('superficie'))
                 <span class="help-block">
-                    <strong>{{$errors->first('superficie')}}</strong>
+                    <strong>Superficie positiva y obligatoria en servicios forestales</strong>
                 </span>
             @endif
         </div>

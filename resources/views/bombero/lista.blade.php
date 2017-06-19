@@ -36,7 +36,7 @@
             <th>Direccion</th>
             <th>Telefono</th>
             <th>Fecha nacimiento</th>
-            <th colspan="2"></th>
+            <th></th>
           </tr>
         </thead>
         <tbody><!--Contenido de la tabla-->
@@ -53,8 +53,7 @@
               <td>{{$bombero->telefono}}</td>
               <td>{{\Carbon\Carbon::parse($bombero->fecha_nacimiento)->format('d/m/Y')}}</td>
               @if (Auth::user()->admin)
-                <td>
-                  <a href="{{ route('bombero.edit', $bombero->id) }}"><button class="glyphicon glyphicon-edit"></button></a></td>
+                <td><a href="{{ route('bombero.edit', $bombero->id) }}" class="glyphicon glyphicon-edit"></a></td>
                 <td>
                   @if (count($bombero->servicios)==0)
                     {{ Form::open(['route' => ['bombero.destroy', $bombero->id], 'method' => 'DELETE']) }}
