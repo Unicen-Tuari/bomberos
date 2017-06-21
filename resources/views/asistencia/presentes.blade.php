@@ -12,7 +12,7 @@
       {!! Form::open([ 'route' => 'servicio.guardar_presentes', 'class' => 'form-horizontal', 'method' => 'POST']) !!}
 
         {!! Form::hidden('servicio', $servicio) !!}
-
+        
         <div class="form-group bomberosparticipantes">
           {{--  esto tengo que acomodar: todos los bomberos--}}
           @foreach($bomberos as $bombero)
