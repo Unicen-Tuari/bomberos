@@ -8,6 +8,7 @@ use Validator;
 use App\Bombero;
 use App\Material;
 use App\Vehiculo;
+use App\Ingreso;
 use App\Http\Requests\BomberoRequest;
 use Carbon\Carbon;
 use \DateTimeZone;
@@ -45,6 +46,11 @@ class BomberoController extends Controller
   {
     if(Auth::user()->admin){
       $bombero=Bombero::find($id);
+      $ingreso=$bombero->ingresado;
+      if($ingreso){
+        $ingresado=Ingreso::find($ingreso->id);
+        $ingresado->delete();
+      }
       $bombero->delete();
       return redirect()->route('bombero.index');
     }

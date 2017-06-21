@@ -42,7 +42,7 @@ class ServicioController extends Controller
       if(Auth::user()->admin){
         $data=$request->all();//obtengo todos los atributos
         $servicio=new Servicio;
-
+        $servicio->num_servicio=$data['num_servicio'];
         $servicio->tipo_servicio_id=$data['tipo'];
         $servicio->tipo_alarma=$data['tipo_alarma'];
         $servicio->direccion=$data['direccion'];
@@ -110,9 +110,9 @@ class ServicioController extends Controller
         {
             $vehiculos[$data->id] = 'Nº - '.$data->num_movil;
         }
-        $ultimo=Servicio::select('id')->orderBy('id','desc')->first();
+        $ultimo=Servicio::select('num_servicio')->orderBy('num_servicio','desc')->first();
         if($ultimo){
-          $ultimo=$ultimo->id+1;
+          $ultimo=$ultimo->num_servicio+1;
         }else {
           $ultimo=1;
         }
@@ -175,6 +175,12 @@ class ServicioController extends Controller
       if(Auth::user()->admin){
       if(array_key_exists($data['tipo'], config('selects.tipoServicio'))){
         $servicio=new Servicio;
+        $ultimo=Servicio::select('num_servicio')->orderBy('num_servicio','desc')->first();
+        if($ultimo){
+          $servicio->num_servicio=$ultimo->num_servicio+1;
+        }else {
+          $servicio->num_servicio=1;
+        }
         $servicio->tipo_servicio_id=$data['tipo'];
         $servicio->tipo_alarma=$data['tipo_alarma'];
         $servicio->direccion=$data['direccion'];
@@ -263,6 +269,7 @@ class ServicioController extends Controller
       if(Auth::user()->admin){
         $data=$request->all();//obtengo todos los atributos
         $servicio= Servicio::find($id);
+        $servicio->num_servicio=$data['num_servicio'];
         $servicio->tipo_servicio_id=$data['tipo'];
         $servicio->tipo_alarma=$data['tipo_alarma'];
         $servicio->direccion=$data['direccion'];

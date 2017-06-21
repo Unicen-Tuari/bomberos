@@ -14,6 +14,7 @@ class CreateServicioTable extends Migration
     {
         Schema::create('servicio', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('num_servicio')->unsigned();
             $table->integer('tipo_servicio_id')->unsigned();
             $table->string('tipo_alarma', 20)->nullable();
             $table->string('autor_llamada', 100)->nullable();

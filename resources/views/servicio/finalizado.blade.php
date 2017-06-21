@@ -12,9 +12,9 @@
     {!! Form::open([ 'route' => 'servicio.store', 'class' => 'form-horizontal', 'method' => 'POST']) !!}
 
       @php
-      $tipo_alarma=$tipo=$llamada=$direccion=$superficie=$cuartel=$reconocimiento=null;
+      $tipo_alarma=$tipo=$llamada=$direccion=$cuartel=$reconocimiento=null;
       $disposiciones=$jefe=$oficial=$jcuerpo=$bombero=$involucrados=$primero=null;
-      $ilesos=$lesionados=$quemados=$muertos=$otros=$combustible=0;
+      $ilesos=$lesionados=$quemados=$muertos=$otros=$superficie=$combustible=0;
       $numero=$ultimo;
       $hora=\Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires'))->format('d/m/Y H:i:s');
       $salida=\Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires'))->addSeconds(30)->format('d/m/Y H:i:s');
