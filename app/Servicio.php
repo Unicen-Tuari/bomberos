@@ -8,7 +8,7 @@ class Servicio extends Model
 {
   protected $table = 'servicio';
   protected $fillable = ['tipo_servicio_id, tipo_alarma, direccion, descripcion,
-            hora_alarma, hora_salida, hora_regreso, ilesos, otros, muertos,
+            hora_alarma, hora_salida, hora_regreso, ilesos, otros, Superficie, muertos,
             quemados, lesionados, combustible, disposiciones, reconocimiento'];
 
   public function ScopeTipo_s($query,$tipo)

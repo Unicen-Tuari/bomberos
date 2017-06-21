@@ -20,7 +20,7 @@
       $quemados=$servicio->quemados;
       $muertos=$servicio->muertos;
       $otros=$servicio->otros;
-      $superficie=$servicio->superficie;
+      $superficie=$servicio->Superficie;
       $cuartel=$servicio->cuartel_colaborador;
       $combustible=$servicio->combustible;
       $reconocimiento=$servicio->reconocimiento;
