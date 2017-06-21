@@ -52,6 +52,7 @@ class ServicioController extends Controller
         $servicio->quemados=$data['quemados'];
         $servicio->muertos=$data['muertos'];
         $servicio->otros=$data['otros'];
+        $servicio->Superficie=$data['superficie'];
         $servicio->combustible=$data['combustible'];
         $servicio->reconocimiento=$data['reconocimiento'];
         $servicio->disposiciones=$data['disposiciones'];
@@ -271,6 +272,7 @@ class ServicioController extends Controller
         $servicio->quemados=$data['quemados'];
         $servicio->muertos=$data['muertos'];
         $servicio->otros=$data['otros'];
+        $servicio->Superficie=$data['superficie'];
         $servicio->combustible=$data['combustible'];
         $servicio->reconocimiento=$data['reconocimiento'];
         $servicio->disposiciones=$data['disposiciones'];

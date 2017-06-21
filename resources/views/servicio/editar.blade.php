@@ -22,7 +22,7 @@
     $quemados=$servicio->quemados;
     $muertos=$servicio->muertos;
     $otros=$servicio->otros;
-    $superficie=$servicio->superficie;
+    $superficie=$servicio->Superficie;
     $cuartel=$servicio->cuartel_colaborador;
     $combustible=$servicio->combustible;
     $reconocimiento=$servicio->reconocimiento;
@@ -37,7 +37,7 @@
 
     {!! Form::hidden('finalizar', 0) !!}
     @include('servicio.formcompleto')
-    
+
     <div class="col-sm-1 col-sm-offset-5">
       <button type="submit" class="btn btn-primary">
           <i class="glyphicon glyphicon-ok"></i> Finalizar
