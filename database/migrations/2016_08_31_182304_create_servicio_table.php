@@ -16,7 +16,7 @@ class CreateServicioTable extends Migration
             $table->increments('id');
             $table->integer('num_servicio')->unsigned();
             $table->integer('tipo_servicio_id')->unsigned();
-            $table->string('tipo_alarma', 20)->nullable();
+            $table->integer('tipo_alarma')->unsigned();
             $table->string('autor_llamada', 100)->nullable();
             $table->integer('lesionados')->unsigned()->default(0);
             $table->integer('muertos')->unsigned()->default(0);
@@ -36,6 +36,7 @@ class CreateServicioTable extends Migration
             $table->integer('oficial')->unsigned()->nullable();
             $table->integer('jefe_de_cuerpo')->unsigned()->nullable();
             $table->timestamps();
+            $table->unique('num_servicio');
             $table->foreign('jefe_servicio')->references('id')->on('bombero')->onDelete('cascade');
             $table->foreign('oficial')->references('id')->on('bombero')->onDelete('cascade');
             $table->foreign('jefe_de_cuerpo')->references('id')->on('bombero')->onDelete('cascade');

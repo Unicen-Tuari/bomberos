@@ -1,7 +1,12 @@
-    <div class="form-group">
+    <div class="form-group {{$errors->has('num_servicio') ? ' has-error' : ''}}">
       {!! Form::label('num_servicio', 'Nº servicio:',['class' => 'col-sm-8 control-label']) !!}
       <div class="col-sm-2">
         {!! Form::text('num_servicio', $numero, ['class' => 'form-control']) !!}
+        @if ($errors->has('num_servicio'))
+            <span class="help-block">
+                <strong>{{$errors->first('num_servicio')}}</strong>
+            </span>
+        @endif
       </div>
     </div>
     @if(strpos(Request::url(), 'servicio/activo'))
@@ -27,7 +32,7 @@
             {{Form::select('tipo_alarma', config('selects.tipoAlarma'),$tipo_alarma,['class' => 'form-control'])}}
             @if ($errors->has('tipo_alarma'))
                 <span class="help-block">
-                    <strong>{{$errors->first('tipo_alarma')}}</strong>
+                    <strong>Elige un tipo de alarma</strong>
                 </span>
             @endif
           </div>

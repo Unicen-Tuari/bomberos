@@ -26,7 +26,7 @@
       <div class="form-group {{ $errors->has('num_movil') ? ' has-error' : '' }}">
         {!! Form::label('num_movil', 'Numero de Movil',['class' => 'col-md-4 control-label']) !!}
         <div class="col-md-6">
-            {!! Form::text('num_movil', 1, ['class' => 'form-control']) !!}
+            {!! Form::text('num_movil', null, ['class' => 'form-control','placeholder'=>'1']) !!}
 
             @if ($errors->has('num_movil'))
                 <span class="help-block">

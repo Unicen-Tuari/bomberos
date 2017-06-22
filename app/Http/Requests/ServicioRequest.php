@@ -37,6 +37,7 @@ class ServicioRequest extends Request
           return [
               'tipo' => 'required|max:11',
               'tipo_alarma' => 'required_if:tipo,1,2,3',
+              'num_servicio'=> 'required|unique:servicio',
               'autor_llamada' => 'max:100',
               'direccion' => 'required|max:255',
               'ilesos' => 'required_if:finalizar,true|numeric|min:0',
