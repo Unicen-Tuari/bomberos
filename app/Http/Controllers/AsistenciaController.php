@@ -29,9 +29,14 @@ class AsistenciaController extends Controller
     public function rango(AsistenciaRequest $request)
     {
       if(Auth::user()->admin){
+        list($dia, $mes, $año) = explode('/', $request['inicio']);
+        $request['inicio']=$año.'-'.$mes.'-'.$dia;
+        list($dia, $mes, $año) = explode('/', $request['fin']);
+        $request['fin']=$año.'-'.$mes.'-'.$dia;
         $reuniones=asistencia::select('fecha_reunion')->orderBy('fecha_reunion', 'asc')->groupBy('fecha_reunion')->having('fecha_reunion','>=', $request['inicio'])->having('fecha_reunion','<=', $request['fin'])->limit(10)->get();
          return view('asistencia/listar',compact('reuniones'));
       }
+      return view('auth/alerta');
     }
 
     public function create()
@@ -97,6 +102,7 @@ class AsistenciaController extends Controller
         }
         return redirect()->route('asistencia.index');
       }
+      return view('auth/alerta');
     }
 
 
@@ -109,5 +115,6 @@ class AsistenciaController extends Controller
         }
         return redirect()->route('asistencia.index');
       }
+      return view('auth/alerta');
     }
 }
