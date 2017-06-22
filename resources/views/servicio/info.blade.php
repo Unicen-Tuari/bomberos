@@ -10,7 +10,7 @@
     <div class="panel-body form-horizontal">
 
       @php
-      $numero=$servicio->id;
+      $numero=$servicio->num_servicio;
       $tipo=$servicio->tipo_servicio_id;
       $tipo_alarma=$servicio->tipo_alarma;
       $llamada=$servicio->autor_llamada;

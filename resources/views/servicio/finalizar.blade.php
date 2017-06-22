@@ -12,11 +12,11 @@
     {!! Form::open([ 'route' => ['servicio.update', $servicio], 'class' => 'form-horizontal', 'method' => 'PUT']) !!}
 
       @php
-      $superficie=$cuartel=$reconocimiento=$disposiciones=$jefe=$oficial=$jcuerpo=$bombero=$involucrados=$primero=null;
-      $ilesos=$lesionados=$quemados=$muertos=$otros=$combustible=0;
+      $cuartel=$reconocimiento=$disposiciones=$jefe=$oficial=$jcuerpo=$bombero=$involucrados=$primero=null;
+      $superficie=$ilesos=$lesionados=$quemados=$muertos=$otros=$combustible=0;
       @endphp
       @php
-      $numero=$servicio->id;
+      $numero=$servicio->num_servicio;
       $tipo=$servicio->tipo_servicio_id;
       $llamada=$servicio->autor_llamada;
       $direccion=$servicio->direccion;

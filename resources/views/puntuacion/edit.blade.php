@@ -1,5 +1,6 @@
 
 @php
+  dd($puntuacion);
   $bombero=$puntuacion->bombero;
   $ao_acad=$puntuacion->ao_acad;
   $dedicacion=$puntuacion->dedicacion;
