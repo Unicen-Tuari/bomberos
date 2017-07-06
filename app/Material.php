@@ -30,6 +30,8 @@ class Material extends Model
   {
     if ($movil>0) {
       $query->where('vehiculo_id',$movil);
+    }elseif ($movil==-1) {
+      $query->whereNull('vehiculo_id');
     }
   }
 

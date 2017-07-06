@@ -24,6 +24,7 @@ class MaterialController extends Controller
       $datas=Vehiculo::all(['id', 'num_movil']);
       $vehiculos = array();
       $vehiculos[0] = "Nº - Movil";
+      $vehiculos[-1] = "En Depósito";
       foreach ($datas as $data)
       {
           $vehiculos[$data->id] = 'Nº - '.$data->num_movil;
@@ -35,7 +36,7 @@ class MaterialController extends Controller
       $material=Material::find($id);
       $datas=Vehiculo::all(['id', 'num_movil']);
       $vehiculos = array();
-      $vehiculos['']='En depósito'; 
+      $vehiculos['']='En depósito';
       foreach ($datas as $data)
       {
           $vehiculos[$data->id] = 'Nº - '.$data->num_movil;

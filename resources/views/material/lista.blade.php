@@ -15,7 +15,7 @@
             {{Form::select('rubro', [0=>'RUBRO'] + config('selects.rubro'),null, ['class' => 'form-control'])}}
           </div>
             <div class="col-sm-3">
-              {{Form::select('movil', $vehiculos,null, ['class' => 'form-control'])}}
+              {{Form::select('movil',$vehiculos,null, ['class' => 'form-control'])}}
             </div>
           <div class="col-sm-4">
             {{Form::text('material', null, ['placeholder'=>"Buscar material", 'class' => 'form-control'])}}
@@ -76,7 +76,7 @@
           <br>
         </table>
         <div class="text-center">
-          {{ $materiales->appends(Request::only(['legajo']))->links()}}
+          {{ $materiales->appends(Request::all())->links()}}
         </div>
     </div>
   </div>

@@ -26,6 +26,12 @@ class Vehiculo extends Model
     }
   }
 
+  public function ScopeEstado($query,$estado)
+  {
+    if ($estado>0) {
+      $query->where('estado',$estado);
+    }
+  }
   public function materiales(){
     return $this->hasMany(Material::class);
   }
