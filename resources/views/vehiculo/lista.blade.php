@@ -9,12 +9,20 @@
     </div>
 
     <div class="col-sm-12">
-      <div class="col-md-5 col-sm-12 text-right" style="padding-top: 20px;">
+      <div class="col-md-6 col-sm-12 text-right" style="padding-top: 20px;">
         {{Form::model(Request::all(),['route' => 'vehiculo.index', 'class' => 'form-horizontal', 'method' => 'GET'])}}
-            <div class="col-sm-5">
-              {{Form::select('movil', $moviles,null, ['class' => 'form-control'])}}
-            </div>
-          <div class="col-sm-6">
+          <div class="col-sm-3 {{ $errors->has('movil') ? ' has-error' : '' }}">
+            {{Form::text('movil', null, ['placeholder'=>"1", 'class' => 'form-control'])}}
+            @if ($errors->has('movil'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('movil') }}</strong>
+                </span>
+            @endif
+          </div>
+          <div class="col-sm-3">
+            {{Form::select('estado',[0=>'Estado'] +config('selects.estadovehiculo'), null, ['class' => 'form-control'])}}
+          </div>
+          <div class="col-sm-5">
             {{Form::text('patente', null, ['placeholder'=>"Patente", 'class' => 'form-control'])}}
           </div>
           <div class="col-sm-1">
