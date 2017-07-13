@@ -401,5 +401,6 @@ class ServicioController extends Controller
         $servicio->delete();
         return redirect()->route('servicio.index');
       }
+      return view('auth/alerta');
     }
 }

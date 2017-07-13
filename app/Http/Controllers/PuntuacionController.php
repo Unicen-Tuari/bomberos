@@ -25,22 +25,16 @@ class PuntuacionController extends Controller
 
     public function anual()
     {
-        if(Auth::user()->admin){
-          $bomberos=Bombero::getBomberos();
-          unset ($bomberos[0]);//elimino el primer elemneto ya que no es un bombero y para esta tpl no es util
-          $bombero=key($bomberos);
-          return view('puntuacion/listarxanio',compact('bomberos','bombero'));
-        }
-        return view('auth/alerta');
+        $bomberos=Bombero::getBomberos();
+        unset ($bomberos[0]);//elimino el primer elemneto ya que no es un bombero y para esta tpl no es util
+        $bombero=key($bomberos);
+        return view('puntuacion/listarxanio',compact('bomberos','bombero'));
     }
 
     public function tabla_anual($bombero,$inicio,$fin)
     {
-        if(Auth::user()->admin){
-          $bombero=Bombero::find($bombero);
-          return view('puntuacion/tablaanual',compact('bombero','inicio','fin'));
-        }
-        return view('auth/alerta');
+        $bombero=Bombero::find($bombero);
+        return view('puntuacion/tablaanual',compact('bombero','inicio','fin'));
     }
 
     public function create()
