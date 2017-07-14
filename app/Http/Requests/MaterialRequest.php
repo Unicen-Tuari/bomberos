@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
-use App\Material;
 
 class MaterialRequest extends Request
 {
@@ -24,7 +23,6 @@ class MaterialRequest extends Request
      */
      public function rules()
      {
-       $material = Material::find($this->material);
        switch($this->method())
        {
          case 'GET':

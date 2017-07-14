@@ -12,7 +12,7 @@
       {!! Form::open([ 'route' => 'servicio.iniciado', 'class' => 'form-horizontal', 'method' => 'POST']) !!}
 
 
-        {!! Form::hidden('finalizar', 1) !!}
+        {!! Form::hidden('finalizar', 0) !!}
 
         <div class="form-group">
           {!! Form::label('Tipo', 'Tipo de servicio',['class' => 'col-md-2 col-md-offset-2 control-label']) !!}
@@ -81,7 +81,6 @@
             </button>
           </div>
         </div>
-
       {!! Form::close() !!}
     </div>
   </div>

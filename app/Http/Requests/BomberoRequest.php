@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
-use App\Bombero;
 
 class BomberoRequest extends Request
 {
@@ -24,7 +23,6 @@ class BomberoRequest extends Request
      */
     public function rules()
     {
-      $bombero = Bombero::find($this->bombero);
       switch($this->method())
       {
         case 'GET':
@@ -50,7 +48,7 @@ class BomberoRequest extends Request
           return [
               'nombre' => 'required|max:255',
               'apellido' => 'required|max:255',
-              'nro_legajo' => 'required|min:6|numeric|unique:bombero,nro_legajo,'.$bombero->id,
+              'nro_legajo' => 'required|min:6|numeric|unique:bombero,nro_legajo,'.$this->bombero,//$this->bombero = id bombero
               'jerarquia' => 'required|max:255',
               'direccion' => 'required|max:255',
               'telefono' => 'required|min:6',

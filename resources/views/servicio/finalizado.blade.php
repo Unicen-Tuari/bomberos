@@ -20,7 +20,8 @@
       $salida=\Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires'))->addSeconds(30)->format('d/m/Y H:i:s');
       $regreso=\Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires'))->addSeconds(60)->format('d/m/Y H:i:s');
       @endphp
-
+      
+      {!! Form::hidden('finalizar', 1) !!}
       @include('servicio.formcompleto')
 
       <div class="col-sm-1 col-sm-offset-5">

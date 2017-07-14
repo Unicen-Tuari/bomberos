@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
-use App\Servicio;
 
 class ServicioRequest extends Request
 {
@@ -14,7 +13,7 @@ class ServicioRequest extends Request
      */
     public function authorize()
     {
-        return "1";
+        return true;
     }
 
     /**
@@ -24,7 +23,6 @@ class ServicioRequest extends Request
      */
     public function rules()
     {
-      $bombero = Servicio::find($this->bombero);
       switch($this->method())
       {
         case 'GET':
@@ -37,26 +35,26 @@ class ServicioRequest extends Request
           return [
               'tipo' => 'required|max:11',
               'tipo_alarma' => 'required_if:tipo,1,2,3',
-              'num_servicio'=> 'required|unique:servicio',
+              'num_servicio'=> 'required_if:finalizar,1|unique:servicio',
               'autor_llamada' => 'max:100',
               'direccion' => 'required|max:255',
-              'ilesos' => 'required_if:finalizar,true|numeric|min:0',
-              'lesionados' => 'required_if:finalizar,true|numeric|min:0',
-              'quemados' => 'required_if:finalizar,true|numeric|min:0',
-              'muertos' => 'required_if:finalizar,true|numeric|min:0',
-              'otros' => 'required_if:finalizar,true|numeric|min:0',
-              'combustible' => 'required_if:finalizar,true|numeric|min:0',
-              'reconocimiento' => 'required_if:finalizar,true|min:5',
-              'disposiciones' => 'required_if:finalizar,true|min:5',
+              'ilesos' => 'required_if:finalizar,1|numeric|min:0',
+              'lesionados' => 'required_if:finalizar,1|numeric|min:0',
+              'quemados' => 'required_if:finalizar,1|numeric|min:0',
+              'muertos' => 'required_if:finalizar,1|numeric|min:0',
+              'otros' => 'required_if:finalizar,1|numeric|min:0',
+              'combustible' => 'required_if:finalizar,1|numeric|min:0',
+              'reconocimiento' => 'required_if:finalizar,1|min:5',
+              'disposiciones' => 'required_if:finalizar,1|min:5',
               'alarma' => 'required|date_format:d/m/Y H:i:s',
               'cuartel_colaborador' => 'max:20',
               'superficie' => 'numeric|required_if:tipo,11|min:0',
-              'salida' => 'required_if:finalizar,true|date_format:d/m/Y H:i:s|after:alarma',
-              'regreso' => 'required_if:finalizar,true|date_format:d/m/Y H:i:s|after:salida',
-              'bombero' => 'required_if:finalizar,true|exists:bombero,id',
-              'jefe_servicio' => 'required_if:finalizar,true|exists:bombero,id',
-              'oficial' => 'required_if:finalizar,true|exists:bombero,id',
-              'jefe_de_cuerpo' => 'required_if:finalizar,true|exists:bombero,id',
+              'salida' => 'required_if:finalizar,1|date_format:d/m/Y H:i:s|after:alarma',
+              'regreso' => 'required_if:finalizar,1|date_format:d/m/Y H:i:s|after:salida',
+              'bombero' => 'required_if:finalizar,1|exists:bombero,id',
+              'jefe_servicio' => 'required_if:finalizar,1|exists:bombero,id',
+              'oficial' => 'required_if:finalizar,1|exists:bombero,id',
+              'jefe_de_cuerpo' => 'required_if:finalizar,1|exists:bombero,id',
           ];
         }
 
@@ -65,6 +63,7 @@ class ServicioRequest extends Request
           return [
               'tipo' => 'required|max:11',
               'tipo_alarma' => 'required',
+              'num_servicio'=> 'required|unique:servicio,num_servicio,'.$this->servicio,//$this->servicio = id servicio
               'autor_llamada' => 'max:100',
               'direccion' => 'required|max:255',
               'ilesos' => 'required|numeric',
