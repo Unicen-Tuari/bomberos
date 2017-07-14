@@ -24,6 +24,19 @@
               </div>
             </div>
 
+            <div class="form-group {{ $errors->has('apellido') ? ' has-error' : '' }}">
+              {!! Form::label('apellido', 'Apellido',['class' => 'col-md-4 control-label']) !!}
+              <div class="col-md-6">
+                  {!! Form::text('apellido', null, ['class' => 'form-control']) !!}
+
+                  @if ($errors->has('apellido'))
+                      <span class="help-block">
+                          <strong>{{ $errors->first('apellido') }}</strong>
+                      </span>
+                  @endif
+              </div>
+            </div>
+
             <div class="form-group{{ $errors->has('usuario') ? ' has-error' : '' }}">
               {!! Form::label('usuario', 'Nombre de usuario',['class' => 'col-md-4 control-label']) !!}
               <div class="col-md-6">

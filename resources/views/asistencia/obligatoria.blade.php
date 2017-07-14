@@ -41,7 +41,7 @@
         </div>
 
 
-        <div class="form-group">
+        <div class="form-group  col-lg-6">
             <button type="submit" class="btn btn-primary pull-right">
                 <i class="glyphicon glyphicon-bell"></i> Finalizar
             </button>

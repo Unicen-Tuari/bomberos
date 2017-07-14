@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
-use App\Vehiculo;
 
 class VehiculoRequest extends Request
 {
@@ -24,7 +23,6 @@ class VehiculoRequest extends Request
      */
     public function rules()
     {
-      $vehiculo = Vehiculo::find($this->vehiculo);
       switch($this->method())
       {
         case 'GET':{
@@ -48,8 +46,8 @@ class VehiculoRequest extends Request
         case 'PUT':
         {
           return [
-              'num_movil'=> 'required|numeric|min:0|unique:vehiculo',
-              'patente' => array('required_if:estado,1','min:6','unique:vehiculo,patente,'.$vehiculo->id, 'regex:/^\w{2}\s\d{3}\s\w{2}$|\w{3}\s\d{3}$/'),
+              'num_movil'=> 'required|numeric|min:0|unique:vehiculo',                 //$this->vehiculo = id vehiculo
+              'patente' => array('required_if:estado,1','min:6','unique:vehiculo,patente,'.$this->vehiculo, 'regex:/^\w{2}\s\d{3}\s\w{2}$|\w{3}\s\d{3}$/'),
               'estado' => array('required'),
           ];
         }

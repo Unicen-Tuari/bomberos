@@ -14,7 +14,7 @@ class CreateServicioTable extends Migration
     {
         Schema::create('servicio', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('num_servicio')->unsigned();
+            $table->integer('num_servicio')->unsigned()->unique();;
             $table->integer('tipo_servicio_id')->unsigned();
             $table->integer('tipo_alarma')->unsigned();
             $table->string('autor_llamada', 100)->nullable();
@@ -36,7 +36,6 @@ class CreateServicioTable extends Migration
             $table->integer('oficial')->unsigned()->nullable();
             $table->integer('jefe_de_cuerpo')->unsigned()->nullable();
             $table->timestamps();
-            $table->unique('num_servicio');
             $table->foreign('jefe_servicio')->references('id')->on('bombero')->onDelete('cascade');
             $table->foreign('oficial')->references('id')->on('bombero')->onDelete('cascade');
             $table->foreign('jefe_de_cuerpo')->references('id')->on('bombero')->onDelete('cascade');
