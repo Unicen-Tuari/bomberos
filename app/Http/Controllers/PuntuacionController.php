@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\asistencia;
 use App\Bombero;
 use App\Servicio;
+use App\Variables;
 use App\Puntuacion;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,6 +22,23 @@ class PuntuacionController extends Controller
     public function index()
     {
         return view('puntuacion/lista');
+    }
+
+    public function variables()
+    {
+        $var=Variables::first();
+        $asistencia=$var->asistencia;
+        $accidentales=$var->accidentales;
+        $guardias=$var->guardias;
+        return view('puntuacion/variables',compact('asistencia','accidentales','guardias'));
+    }
+
+    public function modificaar_variables(Request $request)
+    {
+        $data=$request->all();
+        $var=Variables::first();
+        $var->update($data);
+        return redirect()->route('puntuacion.index');
     }
 
     public function anual()
@@ -48,6 +66,7 @@ class PuntuacionController extends Controller
     public function puntuacionmes($mes,$año,$bombero)
     {
         if(Auth::user()->admin){
+          $var=Variables::first();
           $mesactual=\Carbon\Carbon::now()->format('m');
           $añoactual=\Carbon\Carbon::now()->format('Y');
           if($año<$añoactual || ($año==$añoactual && $mes<$mesactual)){
@@ -63,17 +82,19 @@ class PuntuacionController extends Controller
             $asistencia=$bombero->asistenciasmes($mes,$año);
             $puntasis=0;
             if ($dias!=0) {
-              $puntasis=(10/$dias)*$asistencia;
+              $puntasis=($var->asistencia/$dias)*$asistencia;
             }
             $puntaccid=0;
-            if ($cantserv>6) {
-              $puntaccid=(35/$cantserv)*$accid;
+            if ($cantserv>=($var->accidentales/5)) {//$var->accidentales/5 es la cantidad de dias minimos por el tema de no poder restar menos de 5 puntos por ley
+              $puntaccid=($var->accidentales/$cantserv)*$accid;
             }elseif ($accid!=0) {
-              $puntaccid=35-(5*($cantserv-$accid));
+              $puntaccid=$var->accidentales-(5*($cantserv-$accid));
             }
             $puntguar=0;
-            if ($guardia!=0) {
-                $puntguar=(10/$cantguar)*$guardia;
+            if ($cantguar>=($var->guardias/5)) {
+              $puntguar=($var->guardias/$cantguar)*$guardia;
+            }elseif($guardia!=0) {
+                $puntguar=$var->guardias-(5*($cantguar-$guardia));
             }
             return view('puntuacion/alta',
             compact('bombero','cantserv','cantguar','mes','año','dias','accid','guardia','asistencia','puntasis','puntaccid','puntguar'));
@@ -124,6 +145,7 @@ class PuntuacionController extends Controller
     public function edit($id)
     {
       if(Auth::user()->admin){
+        $var=Variables::first();
         $puntuacion=Puntuacion::find($id);
         $mes=\Carbon\Carbon::parse($puntuacion->fecha)->format('m');
         $año=\Carbon\Carbon::parse($puntuacion->fecha)->format('Y');
@@ -143,17 +165,19 @@ class PuntuacionController extends Controller
         $asistencia=$puntuacion->bombero->asistenciasmes($mes,$año);
         $puntasis=0;
         if ($dias!=0) {
-          $puntasis=(10/$dias)*$asistencia;
+          $puntasis=($var->asistencia/$dias)*$asistencia;
         }
         $puntaccid=0;
-        if ($cantserv>6) {
-          $puntaccid=(35/$cantserv)*$accid;
+        if ($cantserv>=($var->accidentales/5)) {//$var->accidentales/5 es la cantidad de dias minimos por el tema de no poder restar menos de 5 puntos por ley
+          $puntaccid=($var->accidentales/$cantserv)*$accid;
         }elseif ($accid!=0) {
-          $puntaccid=35-(5*($cantserv-$accid));
+          $puntaccid=$var->accidentales-(5*($cantserv-$accid));
         }
         $puntguar=0;
-        if ($guardia!=0) {
-            $puntguar=(10/$cantguar)*$guardia;
+        if ($cantguar>=($var->guardias/5)) {
+          $puntguar=($var->guardias/$cantguar)*$guardia;
+        }elseif($guardia!=0) {
+            $puntguar=$var->guardias-(5*($cantguar-$guardia));
         }
         return view('puntuacion/edit',
         compact('puntuacion','cantserv','cantguar','dias','accid','guardia',
