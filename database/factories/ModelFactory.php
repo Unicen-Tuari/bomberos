@@ -70,7 +70,7 @@ $factory->define(App\Servicio::class, function (Faker\Generator $faker) {
 $factory->define(App\Vehiculo::class, function (Faker\Generator $faker){
     $letras = $faker->lexify('???');
     $numeros = $faker->numerify('###');
-    $number_vehicle = $faker->numberBetween($min = 50, $max =100);
+    $number_vehicle = $faker->numberBetween($min = 100, $max = 200);
   return[
     'patente' => $letras . ' ' . $numeros,
     'num_movil' => $number_vehicle,
