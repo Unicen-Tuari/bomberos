@@ -19,11 +19,8 @@ class ABMVehiculoTest extends DuskTestCase
     function setUp()
     {
       parent::setUp();
-      $this->vehiculo = Vehiculo::create(['patente' => 'AAA 999','num_movil' => '30','estado'=>'2','detalle'=>'autobomba']);
-      $this->vehiculoEdit = Vehiculo::create(['patente' => 'EEE 999','num_movil' => '31','estado'=>'2','detalle'=>'autobomba']);
-      //$this->vehiculo = factory(Vehiculo::class)->create(['patente' => 'WR 98 PO','num_movil' => '30','estado'=>'1','detalle'=>'autobomba']);
-      //$this->vehiculoEdit = factory(Vehiculo::class)->create(['patente' => 'WRO 988','num_movil' => '27','estado'=>'2','detalle'=>'autobomba']);
-      //Vehiculo::create(['patente' => 'WR 989 PO','num_movil' => '11','estado'=>'1','detalle'=>'autobomba']);
+      $this->vehiculo = factory(Vehiculo::class)->make();
+      $this->vehiculoEdit = factory(Vehiculo::class)->make();
       $this->usuario = User::find(1)->usuario;
       $this->password = 'nico1234';
     }
@@ -40,17 +37,6 @@ class ABMVehiculoTest extends DuskTestCase
      * @return void
      */
 
-     /*public function testLoginUser()
-     {
-       $user = User::find(1);
-       $this->browse(function ($browser) use ($user) {
-       $browser->loginAs($user)
-               ->visit('/vehiculo/create')
-               ->assertSee('vehiculo');
-     });
-   }*/
-
-
     public function testCreateVehicle()
     {
         $this->browse(function (Browser $browser) {
@@ -63,7 +49,7 @@ class ABMVehiculoTest extends DuskTestCase
                 ->select('estado',$this->vehiculo->estado)
                 ->type('detalle',$this->vehiculo->detalle)
                 ->press('Registrar')
-                ->assertSee('Buscar');
+                ->assertSee('Lista de vehiculos');
         });
     }
 
@@ -71,22 +57,19 @@ class ABMVehiculoTest extends DuskTestCase
     {
       $this->browse(function (browser $browser){
       $browser->visit('/vehiculo/9/edit')
-              ->type('usuario', $this->usuario)
-              ->type('password', $this->password)
-              ->press('Iniciar')
               ->type('patente', $this->vehiculoEdit->patente)
               ->type('num_movil', $this->vehiculoEdit->num_movil)
               ->select('estado',$this->vehiculoEdit->estado)
               ->type('detalle',$this->vehiculoEdit->detalle)
               ->press('Editar')
-              ->assertSee('Buscar');
+              ->assertSee('Lista de vehiculos');
       });
     }
 
-   /*public function testDeleteVehicle()
+  /* public function testDeleteVehicle()
    {
      $this->browse(function(browser $browser){
-     $browser->visit('/vehiculo/9/delete')
+     $browser->visit('/vehiculo')
               ->assertSee('Buscar');
      });
    }*/
