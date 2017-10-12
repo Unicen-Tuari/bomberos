@@ -15,7 +15,6 @@ class ABMVehiculoTest extends DuskTestCase
     private $usuario;
     private $password;
     private $vehiculoEdit;
-    private $pag;
     function setUp()
     {
       parent::setUp();
