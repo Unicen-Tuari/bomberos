@@ -72,8 +72,9 @@ class ABMVehiculoTest extends DuskTestCase
      $patente = strtoupper($this->vehiculo->patente);
      $this->browse(function(browser $browser){
      $browser->visit('/vehiculo')
+             ->click('.glyphicon-trash')
              ->with('.table', function ($table) {
-             $table->assertSee('58');
+             $table->assertSee('Lista de vehiculos');
      });
    });
   }
