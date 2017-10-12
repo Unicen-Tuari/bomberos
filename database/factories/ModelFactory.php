@@ -65,5 +65,16 @@ $factory->define(App\Servicio::class, function (Faker\Generator $faker) {
     'hora_salida' => $salida,
     'hora_regreso' => $regreso,
   ];
+});
 
+$factory->define(App\Vehiculo::class, function (Faker\Generator $faker){
+    $letras = $faker->lexify('???');
+    $numeros = $faker->numerify('###');
+    $number_vehicle = $faker->numberBetween($min = 100, $max = 200);
+  return[
+    'patente' => $letras . ' ' . $numeros,
+    'num_movil' => $number_vehicle,
+    'estado' => 1,
+    'detalle' => 'autobomba',
+  ];
 });
