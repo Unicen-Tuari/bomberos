@@ -15,7 +15,7 @@ class ABMVehiculoTest extends DuskTestCase
     private $usuario;
     private $password;
     private $vehiculoEdit;
-
+    private $pag;
     function setUp()
     {
       parent::setUp();
@@ -55,8 +55,9 @@ class ABMVehiculoTest extends DuskTestCase
 
     public function testModifyVehicle()
     {
+
       $this->browse(function (browser $browser){
-      $browser->visit('/vehiculo/9/edit')
+      $browser->visit('/vehiculo/353/edit')
               ->type('patente', $this->vehiculoEdit->patente)
               ->type('num_movil', $this->vehiculoEdit->num_movil)
               ->select('estado',$this->vehiculoEdit->estado)
@@ -66,11 +67,15 @@ class ABMVehiculoTest extends DuskTestCase
       });
     }
 
-  /* public function testDeleteVehicle()
+  public function testDeleteVehicle()
    {
+     $patente = strtoupper($this->vehiculo->patente);
      $this->browse(function(browser $browser){
      $browser->visit('/vehiculo')
-              ->assertSee('Buscar');
+             ->with('.table', function ($table) {
+             $table->assertSee('58');
      });
-   }*/
+   });
+  }
+
 }
