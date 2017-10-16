@@ -23,7 +23,7 @@ class materialsABM_test extends DuskTestCase
                      ->assertSee('Facundo');
          });
      }
-     public function testAlta()
+     public function testUp()
      {
        $this->browse(function (Browser $browser) {
          $browser->visit('/material/create')
@@ -37,11 +37,20 @@ class materialsABM_test extends DuskTestCase
       });
    }
 
-      public function testModificacion()
+      public function testModify()
       {
         $this->browse(function (Browser $browser) {
-          $browser->visit('/material')
-                  ->assertSee('Nombre');
+          $browser->click('.glyphicon-edit')
+          //->visit('/material/111/edit')
+                  ->clear('nombre')
+                  ->type('nombre', 'pruebaModificacionTest')
+                  ->select('vehiculo_id', '4')
+                  ->select('rubro', '4')
+                  ->clear('detalle')
+                  ->type('detalle', 'Este test verifica la modificacion de un material')
+                  ->press('Editar')
+                  ->visit('/material')
+                  ->assertSee('pruebaModificacionTest');
 
        });
     }
@@ -50,7 +59,9 @@ class materialsABM_test extends DuskTestCase
     {
       $this->browse(function (Browser $browser) {
         $browser->visit('/material')
-                ->assertSee('Nombre');
+                ->click('.glyphicon-trash')
+                ->visit('/material')
+                ->assertDontSee('pruebaModificacionTest');
 
      });
    }
