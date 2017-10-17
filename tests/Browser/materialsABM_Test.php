@@ -41,6 +41,8 @@ class materialsABM_test extends DuskTestCase
                  ->type('detalle', 'Este test verifica el alta de un material')
                  ->press('Registrar')
                  ->assertSee('pruebaTest');
+                 $this->usuarioAdmin->delete();
+
       });
    }
 
@@ -58,6 +60,8 @@ class materialsABM_test extends DuskTestCase
                 ->press('Editar')
                 ->visit('/material')
                 ->assertSee('pruebaModificacionTest');
+                $this->usuarioAdmin->delete();
+
      });
    }
 
@@ -68,7 +72,10 @@ class materialsABM_test extends DuskTestCase
                 ->click('.glyphicon-trash')
                 ->visit('/material')
                 ->assertDontSee('pruebaModificacionTest');
+                $this->usuarioAdmin->delete();
+
 
      });
    }
+
 }
