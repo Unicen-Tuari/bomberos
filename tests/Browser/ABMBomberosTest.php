@@ -33,4 +33,29 @@ class ABMBomberosTest extends DuskTestCase
                     ->assertDontSee('required');
         });
     }
+
+    public function testBomberoModificacion()
+    {
+      //$bomberito = factory(Bombero::class)->make();
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/bombero')
+                    ->click('.glyphicon-edit')
+                    ->press('Editar')
+                    ->assertDontSee('required');
+        });
+    }
+
+    public function testBomberoEliminar()
+    {
+      //$bomberito = factory(Bombero::class)->make();
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/bombero')
+                    ->click('.glyphicon-trash')
+                    ->assertDontSee('required'); //lo podria sacar, porque en si apriori no cambiaria nada en el body. El required se lo deje de lo anterior
+        });
+    }
+
+
+
+
 }
