@@ -14,7 +14,11 @@
     "require-dev": {
         "filp/whoops": "~2.0",
         "fzaninotto/faker": "~1.4",
+<<<<<<< HEAD
         "laravel/dusk": "^1.0",
+=======
+        "laravel/dusk": "^2.0",
+>>>>>>> cae0a375321afff2d8b71c4b6c2d5dc052c4b22a
         "mockery/mockery": "0.9.*",
         "phpunit/phpunit": "~6.0",
         "symfony/css-selector": "3.3.*",
