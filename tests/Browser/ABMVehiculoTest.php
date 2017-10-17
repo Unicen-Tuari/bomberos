@@ -15,19 +15,31 @@ class ABMVehiculoTest extends DuskTestCase
     private $usuario;
     private $password;
     private $vehiculoEdit;
+
     function setUp()
     {
       parent::setUp();
       $this->vehiculo = factory(Vehiculo::class)->make();
       $this->vehiculoEdit = factory(Vehiculo::class)->make();
-      $this->usuario = User::find(1)->usuario;
-      $this->password = 'nico1234';
+      $this->usuarioAdmin=factory(User::class)->create(['admin'=> '1', 'password'=> bcrypt('123456')]);
+      $this->password = '123456';
     }
 
     function tearDown()
     {
         $this->vehiculo->delete();
         $this->vehiculoEdit->delete();
+    }
+
+    public function testLogin()
+    {
+     $this->browse(function (Browser $browser) {
+         $browser->visit('/login')
+                 ->type('usuario', $this->usuarioAdmin->usuario)
+                 ->type('password', '123456')
+                 ->press('Iniciar sesión')
+                 ->assertSee($this->usuarioAdmin->nombre);
+        });
     }
 
     /**
@@ -40,9 +52,6 @@ class ABMVehiculoTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
         $browser->visit('/vehiculo/create')
-                ->type('usuario',$this->usuario)
-                ->type('password',$this->password)
-                ->press('Iniciar')
                 ->type('patente',$this->vehiculo->patente)
                 ->type('num_movil',$this->vehiculo->num_movil)
                 ->select('estado',$this->vehiculo->estado)
@@ -56,7 +65,8 @@ class ABMVehiculoTest extends DuskTestCase
     {
 
       $this->browse(function (browser $browser){
-      $browser->visit('/vehiculo/353/edit')
+      $browser->visit('/vehiculo')
+              ->click('.glyphicon-edit')
               ->type('patente', $this->vehiculoEdit->patente)
               ->type('num_movil', $this->vehiculoEdit->num_movil)
               ->select('estado',$this->vehiculoEdit->estado)
