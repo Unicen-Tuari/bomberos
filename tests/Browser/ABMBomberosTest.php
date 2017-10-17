@@ -36,8 +36,7 @@ class ABMBomberosTest extends DuskTestCase
 
     public function testBomberoModificacion()
     {
-      //$bomberito = factory(Bombero::class)->make();
-        $this->browse(function (Browser $browser) {
+      $this->browse(function (Browser $browser) {
             $browser->visit('/bombero')
                     ->click('.glyphicon-edit')
                     ->press('Editar')
@@ -45,13 +44,12 @@ class ABMBomberosTest extends DuskTestCase
         });
     }
 
-    public function testBomberoEliminar()
+    public function testBomberoBaja()
     {
-      //$bomberito = factory(Bombero::class)->make();
-        $this->browse(function (Browser $browser) {
+      $this->browse(function (Browser $browser) {
             $browser->visit('/bombero')
                     ->click('.glyphicon-trash')
-                    ->assertDontSee('required'); //lo podria sacar, porque en si apriori no cambiaria nada en el body. El required se lo deje de lo anterior
+                    ->assertDontSee('required'); //lo podria sacar??, porque en si, apriori no cambiaria nada en el body. El required se lo deje de lo anterior
         });
     }
 
