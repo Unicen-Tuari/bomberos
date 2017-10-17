@@ -79,6 +79,12 @@ return [
         ],
     ],
 
+    'testing' => [
+            'driver' => 'sqlite',
+            'database' => database_path('testing.sqlite'),
+            'prefix' => '',
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Migration Repository Table
