@@ -54,7 +54,6 @@ class ABMVehiculoTest extends DuskTestCase
 
     public function testModifyVehicle()
     {
-
       $this->browse(function (browser $browser){
       $browser->visit('/vehiculo/353/edit')
               ->type('patente', $this->vehiculoEdit->patente)
@@ -68,7 +67,6 @@ class ABMVehiculoTest extends DuskTestCase
 
   public function testDeleteVehicle()
    {
-     $patente = strtoupper($this->vehiculo->patente);
      $this->browse(function(browser $browser){
      $browser->visit('/vehiculo')
              ->click('.glyphicon-trash')
@@ -77,5 +75,4 @@ class ABMVehiculoTest extends DuskTestCase
      });
    });
   }
-
 }
