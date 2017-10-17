@@ -7,31 +7,38 @@ use Laravel\Dusk\Browser;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Database;
 use App\Bombero;
+use App\User;
 
 class ABMBomberosTest extends DuskTestCase
 {
-    /**
-     * A Dusk test example.
-     *
-     * @return void
-     */
+     private $userTest;
+     private $bomberito;
+
+     function setUp(){
+       parent::setUp();
+       $this->userTest = factory(User::class)->create(['password'=>bcrypt('123456'), 'admin'=>1]);
+       $this->bomberito = factory(Bombero::class)->make();
+     }
+
     public function testBomberoAlta()
     {
-      //$bomberito = factory(Bombero::class)->make();
+
         $this->browse(function (Browser $browser) {
+
             $browser->visit('/bombero/create')
-                    ->type('usuario','gastonp')
+                    ->type('usuario',$this->userTest->usuario)
                     ->type('password','123456')
                     ->press('Iniciar')
-                    ->type('nombre','elnombre')//$bomberito->nombre)
-                    ->type('apellido','elapellido')//$bomberito->apellido)
-                    ->type('nro_legajo','9876')//$bomberito->nro_legajo)
-                    ->type('direccion','ladireccion 1')//$bomberito->direccion)
-                    ->type('telefono','21343245456')//$bomberito->telefono)
-                    ->type('fecha_nacimiento','10/10/1986')//$bomberito->fecha_nacimiento)
+                    ->type('nombre',$this->bomberito->nombre)
+                    ->type('apellido',$this->bomberito->apellido)
+                    ->type('nro_legajo',$this->bomberito->nro_legajo)
+                    ->type('direccion',$this->bomberito->direccion)
+                    ->type('telefono',$this->bomberito->telefono)
+                    ->type('fecha_nacimiento',$this->bomberito->fecha_nacimiento)
                     ->press('Registrar')
                     ->assertDontSee('required');
-        });
+      });
+
     }
 
     public function testBomberoModificacion()
@@ -41,6 +48,8 @@ class ABMBomberosTest extends DuskTestCase
                     ->click('.glyphicon-edit')
                     ->press('Editar')
                     ->assertDontSee('required');
+                    $this->userTest->delete();
+                    $this->bomberito->delete();
         });
     }
 
@@ -49,11 +58,10 @@ class ABMBomberosTest extends DuskTestCase
       $this->browse(function (Browser $browser) {
             $browser->visit('/bombero')
                     ->click('.glyphicon-trash')
-                    ->assertDontSee('required'); //lo podria sacar??, porque en si, apriori no cambiaria nada en el body. El required se lo deje de lo anterior
+                    ->assertDontSee('required');//lo podria sacar??, porque en si, apriori no cambiaria nada en el body. El required se lo deje de lo anterior
+                    $this->userTest->delete();
+                    $this->bomberito->delete();
         });
     }
-
-
-
 
 }
