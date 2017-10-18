@@ -136,9 +136,9 @@ return [
          'postgres' => [
          'driver'    => 'pgsql',
          'host'      => env('DB_HOST', 'localhost:8001'),
-         'database'  => env('DB_DATABASE', 'bomberos'),
-         'username'  => env('DB_USERNAME', 'bomberos'),
-         'password'  => env('DB_PASSWORD', 'secret123!'),
+         'database'  => env('DB_DATABASE', 'forge'),
+         'username'  => env('DB_USERNAME', 'forge'),
+         'password'  => env('DB_PASSWORD', ''),
          'charset'   => 'utf8',
          'collation' => 'utf8_unicode_ci',
          'prefix'    => '',
