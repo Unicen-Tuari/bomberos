@@ -72,7 +72,7 @@ class ABMVehiculoTest extends DuskTestCase
       $browser->visit('/vehiculo')
               ->click('.glyphicon-edit')
               ->type('patente', $this->vehiculoEdit->patente)
-              ->type('num_movil', $this->vehiculoEdit->num_movil)
+              //->type('num_movil', $this->vehiculoEdit->num_movil)
               ->select('estado',$this->vehiculoEdit->estado)
               ->type('detalle',$this->vehiculoEdit->detalle)
               ->press('Editar')

@@ -14,7 +14,7 @@
 $factory->define(App\Bombero::class, function (Faker\Generator $faker) {
 
   return [
-    'nombre' => $faker->name,
+    'nombre' => $faker->firstName,
     'activo'=>1,
     'apellido' => $faker->lastName,
     'nro_legajo' => $faker->randomNumber($nbDigits = 6),
@@ -22,6 +22,7 @@ $factory->define(App\Bombero::class, function (Faker\Generator $faker) {
     'direccion' => $faker->address,
     'telefono' => $faker->e164PhoneNumber,
     'fecha_nacimiento' => $faker->date($format = 'Y-m-d', $max = '1990-01-01'),
+
   ];
 
 });
