@@ -12,7 +12,7 @@ use App\User;
 class ABMVehiculoTest extends DuskTestCase
 {
     private $vehiculo;
-    private $usuario;
+    private $usuarioAdmin;
     private $password;
     private $vehiculoEdit;
 
@@ -27,8 +27,12 @@ class ABMVehiculoTest extends DuskTestCase
 
     function tearDown()
     {
-        $this->vehiculo->delete();
-        $this->vehiculoEdit->delete();
+        if ($this->vehiculoEdit){
+          Vehiculo::destroy($this->vehiculoEdit->id);
+        }
+        if ($this->vehiculo){
+          Vehiculo::destroy($this->vehiculo->id);
+        }
     }
 
     public function testLogin()
