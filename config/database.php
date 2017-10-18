@@ -123,4 +123,26 @@ return [
 
     ],
 
+    'default' => env('DB_DEFAULT', 'postgres'),
+
+     'connections' => [
+
+         'sqlite_testing' => [
+             'driver'   => 'sqlite',
+             'database' => ':memory:',
+             'prefix'   => '',
+         ],
+
+         'postgres' => [
+         'driver'    => 'pgsql',
+         'host'      => env('DB_HOST', 'localhost:8001'),
+         'database'  => env('DB_DATABASE', 'bomberos'),
+         'username'  => env('DB_USERNAME', 'bomberos'),
+         'password'  => env('DB_PASSWORD', 'secret123!'),
+         'charset'   => 'utf8',
+         'collation' => 'utf8_unicode_ci',
+         'prefix'    => '',
+         'strict'    => false,
+         ],
+     ],
 ];
