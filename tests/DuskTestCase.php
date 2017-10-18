@@ -39,5 +39,5 @@ abstract class DuskTestCase extends BaseTestCase
                 ChromeOptions::CAPABILITY, $options
             )
         );
-    }
+    }  
 }
