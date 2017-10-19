@@ -16,34 +16,13 @@ class ABMVehiculoTest extends DuskTestCase
     private $password;
     private $vehiculoEdit;
 
-    function setUp()
+  public function setUp()
     {
       parent::setUp();
       $this->vehiculo = factory(Vehiculo::class)->make();
       $this->vehiculoEdit = factory(Vehiculo::class)->make();
       $this->usuarioAdmin=factory(User::class)->create(['admin'=> '1', 'password'=> bcrypt('123456')]);
       $this->password = '123456';
-    }
-
-    function tearDown()
-    {
-        if ($this->vehiculoEdit){
-          Vehiculo::destroy($this->vehiculoEdit->id);
-        }
-        if ($this->vehiculo){
-          Vehiculo::destroy($this->vehiculo->id);
-        }
-    }
-
-    public function testLogin()
-    {
-     $this->browse(function (Browser $browser) {
-         $browser->visit('/login')
-                 ->type('usuario', $this->usuarioAdmin->usuario)
-                 ->type('password', '123456')
-                 ->press('Iniciar sesión')
-                 ->assertSee($this->usuarioAdmin->nombre);
-        });
     }
 
     /**
@@ -56,6 +35,9 @@ class ABMVehiculoTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
         $browser->visit('/vehiculo/create')
+                ->type('usuario',$this->usuarioAdmin->usuario)
+                ->type('password','123456')
+                ->press('Iniciar')
                 ->type('patente',$this->vehiculo->patente)
                 ->type('num_movil',$this->vehiculo->num_movil)
                 ->select('estado',$this->vehiculo->estado)
@@ -67,7 +49,6 @@ class ABMVehiculoTest extends DuskTestCase
 
     public function testModifyVehicle()
     {
-
       $this->browse(function (browser $browser){
       $browser->visit('/vehiculo')
               ->click('.glyphicon-edit')
@@ -77,6 +58,7 @@ class ABMVehiculoTest extends DuskTestCase
               ->type('detalle',$this->vehiculoEdit->detalle)
               ->press('Editar')
               ->assertSee('Lista de vehiculos');
+              $this->usuarioAdmin->delete();
       });
     }
 
@@ -89,6 +71,17 @@ class ABMVehiculoTest extends DuskTestCase
              ->with('.table', function ($table) {
              $table->assertSee('Lista de vehiculos');
      });
+     $this->usuarioAdmin->delete();
    });
+  }
+
+  public function tearDown()
+  {
+    if ($this->vehiculoEdit){
+        Vehiculo::destroy($this->vehiculoEdit->id);
+    }
+    if ($this->vehiculo){
+        Vehiculo::destroy($this->vehiculo->id);
+    }
   }
 }
