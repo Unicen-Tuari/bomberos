@@ -12,7 +12,7 @@ use App\User;
 class ABMVehiculoTest extends DuskTestCase
 {
     private $vehiculo;
-    private $usuario;
+    private $usuarioAdmin;
     private $password;
     private $vehiculoEdit;
 
@@ -27,8 +27,12 @@ class ABMVehiculoTest extends DuskTestCase
 
     function tearDown()
     {
-        $this->vehiculo->delete();
-        $this->vehiculoEdit->delete();
+        if ($this->vehiculoEdit){
+          Vehiculo::destroy($this->vehiculoEdit->id);
+        }
+        if ($this->vehiculo){
+          Vehiculo::destroy($this->vehiculo->id);
+        }
     }
 
     public function testLogin()
@@ -68,7 +72,7 @@ class ABMVehiculoTest extends DuskTestCase
       $browser->visit('/vehiculo')
               ->click('.glyphicon-edit')
               ->type('patente', $this->vehiculoEdit->patente)
-              ->type('num_movil', $this->vehiculoEdit->num_movil)
+              //->type('num_movil', $this->vehiculoEdit->num_movil)
               ->select('estado',$this->vehiculoEdit->estado)
               ->type('detalle',$this->vehiculoEdit->detalle)
               ->press('Editar')
