@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
-use App\Vehiculo;
 
 class VehiculoRequest extends Request
 {
@@ -46,15 +45,7 @@ class VehiculoRequest extends Request
 
         case 'PUT':
         {
-          $url = explode('/' , $_SERVER['REQUEST_URI']);
-          $url['id_vehiculo'] = $url[2];
-          $id_vehiculo = $url['id_vehiculo'] + 0;
-            if (Vehiculo::find($id_vehiculo)['num_movil'] == $_POST['num_movil']){
-              $num_movil_rule = 'required|numeric|min:0';
-            }
-            else{
-              $num_movil_rule = 'required|numeric|min:0|unique:vehiculo';
-            }
+            $num_movil_rule = 'required|numeric|min:0|unique:vehiculo,num_movil,' . $this->vehiculo;
           return [
               'num_movil'=> $num_movil_rule ,               //$this->vehiculo = id vehiculo
               'patente' => array('required_if:estado,1','min:6','unique:vehiculo,patente,'.$this->vehiculo, 'regex:/^\w{2}\s\d{3}\s\w{2}$|\w{3}\s\d{3}$/'),
