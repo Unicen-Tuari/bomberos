@@ -45,9 +45,8 @@ class VehiculoRequest extends Request
 
         case 'PUT':
         {
-            $num_movil_rule = 'required|numeric|min:0|unique:vehiculo,num_movil,' . $this->vehiculo;
           return [
-              'num_movil'=> $num_movil_rule ,               //$this->vehiculo = id vehiculo
+              'num_movil'=> 'required|numeric|min:0|unique:vehiculo,num_movil,' . $this->vehiculo,  //$this->vehiculo = id vehiculo
               'patente' => array('required_if:estado,1','min:6','unique:vehiculo,patente,'.$this->vehiculo, 'regex:/^\w{2}\s\d{3}\s\w{2}$|\w{3}\s\d{3}$/'),
               'estado' => array('required'),
           ];
