@@ -36,7 +36,7 @@ class materialsABM_test extends DuskTestCase
        $this->browse(function (Browser $browser) {
          $browser->visit('/material/create')
                  ->type('nombre', 'pruebaTest')
-                 ->select('vehiculo_id', '2')
+                 ->select('vehiculo_id', '8')
                  ->select('rubro', 'INCENDIO')
                  ->type('detalle', 'Este test verifica el alta de un material')
                  ->press('Registrar')
@@ -53,7 +53,7 @@ class materialsABM_test extends DuskTestCase
         //->visit('/material/111/edit')
                 ->clear('nombre')
                 ->type('nombre', 'pruebaModificacionTest')
-                ->select('vehiculo_id', '4')
+                ->select('vehiculo_id', '7')
                 ->select('rubro', '4')
                 ->clear('detalle')
                 ->type('detalle', 'Este test verifica la modificacion de un material')
@@ -73,7 +73,7 @@ class materialsABM_test extends DuskTestCase
                 ->visit('/material')
                 ->assertDontSee('pruebaModificacionTest');
                 $this->usuarioAdmin->delete();
-
+                $this->usuarioAdmin->delete();
 
      });
    }
