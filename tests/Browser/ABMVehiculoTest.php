@@ -9,7 +9,7 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 use App\Vehiculo;
 use App\User;
 
-class ABMVehiculoTest extends DuskTestCase
+class VehicleTest extends DuskTestCase
 {
     private $vehiculo;
     private $usuarioAdmin;
@@ -31,7 +31,7 @@ class ABMVehiculoTest extends DuskTestCase
      * @return void
      */
 
-    public function testCreateVehicle()
+    public function testCreate()
     {
         $this->browse(function (Browser $browser) {
         $browser->visit('/vehiculo/create')
@@ -47,7 +47,7 @@ class ABMVehiculoTest extends DuskTestCase
         });
     }
 
-    public function testUpdateVehicle()
+    public function testUpdate()
     {
       $this->browse(function (browser $browser){
       $browser->visit('/vehiculo')
@@ -62,7 +62,7 @@ class ABMVehiculoTest extends DuskTestCase
       });
     }
 
-  public function testDeleteVehicle()
+  public function testDelete()
    {
      $patente = strtoupper($this->vehiculo->patente);
      $this->browse(function(browser $browser){
@@ -77,11 +77,7 @@ class ABMVehiculoTest extends DuskTestCase
 
   public function tearDown()
   {
-    if ($this->vehiculoEdit){
-        Vehiculo::destroy($this->vehiculoEdit->id);
-    }
-    if ($this->vehiculo){
-        Vehiculo::destroy($this->vehiculo->id);
-    }
+    $this->vehiculoEdit->delete();
+    $this->vehiculo->delete();
   }
 }
