@@ -11,11 +11,11 @@
     <div class="col-sm-12">
       <div class="col-md-6 col-sm-12 text-right" style="padding-top: 20px;">
         {{Form::model(Request::all(),['route' => 'vehiculo.index', 'class' => 'form-horizontal', 'method' => 'GET'])}}
-          <div class="col-sm-3 {{ $errors->has('movil') ? ' has-error' : '' }}">
-            {{Form::text('movil', null, ['placeholder'=>"1", 'class' => 'form-control'])}}
-            @if ($errors->has('movil'))
+          <div class="col-sm-3 {{ $errors->has('num_movil') ? ' has-error' : '' }}">
+            {{Form::text('num_movil', null, ['placeholder'=>"1", 'class' => 'form-control'])}}
+            @if ($errors->has('num_movil'))
                 <span class="help-block">
-                    <strong>{{ $errors->first('movil') }}</strong>
+                    <strong>{{ $errors->first('num_movil') }}</strong>
                 </span>
             @endif
           </div>

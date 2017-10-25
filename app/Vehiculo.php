@@ -22,7 +22,7 @@ class Vehiculo extends Model
   public function ScopeMovil($query,$movil)
   {
     if ($movil>0) {
-      $query->where('id',$movil);
+      $query->where('num_movil',$movil);
     }
   }
 

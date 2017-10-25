@@ -25,11 +25,7 @@ class VehiculoRequest extends Request
     {
       switch($this->method())
       {
-        case 'GET':{
-          return [
-              'movil'=> 'numeric|min:0',
-          ];
-        }
+        case 'GET':
         case 'DELETE':
         {
             return [];
