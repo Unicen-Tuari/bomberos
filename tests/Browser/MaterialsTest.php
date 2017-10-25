@@ -23,8 +23,7 @@ class MaterialsTest extends DuskTestCase
                      ->type('usuario', $this->usuarioAdmin->usuario)
                      ->type('password', '123456')
                      ->press('Iniciar sesión');
-                      }
-                    );
+              });
        }
 
     public function tearDown()
@@ -36,14 +35,13 @@ class MaterialsTest extends DuskTestCase
     {
        $this->browse(function (Browser $browser) {
          $browser->visit('/material/create')
-                 ->type('nombre', 'pruebaTest')
+                 ->type('nombre', 'manguera')
                  ->select('vehiculo_id', '8')
                  ->select('rubro', 'INCENDIO')
                  ->type('detalle', 'Este test verifica el alta de un material')
                  ->press('Registrar')
-                 ->assertSee('pruebaTest');
-                      }
-                    );
+                 ->assertSee('manguera');
+      });
    }
 
     public function testUpdate()
@@ -52,16 +50,15 @@ class MaterialsTest extends DuskTestCase
         $browser->visit('/material')
                 ->click('.glyphicon-edit')
                 ->clear('nombre')
-                ->type('nombre', 'pruebaModificacionTest')
+                ->type('nombre', 'mangueraModificada')
                 ->select('vehiculo_id', '7')
                 ->select('rubro', '4')
                 ->clear('detalle')
                 ->type('detalle', 'Este test verifica la modificacion de un material')
                 ->press('Editar')
                 ->visit('/material')
-                ->assertSee('pruebaModificacionTest');
-                      }
-                    );
+                ->assertSee('mangueraModificada');
+     });
    }
 
     public function testDelete()
@@ -70,8 +67,7 @@ class MaterialsTest extends DuskTestCase
         $browser->visit('/material')
                 ->click('.glyphicon-trash')
                 ->visit('/material')
-                ->assertDontSee('pruebaModificacionTest');
-                      }
-                    );
+                ->assertDontSee('mangueraModificada');
+     });
    }
 }
