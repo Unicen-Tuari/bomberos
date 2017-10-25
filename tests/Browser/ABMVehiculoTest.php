@@ -47,13 +47,13 @@ class ABMVehiculoTest extends DuskTestCase
         });
     }
 
-    public function testModifyVehicle()
+    public function testUpdateVehicle()
     {
       $this->browse(function (browser $browser){
       $browser->visit('/vehiculo')
               ->click('.glyphicon-edit')
               ->type('patente', $this->vehiculoEdit->patente)
-              //->type('num_movil', $this->vehiculoEdit->num_movil)
+              ->type('num_movil', $this->vehiculoEdit->num_movil)
               ->select('estado',$this->vehiculoEdit->estado)
               ->type('detalle',$this->vehiculoEdit->detalle)
               ->press('Editar')
