@@ -6,7 +6,7 @@ use Tests\DuskTestCase;
 use Laravel\Dusk\Browser;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use App\User;
-class materialsABM_test extends DuskTestCase
+class MaterialsTest extends DuskTestCase
 {
   protected $usuarioAdmin;
     /**
@@ -14,24 +14,25 @@ class materialsABM_test extends DuskTestCase
      *
      * @return void
      */
-     public function setUp()
+    public function setUp()
      {
        parent::setUp();
        $this->usuarioAdmin=factory(User::class)->create(['admin'=> '1', 'password'=> bcrypt('123456')]);
-     }
+       $this->browse(function (Browser $browser) {
+             $browser->visit('/login')
+                     ->type('usuario', $this->usuarioAdmin->usuario)
+                     ->type('password', '123456')
+                     ->press('Iniciar sesión');
+                      }
+                    );
+       }
 
-     public function testLogin()
-     {
-      $this->browse(function (Browser $browser) {
-          $browser->visit('/login')
-                  ->type('usuario', $this->usuarioAdmin->usuario)
-                  ->type('password', '123456')
-                  ->press('Iniciar sesión')
-                  ->assertSee($this->usuarioAdmin->nombre);
-         });
-     }
+    public function tearDown()
+    {
+      $this->usuarioAdmin->delete();
+    }
 
-    public function testUp()
+    public function testCreate()
     {
        $this->browse(function (Browser $browser) {
          $browser->visit('/material/create')
@@ -41,16 +42,15 @@ class materialsABM_test extends DuskTestCase
                  ->type('detalle', 'Este test verifica el alta de un material')
                  ->press('Registrar')
                  ->assertSee('pruebaTest');
-                 $this->usuarioAdmin->delete();
-
-      });
+                      }
+                    );
    }
 
-    public function testModify()
+    public function testUpdate()
     {
       $this->browse(function (Browser $browser) {
-        $browser->click('.glyphicon-edit')
-        //->visit('/material/111/edit')
+        $browser->visit('/material')
+                ->click('.glyphicon-edit')
                 ->clear('nombre')
                 ->type('nombre', 'pruebaModificacionTest')
                 ->select('vehiculo_id', '7')
@@ -60,22 +60,18 @@ class materialsABM_test extends DuskTestCase
                 ->press('Editar')
                 ->visit('/material')
                 ->assertSee('pruebaModificacionTest');
-                $this->usuarioAdmin->delete();
-
-     });
+                      }
+                    );
    }
 
-    public function testBaja()
+    public function testDelete()
     {
       $this->browse(function (Browser $browser) {
         $browser->visit('/material')
                 ->click('.glyphicon-trash')
                 ->visit('/material')
                 ->assertDontSee('pruebaModificacionTest');
-                $this->usuarioAdmin->delete();
-                $this->usuarioAdmin->delete();
-
-     });
+                      }
+                    );
    }
-
 }
