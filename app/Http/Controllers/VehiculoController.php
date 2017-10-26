@@ -18,7 +18,7 @@ class VehiculoController extends Controller
   }
   public function index(VehiculoRequest $request)
   {
-      $vehiculos=Vehiculo::movil($request['movil'])->estado($request['estado'])->patente($request['patente'])->paginate(8);
+      $vehiculos=Vehiculo::movil($request['num_movil'])->estado($request['estado'])->patente($request['patente'])->paginate(8);
       return view('vehiculo/lista',compact('vehiculos'));
   }
   public function create()
