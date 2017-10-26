@@ -47,6 +47,8 @@ class VehicleTest extends DuskTestCase
                   ->select('estado',$this->vehiculo->estado)
                   ->type('detalle',$this->vehiculo->detalle)
                   ->press('Registrar')
+                  ->type('patente',$this->vehiculo->patente)
+                  ->press('Buscar')
                   ->assertSee($patente);
           });
     }
@@ -54,6 +56,7 @@ class VehicleTest extends DuskTestCase
     public function testUpdate()
     {
       $this->browse(function (browser $browser){
+        $patente = strtoupper($this->vehiculoEdit->patente);
         $browser->visit('/vehiculo')
                 ->click('.glyphicon-edit')
                 ->type('patente', $this->vehiculoEdit->patente)
@@ -61,29 +64,33 @@ class VehicleTest extends DuskTestCase
                 ->select('estado',$this->vehiculoEdit->estado)
                 ->type('detalle',$this->vehiculoEdit->detalle)
                 ->press('Editar')
-                ->with('.table', function ($table) {
-                $patente = strtoupper($this->vehiculoEdit->patente);  
-                $table->assertSee($patente);
-                });
+                ->type('patente', $this->vehiculoEdit->patente)
+                ->press('Buscar')
+                ->assertSee($patente);
         });
     }
 
   public function testDelete()
-   {
-     $patente = strtoupper($this->vehiculo->patente);
+  {
      $this->browse(function(browser $browser){
-     $browser->visit('/vehiculo')
-             ->click('.glyphicon-trash')
-             ->with('.table', function ($table) {
-             $table->assertSee('Lista de vehiculos');
-             });
-   });
-  }
+       $patente = strtoupper($this->vehiculo->patente);
+       $browser->visit('/vehiculo')
+               ->click('.glyphicon-edit')
+               ->type('patente',$this->vehiculo->patente)
+               ->press('Editar')
+               ->type('patente',$this->vehiculo->patente)
+               ->press('Buscar')
+               ->click('.glyphicon-trash')
+               ->type('patente',$this->vehiculo->patente)
+               ->press('Buscar')
+               ->assertDontSee($patente);
+     });
+   }
 
   public function tearDown()
   {
-    $this->vehiculoEdit->delete();
-    $this->vehiculo->delete();
-    $this->usuarioAdmin->delete();
+   $this->vehiculoEdit->delete();
+   $this->vehiculo->delete();
+   $this->usuarioAdmin->delete();
   }
 }
