@@ -18,7 +18,7 @@ namespace Tests\Browser;
          $this->userTest = factory(User::class)->create(['password'=>bcrypt('123456'), 'admin'=>1]);
          $this->browse(function (Browser $browser) {
                $browser->visit('/login')
-                       ->type('usuario', $this->usuarioAdmin->usuario)
+                       ->type('usuario', $this->userTest->usuario)
                        ->type('password', '123456')
                        ->press('Iniciar sesión');
         });
@@ -34,7 +34,7 @@ namespace Tests\Browser;
       {
         $this->firefighter = factory(Bombero::class)->make();
         $this->browse(function (Browser $browser) {
-              $browser->visit('/bombero')
+              $browser->visit('/bombero/create')
                       ->type('nombre',$this->firefighter->nombre)
                       ->type('apellido',$this->firefighter->apellido)
                       ->type('nro_legajo',$this->firefighter->nro_legajo)
