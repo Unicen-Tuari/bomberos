@@ -343,7 +343,7 @@ class ServicioController extends Controller
             $primerv->primero=true;
             $primerv->save();
           }
-          if ($data["finalizar"]!=0) {//1 para finalizar un servicio 0 para editar servicio 
+          if ($data["finalizar"]!=0) {//1 para finalizar un servicio 0 para editar servicio
             return redirect()->route('ingreso.indexPresentes',[0=>$servicio->id,1=>$data['bombero']]);
           }else {
             return redirect()->route('ingreso.editPresentes',$servicio->id);
@@ -392,6 +392,10 @@ class ServicioController extends Controller
         }
         return redirect()->route('servicio.index');
       }
+    }
+
+    public function reporte(){
+      return view('servicio/reporte');
     }
 
     public function destroy($id)
