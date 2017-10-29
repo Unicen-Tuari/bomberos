@@ -42,6 +42,7 @@ Route::resource('vehiculo','VehiculoController');
 
 Route::resource('material','MaterialController');
 
+Route::get('servicio/reporte', 'ServicioController@reporte')->name('servicio.reporte');
 Route::get('servicio/llamada', 'ServicioController@llamada')->name('servicio.llamada');
 Route::get('servicio/ultimos', 'ServicioController@ultimos')->name('servicio.ultimos');
 Route::get('servicio/activo/{id}', 'ServicioController@finalizarActivo')->name('servicio.finalizarActivo');
