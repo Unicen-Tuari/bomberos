@@ -144,6 +144,7 @@
           <div class="collapse" id="serviciosSubMenu">
             <a href="{{route('servicio.index')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Lista de servicios</a>
             <a href="{{route('servicio.estadistica')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Estadísticas</a>
+            <a href="{{route('servicio.reporte')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Reportes</a>
           </div>
 
           <a href="#vehiculosSubMenu" id="vehiculoMenu" class="list-group-item" data-toggle="collapse" data-parent="#MainMenu"><i class="fa fa-car fa-lg" style="padding-right: 10px;"></i> Vehículos<span class="arrow"></span></a>
