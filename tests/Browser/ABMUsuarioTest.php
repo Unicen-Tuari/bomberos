@@ -19,11 +19,7 @@ class ABMUsuarioTest extends DuskTestCase
     function tearDown() {
       $this->newUser->delete();
     }
-    /**
-     * A Dusk test example.
-     *
-     * @return void
-     */
+
     public function testCreateUser() {
         $this->browse(function (Browser $browser) {
             $browser->visit('/register')
