@@ -70,3 +70,11 @@ $factory->define(App\Vehiculo::class, function (Faker\Generator $faker){
     'detalle' => 'autobomba',
   ];
 });
+
+
+$factory->define(App\Asistencia::class, function (Faker\Generator $faker) {
+
+  return [
+    'fecha_reunion' => $faker->date($format = 'd/m/Y', $max = '30/10/2017'),
+  ];
+});
