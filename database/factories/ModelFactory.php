@@ -31,6 +31,7 @@ $factory->define(App\Material::class, function (Faker\Generator $faker) {
 
   return [
     'nombre' => $faker->word,
+    'vehiculo_id' => factory(App\Vehiculo::class)->create()->id
   ];
 
 });
