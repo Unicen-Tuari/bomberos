@@ -165,8 +165,8 @@
           @if (Auth::user()->admin)
           <a href="#usuariosSubMenu" id="usuarioMenu" class="list-group-item" data-toggle="collapse" data-parent="#MainMenu"><i class="fa fa-id-badge fa-lg" style="padding-right: 10px;"></i> Usuarios<span class="arrow"></span></a>
           <div class="collapse" id="usuariosSubMenu">
-            <a href="{{route('bombero.permisos')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Lista de usuarios</a>
-            <a href="{{route('bombero.permisos')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Permisos de usuarios</a>
+            <a href="{{route('usuario.index')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Lista de usuarios</a>
+            <a href="{{route('usuario.permisos')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Permisos de usuarios</a>
           </div>
           @endif
         </div>
