@@ -4,33 +4,53 @@
 <article class="col-sm-12">
   <div class="panel panel-default">
     <div id="breadcrumb" class="panel-heading">
-      <span class="fa fa-id-badge" aria-hidden="true"></span>
-      <h4>Permisos de usuarios</h4>
+      <span class="fa fa-users" aria-hidden="true"></span>
+      <h4>usuarios</h4>
     </div>
+
+
     <div class="panel-body">
-      {!! Form::open([ 'route' => 'bombero.permisosupdate', 'class' => 'form-horizontal', 'method' => 'PUT']) !!}
+      <table class="table table-striped">
+        <thead><!--Titulos de la tabla-->
+          <tr>
+            <th>Id Usuario</th>
+            <th>Apellido, nombre</th>
+            <th>Admin</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody><!--Contenido de la tabla-->
+          @foreach ($usuarios as $usuario)
+              <td>{{$usuario->id}}</td>
+              <td class="filtro">{{$usuario->apellido}}, {{$usuario->nombre}}</td>
+              <td>{{$usuario->admin}}</td>
+              @if (Auth::user()->admin)
+                <td><a href="{{ route('usuario.edit', $usuario->id) }}" class="glyphicon glyphicon-edit"></a></td>
+                <td>
+                  @if (count($usuario->servicios)==0)
+                    {{ Form::open(['route' => ['usuario.destroy', $usuario->id], 'method' => 'DELETE']) }}
+                        <button type="submit" class="glyphicon glyphicon-trash"></button>
+                    {{ Form::close() }}
+                  @else
+                    <button type="submit" class="glyphicon glyphicon-ban-circle" title="Imposible eliminar, participo en al menos un servicio"></button>
 
-        <div class="form-group">
-          <div class="col-md-12 control-label">
-            {!! Form::label('usuario', "Nombre y Apellido / Usuario",['class' => 'col-md-7 control-label']) !!}
-          </div>
-          @foreach($usuarios as $usuario)
-            <div class="col-lg-6 col-md-12 control-label">
-              {!! Form::label('usuario',$usuario->nombre.' '.$usuario->apellido." / ".$usuario->usuario,['class' => 'col-lg-7 col-md-5 control-label']) !!}
-              <div class="col-sm-4">
-                {!! Form::checkbox('usuario-'.$usuario->id, 1,$usuario->admin, ['data-toggle' => "toggle", 'data-onstyle'=>"success", 'data-offstyle'=>"danger", 'data-on' => 'Administrador', 'data-off' => 'Usuario']) !!}
-              </div>
-            </div>
+                  @endif
+                </td>
+              @else
+                <td colspan="2">
+                  <butt@section('js')
+  {{ Html::script('assets/js/ajaxpuntuacion.js') }}
+@endsectionon type="submit" class="glyphicon glyphicon-ban-circle" title="Sin permisos para eliminar/modificar"></button>
+                </td>
+              @endif
+            </tr>
           @endforeach
+          </tbody>
+          <br>
+        </table>
+        <div class="text-center">
+          {{ $usuarios->appends(Request::all())->links()}}
         </div>
-
-        <div class="form-group col-sm-7">
-            <button type="submit" class="btn btn-primary pull-right">
-                <i class="glyphicon glyphicon-bell"></i> Finalizar
-            </button>
-        </div>
-
-      {!! Form::close() !!}
     </div>
   </div>
 </article>
