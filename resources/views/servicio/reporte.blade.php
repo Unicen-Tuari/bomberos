@@ -201,9 +201,20 @@
           <td class="col-md-1" colspan=20>&#160;</td>
         </tr>
         <tr>
-          <td class="col-md-1" colspan=11 rowspan=2>OPERADOR DE COMANDO</td>
-          <td class="col-md-1" colspan=9 rowspan=2>JEFE DEL SERVICIO</td>
+          <td colspan=11> OPERADOR DE COMANDO</td>
+          <td colspan=9>JEFE DEL SERVICIO</td>
+        </tr>
+        <tr>
+          <td colspan=11><br><br><br></td>
+          <td colspan=9><br><br><br></td>
+        </tr>
+        <tr>
+          <td colspan=11>FIRMA Y N° DE LEGAJO</td>
+          <td colspan=9>FIRMA Y N° DE LEGAJO</td>
         </tr>
     </table>
+    <p>01: Incendio &#160;&#160;&#160; - &#160; 02: Auxilio &#160;&#160;&#160; - &#160; 03: Especiales &#160;&#160;&#160; - &#160; 04: Desastre &#160;&#160;&#160; - &#160; 05: Colaboración &#160;&#160;&#160; - &#160; 06: Guardias <br>
+       07: Comando &#160;&#160;&#160; - &#160; 08: Tecnico &#160;&#160;&#160; - &#160; 09: Ceremonial &#160;&#160;&#160; - &#160; 10: Productos Quimicos &#160;&#160;&#160; - &#160; 11: Forestales
+    </p>
       </div>
 @endsection
