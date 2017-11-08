@@ -23,12 +23,6 @@ class VehicleTest extends DuskTestCase
       $this->vehiculoEdit = factory(Vehiculo::class)->make();
       $this->usuarioAdmin=factory(User::class)->create(['admin'=> '1', 'password'=> bcrypt('123456')]);
       $this->password = '123456';
-      $this->browse(function (Browser $browser) {
-      $browser->visit('/vehiculo/create')
-              ->type('usuario',$this->usuarioAdmin->usuario)
-              ->type('password','123456')
-              ->press('Iniciar');
-      });
   }
 
     /**
@@ -41,7 +35,8 @@ class VehicleTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
           $patente = strtoupper($this->vehiculo->patente);
-          $browser->visit('/vehiculo/create')
+          $browser->loginAs($this->usuarioAdmin);
+                  ->visit('/vehiculo/create')
                   ->type('patente',$this->vehiculo->patente)
                   ->type('num_movil',$this->vehiculo->num_movil)
                   ->select('estado',$this->vehiculo->estado)
@@ -57,7 +52,8 @@ class VehicleTest extends DuskTestCase
     {
       $this->browse(function (browser $browser){
         $patente = strtoupper($this->vehiculoEdit->patente);
-        $browser->visit('/vehiculo')
+        $browser->loginAs($this->usuarioAdmin);
+                ->visit('/vehiculo')
                 ->click('.glyphicon-edit')
                 ->type('patente', $this->vehiculoEdit->patente)
                 ->type('num_movil', $this->vehiculoEdit->num_movil)
@@ -74,7 +70,8 @@ class VehicleTest extends DuskTestCase
   {
      $this->browse(function(browser $browser){
        $patente = strtoupper($this->vehiculo->patente);
-       $browser->visit('/vehiculo')
+       $browser->loginAs($this->usuarioAdmin);
+               ->visit('/vehiculo')
                ->click('.glyphicon-edit')
                ->type('patente',$this->vehiculo->patente)
                ->press('Editar')
