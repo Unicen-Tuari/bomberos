@@ -21,7 +21,7 @@
           <td >01</td>
           <td >02</td>
           <td >03</td>
-          <td >03</td>
+          <td >04</td>
           <td >05</td>
           <td >06</td>
           <td >07</td>
@@ -114,7 +114,95 @@
           <td colspan=2></td>
           <td colspan=2></td>
           <td colspan=5></td>
-
+        </tr>
+        <tr>
+          <td colspan=1>ALARMA</td>
+          <td colspan=2>GRAL.</td>
+          <td colspan=2>SEL. </td>
+          <td colspan=2>INT.</td>
+          <td colspan=15>AUTOR LLAMADA</td>
+        </tr>
+        <tr>
+          <td class="col-md-1" colspan=20>RECONOCIMIENTO:</td>
+        </tr>
+        <tr>
+          <td class="col-md-1" colspan=20>&#160;</td>
+        </tr>
+        <tr>
+          <td class="col-md-1" colspan=20>&#160;</td>
+        </tr>
+        <tr>
+          <td class="col-md-1" colspan=20>&#160;</td>
+        </tr>
+        <tr>
+          <td class="col-md-1" colspan=20>&#160;</td>
+        </tr>
+        <tr>
+          <td class="col-md-1" colspan=20>&#160;</td>
+        </tr>
+        <tr>
+          <td class="col-md-1" colspan=20>DISPOSICIONES:</td>
+        </tr>
+        <tr>
+          <td class="col-md-1" colspan=20>&#160;</td>
+        </tr>
+        <tr>
+          <td class="col-md-1" colspan=20>&#160;</td>
+        </tr>
+        <tr>
+          <td class="col-md-1" colspan=20>&#160;</td>
+        </tr>
+        <tr>
+          <td class="col-md-1" colspan=20>&#160;</td>
+        </tr>
+        <tr>
+          <td class="col-md-1" colspan=20>&#160;</td>
+        </tr>
+        <tr>
+          <td class="col-md-1" colspan=20>&#160;</td>
+        </tr>
+        <tr>
+          <td class="col-md-1" colspan=20>&#160;</td>
+        </tr>
+        <tr>
+          <td class="col-md-1" colspan=20>&#160;</td>
+        </tr>
+        <tr>
+          <td class="col-md-1" colspan=20>&#160;</td>
+        </tr>
+        <tr>
+          <td class="col-md-1" colspan=20>&#160;</td>
+        </tr>
+        <tr>
+          <td class="col-md-1" colspan=20>&#160;</td>
+        </tr>
+        <tr>
+          <td class="col-md-1" colspan=20>&#160;</td>
+        </tr>
+        <tr>
+          <td class="col-md-1" colspan=20>&#160;</td>
+        </tr>
+        <tr>
+          <td class="col-md-1" colspan=20>&#160;</td>
+        </tr>
+        <tr>
+          <td class="col-md-1" colspan=20>&#160;</td>
+        </tr>
+        <tr>
+          <td class="col-md-1" colspan=20>&#160;</td>
+        </tr>
+        <tr>
+          <td class="col-md-1" colspan=20>&#160;</td>
+        </tr>
+        <tr>
+          <td class="col-md-1" colspan=20>&#160;</td>
+        </tr>
+        <tr>
+          <td class="col-md-1" colspan=20>&#160;</td>
+        </tr>
+        <tr>
+          <td class="col-md-1" colspan=11 rowspan=2>OPERADOR DE COMANDO</td>
+          <td class="col-md-1" colspan=9 rowspan=2>JEFE DEL SERVICIO</td>
         </tr>
     </table>
       </div>
