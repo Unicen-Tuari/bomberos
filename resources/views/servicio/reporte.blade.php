@@ -89,10 +89,33 @@
           <td colspan=4>MUERTOS</td>
           <td colspan=2>LESIONADOS</td>
           <td colspan=2 rowspan=2>MINUTOS HOMBRE</td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
+          <td colspan=1 rowspan=2></td>
+          <td colspan=1 rowspan=2></td>
+          <td rowspan=2></td>
+          <td rowspan=2></td>
+          <td rowspan=2></td>
+        </tr>
+        <tr>
+          <td colspan=4 rowspan=3></td>
+          <td colspan=3><br></td>
+          <td colspan=4></td>
+          <td colspan=2></td>
+        </tr>
+        <tr>
+          <td colspan=3>SUP (HAS)</td>
+          <td colspan=4>QUEMADOS</td>
+          <td colspan=2>OTROS</td>
+          <td colspan=2>COMBUSTIBLE</td>
+          <td colspan=5>COLABORO CUARTEL</td>
+        </tr>
+        <tr>
+          <td colspan=3><br></td>
+          <td colspan=4></td>
+          <td colspan=2></td>
+          <td colspan=2></td>
+          <td colspan=5></td>
+        </tr>
+        <tr>
           <td></td>
         </tr>
     </table>
