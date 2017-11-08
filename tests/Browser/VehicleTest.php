@@ -35,16 +35,16 @@ class VehicleTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
           $patente = strtoupper($this->vehiculo->patente);
-          $browser->loginAs($this->usuarioAdmin);
+          $browser->loginAs($this->usuarioAdmin)
                   ->visit('/vehiculo/create')
                   ->type('patente',$this->vehiculo->patente)
                   ->type('num_movil',$this->vehiculo->num_movil)
                   ->select('estado',$this->vehiculo->estado)
                   ->type('detalle',$this->vehiculo->detalle)
                   ->press('Registrar')
-                  ->type('patente',$this->vehiculo->patente)
+                  ->type('patente',$patente)
                   ->press('Buscar')
-                  ->assertSee($patente);
+                  ->assertSee($this->vehiculo->num_movil);
           });
     }
 
@@ -52,7 +52,7 @@ class VehicleTest extends DuskTestCase
     {
       $this->browse(function (browser $browser){
         $patente = strtoupper($this->vehiculoEdit->patente);
-        $browser->loginAs($this->usuarioAdmin);
+        $browser->loginAs($this->usuarioAdmin)
                 ->visit('/vehiculo')
                 ->click('.glyphicon-edit')
                 ->type('patente', $this->vehiculoEdit->patente)
@@ -60,9 +60,9 @@ class VehicleTest extends DuskTestCase
                 ->select('estado',$this->vehiculoEdit->estado)
                 ->type('detalle',$this->vehiculoEdit->detalle)
                 ->press('Editar')
-                ->type('patente', $this->vehiculoEdit->patente)
+                ->type('patente', $patente)
                 ->press('Buscar')
-                ->assertSee($patente);
+                ->assertSee($this->vehiculoEdit->num_movil);
         });
     }
 
@@ -70,7 +70,7 @@ class VehicleTest extends DuskTestCase
   {
      $this->browse(function(browser $browser){
        $patente = strtoupper($this->vehiculo->patente);
-       $browser->loginAs($this->usuarioAdmin);
+       $browser->loginAs($this->usuarioAdmin)
                ->visit('/vehiculo')
                ->click('.glyphicon-edit')
                ->type('patente',$this->vehiculo->patente)
@@ -78,9 +78,9 @@ class VehicleTest extends DuskTestCase
                ->type('patente',$this->vehiculo->patente)
                ->press('Buscar')
                ->click('.glyphicon-trash')
-               ->type('patente',$this->vehiculo->patente)
+               ->type('patente',$patente)
                ->press('Buscar')
-               ->assertDontSee($patente);
+               ->assertDontSee($this->vehiculo->num_movil);
      });
    }
 
