@@ -1,34 +1,47 @@
 @extends('layouts.app')
-
 @section('content')
+    <h2>Bordered Table</h2>
+    <p>The .table-bordered class adds borders to a table:</p>
+    <div class="col-xs-12 col-md-12 table-responsive">
+    <table class="table table-bordered">
+        <tr>
+          <td rowspan=2>B.V.</td>
+          <td rowspan=2>TRENQUE LAUQUEN</td>
+          <td colspan=2>INOBV</td>
+          <td>RENI</td>
+          <td></td>
+        </tr>
+          <tr>
+            <td>3</td>
+            <td>3</td>
+            <td colspan=2>BA</td>
+          </tr>
+          <tr>
+            <td rowspan=2>PARTE DE SERVICIO</td>
+          </tr>
+    </table>
 
-<article class="col-sm-12">
-  <div class="panel panel-default">
-    <div id="breadcrumb" class="panel-heading">
-      <span class="fa fa-print" aria-hidden="true"></span>
-      <h4>Reportes</h4>
-    </div>
-    <div class="panel-body form-horizontal">
-      <div class="form-group col-sm-3">
-        {{ Form::label('me', 'Mes:',['class' => 'control-label col-sm-3']) }}
-        <div class="col-sm-9">
-          {{Form::select('mes', config('selects.meses'),\Carbon\Carbon::now()->format('m'), ['class' => 'form-control','id' => 'mes'])}}
-        </div>
+    <table class="table table-bordered">
+      <tr>
+        <tr>
+          <td rowspan=2>B.V.</td>
+          <td rowspan=2>TRENQUE LAUQUEN</td>
+          <td colspan=2>INOBV</td>
+          <td>RENI</td>
+          <td></td>
+        </tr>
+          <tr>
+            <td>3</td>
+            <td>3</td>
+            <td colspan=2>BA</td>
+          </tr>
+      </tr>
+          <tr>
+            <td rowspan=2>PARTE DE SERVICIO</td>
+            <td rowspan=2>PARTE DE SERVICIO</td>
+            <td rowspan=2>PARTE DE SERVICIO</td>
+            <td rowspan=2>PARTE DE SERVICIO</td>
+          </tr>
+    </table>
       </div>
-      <div class="form-group col-sm-3">
-        {{ Form::label('añ', 'Año:',['class' => 'control-label col-sm-3']) }}
-        <div class="col-sm-9">
-          {{Form::text('año', \Carbon\Carbon::now()->format('Y'), ['class' => 'form-control','id'=>'año'])}}
-        </div>
-      </div>
-			<div id="reportes">
-
-			</div>
-    </div>
-  </div>
-</article>
-@endsection
-
-@section('js')
-  {!! Html::script('assets/js/ajaxtablareportes.js') !!}
 @endsection
