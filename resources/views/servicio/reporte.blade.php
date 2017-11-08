@@ -14,14 +14,14 @@
           <tr>
             <td colspan=1>3</td>
             <td colspan=1>3</td>
-            <td colspan=3>BA</td>
+            <td class="col-md-2" colspan=3>BA</td>
           </tr>
         <tr>
           <td rowspan=2>PARTE DE SERVICIO</td>
           <td >01</td>
           <td >02</td>
           <td >03</td>
-          <td >04</td>
+          <td >03</td>
           <td >05</td>
           <td >06</td>
           <td >07</td>
@@ -33,12 +33,12 @@
           <td >MES</td>
           <td >AÑO</td>
           <td colspan=2 rowspan=2>P.S.N°</td>
-          <td rowspan=2></td>
-          <td rowspan=2></td>
-          <td rowspan=2></td>
+          <td class="col-md-1" rowspan=2></td>
+          <td class="col-md-1" rowspan=2></td>
+          <td class="col-md-1" rowspan=2></td>
         </tr>
         <tr>
-          <td><br></td>
+          <td colspan=1><br></td>
           <td></td>
           <td></td>
           <td></td>
@@ -71,7 +71,7 @@
           <td colspan=2>MOVIL</td>
           <td colspan=7>A CARGO</td>
           <td colspan=2>HORA DE REGRESO</td>
-          <td colspan=2 rowspan=2>DURACION EN MINUTOS</td>
+          <td colspan=2 rowspan=2><p>DURACION EN MINUTOS</p> </td>
           <td rowspan=2></td>
           <td rowspan=2></td>
           <td rowspan=2></td>
@@ -114,9 +114,7 @@
           <td colspan=2></td>
           <td colspan=2></td>
           <td colspan=5></td>
-        </tr>
-        <tr>
-          <td></td>
+
         </tr>
     </table>
       </div>
