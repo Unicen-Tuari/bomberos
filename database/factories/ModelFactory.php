@@ -28,9 +28,9 @@ $factory->define(App\Bombero::class, function (Faker\Generator $faker) {
 });
 
 $factory->define(App\Material::class, function (Faker\Generator $faker) {
-
   return [
     'nombre' => $faker->word,
+    'vehiculo_id' => factory(App\Vehiculo::class)->create()->id
   ];
 
 });
@@ -60,12 +60,9 @@ $factory->define(App\Servicio::class, function (Faker\Generator $faker) {
 });
 
 $factory->define(App\Vehiculo::class, function (Faker\Generator $faker){
-    $letras = $faker->lexify('???');
-    $numeros = $faker->numerify('###');
-    $number_vehicle = $faker->numberBetween($min = 100, $max = 200);
   return[
-    'patente' => $letras . ' ' . $numeros,
-    'num_movil' => $number_vehicle,
+    'patente' => $faker->lexify('???') . ' ' . $faker->numerify('###'),
+    'num_movil' => $faker->numberBetween($min = 100, $max = 200),
     'estado' => 1,
     'detalle' => 'autobomba',
   ];
