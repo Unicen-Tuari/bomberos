@@ -17,18 +17,14 @@ class ABMBomberosTest extends DuskTestCase
      function setUp(){
        parent::setUp();
        $this->userTest = factory(User::class)->create(['password'=>bcrypt('123456'), 'admin'=>1]);
-       $this->bomberito = factory(Bombero::class)->make();
      }
 
     public function testBomberoAlta()
     {
-
+        $this->bomberito = factory(Bombero::class)->make();
         $this->browse(function (Browser $browser) {
-
-            $browser->visit('/bombero/create')
-                    ->type('usuario',$this->userTest->usuario)
-                    ->type('password','123456')
-                    ->press('Iniciar')
+            $browser->loginAs($this->userTest)
+                    ->visit('/bombero/create')
                     ->type('nombre',$this->bomberito->nombre)
                     ->type('apellido',$this->bomberito->apellido)
                     ->type('nro_legajo',$this->bomberito->nro_legajo)
@@ -38,13 +34,14 @@ class ABMBomberosTest extends DuskTestCase
                     ->press('Registrar')
                     ->assertDontSee('required');
       });
-
     }
 
     public function testBomberoModificacion()
     {
+      $this->bomberito = factory(Bombero::class)->create();
       $this->browse(function (Browser $browser) {
-            $browser->visit('/bombero')
+            $browser->loginAs($this->userTest)
+                    ->visit('/bombero')
                     ->click('.glyphicon-edit')
                     ->press('Editar')
                     ->assertDontSee('required');
@@ -55,13 +52,12 @@ class ABMBomberosTest extends DuskTestCase
 
     public function testBomberoBaja()
     {
+      $this->bomberito = factory(Bombero::class)->create();
       $this->browse(function (Browser $browser) {
-            $browser->visit('/bombero')
+            $browser->loginAs($this->userTest)
+                    ->visit('/bombero')
                     ->click('.glyphicon-trash')
-                    ->assertDontSee('required');//lo podria sacar??, porque en si, apriori no cambiaria nada en el body. El required se lo deje de lo anterior
-                    $this->userTest->delete();
-                    $this->bomberito->delete();
+                    ->assertDontSee($this->bomberito->nombre);
         });
     }
-
 }

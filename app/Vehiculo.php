@@ -40,4 +40,8 @@ class Vehiculo extends Model
     return $this->hasMany(VehiculoServicio::class);
   }
 
+  public function patente(){
+    return strtoupper($this->patente);
+  }
+
 }
