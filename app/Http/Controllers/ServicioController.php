@@ -212,6 +212,14 @@ class ServicioController extends Controller
         return view('servicio/estadisticasMes',compact('servicios','mes','año'));
     }
 
+    public function tablaReporte($day,$month,$year)
+    {
+      $servicio=Servicio::whereYear('hora_alarma','=',2017)->whereMonth('hora_alarma','=',11)->whereDay('hora_alarma', '=', 10)->first();
+      $bombero_id = $servicio->bomberos->where('a_cargo',true)->first()->bombero_id;
+      $bombero = Bombero::where('id', '=',$bombero_id)->first();
+      return view('servicio/estadisticaDia',compact('servicio','bombero','day','month','year'));
+    }
+
     public function show($id)
     {
         $servicio=Servicio::find($id);
