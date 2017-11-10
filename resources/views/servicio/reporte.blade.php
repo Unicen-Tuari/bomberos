@@ -1,9 +1,11 @@
 @extends('layouts.app')
 @section('content')
+  <div id="breadcrumb" class="panel-heading">
+    <span class="fa fa-print" aria-hidden="true"></span>
+    <h4>Reporte de Servicio</h4>
+  </div>
   <div class="container-fluid">
     <div class="row">
-      <h2>Bordered Table</h2>
-      <p>The .table-bordered class adds borders to a table:</p>
       <div class="col-xs-12 col-md-12 table-responsive">
         <table class="text-center table table-bordered">
           <tr>
@@ -269,8 +271,20 @@
               <td></td>
             </tr>
           </table>
+          <div class="col-md-12">
+            <button type="submit" class="btn btn-primary pull-right">
+              <i class=" glyphicon glyphicon-download"></i> Generar PDF
+            </button>
+            <button type="submit" id="print" class="btn btn-default pull-left">
+              <i class=" glyphicon glyphicon-print"></i> Imprimir
+            </button>
+          </div>
         </div>
       </div>
     </div>
   </div>
+@endsection
+
+@section('js')
+  {!! Html::script('assets/js/imprimirreporte.js') !!}
 @endsection
