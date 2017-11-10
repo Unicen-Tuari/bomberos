@@ -4,7 +4,7 @@
     <span class="fa fa-print" aria-hidden="true"></span>
     <h4>Reporte de Servicio</h4>
   </div>
-  <div class="container-fluid">
+  <div class="container-fluid" id="planillaReporteServicio">
     <div class="row">
       <div class="col-xs-12 col-md-12 table-responsive">
         <table class="text-center table table-bordered">
@@ -272,9 +272,6 @@
             </tr>
           </table>
           <div class="col-md-12">
-            <button type="submit" class="btn btn-primary pull-right">
-              <i class=" glyphicon glyphicon-download"></i> Generar PDF
-            </button>
             <button type="submit" id="print" class="btn btn-default pull-left">
               <i class=" glyphicon glyphicon-print"></i> Imprimir
             </button>
