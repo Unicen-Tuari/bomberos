@@ -3,8 +3,8 @@ $tipoAlarma[1] = 'Interna';
 $tipoAlarma[2] = 'Selectiva';
 $tipoAlarma[3] = 'General';
 @endphp
+@if($servicio)
 <table class="text-center table table-bordered">
-	@if($servicio->hora_regreso)
 		<tr>
 			<td rowspan=2>B.V.</td>
 			<td class="text-center" colspan=14 rowspan=2>TRENQUE LAUQUEN</td>
@@ -141,7 +141,9 @@ $tipoAlarma[3] = 'General';
 			<td rowspan=2></td>
 		</tr>
 		<tr>
-			<td colspan=4 rowspan=3></td>
+			<td colspan=4 rowspan=3>@foreach ($vehiculos as $vehiculo)
+				{{$vehiculo->vehiculo_id}}
+			@endforeach</td>
 			<td colspan=3>{{$servicio->ilesos}}</td>
 			<td colspan=4>{{$servicio->muertos}}</td>
 			<td colspan=2>{{$servicio->lesionados}}</td>
@@ -255,33 +257,9 @@ $tipoAlarma[3] = 'General';
 			<td colspan=9>FIRMA Y N° DE LEGAJO</td>
 		</tr>
 	</table>
+@else
+ <h4 class="text-center text-danger">No hay datos en esta fecha</h4>
 @endif
-<table class="text-center table table-bordered">
-	<tr>
-		<td>Leg.</td>
-		<td>Jerarquia</td>
-		<td>Apellido y Nombre</td>
-		<td>Cifra y Firma</td>
-	</tr>
-</table>
-<table class="text-center table table-bordered">
-	<tr>
-		<td>Jefe de Servicio</td>
-		<td>Oficial de Servicio</td>
-		<td>Jefe de Cuerpo</td>
-	</tr>
-	<tr>
-		<td><br><br><br></td>
-		<td><br><br><br></td>
-		<td><br><br><br></td>
-	</tr>
-</table>
-<table class="table table-bordered">
-	<tr>
-		<td></td>
-	</tr>
-</table>
-
 @section('js')
 	{!! Html::script('assets/js/imprimirreporte.js') !!}
 @endsection
