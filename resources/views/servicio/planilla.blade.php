@@ -4,31 +4,12 @@
     <div class="panel panel-default">
       <div id="breadcrumb" class="panel-heading">
         <span class="fa fa-print" aria-hidden="true"></span>
-        <h4>Reporte de Servicio</h4>
+        <h4>Reporte de Servicio - <span id="idServicio">{{$id}}</span></h4>
       </div>
-      <div class="panel-body form-horizontal">
-        <div class="form-group col-sm-3">
-          {{ Form::label('day', 'Day:',['class' => 'control-label col-sm-3']) }}
-          <div class="col-sm-9">
-            {{Form::text('day', \Carbon\Carbon::now()->format('d'), ['class' => 'form-control','id'=>'day'])}}
-          </div>
-        </div>
-        <div class="form-group col-sm-3">
-          {{ Form::label('month', 'Month:',['class' => 'control-label col-sm-3']) }}
-          <div class="col-sm-9">
-            {{Form::select('month', config('selects.meses'),\Carbon\Carbon::now()->format('m'), ['class' => 'form-control','id' => 'month'])}}
-          </div>
-        </div>
-        <div class="form-group col-sm-3">
-          {{ Form::label('year', 'Year:',['class' => 'control-label col-sm-3']) }}
-          <div class="col-sm-9">
-            {{Form::text('year', \Carbon\Carbon::now()->format('Y'), ['class' => 'form-control','id'=>'year'])}}
-          </div>
-        </div>
         <div class="container-fluid" id="planillaReporteServicio">
           <div class="row">
             <div class="col-xs-12 col-md-12 table-responsive">
-              <div class="" id="tablaReporteServicio">
+              <div id="tablaReporteServicio">
 
               </div>
               <div class="col-xs-12 col-md-12">
@@ -42,7 +23,7 @@
             <div class="row">
               <div class="col-md-2 text-center">
                 <link rel="icon" type="image/png" href="../assets/images/logoPlanilla.png"/>
-                <img src="../assets/images/logoPlanilla.png" alt="">
+                <img src="/assets/images/logoPlanilla.png" alt="">
               </div>
               <div class="col-md-8 text-center">
                 <h4>ASOCIACION BOMBEROS VOLUNTARIOS DE TRENQUE LAUQUEN</h4>
@@ -50,14 +31,9 @@
                   <h5>Parte de Asistencia del Personal del cuerpo activo</h5>
                 </div>
               </div>
-              <table class="text-center table table-bordered">
-                <tr>
-                  <td>Leg.</td>
-                  <td>Jerarquia</td>
-                  <td>Apellido y Nombre</td>
-                  <td>Cifra y Firma</td>
-                </tr>
-              </table>
+              <div id="tablaAsistenciaDelPersonal">
+
+              </div>
               <table class="text-center table table-bordered">
                 <tr>
                   <td>Jefe de Servicio</td>
@@ -94,12 +70,11 @@
             </div>
           </div>
         </div>
-      </div>
     </div>
   </article>
 @endsection
 
 @section('js')
   {!! Html::script('assets/js/imprimirreporte.js') !!}
-  {!! Html::script('assets/js/ajaxserviciodia.js') !!}
+  {!! Html::script('assets/js/ajaxservicio.js') !!}
 @endsection
