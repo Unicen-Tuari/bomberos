@@ -50,6 +50,7 @@ route::get('servicio/finalizado', 'ServicioController@finalizado')->name('servic
 Route::get('servicio/estadistica', 'ServicioController@estadistica')->name('servicio.estadistica');
 Route::get('servicio/{mes}/{anio}/tabla', 'ServicioController@tabla')->name('servicio.tabla');
 Route::get('servicio/reporte/tablaServicio/{id}', 'ServicioController@tablaServicio')->name('servicio.tablaServicio');
+Route::get('servicio/reporte/tablaAsistencia/{id}', 'ServicioController@tablaAsistencia')->name('servicio.tablaAsistencia');
 Route::get('servicio/planilla/{id}', 'ServicioController@planilla')->name('servicio.planilla');
 Route::post('servicio/guardarPresentes', 'ServicioController@guardar_presentes')->name('servicio.guardar_presentes');
 Route::post('servicio/iniciado', 'ServicioController@iniciado')->name('servicio.iniciado');
