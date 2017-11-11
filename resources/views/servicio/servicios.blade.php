@@ -38,7 +38,7 @@
             <th class="text-center">Tipo de servicio</th>
             <th class="text-center">Direccion</th>
             <th class="text-center">Hora de regreso</th>
-            <th colspan="2"></th>
+            <th class="text-center" colspan="3">Acciones</th>
           </tr>
         </thead>
         <tbody><!--Contenido de la tabla-->
@@ -55,6 +55,7 @@
                     {{ Form::close() }}
                   </td>
                   <td class="text-center"><a class="glyphicon glyphicon-edit" href="{{ route('servicio.edit', $servicio->id) }}"></a></td>
+                  <td class="text-center"><a class="glyphicon glyphicon-edit" href="{{ route('servicio.planilla',$servicio->id) }}"></a></td>
                 @else
                   <td class="text-center" colspan="2">
                     <button type="submit" class="glyphicon glyphicon-ban-circle" title="Sin permisos para eliminar/modificar"></button>
