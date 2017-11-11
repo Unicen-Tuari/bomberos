@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\Http\Requests\ServicioRequest;
 use App\Servicio;
 use App\Bombero;
+use App\TipoAsistencia;
 use App\Vehiculo;
 use App\BomberoServicio;
 use App\VehiculoServicio;
@@ -214,22 +215,25 @@ class ServicioController extends Controller
 
     public function tablaServicio($id)
     {
+      $servicio = array();
+      $bombero_id = 0;
+      $vehiculos = array();
       $servicio=Servicio::where('id','=',$id)->first();
       if ($servicio){
         $bombero_id = $servicio->bomberos->where('a_cargo',true)->first()->bombero_id;
         $vehiculos = $servicio->vehiculos->where('id', '=' , $servicio->id)->all();
-      }
-      else{
-        $servicio = array();
-        $bombero_id = 0;
-        $vehiculos = array();
       }
       $bombero = Bombero::where('id', '=',$bombero_id)->first();
       return view('servicio/servicioPlanilla',compact('servicio','vehiculos','bombero'));
     }
 
     public function tablaAsistencia($id){
-      return view('servicio/planillaAsistencia');
+      $servicio=Servicio::where('id','=',$id)->first();
+      $bomberos_servicio =  $servicio->bomberos->where('servicio_id', '=',$id)->all();
+      foreach ($bomberos_servicio as $bombero_servicio){
+          $bomberos[] = Bombero::where('id', '=',$bombero_servicio->bombero_id)->first();
+      }
+      return view('servicio/planillaAsistencia',compact('bomberos'));
     }
 
     public function show($id)
