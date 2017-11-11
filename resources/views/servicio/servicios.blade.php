@@ -55,7 +55,7 @@
                     {{ Form::close() }}
                   </td>
                   <td class="text-center"><a class="glyphicon glyphicon-edit" href="{{ route('servicio.edit', $servicio->id) }}"></a></td>
-                  <td class="text-center"><a class="glyphicon glyphicon-edit" href="{{ route('servicio.planilla',$servicio->id) }}"></a></td>
+                  <td class="text-center"><a class="glyphicon glyphicon-list-alt" href="{{ route('servicio.planilla',$servicio->id) }}"></a></td>
                 @else
                   <td class="text-center" colspan="2">
                     <button type="submit" class="glyphicon glyphicon-ban-circle" title="Sin permisos para eliminar/modificar"></button>
