@@ -42,14 +42,15 @@ Route::resource('vehiculo','VehiculoController');
 
 Route::resource('material','MaterialController');
 
-Route::get('servicio/reporte', 'ServicioController@reporte')->name('servicio.reporte');
+Route::get('servicio/reporte/', 'ServicioController@reporte')->name('servicio.reporte');
 Route::get('servicio/llamada', 'ServicioController@llamada')->name('servicio.llamada');
 Route::get('servicio/ultimos', 'ServicioController@ultimos')->name('servicio.ultimos');
 Route::get('servicio/activo/{id}', 'ServicioController@finalizarActivo')->name('servicio.finalizarActivo');
 route::get('servicio/finalizado', 'ServicioController@finalizado')->name('servicio.finalizado');
 Route::get('servicio/estadistica', 'ServicioController@estadistica')->name('servicio.estadistica');
 Route::get('servicio/{mes}/{anio}/tabla', 'ServicioController@tabla')->name('servicio.tabla');
-Route::get('servicio/{dia}/{mes}/{anio}/tablaReporte', 'ServicioController@tablaReporte')->name('servicio.tablaReporte');
+Route::get('servicio/reporte/tablaServicio/{id}', 'ServicioController@tablaServicio')->name('servicio.tablaServicio');
+Route::get('servicio/planilla/{id}', 'ServicioController@planilla')->name('servicio.planilla');
 Route::post('servicio/guardarPresentes', 'ServicioController@guardar_presentes')->name('servicio.guardar_presentes');
 Route::post('servicio/iniciado', 'ServicioController@iniciado')->name('servicio.iniciado');
 Route::put('servicio/editarPresentes', 'ServicioController@editar_presentes')->name('servicio.editar_presentes');
