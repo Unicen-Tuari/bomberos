@@ -1,6 +1,6 @@
 $(document).ready(function () {
   function cargarTablaServicio(){
-     let id = $('#idServicio').html();
+    let id = $('#idServicio').html();
      $.ajax({
 			type: 'GET',
 			dataType: 'HTML',
@@ -15,12 +15,13 @@ $(document).ready(function () {
   };
 
   function cargarTablaAsistencia(){
+    let id = $('#idServicio').html();
     $.ajax({
       type: 'GET',
       dataType: 'HTML',
-      url: '/servicio/reporte/tablaServicio' + id,
+      url: '/servicio/reporte/tablaAsistencia/' + id,
       success: function(data){
-            $('#tablaReporteServicio').html(data);
+            $('#tablaAsistenciaDelPersonal').html(data);
           },
       error: function(){
             alert('Error al Cargar la tabla ');
