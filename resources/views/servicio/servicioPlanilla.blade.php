@@ -1,8 +1,3 @@
-@php
-$tipoAlarma[1] = 'Interna';
-$tipoAlarma[2] = 'Selectiva';
-$tipoAlarma[3] = 'General';
-@endphp
 @if($servicio)
 <table class="text-center table table-bordered">
 		<tr>
@@ -100,7 +95,7 @@ $tipoAlarma[3] = 'General';
 		</tr>
 		<tr>
 			<td>TIPO</td>
-			<td class="text-left" colspan=14>{{$tipoAlarma[$servicio->tipo_alarma]}}</td>
+			<td class="text-left" colspan=14>{{config('selects.tipoServicio')[$servicio->tipo_servicio_id]}}</td>
 			<td colspan=2 rowspan=2>PRESENTE 01 AL 05</td>
 			<td rowspan=2></td>
 			<td rowspan=2></td>
@@ -258,7 +253,7 @@ $tipoAlarma[3] = 'General';
 		</tr>
 	</table>
 @else
- <h4 class="text-center text-danger">No hay datos en esta fecha</h4>
+ <h4 class="text-center text-danger">No existe el servicio</h4>
 @endif
 @section('js')
 	{!! Html::script('assets/js/imprimirreporte.js') !!}
