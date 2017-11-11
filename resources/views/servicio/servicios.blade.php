@@ -48,6 +48,7 @@
                 <td class="text-center"><a href="{{route('servicio.show', $servicio->id)}}">{{config('selects.tipoServicio')[$servicio->tipo_servicio_id]}}</a></td>
                 <td class="text-center">{{$servicio->direccion}}</td>
                 <td class="text-center">{{\Carbon\Carbon::parse($servicio->hora_regreso)->format('d/m/Y H:i:s')}}</td>
+                <td class="text-center"><a class="glyphicon glyphicon-list-alt" href="{{ route('servicio.planilla',$servicio->id) }}"></a></td>
                 @if (Auth::user()->admin)
                   <td class="text-center">
                     {{ Form::open(['route' => ['servicio.destroy', $servicio->id], 'method' => 'delete']) }}
@@ -55,7 +56,6 @@
                     {{ Form::close() }}
                   </td>
                   <td class="text-center"><a class="glyphicon glyphicon-edit" href="{{ route('servicio.edit', $servicio->id) }}"></a></td>
-                  <td class="text-center"><a class="glyphicon glyphicon-list-alt" href="{{ route('servicio.planilla',$servicio->id) }}"></a></td>
                 @else
                   <td class="text-center" colspan="2">
                     <button type="submit" class="glyphicon glyphicon-ban-circle" title="Sin permisos para eliminar/modificar"></button>
