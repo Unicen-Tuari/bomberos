@@ -225,7 +225,11 @@ class ServicioController extends Controller
         $vehiculos = array();
       }
       $bombero = Bombero::where('id', '=',$bombero_id)->first();
-      return view('servicio/servicioPlanilla',compact('servicio','vehiculos','bombero','day','month','year'));
+      return view('servicio/servicioPlanilla',compact('servicio','vehiculos','bombero'));
+    }
+
+    public function tablaAsistencia($id){
+      return view('servicio/planillaAsistencia');
     }
 
     public function show($id)
