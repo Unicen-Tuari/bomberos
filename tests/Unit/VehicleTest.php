@@ -13,7 +13,7 @@ class VehicleTest extends TestCase
       //setUp
        $vehiculo = factory(Vehiculo::class)->create();
       //Modelo a probar
-       $vehiculoModel = Vehiculo::movil($vehiculo->patente)->first();
+       $vehiculoModel = Vehiculo::movil($vehiculo->patente);
       //Assert
        $this->assertEquals($vehiculoModel->first()->patente, $vehiculo->patente);
        $this->assertEquals($vehiculoModel->count(),1);
@@ -26,7 +26,18 @@ class VehicleTest extends TestCase
       //Modelo para probar
       $vehiculoModel = Vehiculo::movil($vehiculo->num_movil);
       //Assert
-      $this->assertEquals($vehiculo->first()->num_movil, $vehiculoModel->num_movil);
-      $this->assertEquals($vehiculo->count(),1);
+      $this->assertEquals($vehiculoModel->first()->num_movil, $vehiculo->num_movil);
+      $this->assertEquals($vehiculoModel->count(),1);
+    }
+
+    public function testScopeEstado()
+    {
+      //setUp
+      $vehiculo = factory(Vehiculo::class)->create(['estado' => 2]);
+      //Modelo para probar
+      $vehiculoModel = Vehiculo::movil($vehiculo->estado);
+      //Assert
+      //$this->assertEquals($vehiculoModel->first()->estado, $vehiculo->estado);
+      $this->assertEquals($vehiculoModel->count(),2);
     }
 }
