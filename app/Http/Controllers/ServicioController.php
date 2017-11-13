@@ -229,7 +229,7 @@ class ServicioController extends Controller
 
     public function tablaAsistencia($id){
       $servicio=Servicio::where('id','=',$id)->first();
-      $bomberos_servicio =  $servicio->bomberos->where('servicio_id', '=',$id)->all();
+      $bomberos_servicio =  $servicio->bomberos->where('servicio_id', '=',$id)->sortByDesc('jerarquia')->all();
       foreach ($bomberos_servicio as $bombero_servicio){
           $bomberos[] = Bombero::where('id', '=',$bombero_servicio->bombero_id)->first();
       }
