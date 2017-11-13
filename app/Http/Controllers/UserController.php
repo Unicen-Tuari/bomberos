@@ -28,11 +28,19 @@ class UserController extends Controller
 
   public function create()
   {
-
+    if(Auth::user()->admin){
+      return view('usuario/alta');
+    }
+    return view('auth/alerta');
   }
 
   public function edit($id)
   {
+    if(Auth::user()->admin){
+      $usuario=User::findorfail($id);
+      return view('usuario/editar',compact('usuario'));
+    }
+    return view('usuario/index');
 
   }
 
@@ -42,10 +50,15 @@ class UserController extends Controller
 
   public function destroy(Request $request,$id)
   {
-
+    if(Auth::user()->admin){
+      $usuario=User::find($id);
+      $usuario->delete();
+      return redirect()->route('usuario.index');
+    }
   }
   public function update(Request $data, $id)
   {
+    
 
   }
 
