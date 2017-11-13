@@ -31,7 +31,7 @@ class UserController extends Controller
     if(Auth::user()->admin){
       return view('usuario/alta');
     }
-    return view('auth/alerta');
+    return view('usuario/index');
   }
 
   public function edit($id)
@@ -58,7 +58,7 @@ class UserController extends Controller
   }
   public function update(Request $data, $id)
   {
-    
+
 
   }
 
