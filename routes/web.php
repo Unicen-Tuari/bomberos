@@ -29,18 +29,18 @@ Route::resource('bombero','BomberoController',['except' => ['show']]);
 Route::get('asistencia/rango', 'AsistenciaController@rango')->name('AsistenciaController.rango');
 Route::resource('asistencia','AsistenciaController');
 
-Route::get('puntuacion/variables', 'PuntuacionController@variables')->name('puntuacion.variables');
 Route::get('puntuacion/anual', 'PuntuacionController@anual')->name('puntuacion.anual');
 Route::get('puntuacion/anual/{bombero}/{inicio}/{fin}', 'PuntuacionController@tabla_anual')->name('puntuacion.tabla_anual');
 Route::get('puntuacion/bomberos/{mes}/{anio}', 'PuntuacionController@bomberos')->name('puntuacion.bomberos');
 Route::get('puntuacion/listar/{mes}/{anio}', 'PuntuacionController@listar')->name('puntuacion.listar');
 Route::get('puntuacion/{mes}/{anio}/{bombero}/puntuacionmes', 'PuntuacionController@puntuacionmes')->name('puntuacion.puntuacionmes');
-Route::post('puntuacion/variables', 'PuntuacionController@modificaar_variables')->name('puntuacion.modificar');
 Route::resource('puntuacion','PuntuacionController');
 
 Route::resource('vehiculo','VehiculoController');
 
 Route::resource('material','MaterialController');
+
+Route::resource('variable','VariableController');
 
 Route::get('servicio/llamada', 'ServicioController@llamada')->name('servicio.llamada');
 Route::get('servicio/ultimos', 'ServicioController@ultimos')->name('servicio.ultimos');

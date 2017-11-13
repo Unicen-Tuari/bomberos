@@ -137,7 +137,6 @@
             @endif
             <a  href="{{route('puntuacion.index')}}"  class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Listar</a>
             <a  href="{{route('puntuacion.anual')}}"  class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Listado anual</a>
-            <a  href="{{route('puntuacion.variables')}}"  class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Modificar valores</a>
           </div>
 
           <a href="#serviciosSubMenu" id="servicioMenu" class="list-group-item" data-toggle="collapse" data-parent="#MainMenu"><i class="fa fa-cog fa-lg" style="padding-right: 10px;"></i>  Servicios<span class="arrow"></span></a>
@@ -169,6 +168,15 @@
           </div>
           @endif
         </div>
+
+        <a href="#variablesSubMenu" id="variableMenu" class="list-group-item" data-toggle="collapse" data-parent="#MainMenu"><i class="fa fa-pie-chart  " style="padding-right: 10px;"></i> Variables<span class="arrow"></span></a>
+        <div class="collapse" id="variablesSubMenu">
+          <a href="{{route('variable.index')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Listar variables</a>
+          @if (Auth::user()->admin)
+            <a href="{{route('variable.create')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Alta variable</a>
+          @endif
+        </div>
+
       </div>
       <div class="right-panel col-sm-10 col-xs-12">
     @else

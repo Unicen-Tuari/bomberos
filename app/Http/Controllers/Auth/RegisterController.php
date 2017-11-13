@@ -70,15 +70,6 @@ class RegisterController extends Controller
           'usuario' => $data['usuario'],
           'password' => bcrypt($data['password']),
         ]);
-
-        if ($user->id==1) {
-          Variables::create([
-            'asistencia'=>10,
-            'accidentales'=>35,
-            'guardias'=>10,
-          ]);
-        }
-
         return $user;
     }
 }

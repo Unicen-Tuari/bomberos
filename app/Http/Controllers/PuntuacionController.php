@@ -24,23 +24,6 @@ class PuntuacionController extends Controller
         return view('puntuacion/lista');
     }
 
-    public function variables()
-    {
-        $var=Variables::first();
-        $asistencia=$var->asistencia;
-        $accidentales=$var->accidentales;
-        $guardias=$var->guardias;
-        return view('puntuacion/variables',compact('asistencia','accidentales','guardias'));
-    }
-
-    public function modificaar_variables(Request $request)
-    {
-        $data=$request->all();
-        $var=Variables::first();
-        $var->update($data);
-        return redirect()->route('puntuacion.index');
-    }
-
     public function anual()
     {
         $bomberos=Bombero::getBomberos();

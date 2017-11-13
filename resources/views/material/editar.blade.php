@@ -14,7 +14,6 @@
           {!! Form::label('nombre', 'Nombre',['class' => 'col-md-4 control-label']) !!}
           <div class="col-md-6">
               {!! Form::text('nombre', $material->nombre, ['class' => 'form-control']) !!}
-
               @if ($errors->has('nombre'))
                   <span class="help-block">
                       <strong>{{ $errors->first('nombre') }}</strong>
@@ -52,7 +51,6 @@
             {!! Form::label('mantenimiento', "Mantenimiento", ['class' => 'col-md-4 control-label']) !!}
             <div class="col-md-2">
                 {!! Form::checkbox('mantenimiento', 1,$material->mantenimiento) !!}
-
                 @if ($errors->has('mantenimiento'))
                     <span class="help-block">
                         <strong>{{ $errors->first('mantenimiento') }}</strong>
