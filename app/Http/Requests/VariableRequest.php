@@ -36,7 +36,7 @@ class VariableRequest extends Request
               'asistencia' => 'required|max:255',
               'accidentales' => 'required|max:255',
               'guardias' => 'required|max:255',
-              'anio' => 'required|max:255',
+              'anio' => 'required|max:255|unique:variables',
           ];
         }
 
@@ -46,7 +46,7 @@ class VariableRequest extends Request
             'asistencia' => 'required|max:255',
             'accidentales' => 'required|max:255',
             'guardias' => 'required|max:255',
-            'anio' => 'required|max:255',
+            'anio' => 'required|max:255|unique:variables',
           ];
         }
         default:break;

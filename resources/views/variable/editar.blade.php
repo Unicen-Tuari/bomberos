@@ -49,7 +49,7 @@
         <div class="form-group  {{ $errors->has('anio') ? ' has-error' : '' }}">
           {!! Form::label('anio', 'Año: ',['class' => 'col-md-4 control-label']) !!}
           <div class="col-md-2">
-            {!! Form::number('anio', $variables->anio, ['class' => 'form-control', 'min'=>'0']) !!}
+            {!! Form::number('anio', $variables->anio, ['class' => 'form-control', 'min'=>'0', 'disabled']) !!}
           @if ($errors->has('anio'))
             <span class="help-block">
               <strong>{{ $errors->first('anio') }}</strong>
