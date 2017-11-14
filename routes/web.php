@@ -49,8 +49,8 @@ Route::get('servicio/activo/{id}', 'ServicioController@finalizarActivo')->name('
 route::get('servicio/finalizado', 'ServicioController@finalizado')->name('servicio.finalizado');
 Route::get('servicio/estadistica', 'ServicioController@estadistica')->name('servicio.estadistica');
 Route::get('servicio/{mes}/{anio}/tabla', 'ServicioController@tabla')->name('servicio.tabla');
-Route::get('servicio/reporte/tablaServicio/{id}', 'ServicioController@tablaServicio')->name('servicio.tablaServicio');
-Route::get('servicio/reporte/tablaAsistencia/{id}', 'ServicioController@tablaAsistencia')->name('servicio.tablaAsistencia');
+Route::get('servicio/reporte/planilla/{id}', 'ServicioController@tablaPlanilla')->name('servicio.planilla');
+Route::get('servicio/reporte/asistencia/{id}', 'ServicioController@tablaAsistencia')->name('servicio.asistencia');
 Route::get('servicio/planilla/{id}', 'ServicioController@planilla')->name('servicio.planilla');
 Route::post('servicio/guardarPresentes', 'ServicioController@guardar_presentes')->name('servicio.guardar_presentes');
 Route::post('servicio/iniciado', 'ServicioController@iniciado')->name('servicio.iniciado');

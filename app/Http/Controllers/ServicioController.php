@@ -213,7 +213,7 @@ class ServicioController extends Controller
         return view('servicio/estadisticasMes',compact('servicios','mes','año'));
     }
 
-    public function tablaServicio($id)
+    public function tablaPlanilla($id)
     {
       $servicio = array();
       $bombero_id = 0;
@@ -224,7 +224,7 @@ class ServicioController extends Controller
         $vehiculos = $servicio->vehiculos->where('id', '=' , $servicio->id)->all();
       }
       $bombero = Bombero::where('id', '=',$bombero_id)->first();
-      return view('servicio/servicioPlanilla',compact('servicio','vehiculos','bombero'));
+      return view('servicio.tablaPlanilla',compact('servicio','vehiculos','bombero'));
     }
 
     public function tablaAsistencia($id){
@@ -233,7 +233,7 @@ class ServicioController extends Controller
       foreach ($bomberos_servicio as $bombero_servicio){
           $bomberos[] = Bombero::where('id', '=',$bombero_servicio->bombero_id)->first();
       }
-      return view('servicio/planillaAsistencia',compact('bomberos'));
+      return view('servicio.asistencia',compact('bomberos'));
     }
 
     public function show($id)
@@ -419,7 +419,7 @@ class ServicioController extends Controller
     }
 
     public function planilla($id){
-      return view('servicio/planilla',compact('id'));
+      return view('servicio.planilla',compact('id'));
     }
 
     public function destroy($id)
