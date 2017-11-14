@@ -1,11 +1,11 @@
 $(document).ready(function () {
   function cargarTabla(){
-    var mes=$('#mes').val();
-    var año=$('#año').val();
+    var month=$('#month').val();
+    var year=$('#year').val();
 		$.ajax({
 			type: 'GET',
 			dataType: 'HTML',
-			url: '../servicio/'+mes+'/'+año+'/tabla',
+			url: '../servicio/'+month+'/'+year+'/tabla',
 			success: function(data){
 						$('#estadistica').html(data);
 					},
@@ -15,11 +15,11 @@ $(document).ready(function () {
 		});
   };
 
-  $('#mes').on('change',function(){
+  $('#month').on('change',function(){
     cargarTabla();
   });
 
-  $('#año').on('change',function(){
+  $('#year').on('change',function(){
     cargarTabla();
   });
   cargarTabla();
