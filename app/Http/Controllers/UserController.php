@@ -8,7 +8,8 @@ use App\Http\Requests;
 use App\User;
 //use App\Vehiculo;
 use Validator;
-//use App\Http\Requests\UsuarioRequest;
+
+use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -45,7 +46,8 @@ class UserController extends Controller
   }
 
   public function show($id){
-
+    $usuario=User::find($id);
+    return view('usuario/info',compact('usuario'));
   }
 
   public function destroy(Request $request,$id)
@@ -56,14 +58,23 @@ class UserController extends Controller
       return redirect()->route('usuario.index');
     }
   }
-  public function update(Request $data, $id)
+  public function update(UserRequest $request, $id)
   {
-
+    if(Auth::user()->admin){
+      User::find($id)->update($request->all());
+      return redirect()->route('usuario.index');
+    }
 
   }
 
-  public function store(Request $data)
+  public function store(UserRequest $data)
   {
+    if(Auth::user()->admin){
+      $pass =$data->password;
+      $data->password = password_hash ($pass, PASSWORD_DEFAULT);
+      User::create($data->all());
+      return redirect()->route('usuario.index');
+    }
 
   }
 
