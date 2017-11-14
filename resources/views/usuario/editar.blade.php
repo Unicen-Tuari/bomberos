@@ -36,7 +36,7 @@
           </div>
         </div>
 
-        <div class="form-group {{ $errors->has('direccion') ? ' has-error' : '' }}">
+        <div class="form-group {{ $errors->has('usuario') ? ' has-error' : '' }}">
           {!! Form::label('usuario', 'Usuario',['class' => 'col-md-4 control-label']) !!}
           <div class="col-md-6">
           {!! Form::text('usuario', $usuario->usuario, ['class' => 'form-control']) !!}
@@ -49,10 +49,11 @@
           </div>
         </div>
 
-        <div class="form-group {{ $errors->has('jerarquia') ? ' has-error' : '' }}">
-          {!! Form::label('Admin', 'Administrador',['class' => 'col-md-4 control-label']) !!}
+        <div class="form-group {{ $errors->has('admin') ? ' has-error' : '' }}">
+          {!! Form::label('admin', "Administrador", ['class' => 'col-md-4 control-label']) !!}
           <div class="col-md-6">
-          {{Form::select('admin', [0 => 'NO administrador',1 => 'Administrador'], ['class' => 'form-control'])}}
+              {!! Form::hidden('admin', '0') !!}
+              {!! Form::checkbox('admin', 1, $usuario->admin, ['data-toggle' => "toggle", 'data-onstyle'=>"success", 'data-on' => 'Sí', 'data-off' => 'No']) !!}
 
               @if ($errors->has('admin'))
                   <span class="help-block">
@@ -62,25 +63,13 @@
           </div>
         </div>
 
-        <div class="form-group {{ $errors->has('telefono') ? ' has-error' : '' }}">
-          {!! Form::label('password', 'Password',['class' => 'col-md-4 control-label']) !!}
-          <div class="col-md-6">
-          {!! Form::text('password', $usuario->password, ['class' => 'form-control']) !!}
-
-              @if ($errors->has('password'))
-                  <span class="help-block">
-                      <strong>{{ $errors->first('password') }}</strong>
-                  </span>
-              @endif
-          </div>
-        </div>
 
 
         <div class="form-group">
           <div class="col-md-6 col-md-offset-4">
             {{-- {!!Form::submit('Registrar', ['class' => 'btn btn-primary']) !!} --}}
             <button type="submit" class="btn btn-primary">
-                <i class=" glyphicon glyphicon-user"></i> Editar
+                <i class=" glyphicon glyphicon-user"></i> Guardar
             </button>
           </div>
         </div>
