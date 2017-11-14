@@ -57,7 +57,7 @@ class VariableController extends Controller
     public function update(VariableRequest $data, $id)
     {
         if(Auth::user()->admin){
-          $variable=Variable::find($id);
+          $variable=Variables::find($id);
           $variable->update($data->all());
           return redirect()->route('variable.index');
         }
