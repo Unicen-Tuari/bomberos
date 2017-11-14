@@ -52,4 +52,10 @@ class VariableRequest extends Request
         default:break;
       }
     }
+    public function messages()
+    {
+      return[
+        'anio.unique' => 'El año ya existe',
+      ];  
+    }
 }

@@ -49,7 +49,7 @@ class PuntuacionController extends Controller
     public function puntuacionmes($mes,$año,$bombero)
     {
         if(Auth::user()->admin){
-          $var=Variables::first();
+          $var=Variables::where('anio', '=', $año)->first();
           $mesactual=\Carbon\Carbon::now()->format('m');
           $añoactual=\Carbon\Carbon::now()->format('Y');
           if($año<$añoactual || ($año==$añoactual && $mes<$mesactual)){

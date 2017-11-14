@@ -23,11 +23,6 @@ class VariableController extends Controller
         return view('variable/lista',compact('variables'));
     }
 
-    public function modificar_variables(Request $request)
-    {
-
-    }
-
     public function create()
     {
         if(Auth::user()->admin){

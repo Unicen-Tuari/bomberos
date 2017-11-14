@@ -4,7 +4,7 @@
   <article class="col-sm-12">
     <div class="panel panel-default">
       <div id="breadcrumb" class="panel-heading">
-        <span class="fa fa-table" aria-hidden="true"></span>
+        <span class="fa fa-pie-chart" aria-hidden="true"></span>
         <h4>Lista de variables</h4>
       </div>
       <div class="panel-body">
