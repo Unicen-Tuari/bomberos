@@ -21,7 +21,7 @@
 
               @if ($errors->has('nombre'))
                   <span class="help-block">
-                      <strong>{{ $errors->first('nombre') }}</strong>
+                    <strong>{{ $errors->first('nombre') }}</strong>
                   </span>
               @endif
           </div>
@@ -34,13 +34,13 @@
 
               @if ($errors->has('apellido'))
                   <span class="help-block">
-                      <strong>{{ $errors->first('apellido') }}</strong>
+                    <strong>{{ $errors->first('apellido') }}</strong>
                   </span>
               @endif
           </div>
         </div>
 
-        <div class="form-group {{ $errors->has('nro_legajo') ? ' has-error' : '' }}">
+        <div class="form-group {{ $errors->has('usuario') ? ' has-error' : '' }}">
           {!! Form::label('usuario', 'usuario',['class' => 'col-md-4 control-label']) !!}
           <div class="col-md-6">
           {!! Form::text('usuario', null, ['class' => 'form-control']) !!}
@@ -53,10 +53,11 @@
           </div>
         </div>
 
-        <div class="form-group {{ $errors->has('jerarquia') ? ' has-error' : '' }}">
+        <div class="form-group {{ $errors->has('password') ? ' has-error' : '' }}">
           {!! Form::label('password', 'Password',['class' => 'col-md-4 control-label']) !!}
           <div class="col-md-6">
-          {{Form::select('password', config('selects.password'),6, ['class' => 'form-control'])}}
+            {!! Form::text('password', null, ['class' => 'form-control']) !!}
+
 
               @if ($errors->has('password'))
                   <span class="help-block">
@@ -65,7 +66,29 @@
               @endif
           </div>
         </div>
-        
+
+        <div class="form-group {{ $errors->has('activo') ? ' has-error' : '' }}">
+          {!! Form::label('admin', "Administrador", ['class' => 'col-md-4 control-label']) !!}
+          <div class="col-md-6">
+              {!! Form::checkbox('admin', 1,0, ['data-toggle' => "toggle", 'data-onstyle'=>"success", 'data-on' => 'Sí', 'data-off' => 'No']) !!}
+
+              @if ($errors->has('admin'))
+                  <span class="help-block">
+                      <strong>{{ $errors->first('admin') }}</strong>
+                  </span>
+              @endif
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-md-6 col-md-offset-4">
+            {{-- {!!Form::submit('Registrar', ['class' => 'btn btn-primary']) !!} --}}
+            <button type="submit" class="btn btn-primary">
+                <i class=" glyphicon glyphicon-user"></i> Guardar
+            </button>
+          </div>
+        </div>
+
       {!! Form::close() !!}
     </div>
   </div>
