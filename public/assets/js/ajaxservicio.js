@@ -1,10 +1,10 @@
 $(document).ready(function () {
   function cargarTablaServicio(){
-    let id = $('#idServicio').html();
+   let id = $('#id').html();
      $.ajax({
 			type: 'GET',
 			dataType: 'HTML',
-			url: '/servicio/reporte/tablaServicio/' + id,
+			url: '/servicio/reporte/planilla/' + id,
 			success: function(data){
 						$('#tablaReporteServicio').html(data);
 					},
@@ -15,11 +15,11 @@ $(document).ready(function () {
   };
 
   function cargarTablaAsistencia(){
-    let id = $('#idServicio').html();
+    let id = $('#id').html();
     $.ajax({
       type: 'GET',
       dataType: 'HTML',
-      url: '/servicio/reporte/tablaAsistencia/' + id,
+      url: '/servicio/reporte/asistencia/' + id,
       success: function(data){
             $('#tablaAsistenciaDelPersonal').html(data);
           },
