@@ -14,17 +14,9 @@
 		</tr>
 		<tr>
 			<td rowspan=2>PARTE DE SERVICIO</td>
-			<td>01</td>
-			<td>02</td>
-			<td>03</td>
-			<td>04</td>
-			<td>05</td>
-			<td>06</td>
-			<td>07</td>
-			<td>08</td>
-			<td>09</td>
-			<td>10</td>
-			<td>11</td>
+    @for($i = 1; $i<=11; $i++)
+      <td> {{sprintf("%'.02d\n", $i)}} </td>
+    @endfor
 			<td>DIA</td>
 			<td>MES</td>
 			<td>AÑO</td>
@@ -34,61 +26,13 @@
 			<td class="col-md-1" rowspan=2></td>
 		</tr>
 		<tr>
-			@if($servicio->tipo_servicio_id==1)
-				<td colspan=1 class="text-center">X</td>
-			@else
-				<td class="text-center">-</td>
-			@endif
-			@if($servicio->tipo_servicio_id==2)
-				<td colspan=1 class="text-center">X</td>
-			@else
-				<td class="text-center">-</td>
-			@endif
-			@if($servicio->tipo_servicio_id==3)
-				<td colspan=1 class="text-center">X</td>
-			@else
-				<td class="text-center">-</td>
-			@endif
-			@if($servicio->tipo_servicio_id==4)
-				<td colspan=1 class="text-center">X</td>
-			@else
-				<td class="text-center">-</td>
-			@endif
-			@if($servicio->tipo_servicio_id==5)
-				<td colspan=1 class="text-center">X</td>
-			@else
-				<td class="text-center">-</td>
-			@endif
-			@if($servicio->tipo_servicio_id==6)
-				<td colspan=1 class="text-center">X</td>
-			@else
-				<td class="text-center">-</td>
-			@endif
-			@if($servicio->tipo_servicio_id==7)
-				<td colspan=1 class="text-center">X</td>
-			@else
-				<td class="text-center">-</td>
-			@endif
-			@if($servicio->tipo_servicio_id==8)
-				<td colspan=1 class="text-center">X</td>
-			@else
-				<td class="text-center">-</td>
-			@endif
-			@if($servicio->tipo_servicio_id==9)
-				<td colspan=1 class="text-center">X</td>
-			@else
-				<td class="text-center">-</td>
-			@endif
-			@if($servicio->tipo_servicio_id==10)
-				<td colspan=1 class="text-center">X</td>
-			@else
-				<td class="text-center">-</td>
-			@endif
-			@if($servicio->tipo_servicio_id==11)
-				<td colspan=1 class="text-center">X</td>
-			@else
-				<td class="text-center">-</td>
-			@endif
+			@for ($i = 1; $i <= 11; $i++)
+				@if($servicio->tipo_servicio_id==$i)
+				 <td colspan=1 class="text-center">X</td>
+			 @else
+				 <td class="text-center">-</td>
+			 @endif
+			@endfor
 			<td></td>
 			<td></td>
 			<td></td>
