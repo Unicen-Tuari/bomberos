@@ -14,7 +14,7 @@ class Vehiculo extends Model
   public function ScopePatente($query,$patente)
   {
     $patente=strtoupper($patente);
-    if (trim($patente)!="") {
+    if ($patente != "") {
       $query->where('patente','LIKE',"%$patente%");
     }
   }
@@ -39,9 +39,9 @@ class Vehiculo extends Model
   public function servicios(){
     return $this->hasMany(VehiculoServicio::class);
   }
-
+  /*
   public function patente(){
     return strtoupper($this->patente);
-  }
+  }*/
 
 }
