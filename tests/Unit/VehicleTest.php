@@ -12,7 +12,7 @@ class VehicleTest extends TestCase
     {
       //setUp
        $vehiculo = factory(Vehiculo::class)->create();
-       $vehiculo->patente = strtoupper($vehiculo->patente);
+
       //Modelo a probar
        $vehiculoModel = Vehiculo::patente($vehiculo->patente);
        //Funciona con ::movil pero no con ::patente (trae vacio)
