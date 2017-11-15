@@ -62,7 +62,7 @@ $factory->define(App\Servicio::class, function (Faker\Generator $faker) {
 $factory->define(App\Vehiculo::class, function (Faker\Generator $faker){
   return[
     'patente' => $faker->lexify('???') . ' ' . $faker->numerify('###'),
-    'num_movil' => $faker->numberBetween($min = 100, $max = 200),
+    'num_movil' => $faker->unique()->numberBetween($min = 50, $max = 200),
     'estado' => 1,
     'detalle' => 'autobomba',
   ];
