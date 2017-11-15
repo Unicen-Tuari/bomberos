@@ -1,30 +1,30 @@
 $(document).ready(function () {
   function cargarTablaServicio(){
-   let id = $('#id').html();
+   let id = $('#idServicio').html();
      $.ajax({
 			type: 'GET',
 			dataType: 'HTML',
-			url: '/servicio/reporte/planilla/' + id,
+			url: '../../servicio/reporte/planilla/' + id,
 			success: function(data){
 						$('#tablaReporteServicio').html(data);
 					},
 			error: function(){
-						alert('Error al Cargar la tabla ');
+						alert('Error al Cargar la tabla servicio ');
 					}
 		});
   };
 
   function cargarTablaAsistencia(){
-    let id = $('#id').html();
+    let id = $('#idServicio').html();
     $.ajax({
       type: 'GET',
       dataType: 'HTML',
-      url: '/servicio/reporte/asistencia/' + id,
+      url: '../../servicio/reporte/asistencia/' + id,
       success: function(data){
             $('#tablaAsistenciaDelPersonal').html(data);
           },
       error: function(){
-            alert('Error al Cargar la tabla ');
+            alert('Error al Cargar la tabla asistencia');
           }
     });
   };
