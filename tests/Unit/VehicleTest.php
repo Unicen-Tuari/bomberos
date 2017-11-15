@@ -12,13 +12,11 @@ class VehicleTest extends TestCase
     {
       //setUp
        $vehiculo = factory(Vehiculo::class)->create();
-
       //Modelo a probar
        $vehiculoModel = Vehiculo::patente($vehiculo->patente);
-       //Funciona con ::movil pero no con ::patente (trae vacio)
       //Assert
        $this->assertEquals($vehiculoModel->first()->patente, $vehiculo->patente);
-       //$this->assertEquals($vehiculoModel->count(),1);
+       $this->assertEquals($vehiculoModel->count(),1);
     }
 
     public function testScopeMovil()
