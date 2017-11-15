@@ -16,7 +16,7 @@ class Vehiculo extends Model
     $patente=strtoupper($patente);
     if ($patente != "") {
       $query->where('patente','LIKE',"%$patente%");
-    }
+    } //No esta devolviendo la patente
   }
 
   public function ScopeMovil($query,$movil)
@@ -43,5 +43,6 @@ class Vehiculo extends Model
   public function patente(){
     return strtoupper($this->patente);
   }*/
+  //Problemas con el Scope Patente no se puede llamar estaticamente
 
 }
