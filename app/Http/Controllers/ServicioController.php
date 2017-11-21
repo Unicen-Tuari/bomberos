@@ -25,7 +25,7 @@ class ServicioController extends Controller
 
     public function index(Request $request)
     {
-      $servicios=Servicio::tipo_s($request['tipo_s'])->tipo_a($request['tipo_a'])
+      $servicios=Servicio::tipo($request['tipo_s'])->tipoAlarma($request['tipo_a'])
       ->fecha($request['mes'],$request['año'])->paginate(12);
       $ultimos=false;
       return view('servicio/servicios',compact('servicios','ultimos'));

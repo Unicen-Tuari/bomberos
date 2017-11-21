@@ -13,10 +13,10 @@
       <div class="col-md-10 col-sm-12 text-right" style="padding-top: 20px;">
         {{Form::model(Request::all(),['route' => 'servicio.index', 'class' => 'form-horizontal', 'method' => 'GET'])}}
           <div class="col-sm-3">
-            {{Form::select('tipo_s',[0=>'Tipo de Servicio'] + config('selects.tipoServicio'),null, ['class' => 'form-control'])}}
+            {{Form::select('tipo',[0=>'Tipo de Servicio'] + config('selects.tipoServicio'),null, ['class' => 'form-control'])}}
           </div>
           <div class="col-sm-3">
-            {{Form::select('tipo_a', [''=>'Tipo de Alarma'] + config('selects.tipoAlarma'),null, ['class' => 'form-control'])}}
+            {{Form::select('tipoAlarma', [''=>'Tipo de Alarma'] + config('selects.tipoAlarma'),null, ['class' => 'form-control'])}}
           </div>
           <div class="col-sm-2">
             {{Form::select('mes', [0=>"MES"] + config('selects.meses'),null, ['class' => 'form-control','id' => 'mes'])}}
