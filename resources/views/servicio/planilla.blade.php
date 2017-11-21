@@ -13,8 +13,8 @@
 
               </div>
               <div class="col-xs-12 col-md-12">
-                <p>01: Incendio &#160;&#160;&#160; - &#160; 02: Auxilio &#160;&#160;&#160; - &#160; 03: Especiales &#160;&#160;&#160; - &#160; 04: Desastre &#160;&#160;&#160; - &#160; 05: Colaboración &#160;&#160;&#160; - &#160; 06: Guardias <br>
-                  07: Comando &#160;&#160;&#160; - &#160; 08: Tecnico &#160;&#160;&#160; - &#160; 09: Ceremonial &#160;&#160;&#160; - &#160; 10: Productos Quimicos &#160;&#160;&#160; - &#160; 11: Forestales
+                <p>01: Incendio - 02: Auxilio - 03: Especiales - 04: Desastre - 05: Colaboración - 06: Guardias <br>
+                  07: Comando - 08: Tecnico - 09: Ceremonial - 10: Productos Quimicos - 11: Forestales
                 </p>
               </div>
             </div>
@@ -47,10 +47,10 @@
                 </tr>
               </table>
               <div class="col-md-12">
-                <p>PRESENTE: 01:&#160;GUARDIA&#160;-&#160;COMANDO&#160;-&#160;CEREMONIAL&#160;-&#160;ASISTENCIA PROGRAMADA<br>
-                  02:&#160;EN PRIMERA DOTACION&#160;-&#160;03: EN OTRA DOTACION&#160;-&#160;04: EN EL CUARTEL&#160;-&#160;05: EN COMISION
+                <p>PRESENTE: 01: GUARDIA - COMANDO - CEREMONIAL - ASISTENCIA PROGRAMADA<br>
+                  02: EN PRIMERA DOTACION - 03: EN OTRA DOTACION - 04: EN EL CUARTEL - 05: EN COMISION
                 </p>
-                <p>AUSENTES: 06:&#160;LICENCIA&#160;-&#160;07: ENFERMO&#160;-&#160;08: CUMPLIENDO CASTIGO&#160;-&#160;09: CON AVISO&#160;-&#160; 10: SIN AVISO <br>
+                <p>AUSENTES: 06: LICENCIA - 07: ENFERMO - 08: CUMPLIENDO CASTIGO - 09: CON AVISO - 10: SIN AVISO <br>
                   EN SERVICIOS ACCIDENTALES: LOS AUSENTES SE DEBEN TACHAR CON UNA RAYA.
                 </p>
               </div>
