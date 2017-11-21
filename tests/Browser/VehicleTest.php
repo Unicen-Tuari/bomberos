@@ -22,7 +22,6 @@ class VehicleTest extends DuskTestCase
       $this->vehiculo = factory(Vehiculo::class)->make();
       $this->vehiculoEdit = factory(Vehiculo::class)->make();
       $this->usuarioAdmin=factory(User::class)->create(['admin'=> '1', 'password'=> bcrypt('123456')]);
-      $this->password = '123456';
   }
 
   public function testCreate()
