@@ -3,6 +3,8 @@
 namespace Tests;
 
 use Illuminate\Contracts\Console\Kernel;
+use Illuminate\Support\Facades\Artisan;
+use App\User;
 
 trait CreatesApplication
 {
@@ -19,4 +21,18 @@ trait CreatesApplication
 
         return $app;
     }
+
+    public function setUp()
+    {
+        parent::setUp();
+        Artisan::call('migrate');
+        factory(User::class)->create(['admin'=> '1']);
+    }
+
+    public function tearDown()
+    {
+        Artisan::call('migrate:reset');
+        parent::tearDown();
+    }
+
 }
