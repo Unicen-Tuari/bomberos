@@ -230,8 +230,6 @@ class ServicioController extends Controller
     public function tablaAsistencia($id){
       $servicio=Servicio::where('id','=',$id)->first();
       $data = $servicio->bomberos->where('servicio_id', '=',$id);
-//var_dump($data);
-//die;
       $bomberos_servicio =  $servicio->bomberos->where('servicio_id', '=',$id)->sortBy(
         function ($bombero, $key) {
             $b = Bombero::find($bombero['bombero_id']);
