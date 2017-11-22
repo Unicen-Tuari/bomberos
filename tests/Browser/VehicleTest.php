@@ -13,7 +13,6 @@ class VehicleTest extends DuskTestCase
 {
     private $vehiculo;
     private $usuarioAdmin;
-    private $password;
     private $vehiculoEdit;
 
   public function setUp()
