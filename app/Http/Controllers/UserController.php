@@ -1,14 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\User;
-//use App\Vehiculo;
 use Validator;
-
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Auth;
 
@@ -22,11 +18,8 @@ class UserController extends Controller
 
   public function index(Request $request)
   {
-    $usuarios=User::id($request['id'])->nombre($request['nombre'])->paginate(12);
-
-      //$usuarios = User::paginate(8);
-      return view('usuario/lista',compact('usuarios'));
-
+    $usuarios=User::id($request['id'])->nombre($request['nombre'])->paginate(8);
+    return view('usuario/lista',compact('usuarios'));
   }
 
   public function create()
@@ -60,6 +53,7 @@ class UserController extends Controller
       return redirect()->route('usuario.index');
     }
   }
+
   public function update(UserRequest $request, $id)
   {
     if(Auth::user()->admin){
@@ -80,8 +74,6 @@ class UserController extends Controller
 
   }
 
-
-  /*funciones sacadas de BomberoController ya que no pertenecian ahi*/
   public function permisos()
   {
     if(Auth::user()->admin){
