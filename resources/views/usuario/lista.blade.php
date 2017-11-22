@@ -8,6 +8,22 @@
       <h4>usuarios</h4>
     </div>
 
+    <div class="col-sm-12">
+      <div class="col-md-7 col-sm-12 text-right" style="padding-top: 20px;">
+        {{Form::model(Request::all(),['route' => 'usuario.index', 'class' => 'form-horizontal', 'method' => 'GET'])}}
+          <div class="col-sm-4">
+            {{Form::text('nombre', null, ['placeholder'=>"Apellido/Nombre", 'class' => 'form-control'])}}
+          </div>
+          <div class="col-sm-4">
+            {{Form::text('id', null, ['placeholder'=>"Id Usuario", 'class' => 'form-control'])}}
+          </div>
+          <div class="col-sm-1">
+            {{Form::submit('Buscar', ['class' => 'btn btn-primary']) }}
+          </div>
+        {{Form::close()}}
+      </div>
+    </div>
+
 
     <div class="panel-body">
       <table class="table table-striped">
