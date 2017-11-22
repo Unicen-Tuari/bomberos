@@ -5,7 +5,7 @@
   <div class="panel panel-default">
     <div id="breadcrumb" class="panel-heading">
       <span class="fa fa-users" aria-hidden="true"></span>
-      <h4>usuarios</h4>
+      <h4>Usuarios</h4>
     </div>
 
     <div class="col-sm-12">
@@ -24,18 +24,17 @@
       </div>
     </div>
 
-
     <div class="panel-body">
       <table class="table table-striped">
-        <thead><!--Titulos de la tabla-->
+        <thead>
           <tr>
             <th>Id Usuario</th>
-            <th>Apellido, nombre</th>
+            <th>Apellido, Nombre</th>
             <th>Admin</th>
             <th></th>
           </tr>
         </thead>
-        <tbody><!--Contenido de la tabla-->
+        <tbody>
           @foreach ($usuarios as $usuario)
               <td>{{$usuario->id}}</td>
               <td class="filtro">{{$usuario->apellido}}, {{$usuario->nombre}}</td>
@@ -55,8 +54,7 @@
               @else
                 <td colspan="2">
                   <butt@section('js')
-  {{ Html::script('assets/js/ajaxpuntuacion.js') }}
-@endsectionon type="submit" class="glyphicon glyphicon-ban-circle" title="Sin permisos para eliminar/modificar"></button>
+                    @endsectionon type="submit" class="glyphicon glyphicon-ban-circle" title="Sin permisos para eliminar/modificar"></button>
                 </td>
               @endif
             </tr>

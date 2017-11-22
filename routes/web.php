@@ -25,8 +25,8 @@ Route::get('/home', 'HomeController@index')->name('home.index');
 Route::resource('bombero','BomberoController',['except' => ['show']]);
 
 
-Route::get('usuario/permisos', 'UserController@permisos')->name('usuario.permisos');
-Route::put('usuario/modificar', 'UserController@permisosupdate')->name('usuario.permisosupdate');
+Route::get('usuario/permisos', 'UserController@showPermisos')->name('usuario.permisos');
+Route::put('usuario/modificar', 'UserController@permisosUpdate')->name('usuario.permisosupdate');
 Route::resource('usuario','UserController');
 
 Route::get('asistencia/rango', 'AsistenciaController@rango')->name('AsistenciaController.rango');

@@ -71,10 +71,9 @@ class UserController extends Controller
       User::create($data->all());
       return redirect()->route('usuario.index');
     }
-
   }
 
-  public function permisos()
+  public function showPermisos()
   {
     if(Auth::user()->admin){
       $usuarios=User::where('usuario','<>',Auth::user()->usuario)->get();
@@ -82,7 +81,7 @@ class UserController extends Controller
     }
   }
 
-  public function permisosupdate(Request $request)
+  public function permisosUpdate(Request $request)
   {
     if(Auth::user()->admin){
       $data=$request->all();
