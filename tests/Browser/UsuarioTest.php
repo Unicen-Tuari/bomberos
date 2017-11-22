@@ -38,35 +38,27 @@ class ABMUsuarioTest extends DuskTestCase
 
     public function testUpdateUser()
     {
-      $this->newUser = factory(User::class)->create(['admin'=>1]);
       $this->browse(function (Browser $browser) {
-            $browser->loginAs($this->userTest)
+            $browser->loginAs($this->newUser)
                     ->visit('/usuario')
                     ->click('.glyphicon-edit')
                     ->press('Guardar')
                     ->assertDontSee('required');
             });
     }
-/*
-    public function testFirefighterDelete()
+
+    public function testDeleteUser()
     {
-      $this->firefighter = factory(Bombero::class)->create();
       $this->browse(function (Browser $browser) {
-            $browser->visit('/bombero')
-                    ->type('legajo',$this->firefighter->nro_legajo)
+            $browser->loginAs($this->newUser)
+                    ->visit('/usuario')
+                    ->type('id',$this->newUser->id)
                     ->press('Buscar')
                     ->click('.glyphicon-trash')
-                    ->type('legajo',$this->firefighter->nro_legajo)
+                    ->type('id',$this->newUser->id)
                     ->press('Buscar')
-                    ->assertDontSee($this->firefighter->nombre);
+                    ->assertDontSee($this->newUser->id);
         });
     }
-
-
-
-*/
-
-
-
 
 }
