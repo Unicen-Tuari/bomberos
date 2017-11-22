@@ -22,7 +22,9 @@ class UserController extends Controller
 
   public function index(Request $request)
   {
-      $usuarios = User::paginate(8);
+    $usuarios=User::id($request['id'])->nombre($request['nombre'])->paginate(12);
+
+      //$usuarios = User::paginate(8);
       return view('usuario/lista',compact('usuarios'));
 
   }
