@@ -18,12 +18,10 @@ class VariablesTest extends DuskTestCase
     parent::setUp();
     $this->usuarioAdmin=factory(User::class)->create(['admin'=> '1', 'password'=> bcrypt('123456')]);
   }
-
   public function tearDown()
   {
     $this->usuarioAdmin->delete();
   }
-
   public function testCreate()
   {
     $this->browse(function (Browser $browser) {
@@ -38,7 +36,6 @@ class VariablesTest extends DuskTestCase
               ->assertSee($variable->anio);
     });
   }
-
   public function testUpdate()
   {
     $this->browse(function (Browser $browser) {
@@ -61,15 +58,15 @@ class VariablesTest extends DuskTestCase
     });
   }
   public function testDelete()
-     {
-       $this->browse(function (Browser $browser) {
-             $variable = factory(Variables::class)->create();
-             $browser->loginAs($this->usuarioAdmin)
-                     ->visit('/variable')
-                     ->click('.glyphicon-trash')
-                     ->assertDontSee($variable->asistencia)
-                     ->assertDontSee($variable->accidentales)
-                     ->assertDontSee($variable->guardias);
-         });
-     }
+   {
+     $this->browse(function (Browser $browser) {
+           $variable = factory(Variables::class)->create();
+           $browser->loginAs($this->usuarioAdmin)
+                   ->visit('/variable')
+                   ->click('.glyphicon-trash')
+                   ->assertDontSee($variable->asistencia)
+                   ->assertDontSee($variable->accidentales)
+                   ->assertDontSee($variable->guardias);
+       });
+   }
 }
