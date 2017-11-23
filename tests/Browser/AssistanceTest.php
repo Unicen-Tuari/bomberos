@@ -7,8 +7,9 @@ use Laravel\Dusk\Browser;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use App\User;
 use App\Asistencia;
+use App\Bombero;
 
-class Assistancetest extends DuskTestCase{
+class AssistanceTest extends DuskTestCase{
   private $usuarioAdmin;
   private $password;
 
@@ -17,9 +18,10 @@ class Assistancetest extends DuskTestCase{
     parent::setUp();
     $this->asistencia = factory(Asistencia::class)->make();
     $this->usuarioAdmin=factory(User::class)->create(['admin'=> '1', 'password'=> bcrypt('123456')]);
+    $this->firefighter = factory(Bombero::class)->create();
   }
 
-  public function testCreate()
+  public function testCreateAssistance()
   {
     $this->browse(function (Browser $browser) {
       $browser->loginAs($this->usuarioAdmin)
@@ -33,6 +35,7 @@ class Assistancetest extends DuskTestCase{
 
   public function testUpdate()
   {
+    $this->asistencia = factory(Asistencia::class)->create(['id_bombero'=> $this->firefighter->id]);
     $this->browse(function (Browser $browser) {
       $browser->loginAs($this->usuarioAdmin)
               ->visit('/asistencia')
@@ -45,6 +48,7 @@ class Assistancetest extends DuskTestCase{
 
   public function testDelete()
   {
+    $this->asistencia = factory(Asistencia::class)->create(['id_bombero'=> $this->firefighter->id]);
     $this->browse(function (Browser $browser) {
       $browser->loginAs($this->usuarioAdmin)
               ->visit('/asistencia')
