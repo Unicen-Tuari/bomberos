@@ -69,7 +69,7 @@ $factory->define(App\Variables::class, function (Faker\Generator $faker) {
   return [
     'asistencia' => $faker->randomNumber($nbDigits = 6),
     'accidentales' => $faker->randomNumber($nbDigits = 6),
-    'guardia' => $faker->randomNumber($nbDigits = 6),
+    'guardias' => $faker->randomNumber($nbDigits = 6),
     'anio' => $faker->numberBetween($min = 1800, $max = 2300),
   ];
 });

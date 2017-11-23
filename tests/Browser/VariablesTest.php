@@ -60,4 +60,16 @@ class VariablesTest extends DuskTestCase
               ->assertSee($variable_edit->guardias);
     });
   }
+  public function testDelete()
+     {
+       $this->browse(function (Browser $browser) {
+             $variable = factory(Variables::class)->create();
+             $browser->loginAs($this->usuarioAdmin)
+                     ->visit('/variable')
+                     ->click('.glyphicon-trash')
+                     ->assertDontSee($variable->asistencia)
+                     ->assertDontSee($variable->accidentales)
+                     ->assertDontSee($variable->guardias);
+         });
+     }
 }
