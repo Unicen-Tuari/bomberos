@@ -8,7 +8,6 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 use App\User;
 use App\Material;
 
-
 class MaterialsTest extends DuskTestCase
 {
   protected $usuarioAdmin;

@@ -5,10 +5,11 @@ namespace Tests\Browser;
 use Tests\DuskTestCase;
 use Laravel\Dusk\Browser;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Database;
+use App\Variables;
 use App\User;
-use App\Variable;
 
-class ABMVariablesTest extends DuskTestCase
+class VariablesTest extends DuskTestCase
 {
   protected $usuarioAdmin;
 
@@ -26,7 +27,7 @@ class ABMVariablesTest extends DuskTestCase
   public function testCreate()
   {
     $this->browse(function (Browser $browser) {
-      $variable = factory(Variable::class)->make();
+      $variable = factory(Variables::class)->make();
       $browser->loginAs($this->usuarioAdmin)
               ->visit('/variable/create')
               ->type('asistencia', $variable->asistencia)
@@ -41,8 +42,8 @@ class ABMVariablesTest extends DuskTestCase
   public function testUpdate()
   {
     $this->browse(function (Browser $browser) {
-      $variable = factory(Variable::class)->create();
-      $variable_edit = factory(Variable::class)->make();
+      $variable = factory(Variables::class)->create();
+      $variable_edit = factory(Variables::class)->make();
       $browser->loginAs($this->usuarioAdmin)
               ->visit('/variable')
               ->click('.glyphicon-edit')
