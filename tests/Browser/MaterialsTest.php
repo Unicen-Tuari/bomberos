@@ -10,24 +10,11 @@ use App\Material;
 
 class MaterialsTest extends DuskTestCase
 {
-  protected $usuarioAdmin;
-
-  public function setUp()
-  {
-    parent::setUp();
-    $this->usuarioAdmin=factory(User::class)->create(['admin'=> '1', 'password'=> bcrypt('123456')]);
-  }
-
-  public function tearDown()
-  {
-    $this->usuarioAdmin->delete();
-  }
-
   public function testCreate()
   {
     $this->browse(function (Browser $browser) {
       $material = factory(Material::class)->make();
-      $browser->loginAs($this->usuarioAdmin)
+      $browser->loginAs(User::find(1))
               ->visit('/material/create')
               ->type('nombre', $material->nombre)
               ->select('vehiculo_id', $material->vehiculo_id)
@@ -43,7 +30,7 @@ class MaterialsTest extends DuskTestCase
     $this->browse(function (Browser $browser) {
       $material = factory(Material::class)->create();
       $material_edit = factory(Material::class)->make();
-      $browser->loginAs($this->usuarioAdmin)
+      $browser->loginAs(User::find(1))
               ->visit('/material')
               ->click('.glyphicon-edit')
               ->clear('nombre')
@@ -62,7 +49,7 @@ class MaterialsTest extends DuskTestCase
   {
     $this->browse(function (Browser $browser) {
       $material = factory(Material::class)->create();
-      $browser->loginAs($this->usuarioAdmin)
+      $browser->loginAs(User::find(1))
               ->visit('/material')
               ->click('.glyphicon-trash')
               ->visit('/material')

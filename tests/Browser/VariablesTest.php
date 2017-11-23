@@ -11,22 +11,11 @@ use App\User;
 
 class VariablesTest extends DuskTestCase
 {
-  protected $usuarioAdmin;
-
-  public function setUp()
-  {
-    parent::setUp();
-    $this->usuarioAdmin=factory(User::class)->create(['admin'=> '1', 'password'=> bcrypt('123456')]);
-  }
-  public function tearDown()
-  {
-    $this->usuarioAdmin->delete();
-  }
   public function testCreate()
   {
     $this->browse(function (Browser $browser) {
       $variable = factory(Variables::class)->make();
-      $browser->loginAs($this->usuarioAdmin)
+      $browser->loginAs(User::find(1))
               ->visit('/variable/create')
               ->type('asistencia', $variable->asistencia)
               ->type('accidentales', $variable->accidentales)
@@ -41,7 +30,7 @@ class VariablesTest extends DuskTestCase
     $this->browse(function (Browser $browser) {
       $variable = factory(Variables::class)->create();
       $variable_edit = factory(Variables::class)->make();
-      $browser->loginAs($this->usuarioAdmin)
+      $browser->loginAs(User::find(1))
               ->visit('/variable')
               ->click('.glyphicon-edit')
               ->clear('asistencia')
@@ -61,11 +50,10 @@ class VariablesTest extends DuskTestCase
    {
      $this->browse(function (Browser $browser) {
            $variable = factory(Variables::class)->create();
-           $browser->loginAs($this->usuarioAdmin)
+           $browser->loginAs(User::find(1))
                    ->visit('/variable')
                    ->click('.glyphicon-trash')
-                   ->assertDontSee($variable->asistencia)
-                   ->assertDontSee($variable->accidentales)
+                   ->visit('/variable')
                    ->assertDontSee($variable->guardias);
        });
    }
