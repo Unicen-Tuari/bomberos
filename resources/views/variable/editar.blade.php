@@ -9,7 +9,7 @@
     </div>
     <div class="panel-body">
         {!! Form::open([ 'route' => ['variable.update', $variables ], 'class' => 'form-horizontal', 'method' => 'PUT', 'files' => true]) !!}
-
+        
         <div class="form-group  {{ $errors->has('asistencia') ? ' has-error' : '' }}">
           {!! Form::label('asistencia', 'Asistencia: ',['class' => 'col-md-4 control-label']) !!}
           <div class="col-md-2">

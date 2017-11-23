@@ -12,7 +12,6 @@
 */
 
 $factory->define(App\Bombero::class, function (Faker\Generator $faker) {
-
   return [
     'nombre' => $faker->firstName,
     'activo'=>1,
@@ -22,17 +21,13 @@ $factory->define(App\Bombero::class, function (Faker\Generator $faker) {
     'direccion' => $faker->address,
     'telefono' => $faker->e164PhoneNumber,
     'fecha_nacimiento' => $faker->date($format = 'Y-m-d', $max = '1990-01-01'),
-
   ];
-
 });
 
 $factory->define(App\Material::class, function (Faker\Generator $faker) {
-
   return [
     'nombre' => $faker->word,
   ];
-
 });
 
 $factory->define(App\Servicio::class, function (Faker\Generator $faker) {
@@ -40,7 +35,6 @@ $factory->define(App\Servicio::class, function (Faker\Generator $faker) {
   $alarma = \Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires'))->addMonth(-rand(1,10))->toDateTimeString();
   $salida =\Carbon\Carbon::createFromFormat('d/m/Y H:i:s',$alarma)->addMinutes(rand(1,10))->toDateTimeString();
   $regreso=\Carbon\Carbon::createFromFormat('d/m/Y H:i:s',$alarma)->addMinutes(rand(30,480))->toDateTimeString();
-
   return [
     'tipo_servicio_id' => $tipo,
     'direccion' => $faker->address,
@@ -68,5 +62,14 @@ $factory->define(App\Vehiculo::class, function (Faker\Generator $faker){
     'num_movil' => $number_vehicle,
     'estado' => 1,
     'detalle' => 'autobomba',
+  ];
+});
+
+$factory->define(App\Variable::class, function (Faker\Generator $faker) {
+  return [
+    'asistencia' => $faker->randomNumber($nbDigits = 6),
+    'accidentales' => $faker->randomNumber($nbDigits = 6),
+    'guardia' => $faker->randomNumber($nbDigits = 6),
+    'anio' => $faker->numberBetween($min = 1800, $max = 2300),
   ];
 });

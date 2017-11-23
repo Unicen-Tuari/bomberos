@@ -46,7 +46,6 @@ class VariableRequest extends Request
             'asistencia' => 'required|max:255',
             'accidentales' => 'required|max:255',
             'guardias' => 'required|max:255',
-            'anio' => 'required|max:255|unique:variables',
           ];
         }
         default:break;
@@ -56,6 +55,6 @@ class VariableRequest extends Request
     {
       return[
         'anio.unique' => 'El año ya existe',
-      ];  
+      ];
     }
 }
