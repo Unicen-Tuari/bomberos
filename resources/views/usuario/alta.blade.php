@@ -8,17 +8,18 @@
       <h4>Alta Usuario</h4>
     </div>
     <div class="panel-body">
-      {!! Form::open([ 'route' => 'usuario.store', 'class' => 'form-horizontal', 'method' => 'POST']) !!}
 
+      <form class="form-horizontal" action={{route("usuario.store")}} method="POST">
+        {{csrf_field()}}
+        {{method_field('POST')}}
         <div hidden>
-          {!! Form::checkbox('activo', 1) !!}
-        </div>
+          <input type="checkbox" name="activo" value="1">
+      </div>
 
         <div class="form-group {{ $errors->has('nombre') ? ' has-error' : '' }}">
-          {!! Form::label('nombre', 'Nombre',['class' => 'col-md-4 control-label']) !!}
+          <label class="col-md-4 control-label" name="nombre" > Nombre</label>
           <div class="col-md-6">
-              {!! Form::text('nombre', null, ['class' => 'form-control']) !!}
-
+            <input class="form-control" type="text" name="nombre" placeholder= "Nombre">
               @if ($errors->has('nombre'))
                   <span class="help-block">
                     <strong>{{ $errors->first('nombre') }}</strong>
@@ -28,50 +29,45 @@
         </div>
 
         <div class="form-group {{ $errors->has('apellido') ? ' has-error' : '' }}">
-          {!! Form::label('apellido', 'Apellido',['class' => 'col-md-4 control-label']) !!}
-          <div class="col-md-6">
-              {!! Form::text('apellido', null, ['class' => 'form-control']) !!}
-
-              @if ($errors->has('apellido'))
-                  <span class="help-block">
-                    <strong>{{ $errors->first('apellido') }}</strong>
-                  </span>
-              @endif
-          </div>
+            <label class="col-md-4 control-label" name="apellido" > Apellido</label>
+              <div class="col-md-6">
+                <input class="form-control" type="text" name="apellido" placeholder= "Apellido">
+                    @if ($errors->has('apellido'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('apellido') }}</strong>
+                        </span>
+                    @endif
+              </div>
         </div>
 
         <div class="form-group {{ $errors->has('usuario') ? ' has-error' : '' }}">
-          {!! Form::label('usuario', 'usuario',['class' => 'col-md-4 control-label']) !!}
-          <div class="col-md-6">
-          {!! Form::text('usuario', null, ['class' => 'form-control']) !!}
-
-              @if ($errors->has('usuario'))
-                  <span class="help-block">
-                      <strong>{{ $errors->first('usuario') }}</strong>
-                  </span>
-              @endif
-          </div>
+            <label class="col-md-4 control-label" name="usuario" > Usuario</label>
+              <div class="col-md-6">
+                <input class="form-control" type="text" name="usuario" placeholder= "Usuario">
+                    @if ($errors->has('usuario'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('usuario') }}</strong>
+                        </span>
+                    @endif
+              </div>
         </div>
 
         <div class="form-group {{ $errors->has('password') ? ' has-error' : '' }}">
-          {!! Form::label('password', 'Password',['class' => 'col-md-4 control-label']) !!}
-          <div class="col-md-6">
-            {!! Form::text('password', null, ['class' => 'form-control']) !!}
-
-
-              @if ($errors->has('password'))
-                  <span class="help-block">
-                      <strong>{{ $errors->first('password') }}</strong>
-                  </span>
-              @endif
-          </div>
+            <label class="col-md-4 control-label" name="password" > Password</label>
+              <div class="col-md-6">
+                <input class="form-control" type="text" name="password" placeholder= "Password">
+                    @if ($errors->has('password'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('password') }}</strong>
+                        </span>
+                    @endif
+              </div>
         </div>
 
         <div class="form-group {{ $errors->has('activo') ? ' has-error' : '' }}">
-          {!! Form::label('admin', "Administrador", ['class' => 'col-md-4 control-label']) !!}
+          <label class="col-md-4 control-label" name="admin" > Administrador</label>
           <div class="col-md-6">
-              {!! Form::checkbox('admin', 1,0, ['data-toggle' => "toggle", 'data-onstyle'=>"success", 'data-on' => 'Sí', 'data-off' => 'No']) !!}
-
+              <input type="checkbox" class="form-control" type="text" checked data-toggle="toggle" data-off="No" data-on="Sí" data-onstyle="success" placeholder= "Admin">
               @if ($errors->has('admin'))
                   <span class="help-block">
                       <strong>{{ $errors->first('admin') }}</strong>
@@ -82,14 +78,11 @@
 
         <div class="form-group">
           <div class="col-md-6 col-md-offset-4">
-            {{-- {!!Form::submit('Registrar', ['class' => 'btn btn-primary']) !!} --}}
             <button type="submit" class="btn btn-primary">
-                <i class=" glyphicon glyphicon-user"></i> Guardar
+                <i class=" glyphicon glyphicon-user">Guardar</i>
             </button>
           </div>
-        </div>
-
-      {!! Form::close() !!}
+        </div>  
     </div>
   </div>
 </article>
