@@ -7,7 +7,7 @@
       Usuario N° {{$usuario->id}}
     </div>
     <div class="form-group {{ $errors->has('nombre') ? ' has-error' : '' }}">
-      {!! Form::label('nombre', 'Nombre',['class' => 'col-md-4 control-label']) !!}
+        <label class="col-md-4 control-label" name="nombre" > Nombre</label>
       <div class="col-md-6">
           {!! Form::text('nombre', $usuario->nombre, ['class' => 'form-control']) !!}
 
@@ -20,7 +20,8 @@
     </div>
 
     <div class="form-group {{ $errors->has('apellido') ? ' has-error' : '' }}">
-      {!! Form::label('apellido', 'Apellido',['class' => 'col-md-4 control-label']) !!}
+
+      <label class="col-md-4 control-label" name="apellido" > Apellido</label>
       <div class="col-md-6">
           {!! Form::text('apellido', $usuario->apellido, ['class' => 'form-control']) !!}
 
@@ -33,7 +34,8 @@
     </div>
 
     <div class="form-group {{ $errors->has('usuario') ? ' has-error' : '' }}">
-      {!! Form::label('usuario', 'Usuario',['class' => 'col-md-4 control-label']) !!}
+
+      <label class="col-md-4 control-label" name="usuario" > Usuario</label>
       <div class="col-md-6">
       {!! Form::text('usuario', $usuario->usuario, ['class' => 'form-control']) !!}
 
@@ -46,7 +48,8 @@
     </div>
 
     <div class="form-group {{ $errors->has('admin') ? ' has-error' : '' }}">
-      {!! Form::label('admin', "Administrador", ['class' => 'col-md-4 control-label']) !!}
+      
+      <label class="col-md-4 control-label" name="admin" > Administrador</label>
       <div class="col-md-6">
           {!! Form::hidden('admin', '0') !!}
           {!! Form::checkbox('admin', 1, $usuario->admin, ['data-toggle' => "toggle", 'data-onstyle'=>"success", 'data-on' => 'Sí', 'data-off' => 'No']) !!}

@@ -43,14 +43,14 @@
           <td><a href="{{ route('usuario.edit', $usuario->id) }}" class="glyphicon glyphicon-edit"></a></td>
           <td>
             @if (count($usuario->servicios)==0)
-            
-            {{ Form::open(['route' => ['usuario.destroy', $usuario->id], 'method' => 'DELETE']) }}
-            <button type="submit" class="glyphicon glyphicon-trash"></button>
-            {{ Form::close() }}
 
+            <form action="{{route('usuario.destroy',$usuario)}}" method="post">
+              {{ csrf_field() }}
+              {{ method_field('DELETE') }}
+            <button type="submit" class="glyphicon glyphicon-trash"></button>
+          </form>
             @else
             <button type="submit" class="glyphicon glyphicon-ban-circle" title="Imposible eliminar, participo en al menos un servicio"></button>
-
             @endif
           </td>
           @else

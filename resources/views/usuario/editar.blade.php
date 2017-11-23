@@ -9,12 +9,13 @@
     </div>
     <div class="panel-body">
       {!! Form::open([ 'route' => ['usuario.update', $usuario ], 'class' => 'form-horizontal', 'method' => 'PUT', 'files' => true]) !!}
-
+      <!-- <form action="{{route('usuario.update',$usuario)}}" method="put">
+        {{ csrf_field() }}
+        {{ method_field('UPDATE') }} -->
         <div class="form-group {{ $errors->has('nombre') ? ' has-error' : '' }}">
-          {!! Form::label('nombre', 'Nombre',['class' => 'col-md-4 control-label']) !!}
-          <div class="col-md-6">
+          <label class="col-md-4 control-label" name="nombre" > Nombre</label>
+        <div class="col-md-6">
               {!! Form::text('nombre', $usuario->nombre, ['class' => 'form-control']) !!}
-
               @if ($errors->has('nombre'))
                   <span class="help-block">
                       <strong>{{ $errors->first('nombre') }}</strong>
@@ -24,7 +25,7 @@
         </div>
 
         <div class="form-group {{ $errors->has('apellido') ? ' has-error' : '' }}">
-          {!! Form::label('apellido', 'Apellido',['class' => 'col-md-4 control-label']) !!}
+          <label class="col-md-4 control-label" name="nombre" >Apellido</label>
           <div class="col-md-6">
               {!! Form::text('apellido', $usuario->apellido, ['class' => 'form-control']) !!}
 
@@ -37,7 +38,7 @@
         </div>
 
         <div class="form-group {{ $errors->has('usuario') ? ' has-error' : '' }}">
-          {!! Form::label('usuario', 'Usuario',['class' => 'col-md-4 control-label']) !!}
+          <label class="col-md-4 control-label" name="usuario" > Usuario</label>
           <div class="col-md-6">
           {!! Form::text('usuario', $usuario->usuario, ['class' => 'form-control']) !!}
 
@@ -50,11 +51,12 @@
         </div>
 
         <div class="form-group {{ $errors->has('admin') ? ' has-error' : '' }}">
-          {!! Form::label('admin', "Administrador", ['class' => 'col-md-4 control-label']) !!}
+
+          <label class="col-md-4 control-label" name="admin" > Administrador</label>
           <div class="col-md-6">
               {!! Form::hidden('admin', '0') !!}
-              {!! Form::checkbox('admin', 1, $usuario->admin, ['data-toggle' => "toggle", 'data-onstyle'=>"success", 'data-on' => 'Sí', 'data-off' => 'No']) !!}
 
+              <input type="checkbox" class="form-control" type="text" checked data-toggle="toggle" data-off="No" data-on="Sí" data-onstyle="success" placeholder= "Admin">
               @if ($errors->has('admin'))
                   <span class="help-block">
                       <strong>{{ $errors->first('admin') }}</strong>
@@ -67,9 +69,8 @@
 
         <div class="form-group">
           <div class="col-md-6 col-md-offset-4">
-            {{-- {!!Form::submit('Registrar', ['class' => 'btn btn-primary']) !!} --}}
             <button type="submit" class="btn btn-primary">
-                <i class=" glyphicon glyphicon-user"></i> Guardar
+                <i class=" glyphicon glyphicon-user">Guardar</i>
             </button>
           </div>
         </div>
