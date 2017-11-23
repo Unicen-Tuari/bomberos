@@ -10,17 +10,17 @@
 
     <div class="col-sm-12">
       <div class="col-md-7 col-sm-12 text-right" style="padding-top: 20px;">
-        {{Form::model(Request::all(),['route' => 'usuario.index', 'class' => 'form-horizontal', 'method' => 'GET'])}}
+        <form class="form-horizontal" action={{route("usuario.index")}} method="GET">
           <div class="col-sm-4">
-            {{Form::text('nombre', null, ['placeholder'=>"Apellido/Nombre", 'class' => 'form-control'])}}
+            <input class="form-control" type="text" name="nombre" placeholder= "Apellido/Nombre">
           </div>
           <div class="col-sm-4">
-            {{Form::text('id', null, ['placeholder'=>"Id Usuario", 'class' => 'form-control'])}}
+            <input class="form-control" type="text" name="id" placeholder= "Id Usuario">
           </div>
           <div class="col-sm-1">
-            {{Form::submit('Buscar', ['class' => 'btn btn-primary']) }}
+            <button class="btn btn-primary" type="submit" >Buscar</button>
           </div>
-        {{Form::close()}}
+        </form>
       </div>
     </div>
 
@@ -36,36 +36,38 @@
         </thead>
         <tbody>
           @foreach ($usuarios as $usuario)
-              <td>{{$usuario->id}}</td>
-              <td class="filtro">{{$usuario->apellido}}, {{$usuario->nombre}}</td>
-              <td>{{$usuario->admin}}</td>
-              @if (Auth::user()->admin)
-                <td><a href="{{ route('usuario.edit', $usuario->id) }}" class="glyphicon glyphicon-edit"></a></td>
-                <td>
-                  @if (count($usuario->servicios)==0)
-                    {{ Form::open(['route' => ['usuario.destroy', $usuario->id], 'method' => 'DELETE']) }}
-                        <button type="submit" class="glyphicon glyphicon-trash"></button>
-                    {{ Form::close() }}
-                  @else
-                    <button type="submit" class="glyphicon glyphicon-ban-circle" title="Imposible eliminar, participo en al menos un servicio"></button>
+          <td>{{$usuario->id}}</td>
+          <td class="filtro">{{$usuario->apellido}}, {{$usuario->nombre}}</td>
+          <td>{{$usuario->admin}}</td>
+          @if (Auth::user()->admin)
+          <td><a href="{{ route('usuario.edit', $usuario->id) }}" class="glyphicon glyphicon-edit"></a></td>
+          <td>
+            @if (count($usuario->servicios)==0)
+            
+            {{ Form::open(['route' => ['usuario.destroy', $usuario->id], 'method' => 'DELETE']) }}
+            <button type="submit" class="glyphicon glyphicon-trash"></button>
+            {{ Form::close() }}
 
-                  @endif
-                </td>
-              @else
-                <td colspan="2">
-                  <butt@section('js')
-                    @endsectionon type="submit" class="glyphicon glyphicon-ban-circle" title="Sin permisos para eliminar/modificar"></button>
-                </td>
-              @endif
-            </tr>
-          @endforeach
-          </tbody>
-          <br>
-        </table>
-        <div class="text-center">
-          {{ $usuarios->appends(Request::all())->links()}}
-        </div>
+            @else
+            <button type="submit" class="glyphicon glyphicon-ban-circle" title="Imposible eliminar, participo en al menos un servicio"></button>
+
+            @endif
+          </td>
+          @else
+          <td colspan="2">
+            <butt@section('js')
+            @endsectionon type="submit" class="glyphicon glyphicon-ban-circle" title="Sin permisos para eliminar/modificar"></button>
+          </td>
+          @endif
+        </tr>
+        @endforeach
+      </tbody>
+      <br>
+    </table>
+    <div class="text-center">
+      {{ $usuarios->appends(Request::all())->links()}}
     </div>
   </div>
+</div>
 </article>
 @endsection
