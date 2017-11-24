@@ -8,26 +8,40 @@
       <span class="fa fa-list" aria-hidden="true"></span>
       <h4>Ultimos servicios realizados</h4>
     </div>
-
     <div class="col-sm-12">
       <div class="col-md-10 col-sm-12 text-right" style="padding-top: 20px;">
-        {{Form::model(Request::all(),['route' => 'servicio.index', 'class' => 'form-horizontal', 'method' => 'GET'])}}
+        <form class='form-horizontal' action ={{route('servicio.index')}} method = 'GET'>
           <div class="col-sm-3">
-            {{Form::select('tipo',[0=>'Tipo de Servicio'] + config('selects.tipoServicio'),null, ['class' => 'form-control'])}}
+            <select class="form-control" name="tipo_servicio">
+              <option value=0 >Tipo de Servicio</option>
+              @foreach(config('selects.tipoServicio') as $key => $tipo_servicio)
+                <option value={{$key}}>{{$tipo_servicio}}</option>
+              @endforeach
+            </select>
           </div>
           <div class="col-sm-3">
-            {{Form::select('tipoAlarma', [''=>'Tipo de Alarma'] + config('selects.tipoAlarma'),null, ['class' => 'form-control'])}}
+            <select class="form-control" name="tipo_alarma">
+              <option value=0 >Tipo de Alarma</option>
+              @foreach(config('selects.tipoAlarma') as $key => $tipo_alarma)
+                <option value={{$key}}>{{$tipo_alarma}}</option>
+              @endforeach
+            </select>
+          </div>
+          <div class="col-sm-3">
+            <select class="form-control" name="month">
+              <option value=0 >MES</option>
+              @foreach(config('selects.meses') as $key => $mes)
+                <option value={{$key}} >{{$mes}}</option>
+                @endforeach
+              </select>
           </div>
           <div class="col-sm-2">
-            {{Form::select('mes', [0=>"MES"] + config('selects.meses'),null, ['class' => 'form-control','id' => 'mes'])}}
-          </div>
-          <div class="col-sm-2">
-            {{Form::text('año', null, ['placeholder'=>\Carbon\Carbon::now()->format('Y'), 'class' => 'form-control'])}}
+            <input class="form-control" name="year" placeholder={{\Carbon\Carbon::now()->format('Y')}}>
           </div>
           <div class="col-sm-1">
-            {{Form::submit('Buscar', ['class' => 'btn btn-primary']) }}
+            <button class="btn btn-primary" type="submit" name="Buscar">Buscar</button>
           </div>
-        {{Form::close()}}
+        </form>
       </div>
     </div>
 
@@ -50,11 +64,11 @@
                 <td class="text-center">{{\Carbon\Carbon::parse($servicio->hora_regreso)->format('d/m/Y H:i:s')}}</td>
                 <td class="text-center"><a class="glyphicon glyphicon-list-alt" href="{{ route('servicio.planilla',$servicio->id) }}"></a></td>
                 @if (Auth::user()->admin)
-                  <td class="text-center">
-                    {{ Form::open(['route' => ['servicio.destroy', $servicio->id], 'method' => 'delete']) }}
-                        <button type="submit" class="glyphicon glyphicon-trash"></button>
-                    {{ Form::close() }}
-                  </td>
+                  <td class="text-center"><form class="form-horizontal" action={{route('servicio.destroy', $servicio->id)}} method="POST">
+                  {{csrf_field()}}
+                  {{method_field('DELETE')}}
+                  <button type="submit" class="glyphicon glyphicon-trash"></button>
+                </form></td>
                   <td class="text-center"><a class="glyphicon glyphicon-edit" href="{{ route('servicio.edit', $servicio->id) }}"></a></td>
                 @else
                   <td class="text-center" colspan="2">
