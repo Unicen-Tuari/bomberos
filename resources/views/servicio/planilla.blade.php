@@ -2,6 +2,11 @@
 @section('content')
   <article class="col-sm-12">
     <div class="panel panel-default">
+      <form action="{{route('servicio.index')}}" metho="GET">
+        <button type="submit" class="btn btn-default pull-right">
+          <i class=" glyphicon glyphicon-arrow-left"></i> Volver
+        </button>
+      </form>
       <div id="breadcrumb" class="panel-heading">
         <span class="fa fa-print" aria-hidden="true"></span>
         <h4>Reporte de Servicio - <span id="idServicio">{{$id}}</span></h4>
@@ -65,6 +70,11 @@
                 <button type="submit" id="print" class="btn btn-default pull-left">
                   <i class=" glyphicon glyphicon-print"></i> Imprimir
                 </button>
+                <form action="{{route('servicio.index')}}" metho="GET">
+                  <button type="submit" id="print" class="btn btn-default pull-right">
+                    <i class=" glyphicon glyphicon-arrow-left"></i> Volver
+                  </button>
+                </form>
               </div>
             </div>
           </div>
