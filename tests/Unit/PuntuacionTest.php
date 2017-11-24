@@ -15,5 +15,6 @@ class PuntuacionTest extends TestCase
         $puntuacion = factory(Puntuacion::class)->create(['id_bombero'=>$bombero->id]);
         $bomberoPuntuacion = Puntuacion::find($puntuacion->id)->bombero;
         $this->assertEquals($bomberoPuntuacion->id,$bombero->id);
+        $this->assertEquals($bomberoPuntuacion->nro_legajo,$bombero->nro_legajo);
     }
 }
