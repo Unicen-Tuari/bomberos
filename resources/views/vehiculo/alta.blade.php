@@ -69,5 +69,5 @@
           </form>
         </div>
       </div>
-</article>
-@endsection
+    </article>
+  @endsection
