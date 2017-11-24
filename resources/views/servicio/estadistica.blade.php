@@ -9,7 +9,7 @@
         <h4>Estadisticas</h4>
       </div>
       <div class="form-horizontal">
-      <div class="panel-body">
+        <div class="panel-body">
           <label class="col-md-1 control-label" for="month">Mes:</label>
           <div class="col-md-2">
             <select id="month" class="form-control" name="meses">
@@ -22,12 +22,12 @@
             <div class="col-md-2">
               <input id="year" class="form-control" value={{\Carbon\Carbon::now()->format('Y')}}>
             </div>
-            </div>
-        <div id="estadistica">
+          </div>
+          <div id="estadistica">
 
+          </div>
         </div>
       </div>
-    </div>
     </article>
   @endsection
 

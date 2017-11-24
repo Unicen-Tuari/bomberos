@@ -1,5 +1,5 @@
 @if($servicio)
-<table class="text-center table table-bordered">
+	<table class="text-center table table-bordered">
 		<tr>
 			<td rowspan=2>B.V.</td>
 			<td class="text-center" colspan=14 rowspan=2>TRENQUE LAUQUEN</td>
@@ -14,9 +14,9 @@
 		</tr>
 		<tr>
 			<td rowspan=2>PARTE DE SERVICIO</td>
-    @for($i = 1; $i<=11; $i++)
-      <td> {{sprintf("%'.02d\n", $i)}} </td>
-    @endfor
+			@for($i = 1; $i<=11; $i++)
+				<td> {{sprintf("%'.02d\n", $i)}} </td>
+			@endfor
 			<td>DIA</td>
 			<td>MES</td>
 			<td>AÑO</td>
@@ -28,10 +28,10 @@
 		<tr>
 			@for ($i = 1; $i <= 11; $i++)
 				@if($servicio->tipo_servicio_id==$i)
-				 <td colspan=1 class="text-center">X</td>
-			 @else
-				 <td class="text-center">-</td>
-			 @endif
+					<td colspan=1 class="text-center">X</td>
+				@else
+					<td class="text-center">-</td>
+				@endif
 			@endfor
 			<td></td>
 			<td></td>
@@ -197,7 +197,7 @@
 		</tr>
 	</table>
 @else
- <h4 class="text-center text-danger">No existe el servicio</h4>
+	<h4 class="text-center text-danger">No existe el servicio</h4>
 @endif
 @section('js')
 	{!! Html::script('assets/js/imprimirreporte.js') !!}
