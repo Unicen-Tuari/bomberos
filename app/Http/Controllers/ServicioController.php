@@ -221,7 +221,7 @@ class ServicioController extends Controller
       $servicio=Servicio::where('id','=',$id)->first();
       if ($servicio){
         $bombero_id = $servicio->bomberos->where('a_cargo',true)->first()->bombero_id;
-        $vehiculos = $servicio->vehiculos->where('id', '=' , $servicio->id)->all();
+        $vehiculos = $servicio->vehiculos->where('servicio_id', '=' , $servicio->id)->all();
       }
       $bombero = Bombero::where('id', '=',$bombero_id)->first();
       return view('servicio.tablaPlanilla',compact('servicio','vehiculos','bombero'));
@@ -229,7 +229,6 @@ class ServicioController extends Controller
 
     public function tablaAsistencia($id){
       $servicio=Servicio::where('id','=',$id)->first();
-      $data = $servicio->bomberos->where('servicio_id', '=',$id);
       $bomberos_servicio =  $servicio->bomberos->where('servicio_id', '=',$id)->sortBy(
         function ($bombero, $key) {
             $b = Bombero::find($bombero['bombero_id']);
