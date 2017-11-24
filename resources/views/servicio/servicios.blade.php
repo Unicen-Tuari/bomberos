@@ -15,7 +15,7 @@
             <select class="form-control" name="tipo_servicio">
               <option value=0 >Tipo de Servicio</option>
               @foreach(config('selects.tipoServicio') as $key => $tipo_servicio)
-                <option value={{$key}}>{{$tipo_servicio}}</option>
+                <option value="{{$key}}">{{$tipo_servicio}}</option>
               @endforeach
             </select>
           </div>
@@ -23,7 +23,7 @@
             <select class="form-control" name="tipo_alarma">
               <option value=0 >Tipo de Alarma</option>
               @foreach(config('selects.tipoAlarma') as $key => $tipo_alarma)
-                <option value={{$key}}>{{$tipo_alarma}}</option>
+                <option value={{$key}} @if ($key == old('tipo_alarma')) value={{old('tipo_alarma')}} selected="selected" @endif>{{$tipo_alarma}}</option>
               @endforeach
             </select>
           </div>
@@ -31,7 +31,7 @@
             <select class="form-control" name="month">
               <option value=0 >MES</option>
               @foreach(config('selects.meses') as $key => $mes)
-                <option value={{$key}} >{{$mes}}</option>
+                <option value={{$key}} @if($mes == old('month', $servicios['month'])) selected @endif >{{$mes}}</option>
                 @endforeach
               </select>
           </div>

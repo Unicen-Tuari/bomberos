@@ -28,7 +28,7 @@ class ServicioController extends Controller
       $servicios=Servicio::tipo($request['tipo_servicio'])->tipoAlarma($request['tipo_alarma'])
       ->fecha($request['month'],$request['year'])->paginate(12);
       $ultimos=false;
-      $request->flashOnly(['tipo_alarma', 'tipo_servicio']);
+      $request->flashOnly(['tipo_alarma', 'tipo_servicio', 'month', 'year']);
       return view('servicio.servicios',compact('servicios','ultimos', 'request'));
     }
 
