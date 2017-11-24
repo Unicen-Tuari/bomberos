@@ -8,7 +8,7 @@ use Laravel\Dusk\Browser;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use App\Servicio;
 
-class VehicleTest extends DuskTestCase
+class ServiceSpreadsheetTest extends DuskTestCase
 {
   public function testSeeIconList()
   {
