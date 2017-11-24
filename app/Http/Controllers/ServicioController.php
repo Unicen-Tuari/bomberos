@@ -431,7 +431,14 @@ class ServicioController extends Controller
     {
       if(Auth::user()->admin){
         $servicio=Servicio::find($id);
-        $bombero_id = $servicio->bomberos->where('a_cargo',true)->first()->bombero_id;
+        $servicio->bomberos->where('servicio_id', '=', $servicio->id)->all();
+        $servicio->vehiculos->where('servicio_id', '=', $servicio->id)->all();
+        foreach ($servicio->bomberos as $servicio->bombero){
+          $servicio->bombero->delete();
+        }
+        foreach ($servicio->vehiculos as $servicio->vehiculo){
+          $servicio->vehiculo->delete();
+        }
         $servicio->delete();
         return redirect()->route('servicio.index');
       }
