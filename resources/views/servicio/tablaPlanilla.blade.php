@@ -99,14 +99,14 @@
 			<td colspan=4>{{$servicio->quemados}}</td>
 			<td colspan=2>{{$servicio->otros}}</td>
 			<td colspan=2>{{$servicio->combustible}}</td>
-			<td colspan=5></td>
+			<td colspan=5>{{$servicio->cuartel_colaborador}}</td>
 		</tr>
 		<tr>
 			<td class="text-left" colspan=1>ALARMA</td>
 			<td class="text-left" colspan=2>GRAL.</td>
 			<td class="text-left" colspan=2>SEL. </td>
 			<td class="text-left" colspan=2>INT.</td>
-			<td class="text-left" colspan=15>AUTOR LLAMADA</td>
+			<td class="text-left" colspan=15>AUTOR LLAMADA: {{$servicio->autor_llamada}}</td>
 		</tr>
 		<tr>
 			<td class="col-md-1 text-left" colspan=20>RECONOCIMIENTO: {{$servicio->reconocimiento}}</td>
