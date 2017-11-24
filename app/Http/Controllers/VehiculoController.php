@@ -73,5 +73,4 @@ class VehiculoController extends Controller
       return redirect()->route('vehiculo.index');
     }
   }
-
 }
