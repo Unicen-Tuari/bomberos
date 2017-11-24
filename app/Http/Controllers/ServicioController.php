@@ -28,7 +28,8 @@ class ServicioController extends Controller
       $servicios=Servicio::tipo($request['tipo_servicio'])->tipoAlarma($request['tipo_alarma'])
       ->fecha($request['month'],$request['year'])->paginate(12);
       $ultimos=false;
-      return view('servicio.servicios',compact('servicios','ultimos'));
+      $request->flashOnly(['tipo_alarma', 'tipo_servicio']);
+      return view('servicio.servicios',compact('servicios','ultimos', 'request'));
     }
 
     public function ultimos()
@@ -430,6 +431,7 @@ class ServicioController extends Controller
     {
       if(Auth::user()->admin){
         $servicio=Servicio::find($id);
+        $bombero_id = $servicio->bomberos->where('a_cargo',true)->first()->bombero_id;
         $servicio->delete();
         return redirect()->route('servicio.index');
       }
