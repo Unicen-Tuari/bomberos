@@ -78,6 +78,5 @@ class VehicleTest extends DuskTestCase
   {
    $this->vehiculoEdit->delete();
    $this->vehiculo->delete();
-   $this->usuarioAdmin->delete();
   }
 }
