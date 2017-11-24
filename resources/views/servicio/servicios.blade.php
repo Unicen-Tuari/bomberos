@@ -15,7 +15,7 @@
             <select class="form-control" name="tipo_servicio">
               <option value=0 >Tipo de Servicio</option>
               @foreach(config('selects.tipoServicio') as $key => $tipo_servicio)
-                <option value="{{$key}}">{{$tipo_servicio}}</option>
+                <option value="{{$key}}" @if ($key == old('tipo_servicio')) value={{old('tipo_servicio')}} selected="selected" @endif>{{$tipo_servicio}}</option>
               @endforeach
             </select>
           </div>
@@ -31,12 +31,12 @@
             <select class="form-control" name="month">
               <option value=0 >MES</option>
               @foreach(config('selects.meses') as $key => $mes)
-                <option value={{$key}} @if($mes == old('month', $servicios['month'])) selected @endif >{{$mes}}</option>
+                <option value={{$key}} @if($key == old('month')) value={{old('month')}} selected @endif >{{$mes}}</option>
                 @endforeach
               </select>
           </div>
           <div class="col-sm-2">
-            <input class="form-control" name="year" placeholder={{\Carbon\Carbon::now()->format('Y')}}>
+            <input class="form-control" name="year" @if(old('year')) value= {{old('year')}} @endif placeholder={{\Carbon\Carbon::now()->format('Y')}}>
           </div>
           <div class="col-sm-1">
             <button class="btn btn-primary" type="submit" name="Buscar">Buscar</button>
