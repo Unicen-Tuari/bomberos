@@ -10,8 +10,8 @@ class VehicleTest extends TestCase
 {
   public function testScopePatente()
   {
-    $vehiculo = factory(Vehiculo::class)->create('patente' =>'PPP 333');
-    $vehiculo2 = factory(Vehiculo::class)->create('patente' => 'RRR 123');
+    $vehiculo = factory(Vehiculo::class)->create(['patente' => 'PPP 333']);
+    $vehiculo2 = factory(Vehiculo::class)->create(['patente' => 'RRR 123']);
     $vehiculoModel = Vehiculo::patente($vehiculo->patente);
     $this->assertEquals($vehiculoModel->first()->patente, $vehiculo->patente);
     $this->assertEquals($vehiculoModel->count(),1);
@@ -19,8 +19,8 @@ class VehicleTest extends TestCase
 
   public function testScopeMovil()
   {
-    $vehiculo = factory(Vehiculo::class)->create('num_movil' => 2);
-    $vehiculo2 = factory(Vehiculo::class)->create('num_movil' => 3);
+    $vehiculo = factory(Vehiculo::class)->create(['num_movil' => 2]);
+    $vehiculo2 = factory(Vehiculo::class)->create(['num_movil' => 3]);
     $vehiculoModel = Vehiculo::movil($vehiculo->num_movil);
     $this->assertEquals($vehiculoModel->first()->num_movil, $vehiculo->num_movil);
     $this->assertEquals($vehiculoModel->count(),1);
