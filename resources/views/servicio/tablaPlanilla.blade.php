@@ -80,9 +80,11 @@
 			<td rowspan=2></td>
 		</tr>
 		<tr>
-			<td colspan=4 rowspan=3>@foreach ($vehiculos as $vehiculo)
-				{{$vehiculo->vehiculo_id}}
-			@endforeach</td>
+			<td colspan=4 rowspan=3>
+				@foreach($vehiculos as $vehiculo)
+					{{$vehiculo->vehiculo_id}}
+				@endforeach
+			</td>
 			<td colspan=3>{{$servicio->ilesos}}</td>
 			<td colspan=4>{{$servicio->muertos}}</td>
 			<td colspan=2>{{$servicio->lesionados}}</td>
@@ -199,6 +201,7 @@
 @else
 	<h4 class="text-center text-danger">No existe el servicio</h4>
 @endif
+
 @section('js')
 	{!! Html::script('assets/js/imprimirreporte.js') !!}
 @endsection
