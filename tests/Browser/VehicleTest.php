@@ -12,7 +12,6 @@ use App\User;
 class VehicleTest extends DuskTestCase
 {
     private $vehiculo;
-    private $usuarioAdmin;
     private $vehiculoEdit;
 
   public function setUp()
@@ -20,14 +19,13 @@ class VehicleTest extends DuskTestCase
       parent::setUp();
       $this->vehiculo = factory(Vehiculo::class)->make();
       $this->vehiculoEdit = factory(Vehiculo::class)->make();
-      $this->usuarioAdmin=factory(User::class)->create(['admin'=> '1', 'password'=> bcrypt('123456')]);
   }
 
   public function testCreate()
   {
     $this->browse(function (Browser $browser) {
       $patente = strtoupper($this->vehiculo->patente);
-      $browser->loginAs($this->usuarioAdmin)
+      $browser->loginAs(User::find(1))
               ->visit('/vehiculo/create')
               ->type('patente',$this->vehiculo->patente)
               ->type('num_movil',$this->vehiculo->num_movil)
@@ -44,7 +42,7 @@ class VehicleTest extends DuskTestCase
   {
     $this->browse(function (browser $browser){
       $patente = strtoupper($this->vehiculoEdit->patente);
-      $browser->loginAs($this->usuarioAdmin)
+      $browser->loginAs(User::find(1))
               ->visit('/vehiculo')
               ->click('.glyphicon-edit')
               ->type('patente', $this->vehiculoEdit->patente)
@@ -62,7 +60,7 @@ class VehicleTest extends DuskTestCase
   {
      $this->browse(function(browser $browser){
        $patente = strtoupper($this->vehiculo->patente);
-       $browser->loginAs($this->usuarioAdmin)
+       $browser->loginAs(User::find(1))
                ->visit('/vehiculo')
                ->click('.glyphicon-edit')
                ->type('patente',$this->vehiculo->patente)
