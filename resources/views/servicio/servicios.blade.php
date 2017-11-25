@@ -44,7 +44,6 @@
                   </form>
                 </div>
               </div>
-
               <div class="panel-body">
                 <table  class="table table-bordered">
                   <thead><!--Titulos de la tabla-->
