@@ -24,7 +24,11 @@
           <div class="form-group">
             <label class="col-md-4 control-label" for="estado">Estado</label>
             <div class="col-md-7">
-              <select class="form-control" name="estado" disabled>{{$vehiculo->estado}}</select>
+              <select class="form-control" name="estado" disabled>{{$vehiculo->estado}}
+                @foreach(config('selects.estadoVehiculo') as $key => $estadoVehiculo)
+                  <option>@if($key == $vehiculo->estado){{$estadoVehiculo}}@endif</option>
+                  @endforeach
+              </select>
             </div>
           </div>
           <div class="form-group">

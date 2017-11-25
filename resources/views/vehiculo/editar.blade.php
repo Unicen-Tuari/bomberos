@@ -38,7 +38,17 @@
                 <div class="col-md-4">
                   <select class="form-control" name="estado">
                     @foreach(config('selects.estadoVehiculo') as $key => $estadoVehiculo)
-                      <option value="{{$key}}" @if ($key == old('estado')) value="{{old('estado')}}" selected="selected" @endif>{{$estadoVehiculo}}</option>
+                      <option
+                      @if ($key == old('estado'))
+                         value="{{old('estado')}}"
+                         selected="selected"
+                      @elseif($key==$vehiculo->estado)
+                        value="{{$vehiculo->estado}}"
+                        selected="selected"
+                      @else
+                        value="{{$key}}"
+                      @endif
+                      >{{$estadoVehiculo}}</option>
                       @endforeach
                     </select>
                     @if ($errors->has('estado'))
