@@ -58,19 +58,19 @@ class ServicioController extends Controller
       $servicio->combustible=$data['combustible'];
       $servicio->reconocimiento=$data['reconocimiento'];
       $servicio->disposiciones=$data['disposiciones'];
-      list($dia, $mes, $año) = explode('/', $data['alarma']);
-      list($año,$hora) = explode(' ', $año);
-      $data['alarma']=$año.'-'.$mes.'-'.$dia.' '.$hora;
+      list($day, $mes, $year) = explode('/', $data['alarma']);
+      list($year,$hour) = explode(' ', $year);
+      $data['alarma']=$year.'-'.$mes.'-'.$day.' '.$hour;
       $servicio->hora_alarma=$data['alarma'];
 
-      list($dia, $mes, $año) = explode('/', $data['salida']);
-      list($año,$hora) = explode(' ', $año);
-      $data['salida']=$año.'-'.$mes.'-'.$dia.' '.$hora;
+      list($day, $mes, $year) = explode('/', $data['salida']);
+      list($year,$hour) = explode(' ', $year);
+      $data['salida']=$year.'-'.$mes.'-'.$day.' '.$hour;
       $servicio->hora_salida=$data['salida'];
 
-      list($dia, $mes, $año) = explode('/', $data['regreso']);
-      list($año,$hora) = explode(' ', $año);
-      $data['regreso']=$año.'-'.$mes.'-'.$dia.' '.$hora;
+      list($day, $mes, $year) = explode('/', $data['regreso']);
+      list($year,$hour) = explode(' ', $year);
+      $data['regreso']=$year.'-'.$mes.'-'.$day.' '.$hour;
       $servicio->hora_regreso=$data['regreso'];
 
       $servicio->jefe_servicio=$data['jefe_servicio'];
@@ -188,9 +188,9 @@ class ServicioController extends Controller
         $servicio->direccion=$data['direccion'];
         $servicio->autor_llamada=$data['autor_llamada'];
 
-        list($dia, $mes, $año) = explode('/', $data['alarma']);
-        list($año,$hora) = explode(' ', $año);
-        $data['alarma']=$año.'-'.$mes.'-'.$dia.' '.$hora;
+        list($day, $mes, $year) = explode('/', $data['alarma']);
+        list($year,$hour) = explode(' ', $year);
+        $data['alarma']=$year.'-'.$mes.'-'.$day.' '.$hour;
         $servicio->hora_alarma=$data['alarma'];
         if ($servicio->save()) {
           return redirect()->route('servicio.index');
@@ -208,10 +208,10 @@ class ServicioController extends Controller
     return view('servicio/estadistica');
   }
 
-  public function tabla($mes,$año)
+  public function tabla($month,$year)
   {
-    $servicios=Servicio::whereYear('hora_alarma','=',$año)->whereMonth('hora_alarma','=',$mes)->get();
-    return view('servicio/estadisticasMes',compact('servicios','mes','año'));
+    $servicios=Servicio::whereYear('hora_alarma','=',$year)->whereMonth('hora_alarma','=',$month)->get();
+    return view('servicio/estadisticasMes',compact('servicios','month','year'));
   }
 
   public function tablaPlanilla($id)
@@ -312,19 +312,19 @@ class ServicioController extends Controller
         $servicio->combustible=$data['combustible'];
         $servicio->reconocimiento=$data['reconocimiento'];
         $servicio->disposiciones=$data['disposiciones'];
-        list($dia, $mes, $año) = explode('/', $data['alarma']);
-        list($año,$hora) = explode(' ', $año);
-        $data['alarma']=$año.'-'.$mes.'-'.$dia.' '.$hora;
+        list($day, $month, $year) = explode('/', $data['alarma']);
+        list($year,$hour) = explode(' ', $year);
+        $data['alarma']=$year.'-'.$month.'-'.$day.' '.$hour;
         $servicio->hora_alarma=$data['alarma'];
 
-        list($dia, $mes, $año) = explode('/', $data['salida']);
-        list($año,$hora) = explode(' ', $año);
-        $data['salida']=$año.'-'.$mes.'-'.$dia.' '.$hora;
+        list($day, $month, $year) = explode('/', $data['salida']);
+        list($year,$hour) = explode(' ', $year);
+        $data['salida']=$year.'-'.$month.'-'.$day.' '.$hour;
         $servicio->hora_salida=$data['salida'];
 
-        list($dia, $mes, $año) = explode('/', $data['regreso']);
-        list($año,$hora) = explode(' ', $año);
-        $data['regreso']=$año.'-'.$mes.'-'.$dia.' '.$hora;
+        list($day, $month, $year) = explode('/', $data['regreso']);
+        list($year,$hour) = explode(' ', $year);
+        $data['regreso']=$year.'-'.$month.'-'.$day.' '.$hour;
         $servicio->hora_regreso=$data['regreso'];
         $servicio->jefe_servicio=$data['jefe_servicio'];
         $servicio->oficial=$data['oficial'];
