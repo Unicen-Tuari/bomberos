@@ -73,7 +73,7 @@ $factory->define(App\Vehiculo::class, function (Faker\Generator $faker){
 
 $factory->define(App\Puntuacion::class, function (Faker\Generator $faker){
   return[
-    'id_bombero' => 0,
+    'id_bombero' => factory(App\Bombero::class)->create()->id,
     'ao_cant' => $faker->randomNumber($nbDigits = 1),
     'ao_punt' => $faker->randomNumber($nbDigits = 1),
     'ao_acad' => $faker->randomNumber($nbDigits = 1),
