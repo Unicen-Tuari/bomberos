@@ -15,7 +15,7 @@ class Vehiculo extends Model
   {
     $patente=strtoupper($patente);
     if ($patente != "") {
-      $query->where('patente','ilike', $patente);
+      $query->where('patente','ilike', "%$patente%");
     }
   }
 
