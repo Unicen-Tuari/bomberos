@@ -70,3 +70,23 @@ $factory->define(App\Vehiculo::class, function (Faker\Generator $faker){
     'detalle' => 'autobomba',
   ];
 });
+
+$factory->define(App\Puntuacion::class, function (Faker\Generator $faker){
+  return[
+    'id_bombero' => factory(App\Bombero::class)->create()->id,
+    'ao_cant' => $faker->randomNumber($nbDigits = 1),
+    'ao_punt' => $faker->randomNumber($nbDigits = 1),
+    'ao_acad' => $faker->randomNumber($nbDigits = 1),
+    'accid_cant' => $faker->randomNumber($nbDigits = 1),
+    'accid_punt' => $faker->randomNumber($nbDigits = 1),
+    'dedicacion' => $faker->randomNumber($nbDigits = 1),
+    'guar_cant' => $faker->randomNumber($nbDigits = 1),
+    'guar_punt' => $faker->randomNumber($nbDigits = 1),
+    'especiales' => $faker->randomNumber($nbDigits = 1),
+    'licencia' => $faker->randomNumber($nbDigits = 1),
+    'castigo' => $faker->randomNumber($nbDigits = 1),
+    'total' => $faker->randomNumber($nbDigits = 1),
+    'detalle' => $faker->realText($maxNbChars = 50, $indexSize = 2),
+    'fecha' => $faker->date($format = 'Y-m-d'),
+  ];
+});
