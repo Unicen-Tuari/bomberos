@@ -71,6 +71,12 @@ $factory->define(App\Vehiculo::class, function (Faker\Generator $faker){
   ];
 });
 
+$factory->define(App\Ingreso::class, function (Faker\Generator $faker){
+  return[
+    'id_bombero' => factory(App\Bombero::class)->create()->id,
+  ];
+});
+
 $factory->define(App\Puntuacion::class, function (Faker\Generator $faker){
   return[
     'id_bombero' => factory(App\Bombero::class)->create()->id,
