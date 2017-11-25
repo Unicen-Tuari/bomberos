@@ -27,10 +27,12 @@
                 <td>{{$variable->anio}}</td>
                 @if (Auth::user()->admin)
                   <td><a href="{{ route('variable.edit', $variable->id) }}" class="glyphicon glyphicon-edit"></a></td>
-                  <td>
-                    {{ Form::open(['route' => ['variable.destroy', $variable->id], 'method' => 'DELETE']) }}
-                    <button type="submit" class="glyphicon glyphicon-trash"></button>
-                    {{ Form::close() }}
+                  <td class="text-center">
+                    <form class="form-horizontal" action={{route('variable.destroy', $variable->id)}} method="POST">
+                      {{csrf_field()}}
+                      {{method_field('DELETE')}}
+                      <button type="submit" class="glyphicon glyphicon-trash"></button>
+                    </form>
                   </td>
                 @else
                   <td colspan="2">
