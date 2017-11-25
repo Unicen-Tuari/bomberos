@@ -25,7 +25,7 @@
           <div class="form-group {{ $errors->has('num_movil') ? ' has-error' : '' }}">
             <label class="col-md-4 control-label" for="num_movil">Numero de Movil</label>
             <div class="col-md-4">
-              <input class="form-control" type="text" name="num_movil" value="" placeholder="Numero de Movil">
+              <input class="form-control" type="text" name="num_movil" value="{{old('num_movil')}}" placeholder="Numero de Movil">
               @if ($errors->has('num_movil'))
                 <span class="help-block">
                   <strong>{{ $errors->first('num_movil') }}</strong>
