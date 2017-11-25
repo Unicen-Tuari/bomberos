@@ -57,9 +57,6 @@ class VehicleTest extends DuskTestCase
       $patente = strtoupper($this->vehiculo->patente);
       $browser->loginAs(User::find(1))
       ->visit('/vehiculo')
-      ->click('.glyphicon-edit')
-      ->type('patente',$this->vehiculo->patente)
-      ->press('Editar')
       ->type('patente',$this->vehiculo->patente)
       ->press('Buscar')
       ->click('.glyphicon-trash')
