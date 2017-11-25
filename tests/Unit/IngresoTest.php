@@ -12,7 +12,7 @@ class IngresoTest extends TestCase
     public function testBombero()
     {
         $bombero = factory(Bombero::class)->create();
-        $ingreso = Ingreso::create(['id_bombero'=>$bombero->id]);
+        $ingreso = factory(Ingreso::class)->create(['id_bombero'=>$bombero->id]);
         $bomberoIngreso = Ingreso::find($ingreso->id)->bombero;
         $this->assertEquals($bomberoIngreso->id,$bombero->id);
         $this->assertEquals($bomberoIngreso->nro_legajo,$bombero->nro_legajo);
@@ -20,10 +20,8 @@ class IngresoTest extends TestCase
 
     public function testGetIngresos()
     {
-        $bombero = factory(Bombero::class)->create();
-        $bombero2 = factory(Bombero::class)->create();
-        $ingreso = Ingreso::create(['id_bombero'=>$bombero->id]);
-        $ingreso2 = Ingreso::create(['id_bombero'=>$bombero2->id]);
+        $ingreso = factory(Ingreso::class)->create();
+        $ingreso2 = factory(Ingreso::class)->create();
         $ingresos = Ingreso::getIngresados();
         $this->assertEquals($ingresos->count(),2);
     }
