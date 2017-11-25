@@ -365,6 +365,9 @@ a:hover, a:focus {
     font-size: 20px;
 }
 
+.noResize{
+   resize: none;
+}
 
 /* Aca empiezo el refactor de este css */
 /* Dejar todo lo que esta aca abajo */
