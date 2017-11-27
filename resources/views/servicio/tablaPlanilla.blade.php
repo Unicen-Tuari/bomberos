@@ -113,78 +113,19 @@
 		<tr>
 			<td class="col-md-1 text-left" colspan=20>RECONOCIMIENTO: {{$servicio->reconocimiento}}</td>
 		</tr>
-		<tr>
-			<td class="col-md-1" colspan=20>&#160;</td>
-		</tr>
-		<tr>
-			<td class="col-md-1" colspan=20>&#160;</td>
-		</tr>
-		<tr>
-			<td class="col-md-1" colspan=20>&#160;</td>
-		</tr>
-		<tr>
-			<td class="col-md-1" colspan=20>&#160;</td>
-		</tr>
+		@for($i=0; $i<4; $i++)
+			<tr>
+				<td class="col-md-1" colspan=20>&#160;</td>
+			</tr>
+		@endfor
 		<tr>
 			<td class="col-md-1 text-left" colspan=20>DISPOSICIONES: {{$servicio->reconocimiento}}</td>
 		</tr>
-		<tr>
-			<td class="col-md-1" colspan=20>&#160;</td>
-		</tr>
-		<tr>
-			<td class="col-md-1" colspan=20>&#160;</td>
-		</tr>
-		<tr>
-			<td class="col-md-1" colspan=20>&#160;</td>
-		</tr>
-		<tr>
-			<td class="col-md-1" colspan=20>&#160;</td>
-		</tr>
-		<tr>
-			<td class="col-md-1" colspan=20>&#160;</td>
-		</tr>
-		<tr>
-			<td class="col-md-1" colspan=20>&#160;</td>
-		</tr>
-		<tr>
-			<td class="col-md-1" colspan=20>&#160;</td>
-		</tr>
-		<tr>
-			<td class="col-md-1" colspan=20>&#160;</td>
-		</tr>
-		<tr>
-			<td class="col-md-1" colspan=20>&#160;</td>
-		</tr>
-		<tr>
-			<td class="col-md-1" colspan=20>&#160;</td>
-		</tr>
-		<tr>
-			<td class="col-md-1" colspan=20>&#160;</td>
-		</tr>
-		<tr>
-			<td class="col-md-1" colspan=20>&#160;</td>
-		</tr>
-		<tr>
-			<td class="col-md-1" colspan=20>&#160;</td>
-		</tr>
-		<tr>
-			<td class="col-md-1" colspan=20>&#160;</td>
-		</tr>
-		<tr>
-			<td class="col-md-1" colspan=20>&#160;</td>
-		</tr>
-		<tr>
-			<td class="col-md-1" colspan=20>&#160;</td>
-		</tr>
-		<tr>
-			<td class="col-md-1" colspan=20>&#160;</td>
-		</tr>
-		<tr>
-			<td class="col-md-1" colspan=20>&#160;</td>
-		</tr>
-		<tr>
-			<td class="col-md-1" colspan=20>&#160;</td>
-		</tr>
+		@for($i=0; $i<20; $i++)
+			<tr>
+				<td class="col-md-1" colspan=20>&#160;</td>
+			</tr>
+		@endfor
 		<tr>
 			<td colspan=11> OPERADOR DE COMANDO</td>
 			<td colspan=9>JEFE DEL SERVICIO</td>
