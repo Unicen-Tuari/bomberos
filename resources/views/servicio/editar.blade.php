@@ -8,10 +8,10 @@
       <h4>Modificar servicio</h4>
     </div>
   <div class="panel-body">
-
-  {!! Form::open([ 'route' =>['servicio.update', $servicio], 'class' => 'form-horizontal', 'method' => 'PUT']) !!}
-
-    @php
+   <form class='form-horizontal' action="{{route('servicio.update',$servicio)}}" method="POST">
+     {{csrf_field()}}
+     {{method_field('PUT')}}
+  @php
     $numero=$servicio->num_servicio;
     $tipo=$servicio->tipo_servicio_id;
     $tipo_alarma=$servicio->tipo_alarma;
@@ -34,17 +34,14 @@
     $oficial=$servicio->oficial;
     $jcuerpo=$servicio->jefe_de_cuerpo;
     @endphp
-
-    {!! Form::hidden('finalizar', 0) !!}
+    <input class="hidden" type="text" name="finalizar" value="0">
     @include('servicio.formcompleto')
-
     <div class="col-sm-1 col-sm-offset-5">
       <button type="submit" class="btn btn-primary">
           <i class="glyphicon glyphicon-ok"></i> Finalizar
       </button>
     </div>
-  {!! Form::close() !!}
-
+  </form>
     </div>
   </div>
 </article>
