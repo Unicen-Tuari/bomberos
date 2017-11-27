@@ -144,5 +144,5 @@
 @endif
 
 @section('js')
-	{!! Html::script('assets/js/imprimirreporte.js') !!}
+	<script src="assets/js/imprimirreporte.js" type="text/javascript"></script>
 @endsection

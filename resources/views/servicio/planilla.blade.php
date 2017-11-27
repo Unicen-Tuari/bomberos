@@ -85,6 +85,6 @@
 @endsection
 
 @section('js')
-  {!! Html::script('assets/js/imprimirreporte.js') !!}
-  {!! Html::script('assets/js/ajaxservicio.js') !!}
+	<script src="assets/js/imprimirreporte.js" type="text/javascript"></script>
+  <script src="assets/js/ajaxservicio.js" type="text/javascript"></script>
 @endsection

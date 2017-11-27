@@ -32,5 +32,5 @@
   @endsection
 
   @section('js')
-    {!! Html::script('assets/js/ajaxtabla.js') !!}
+    <script src="assets/js/ajaxtabla.js" type="text/javascript"></script>
   @endsection
