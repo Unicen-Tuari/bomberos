@@ -33,12 +33,14 @@ class BomberoTest extends TestCase
         $this->assertNotEquals($newBomberoModel->first()->jerarquia,$newBombero2->jerarquia);
     }
 
-    // public function testScopeLegajo()
-    // {
-    //     $newBombero = factory(Bombero::class)->create();
-    //     $newBomberoModel = Bombero::Legajo($newBombero->Legajo);
-    //     $this->assertEquals($newBomberoModel->first()->legajo,$newBombero->legajo);
-    // }
+    public function testgetBomberos()
+    {
+        $newBombero = factory(Bombero::class)->create(['nombre'=>'gerardo', 'apellido'=>'perez']);
+        $newBombero2 = factory(Bombero::class)->create(['nombre'=>'carlos', 'apellido'=>'perez']);
+        $newBomberoModel = Bombero::getBomberos();
+        
+        $this->assertNotEquals(count($newBomberoModel),2);
+    }
 
 
 
