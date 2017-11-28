@@ -8,14 +8,15 @@
       <h4>Editar Usuario</h4>
     </div>
     <div class="panel-body">
-      {!! Form::open([ 'route' => ['usuario.update', $usuario ], 'class' => 'form-horizontal', 'method' => 'PUT', 'files' => true]) !!}
-      <!-- <form action="{{route('usuario.update',$usuario)}}" method="put">
+
+      <form action="{{route('usuario.update',$usuario)}}" method="post">
         {{ csrf_field() }}
-        {{ method_field('UPDATE') }} -->
+        {{ method_field('PUT') }}
+
         <div class="form-group {{ $errors->has('nombre') ? ' has-error' : '' }}">
           <label class="col-md-4 control-label" name="nombre" > Nombre</label>
         <div class="col-md-6">
-              {!! Form::text('nombre', $usuario->nombre, ['class' => 'form-control']) !!}
+                    <input class="form-control" type="text" name="nombre" value="{{$usuario->nombre}}">
               @if ($errors->has('nombre'))
                   <span class="help-block">
                       <strong>{{ $errors->first('nombre') }}</strong>
@@ -27,8 +28,7 @@
         <div class="form-group {{ $errors->has('apellido') ? ' has-error' : '' }}">
           <label class="col-md-4 control-label" name="nombre" >Apellido</label>
           <div class="col-md-6">
-              {!! Form::text('apellido', $usuario->apellido, ['class' => 'form-control']) !!}
-
+                    <input class="form-control" type="text" name="apellido" value="{{$usuario->apellido}}">
               @if ($errors->has('apellido'))
                   <span class="help-block">
                       <strong>{{ $errors->first('apellido') }}</strong>
@@ -40,8 +40,7 @@
         <div class="form-group {{ $errors->has('usuario') ? ' has-error' : '' }}">
           <label class="col-md-4 control-label" name="usuario" > Usuario</label>
           <div class="col-md-6">
-          {!! Form::text('usuario', $usuario->usuario, ['class' => 'form-control']) !!}
-
+                <input class="form-control" type="text" name="usuario" value="{{$usuario->usuario}}">
               @if ($errors->has('usuario'))
                   <span class="help-block">
                       <strong>{{ $errors->first('usuario') }}</strong>
@@ -51,12 +50,10 @@
         </div>
 
         <div class="form-group {{ $errors->has('admin') ? ' has-error' : '' }}">
-
           <label class="col-md-4 control-label" name="admin" > Administrador</label>
           <div class="col-md-6">
               {!! Form::hidden('admin', '0') !!}
-
-              <input type="checkbox" class="form-control" type="text" checked data-toggle="toggle" data-off="No" data-on="Sí" data-onstyle="success" placeholder= "Admin">
+              <input type="checkbox" class="form-control" type="text" value="{{$usuario->admin}}"checked data-toggle="toggle" data-off="No" data-on="Sí" data-onstyle="success" placeholder= "Admin">
               @if ($errors->has('admin'))
                   <span class="help-block">
                       <strong>{{ $errors->first('admin') }}</strong>
@@ -64,8 +61,6 @@
               @endif
           </div>
         </div>
-
-
 
         <div class="form-group">
           <div class="col-md-6 col-md-offset-4">
@@ -75,7 +70,6 @@
           </div>
         </div>
 
-      {!! Form::close() !!}
     </div>
   </div>
 </article>
