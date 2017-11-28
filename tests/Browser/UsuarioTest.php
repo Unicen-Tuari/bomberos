@@ -7,25 +7,12 @@ use Laravel\Dusk\Browser;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use App\User;
 
-class ABMUsuarioTest extends DuskTestCase
+class UsuarioTest extends DuskTestCase
 {
-    private $newUser;
-
-    function setUp(){
-      parent::setUp();
-      $this->userTest = factory(User::class)->create(['password'=>bcrypt('123456'), 'admin'=>1]);
-      $this->newUser = factory(User::class)->make(['password'=> '1596321']);
-      }
-
-    function tearDown() {
-      $this->newUser->delete();
-
-      }
-
-
     public function testCreateUser() {
+        $this->newUser = factory(User::class)->create();
         $this->browse(function (Browser $browser) {
-            $browser->loginAs($this->userTest)
+            $browser->loginAs(User::find(1))
                     ->visit('/usuario/create')
                     ->type('nombre', $this->newUser->nombre)
                     ->type('apellido', $this->newUser->apellido)
@@ -36,10 +23,9 @@ class ABMUsuarioTest extends DuskTestCase
         });
     }
 
-    public function testUpdateUser()
-    {
-      $this->browse(function (Browser $browser) {
-            $browser->loginAs($this->newUser)
+    public function testUpdateUser(){
+          $this->browse(function (Browser $browser) {
+            $browser->loginAs(User::find(1))
                     ->visit('/usuario')
                     ->click('.glyphicon-edit')
                     ->press('Guardar')
@@ -47,10 +33,10 @@ class ABMUsuarioTest extends DuskTestCase
             });
     }
 
-    public function testDeleteUser()
-    {
+    public function testDeleteUser(){
+      $this->newUser = factory(User::class)->create();
       $this->browse(function (Browser $browser) {
-            $browser->loginAs($this->newUser)
+            $browser->loginAs(User::find(1))
                     ->visit('/usuario')
                     ->type('id',$this->newUser->id)
                     ->press('Buscar')
