@@ -13,16 +13,11 @@ class AssistanceTest extends DuskTestCase{
   private $usuarioAdmin;
   private $password;
 
-  function setUp()
+  public function testCreate()
   {
-    parent::setUp();
-    $this->asistencia = factory(Asistencia::class)->make();
     $this->usuarioAdmin=factory(User::class)->create(['admin'=> '1', 'password'=> bcrypt('123456')]);
+    $this->asistencia = factory(Asistencia::class)->make();
     $this->firefighter = factory(Bombero::class)->create();
-  }
-
-  public function testCreateAssistance()
-  {
     $this->browse(function (Browser $browser) {
       $browser->loginAs($this->usuarioAdmin)
               ->visit('/asistencia/create')
@@ -35,6 +30,8 @@ class AssistanceTest extends DuskTestCase{
 
   public function testUpdate()
   {
+    $this->usuarioAdmin=factory(User::class)->create(['admin'=> '1', 'password'=> bcrypt('123456')]);
+    $this->firefighter = factory(Bombero::class)->create();
     $this->asistencia = factory(Asistencia::class)->create(['id_bombero'=> $this->firefighter->id]);
     $this->browse(function (Browser $browser) {
       $browser->loginAs($this->usuarioAdmin)
@@ -48,6 +45,8 @@ class AssistanceTest extends DuskTestCase{
 
   public function testDelete()
   {
+    $this->usuarioAdmin=factory(User::class)->create(['admin'=> '1', 'password'=> bcrypt('123456')]);
+    $this->firefighter = factory(Bombero::class)->create();
     $this->asistencia = factory(Asistencia::class)->create(['id_bombero'=> $this->firefighter->id]);
     $this->browse(function (Browser $browser) {
       $browser->loginAs($this->usuarioAdmin)
