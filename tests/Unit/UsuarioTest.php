@@ -4,7 +4,7 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\User;
 
-class ServiceTest extends TestCase
+class UsuarioTest extends TestCase
 {
     public function testScopeId()
     {
