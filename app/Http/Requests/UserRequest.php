@@ -6,21 +6,11 @@ use App\Http\Requests\Request;
 
 class UserRequest extends Request
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
+
     public function authorize()
     {
         return true;
     }
-
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
     public function rules()
     {
       switch($this->method())
@@ -55,12 +45,12 @@ class UserRequest extends Request
     }
 
     public function messages()
-{
+    {
     return [
         'nombre.required' => 'Por favor ingrese un Nombre',
         'apellido.required'  => 'Por favor ingrese un Apellido',
         'usuario.required'  => 'Por favor ingrese un Usuario',
         'password.required'  => 'Por favor ingrese un Password',
-    ];
-}
+      ];
+    }
 }
