@@ -27,7 +27,7 @@ class UserController extends Controller
     if(Auth::user()->admin){
       return view('usuario/alta');
     }
-    return view('usuario/index');
+    return view('auth/alerta');
   }
 
   public function edit($id)
@@ -36,7 +36,7 @@ class UserController extends Controller
       $usuario=User::findorfail($id);
       return view('usuario/editar',compact('usuario'));
     }
-    return view('usuario/index');
+    return view('auth/alerta');
 
   }
 
@@ -59,9 +59,7 @@ class UserController extends Controller
     if(Auth::user()->admin){
       User::find($id)->update($request->all());
       return redirect()->route('usuario.index');
-
     }
-
   }
 
   public function store(UserRequest $data)
