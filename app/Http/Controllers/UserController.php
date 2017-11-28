@@ -59,6 +59,7 @@ class UserController extends Controller
     if(Auth::user()->admin){
       User::find($id)->update($request->all());
       return redirect()->route('usuario.index');
+
     }
 
   }
