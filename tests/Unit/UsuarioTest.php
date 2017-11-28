@@ -12,7 +12,6 @@ class ServiceTest extends TestCase
         $newUserModel = User::Id($newUser->id);
         $this->assertEquals($newUserModel->first()->id,$newUser->id);
     }
-
     public function testScopeNombre()
     {
         $newUser = factory(User::class)->create();
