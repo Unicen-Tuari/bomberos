@@ -9,8 +9,7 @@
     <div class="form-group {{ $errors->has('nombre') ? ' has-error' : '' }}">
         <label class="col-md-4 control-label" name="nombre" > Nombre</label>
       <div class="col-md-6">
-          {!! Form::text('nombre', $usuario->nombre, ['class' => 'form-control']) !!}
-
+                    <input class="form-control" type="text" name="usuario" value="{{$usuario->nombre}}">
           @if ($errors->has('nombre'))
               <span class="help-block">
                   <strong>{{ $errors->first('nombre') }}</strong>
@@ -23,8 +22,7 @@
 
       <label class="col-md-4 control-label" name="apellido" > Apellido</label>
       <div class="col-md-6">
-          {!! Form::text('apellido', $usuario->apellido, ['class' => 'form-control']) !!}
-
+            <input class="form-control" type="text" name="usuario" value="{{$usuario->apellido}}">
           @if ($errors->has('apellido'))
               <span class="help-block">
                   <strong>{{ $errors->first('apellido') }}</strong>
@@ -37,8 +35,7 @@
 
       <label class="col-md-4 control-label" name="usuario" > Usuario</label>
       <div class="col-md-6">
-      {!! Form::text('usuario', $usuario->usuario, ['class' => 'form-control']) !!}
-
+            <input class="form-control" type="text" name="usuario" value="{{$usuario->usuario}}">
           @if ($errors->has('usuario'))
               <span class="help-block">
                   <strong>{{ $errors->first('usuario') }}</strong>
@@ -48,7 +45,7 @@
     </div>
 
     <div class="form-group {{ $errors->has('admin') ? ' has-error' : '' }}">
-      
+
       <label class="col-md-4 control-label" name="admin" > Administrador</label>
       <div class="col-md-6">
           {!! Form::hidden('admin', '0') !!}
