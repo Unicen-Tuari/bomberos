@@ -19,7 +19,8 @@
 
               <div class="col-sm-4">
                 {!! Form::checkbox('usuario-'.$usuario->id, 1,$usuario->admin, ['data-toggle' => "toggle", 'data-onstyle'=>"success", 'data-offstyle'=>"danger", 'data-on' => 'Administrador', 'data-off' => 'Usuario']) !!}
-                <!-- <input type="checkbox" class="form-control" type="text" data-toggle="toggle" data-off="Usuario" data-on="Administrador" data-onstyle="success" data-offstyle="danger" placeholder= "Admin"> -->
+
+                <!-- <input type="checkbox" name="usuario" class="form-control"  value="$usuario->admin" data-toggle="toggle" data-off="Usuario" data-on="Administrador" data-onstyle="success" data-offstyle="danger"> -->
               </div>
             </div>
           @endforeach
@@ -27,11 +28,10 @@
 
         <div class="form-group col-sm-7">
             <button type="submit" class="btn btn-primary pull-right">
-                <i class="glyphicon glyphicon-bell"></i> Finalizar
+                <i class="glyphicon glyphicon-bell"> Finalizar</i>
             </button>
         </div>
 
-      {!! Form::close() !!}
     </div>
   </div>
 </article>
