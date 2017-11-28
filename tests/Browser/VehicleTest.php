@@ -9,49 +9,60 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 use App\Vehiculo;
 use App\User;
 
-class ABMVehiculoTest extends DuskTestCase
+class VehicleTest extends DuskTestCase
 {
-    public function testVehicleCreate()
-    {
-        $this->browse(function (Browser $browser) {
-        $vehicle = factory(Vehiculo::class)->make();
-        $browser->loginAs(User::find(1))
-                ->visit('/vehiculo/create')
-                ->type('patente', $vehicle->patente)
-                ->type('num_movil', $vehicle->num_movil)
-                ->select('estado', $vehicle->estado)
-                ->type('detalle', $vehicle->detalle)
-                ->press('Registrar')
-                ->assertSee($vehicle->patente())
-                ->assertSee($vehicle->num_movil);
-        });
-    }
 
-    public function testVehicleModify()
-    {
-      $this->browse(function (browser $browser){
-      $vehicle = factory(Vehiculo::class)->create();
-      $vehicleEdit = factory(Vehiculo::class)->make();
+  public function testCreate()
+  {
+    $this->browse(function (Browser $browser) {
+      $this->vehiculo = factory(Vehiculo::class)->make();
+      $patente = strtoupper($this->vehiculo->patente);
       $browser->loginAs(User::find(1))
-              ->visit('/vehiculo')
-              ->click('.glyphicon-edit')
-              ->type('patente', $vehicleEdit->patente)
-              ->type('num_movil', $vehicleEdit->num_movil)
-              ->select('estado',$vehicleEdit->estado)
-              ->type('detalle',$vehicleEdit->detalle)
-              ->press('Editar')
-              ->assertSee($vehicleEdit->patente());
-      });
-    }
+      ->visit('/vehiculo/create')
+      ->type('patente',$this->vehiculo->patente)
+      ->type('num_movil',$this->vehiculo->num_movil)
+      ->select('estado',$this->vehiculo->estado)
+      ->type('detalle',$this->vehiculo->detalle)
+      ->press('Registrar')
+      ->type('patente',$patente)
+      ->press('Buscar')
+      ->assertSee($this->vehiculo->num_movil);
+    });
+  }
 
-  public function testDeleteVehicle()
-   {
-     $this->browse(function(browser $browser){
-       $vehicle = factory(Vehiculo::class)->create();
-       $browser->loginAs(User::find(1))
-               ->visit('/vehiculo')
-               ->click('.glyphicon-trash')
-               ->assertDontSee($vehicle->patente());
+  public function testUpdate()
+  {
+    $this->browse(function (browser $browser){
+      $this->vehiculo = factory(Vehiculo::class)->create();
+      $this->vehiculoEdit = factory(Vehiculo::class)->make();
+      $patente = strtoupper($this->vehiculoEdit->patente);
+      $browser->loginAs(User::find(1))
+      ->visit('/vehiculo')
+      ->click('.glyphicon-edit')
+      ->type('patente', $this->vehiculoEdit->patente)
+      ->type('num_movil', $this->vehiculoEdit->num_movil)
+      ->select('estado',$this->vehiculoEdit->estado)
+      ->type('detalle',$this->vehiculoEdit->detalle)
+      ->press('Editar')
+      ->type('patente', $patente)
+      ->press('Buscar')
+      ->assertSee($this->vehiculoEdit->num_movil);
+    });
+  }
+
+  public function testDelete()
+  {
+    $this->browse(function(browser $browser){
+      $this->vehiculo = factory(Vehiculo::class)->create();
+      $patente = strtoupper($this->vehiculo->patente);
+      $browser->loginAs(User::find(1))
+      ->visit('/vehiculo')
+      ->type('patente',$this->vehiculo->patente)
+      ->press('Buscar')
+      ->click('.glyphicon-trash')
+      ->type('patente',$patente)
+      ->press('Buscar')
+      ->assertDontSee($this->vehiculo->num_movil);
     });
   }
 }

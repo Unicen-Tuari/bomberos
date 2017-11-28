@@ -214,4 +214,6 @@
 </div>
 {{-- Fin --}}
 
-{!! Html::script('assets/js/ajaxmodal.js') !!}
+@section('js')
+	<script src="assets/js/ajaxmodal.js" type="text/javascript"></script>
+@endsection
