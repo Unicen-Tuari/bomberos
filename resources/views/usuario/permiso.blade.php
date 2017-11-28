@@ -18,9 +18,7 @@
               <label class="col-lg-7 col-md-5 control-label">  {{$usuario->nombre}} {{$usuario->apellido}}  / {{$usuario->usuario}} </label>
 
               <div class="col-sm-4">
-                {!! Form::checkbox('usuario-'.$usuario->id, 1,$usuario->admin, ['data-toggle' => "toggle", 'data-onstyle'=>"success", 'data-offstyle'=>"danger", 'data-on' => 'Administrador', 'data-off' => 'Usuario']) !!}
-
-                <!-- <input type="checkbox" name="usuario" class="form-control"  value="$usuario->admin" data-toggle="toggle" data-off="Usuario" data-on="Administrador" data-onstyle="success" data-offstyle="danger"> -->
+                <input type="checkbox" name="usuario" class="toggle btn btn-success" @if ($usuario->admin) checked @endif data-toggle="toggle" data-off="Usuario" data-on="Administrador" data-onstyle="success" data-offstyle="danger">
               </div>
             </div>
           @endforeach
