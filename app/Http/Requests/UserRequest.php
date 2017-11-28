@@ -27,7 +27,6 @@ class UserRequest extends Request
               'apellido' => 'required|max:255',
               'usuario' => 'required|max:255',
               'password' => 'required|max:255',
-              // por el momento queda asi porque sino no deja cargar. 'admin' => 'required|max:1',
           ];
         }
 
