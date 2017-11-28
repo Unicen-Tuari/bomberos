@@ -10,37 +10,19 @@ namespace Tests\Browser;
 
   class FirefighterTest extends DuskTestCase
   {
-       private $userTest;
-       private $firefighter;
-
-       function setUp(){
-         parent::setUp();
-         $this->userTest = factory(User::class)->create(['password'=>bcrypt('123456'), 'admin'=>1]);
-         $this->browse(function (Browser $browser) {
-               $browser->visit('/login')
-                       ->type('usuario', $this->userTest->usuario)
-                       ->type('password', '123456')
-                       ->press('Iniciar sesión');
-        });
-      }
-
-      public function tearDown()
-      {
-        $this->userTest->delete();
-        $this->firefighter->delete();
-      }
 
       public function testFirefighterCreate()
       {
-        $this->firefighter = factory(Bombero::class)->make();
         $this->browse(function (Browser $browser) {
-              $browser->visit('/bombero/create')
-                      ->type('nombre',$this->firefighter->nombre)
-                      ->type('apellido',$this->firefighter->apellido)
-                      ->type('nro_legajo',$this->firefighter->nro_legajo)
-                      ->type('direccion',$this->firefighter->direccion)
-                      ->type('telefono',$this->firefighter->telefono)
-                      ->type('fecha_nacimiento',$this->firefighter->fecha_nacimiento)
+              $firefighter = factory(Bombero::class)->make();
+              $browser->loginAs(User::find(1))
+                      ->visit('/bombero/create')
+                      ->type('nombre',$firefighter->nombre)
+                      ->type('apellido',$firefighter->apellido)
+                      ->type('nro_legajo',$firefighter->nro_legajo)
+                      ->type('direccion',$firefighter->direccion)
+                      ->type('telefono',$firefighter->telefono)
+                      ->type('fecha_nacimiento',$firefighter->fecha_nacimiento)
                       ->press('Registrar')
                       ->assertDontSee('required');
         });
@@ -48,26 +30,29 @@ namespace Tests\Browser;
 
       public function testFirefighterUpdate()
       {
-        $this->firefighter = factory(Bombero::class)->create();
         $this->browse(function (Browser $browser) {
-              $browser->visit('/bombero')
+              $firefighter = factory(Bombero::class)->create();
+              $firefighter_edit = factory(Bombero::class)->make();
+              $browser->loginAs(User::find(1))
+                      ->visit('/bombero')
                       ->click('.glyphicon-edit')
+                      ->type('nombre', $firefighter_edit->nombre)
+                      ->type('apellido', $firefighter_edit->apellido)
+                      ->type('nro_legajo', $firefighter_edit->nro_legajo)
                       ->press('Editar')
-                      ->assertDontSee('required');
+                      ->assertSee($firefighter_edit->nombre)
+                      ->assertSee($firefighter_edit->nro_legajo);
               });
       }
 
       public function testFirefighterDelete()
       {
-        $this->firefighter = factory(Bombero::class)->create();
         $this->browse(function (Browser $browser) {
-              $browser->visit('/bombero')
-                      ->type('legajo',$this->firefighter->nro_legajo)
-                      ->press('Buscar')
+              $firefighter = factory(Bombero::class)->create();
+              $browser->loginAs(User::find(1))
+                      ->visit('/bombero')
                       ->click('.glyphicon-trash')
-                      ->type('legajo',$this->firefighter->nro_legajo)
-                      ->press('Buscar')
-                      ->assertDontSee($this->firefighter->nombre);
+                      ->assertDontSee($firefighter->nombre);
           });
       }
   }

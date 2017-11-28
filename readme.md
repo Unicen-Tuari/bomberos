@@ -1,53 +1,76 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+[![Build Status](https://travis-ci.org/Unicen-Tupar/bomberos.svg?branch=master)](https://travis-ci.org/Unicen-Tupar/bomberos)
+[![codecov](https://codecov.io/gh/Unicen-Tupar/bomberos/branch/master/graph/badge.svg)](https://codecov.io/gh/Unicen-Tupar/bomberos)
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+Bomberos
+================
 
-## About Laravel
+Bomberos es un sistema open-source para la administración del cuartel de Bomberos Voluntarios de Trenque Lauquen desarrollado por alumnos de la Universidad Nacional del Centro de la Provincia de Buenos Aires para las cátedras Programación en Web I y II de la carrera Tecnicatura Universitaria en Programación y Administración de Redes.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
+## Objetivo
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+A través del sistema se provee control de acceso, y posibilidad de registrar los diferentes servicios que realizan los bomberos, asistencias, emergencias, puntuaciones, etc. De este modo, se generan informes internos de forma automática dentro de la plataforma.
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb combination of simplicity, elegance, and innovation give you tools you need to build any application with which you are tasked.
+## Despliegue
 
-## Learning Laravel
+La aplicación se encuentra desplegada en la plataforma Cloud Heroku en la dirección http://bomberosvoluntarios.herokuapp.com.
 
-Laravel has the most extensive and thorough documentation and video tutorial library of any modern web application framework. The [Laravel documentation](https://laravel.com/docs) is thorough, complete, and makes it a breeze to get started learning the framework.
+## Instalación y uso
 
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 900 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
+El sistema está desarrollado sobre el framework Laravel 5.5 usando Docker.
 
-## Laravel Sponsors
+La arquitectura en Docker está separada en contenedores con las distintas partes del sistema:
 
-We would like to extend our thanks to the following sponsors for helping fund on-going Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](http://patreon.com/taylorotwell):
+* Aplicación (Intérprete PHP)
+* Web Server (Nginx)
+* Base de Datos (PostgreSQL)
+* Gestor DB (Adminer)
+* Test tool (Selenium)
 
-- **[Vehikl](http://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Styde](https://styde.net)**
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
+Para correr la aplicación se necesita descargar Docker y completar los siguientes pasos:
 
-## Contributing
+Descarga del repositorio y setup inicial
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+```
+git clone https://github.com/Unicen-Tupar/bomberos.git
+cd bomberos
+cp .env.docker .env
+```
 
-## Security Vulnerabilities
+Instalación de dependencias con Composer vía Docker
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+```
+docker run --rm -v $(pwd):/app composer install
+```
 
-## License
+Inicialización de contenedores Docker
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+```
+docker-compose up -d
+```
+
+Migraciones
+
+```
+docker-compose run --rm app php artisan migrate --seed
+```
+
+## Desarrollo
+
+Los cambios en el código se deben solicitar a través pull request y deberán ser revisados previo a su aceptación.
+
+Todas las modificaciones deben pasar los test de unidad e integración. Se proveen dos herramientas para test: PHPUnit y Dusk, las cuales se ejecutan con los comandos:
+
+PHP Unit
+
+```
+docker-compose run --rm app php vendor/bin/phpunit
+```
+
+Dusk
+```
+docker-compose run --rm app php artisan dusk
+```
+
+## Contacto
+
+Responsable del proyecto: Javier Dottori (jdottori (at) exa.unicen.edu.ar)

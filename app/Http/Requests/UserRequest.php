@@ -37,7 +37,6 @@ class UserRequest extends Request
             'nombre' => 'required|max:255',
             'apellido' => 'required|max:255',
             'usuario' => 'required|max:255',
-            'admin' => 'required|max:1',
           ];
         }
         default:break;

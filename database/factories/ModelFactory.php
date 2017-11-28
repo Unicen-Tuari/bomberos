@@ -28,23 +28,26 @@ $factory->define(App\Bombero::class, function (Faker\Generator $faker) {
 });
 
 $factory->define(App\Material::class, function (Faker\Generator $faker) {
-
   return [
     'nombre' => $faker->word,
+    'vehiculo_id' => factory(App\Vehiculo::class)->create()->id
   ];
 
 });
 
 $factory->define(App\Servicio::class, function (Faker\Generator $faker) {
   $tipo=$faker->numberBetween($min = 1, $max = 11);
+  $num_servicio=$faker->numberBetween($min = 1, $max = 111111);
+  $tipo_alarma=$faker->numberBetween($min = 1, $max = 11);
   $alarma = \Carbon\Carbon::now(new DateTimeZone('America/Argentina/Buenos_Aires'))->addMonth(-rand(1,10))->toDateTimeString();
-  $salida =\Carbon\Carbon::createFromFormat('d/m/Y H:i:s',$alarma)->addMinutes(rand(1,10))->toDateTimeString();
-  $regreso=\Carbon\Carbon::createFromFormat('d/m/Y H:i:s',$alarma)->addMinutes(rand(30,480))->toDateTimeString();
+  $salida =\Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$alarma)->addMinutes(rand(1,10))->toDateTimeString();
+  $regreso=\Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$alarma)->addMinutes(rand(30,480))->toDateTimeString();
 
   return [
     'tipo_servicio_id' => $tipo,
+    'num_servicio' => $num_servicio,
+    'tipo_alarma' => $tipo_alarma,
     'direccion' => $faker->address,
-    'descripcion' => $faker->sentence($nbWords = 6, $variableNbWords = true),
     'ilesos' => $faker->randomNumber($nbDigits = 1),
     'lesionados' => $faker->randomNumber($nbDigits = 1),
     'quemados' => $faker->randomNumber($nbDigits = 1),
@@ -60,13 +63,36 @@ $factory->define(App\Servicio::class, function (Faker\Generator $faker) {
 });
 
 $factory->define(App\Vehiculo::class, function (Faker\Generator $faker){
-    $letras = $faker->lexify('???');
-    $numeros = $faker->numerify('###');
-    $number_vehicle = $faker->numberBetween($min = 100, $max = 200);
   return[
-    'patente' => $letras . ' ' . $numeros,
-    'num_movil' => $number_vehicle,
+    'patente' => $faker->lexify('???') . ' ' . $faker->numerify('###'),
+    'num_movil' => $faker->unique()->numberBetween($min = 50, $max = 200),
     'estado' => 1,
     'detalle' => 'autobomba',
+  ];
+});
+
+$factory->define(App\Ingreso::class, function (Faker\Generator $faker){
+  return[
+    'id_bombero' => factory(App\Bombero::class)->create()->id,
+  ];
+});
+
+$factory->define(App\Puntuacion::class, function (Faker\Generator $faker){
+  return[
+    'id_bombero' => factory(App\Bombero::class)->create()->id,
+    'ao_cant' => $faker->randomNumber($nbDigits = 1),
+    'ao_punt' => $faker->randomNumber($nbDigits = 1),
+    'ao_acad' => $faker->randomNumber($nbDigits = 1),
+    'accid_cant' => $faker->randomNumber($nbDigits = 1),
+    'accid_punt' => $faker->randomNumber($nbDigits = 1),
+    'dedicacion' => $faker->randomNumber($nbDigits = 1),
+    'guar_cant' => $faker->randomNumber($nbDigits = 1),
+    'guar_punt' => $faker->randomNumber($nbDigits = 1),
+    'especiales' => $faker->randomNumber($nbDigits = 1),
+    'licencia' => $faker->randomNumber($nbDigits = 1),
+    'castigo' => $faker->randomNumber($nbDigits = 1),
+    'total' => $faker->randomNumber($nbDigits = 1),
+    'detalle' => $faker->realText($maxNbChars = 50, $indexSize = 2),
+    'fecha' => $faker->date($format = 'Y-m-d'),
   ];
 });

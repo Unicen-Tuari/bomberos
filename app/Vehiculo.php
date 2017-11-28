@@ -14,21 +14,21 @@ class Vehiculo extends Model
   public function ScopePatente($query,$patente)
   {
     $patente=strtoupper($patente);
-    if (trim($patente)!="") {
-      $query->where('patente','LIKE',"%$patente%");
+    if (!empty(trim($patente))){
+      $query->where('patente','ilike', "%$patente%");
     }
   }
 
   public function ScopeMovil($query,$movil)
   {
-    if ($movil>0) {
-      $query->where('id',$movil);
+    if ($movil>0){
+      $query->where('num_movil',$movil);
     }
   }
 
   public function ScopeEstado($query,$estado)
   {
-    if ($estado>0) {
+    if ($estado>0){
       $query->where('estado',$estado);
     }
   }
@@ -39,5 +39,4 @@ class Vehiculo extends Model
   public function servicios(){
     return $this->hasMany(VehiculoServicio::class);
   }
-
 }
