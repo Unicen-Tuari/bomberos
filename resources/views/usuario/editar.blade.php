@@ -9,7 +9,7 @@
     </div>
     <div class="panel-body">
 
-      <form action="{{route('usuario.update',$usuario)}}" method="post">
+      <form action="{{route('usuario.update',$usuario)}}" method="POST">
         {{ csrf_field() }}
         {{ method_field('PUT') }}
 
@@ -52,8 +52,8 @@
         <div class="form-group {{ $errors->has('admin') ? ' has-error' : '' }}">
           <label class="col-md-4 control-label" name="admin" > Administrador</label>
           <div class="col-md-6">
-              {!! Form::hidden('admin', '0') !!}
-              <input type="checkbox" class="form-control" type="text" value="{{$usuario->admin}}"checked data-toggle="toggle" data-off="No" data-on="Sí" data-onstyle="success" placeholder= "Admin">
+              <!-- <input type="boolean" id="valoradmin" class="hidden"name="admin" value="0"> -->
+              <input type="checkbox" id="admin"  @if ($usuario->admin) checked @endif value="0" data-toggle="toggle" data-off="No" data-on="Sí" data-onstyle="success" data-offstyle="danger" placeholder= "Admin">
               @if ($errors->has('admin'))
                   <span class="help-block">
                       <strong>{{ $errors->first('admin') }}</strong>
@@ -73,4 +73,7 @@
     </div>
   </div>
 </article>
+@endsection
+@section('js')
+<!-- <script src="assets/js/modificarvalue.js" type="text/javascript"> </script> -->
 @endsection
