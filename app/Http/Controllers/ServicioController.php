@@ -58,19 +58,19 @@ class ServicioController extends Controller
       $servicio->combustible=$data['combustible'];
       $servicio->reconocimiento=$data['reconocimiento'];
       $servicio->disposiciones=$data['disposiciones'];
-      list($day, $mes, $year) = explode('/', $data['alarma']);
+      list($day, $month, $year) = explode('/', $data['alarma']);
       list($year,$hour) = explode(' ', $year);
-      $data['alarma']=$year.'-'.$mes.'-'.$day.' '.$hour;
+      $data['alarma']=$year.'-'.$month.'-'.$day.' '.$hour;
       $servicio->hora_alarma=$data['alarma'];
 
-      list($day, $mes, $year) = explode('/', $data['salida']);
+      list($day, $month, $year) = explode('/', $data['salida']);
       list($year,$hour) = explode(' ', $year);
-      $data['salida']=$year.'-'.$mes.'-'.$day.' '.$hour;
+      $data['salida']=$year.'-'.$month.'-'.$day.' '.$hour;
       $servicio->hora_salida=$data['salida'];
 
-      list($day, $mes, $year) = explode('/', $data['regreso']);
+      list($day, $month, $year) = explode('/', $data['regreso']);
       list($year,$hour) = explode(' ', $year);
-      $data['regreso']=$year.'-'.$mes.'-'.$day.' '.$hour;
+      $data['regreso']=$year.'-'.$month.'-'.$day.' '.$hour;
       $servicio->hora_regreso=$data['regreso'];
 
       $servicio->jefe_servicio=$data['jefe_servicio'];
@@ -190,9 +190,9 @@ class ServicioController extends Controller
         $servicio->direccion=$data['direccion'];
         $servicio->autor_llamada=$data['autor_llamada'];
 
-        list($day, $mes, $year) = explode('/', $data['alarma']);
+        list($day, $month, $year) = explode('/', $data['alarma']);
         list($year,$hour) = explode(' ', $year);
-        $data['alarma']=$year.'-'.$mes.'-'.$day.' '.$hour;
+        $data['alarma']=$year.'-'.$month.'-'.$day.' '.$hour;
         $servicio->hora_alarma=$data['alarma'];
         if ($servicio->save()) {
           return redirect()->route('servicio.index');
