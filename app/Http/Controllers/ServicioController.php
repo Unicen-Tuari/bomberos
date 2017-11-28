@@ -206,10 +206,10 @@ class ServicioController extends Controller
         return view('servicio/estadistica');
     }
 
-    public function tabla($mes,$año)
+    public function tabla($month,$year)
     {
-        $servicios=Servicio::whereYear('hora_alarma','=',$año)->whereMonth('hora_alarma','=',$mes)->get();
-        return view('servicio/estadisticasMes',compact('servicios','mes','año'));
+        $servicios=Servicio::FechaAlarma($month,$year)->get();
+        return view('servicio/estadisticasMes',compact('servicios','month','year'));
     }
 
     public function show($id)
