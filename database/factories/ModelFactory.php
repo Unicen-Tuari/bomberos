@@ -96,3 +96,13 @@ $factory->define(App\Puntuacion::class, function (Faker\Generator $faker){
     'fecha' => $faker->date($format = 'Y-m-d'),
   ];
 });
+
+$factory->define(App\Reemplazo::class, function (Faker\Generator $faker){
+  return[
+    'id_bombero' => factory(App\Bombero::class)->create()->id,
+    'id_bombero_reemplazo' => factory(App\Bombero::class)->create()->id,
+    'fecha_inicio' => $faker->date($format = 'Y-m-d H:i:s'),
+    'fecha_fin' => $faker->date($format = 'Y-m-d H:i:s'),
+    'razon' => $faker->realText($maxNbChars = 50, $indexSize = 2),
+  ];
+});
