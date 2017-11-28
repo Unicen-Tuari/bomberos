@@ -52,8 +52,8 @@
         <div class="form-group {{ $errors->has('admin') ? ' has-error' : '' }}">
           <label class="col-md-4 control-label" name="admin" > Administrador</label>
           <div class="col-md-6">
-              <!-- <input type="boolean" id="valoradmin" class="hidden"name="admin" value="0"> -->
-              <input type="checkbox" id="admin"  @if ($usuario->admin) checked @endif value="0" data-toggle="toggle" data-off="No" data-on="Sí" data-onstyle="success" data-offstyle="danger" placeholder= "Admin">
+              <input type="boolean" class="hidden" value="0">
+              <input type="checkbox" name="admin"  @if ($usuario->admin) checked @endif data-toggle="toggle" data-off="No" data-on="Sí" data-onstyle="success" data-offstyle="danger" placeholder= "Admin">
               @if ($errors->has('admin'))
                   <span class="help-block">
                       <strong>{{ $errors->first('admin') }}</strong>
