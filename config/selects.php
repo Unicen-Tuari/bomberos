@@ -49,7 +49,7 @@ return ['jerarquia' => [1 => 'Oficial Superior',
                     11 => 'EQUIPOS DE PROTECCIÓN PERSONAL',
                     12 => 'VARIOS'],
 
-'estadovehiculo' => [1 => 'En servicio',
+'estadoVehiculo' => [1 => 'En servicio',
                     2 => 'Fuera de servicio',
                     3 => 'Baja'],
 

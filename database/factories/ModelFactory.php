@@ -59,16 +59,42 @@ $factory->define(App\Servicio::class, function (Faker\Generator $faker) {
 $factory->define(App\Vehiculo::class, function (Faker\Generator $faker){
   return[
     'patente' => $faker->lexify('???') . ' ' . $faker->numerify('###'),
-    'num_movil' => $faker->numberBetween($min = 100, $max = 200),
+    'num_movil' => $faker->unique()->numberBetween($min = 50, $max = 200),
     'estado' => 1,
     'detalle' => 'autobomba',
   ];
 });
-$factory->define(App\Variables::class, function (Faker\Generator $faker) {
-  return [
-    'asistencia' => $faker->randomNumber($nbDigits = 6),
-    'accidentales' => $faker->randomNumber($nbDigits = 6),
-    'guardias' => $faker->randomNumber($nbDigits = 6),
-    'anio' => $faker->numberBetween($min = 1800, $max = 2300),
+
+$factory->define(App\Ingreso::class, function (Faker\Generator $faker){
+  return[
+    'id_bombero' => factory(App\Bombero::class)->create()->id,
   ];
 });
+
+$factory->define(App\Puntuacion::class, function (Faker\Generator $faker){
+  return[
+    'id_bombero' => factory(App\Bombero::class)->create()->id,
+    'ao_cant' => $faker->randomNumber($nbDigits = 1),
+    'ao_punt' => $faker->randomNumber($nbDigits = 1),
+    'ao_acad' => $faker->randomNumber($nbDigits = 1),
+    'accid_cant' => $faker->randomNumber($nbDigits = 1),
+    'accid_punt' => $faker->randomNumber($nbDigits = 1),
+    'dedicacion' => $faker->randomNumber($nbDigits = 1),
+    'guar_cant' => $faker->randomNumber($nbDigits = 1),
+    'guar_punt' => $faker->randomNumber($nbDigits = 1),
+    'especiales' => $faker->randomNumber($nbDigits = 1),
+    'licencia' => $faker->randomNumber($nbDigits = 1),
+    'castigo' => $faker->randomNumber($nbDigits = 1),
+    'total' => $faker->randomNumber($nbDigits = 1),
+    'detalle' => $faker->realText($maxNbChars = 50, $indexSize = 2),
+    'fecha' => $faker->date($format = 'Y-m-d'),
+  ];
+
+  $factory->define(App\Variables::class, function (Faker\Generator $faker) {
+    return [
+      'asistencia' => $faker->randomNumber($nbDigits = 6),
+      'accidentales' => $faker->randomNumber($nbDigits = 6),
+      'guardias' => $faker->randomNumber($nbDigits = 6),
+      'anio' => $faker->numberBetween($min = 1800, $max = 2300),
+    ];
+  });
