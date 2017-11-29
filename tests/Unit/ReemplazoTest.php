@@ -11,11 +11,8 @@ class ReemplazoTest extends TestCase
 {
     public function testReemplazosActivos()
     {
-        $fecha = date('Y-m-d H:i:s');
-        $fechaFin = strtotime('+2day' , strtotime($fecha));
-        $fechaFin = date('Y-m-d H:i:s' , $fechaFin);
-        $reemplazo = factory(Reemplazo::class)->create(['fecha_fin'=>$fechaFin]);
-        $reemplazo2 = factory(Reemplazo::class)->create(['fecha_fin'=>$fechaFin]);
+        $reemplazo = factory(Reemplazo::class)->create();
+        $reemplazo2 = factory(Reemplazo::class)->create();
         $reemplazosActivos = Reemplazo::reemplazosActivos();
         $this->assertEquals($reemplazosActivos->count(),2);
     }

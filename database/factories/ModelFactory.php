@@ -98,11 +98,14 @@ $factory->define(App\Puntuacion::class, function (Faker\Generator $faker){
 });
 
 $factory->define(App\Reemplazo::class, function (Faker\Generator $faker){
+  $fecha = date('Y-m-d H:i:s');
+  $fechaFin = strtotime('+2day' , strtotime($fecha));
+  $fechaFin = date('Y-m-d H:i:s' , $fechaFin);
   return[
     'id_bombero' => factory(App\Bombero::class)->create()->id,
     'id_bombero_reemplazo' => factory(App\Bombero::class)->create()->id,
-    'fecha_inicio' => $faker->date($format = 'Y-m-d H:i:s'),
-    'fecha_fin' => $faker->date($format = 'Y-m-d H:i:s'),
+    'fecha_inicio' => $fecha,
+    'fecha_fin' => $fechaFin,
     'razon' => $faker->realText($maxNbChars = 50, $indexSize = 2),
   ];
 });
