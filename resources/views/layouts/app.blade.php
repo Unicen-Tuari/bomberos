@@ -179,8 +179,7 @@
       {!!HTML::script('assets/js/jquery.js')!!}
       {!!HTML::script('assets/js/bootstrap.js')!!}
       {!!HTML::script('assets/js/bootstrap-multiselect.js')!!}
-      {!!HTML::script('assets/js/script.js')!!}
-      {!!HTML::script('assets/js/ajaxIngreso.js')!!}
+      {!!HTML::script('assets/js/script.js')!!}      
       {!! Html::script('assets/js/bootstrap-toggle.js') !!}
     @yield('js')
     <!-- JavaScripts -->

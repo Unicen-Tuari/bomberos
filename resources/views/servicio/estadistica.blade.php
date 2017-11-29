@@ -2,7 +2,7 @@
 
 @section('content')
 
-  <article class="col-sm-12">
+  <article class="col-sm-12 fondotabla">
     <div class="panel panel-default">
       <div id="breadcrumb" class="panel-heading">
         <span class="fa fa-bar-chart" aria-hidden="true"></span>
@@ -32,5 +32,5 @@
   @endsection
 
   @section('js')
-    <script src="assets/js/ajaxtabla.js" type="text/javascript"></script>
+    <script src="../assets/js/ajaxtabla.js" type="text/javascript"></script>
   @endsection
