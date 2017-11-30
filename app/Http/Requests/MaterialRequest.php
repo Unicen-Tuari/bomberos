@@ -33,16 +33,14 @@ class MaterialRequest extends Request
          case 'POST':
          {
            return [
-               'nombre' => 'required|min:3|max:255',
-               'vehiculo_id'=>'exists:vehiculo,id'
+               'nombre' => 'required|min:3|max:255'
            ];
          }
 
          case 'PUT':
          {
            return [
-             'nombre' => 'required|min:3|max:255',
-             'vehiculo_id'=>'exists:vehiculo,id'
+             'nombre' => 'required|min:3|max:255'
            ];
          }
          default:break;

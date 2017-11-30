@@ -34,8 +34,8 @@ Route::get('puntuacion/anual/{bombero}/{inicio}/{fin}', 'PuntuacionController@ta
 Route::get('puntuacion/bomberos/{mes}/{anio}', 'PuntuacionController@bomberos')->name('puntuacion.bomberos');
 Route::get('puntuacion/listar/{mes}/{anio}', 'PuntuacionController@listar')->name('puntuacion.listar');
 Route::get('puntuacion/{mes}/{anio}/{bombero}/puntuacionmes', 'PuntuacionController@puntuacionmes')->name('puntuacion.puntuacionmes');
-Route::resource('puntuacion','PuntuacionController');
 
+Route::resource('puntuacion','PuntuacionController');
 Route::resource('vehiculo','VehiculoController');
 Route::resource('variable','VariableController');
 Route::resource('material','MaterialController');

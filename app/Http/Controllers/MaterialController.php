@@ -67,6 +67,7 @@ class MaterialController extends Controller
             $vehiculos[$data->id] = $data->num_movil;
         }
         $material=Material::findorfail($id);
+
         return view('material/editar',compact('material', 'vehiculos'));
       }
       return view('auth/alerta');

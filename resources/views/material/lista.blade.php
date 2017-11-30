@@ -55,9 +55,11 @@
               <th class="text-center">{{config('selects.rubro')[$material->rubro]}}</th>
               @if (Auth::user()->admin)
                 <td class="text-center">
-                  {{ Form::open(['route' => ['material.destroy', $material->id], 'method' => 'delete']) }}
-                      <button type="submit" class="glyphicon glyphicon-trash"></button>
-                  {{ Form::close() }}
+                  <form class="form-horizontal" action={{route('material.destroy', $material->id)}} method="POST">
+                    {{csrf_field()}}
+                    {{method_field('DELETE')}}
+                    <button type="submit" class="glyphicon glyphicon-trash"></button>
+                  </form>
                 </td>
                 <td class="text-center"><a class="glyphicon glyphicon-edit" href="{{ route('material.edit', $material->id) }}"></a></td>
               @else
