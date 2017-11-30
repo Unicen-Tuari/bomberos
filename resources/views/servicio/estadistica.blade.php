@@ -2,7 +2,7 @@
 
 @section('content')
 
-  <article class="col-sm-12">
+  <article class="col-sm-12 fondotabla">
     <div class="panel panel-default">
       <div id="breadcrumb" class="panel-heading">
         <span class="fa fa-bar-chart" aria-hidden="true"></span>
@@ -13,8 +13,8 @@
           <label class="col-md-1 control-label" for="month">Mes:</label>
           <div class="col-md-2">
             <select id="month" class="form-control" name="meses">
-              @foreach(config('selects.meses') as $key => $mes)
-                <option  @if($key == \Carbon\Carbon::now()->format('m')) selected @endif value={{$key}} >{{$mes}}</option>
+              @foreach(config('selects.meses') as $key => $month)
+                <option  @if($key == \Carbon\Carbon::now()->format('m')) selected @endif value={{$key}} >{{$month}}</option>
                 @endforeach
               </select>
             </div>
@@ -32,5 +32,5 @@
   @endsection
 
   @section('js')
-    <script src="assets/js/ajaxtabla.js" type="text/javascript"></script>
+    <script src="../assets/js/ajaxtabla.js" type="text/javascript"></script>
   @endsection
