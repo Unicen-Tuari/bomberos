@@ -55,7 +55,7 @@
           </td>
           @else
           <td colspan="2">
-            <butt@section('js')
+            
             @endsectionon type="submit" class="glyphicon glyphicon-ban-circle" title="Sin permisos para eliminar/modificar"></button>
           </td>
           @endif

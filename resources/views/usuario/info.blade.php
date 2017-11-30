@@ -48,9 +48,7 @@
 
       <label class="col-md-4 control-label" name="admin" > Administrador</label>
       <div class="col-md-6">
-          {!! Form::hidden('admin', '0') !!}
-          {!! Form::checkbox('admin', 1, $usuario->admin, ['data-toggle' => "toggle", 'data-onstyle'=>"success", 'data-on' => 'Sí', 'data-off' => 'No']) !!}
-
+          <input type="checkbox" name="usuario-".{{$usuario->id}} class="form-control"  value="$usuario->admin" data-toggle="toggle" data-off="Usuario" data-on="Administrador" data-onstyle="success" data-offstyle="danger">
           @if ($errors->has('admin'))
               <span class="help-block">
                   <strong>{{ $errors->first('admin') }}</strong>
