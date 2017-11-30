@@ -34,6 +34,8 @@ class ServiceStatsTest extends DuskTestCase
 							->assertDontSee('Error al Cargar la tabla ')
 							->with('.table-bordered', function($table){
 								$table->assertSee('Estadisticas de ');
+								$table->assertSee('15');
+								$table->assertSee('2');
 								$table->assertSee('17');
 							});
 		});
