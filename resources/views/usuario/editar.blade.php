@@ -49,10 +49,10 @@
           </div>
         </div>
 
-        <div class="form-group {{ $errors->has('admin') ? ' has-error' : '' }}">
+        <div class="form-group {{ $errors->has('activo') ? ' has-error' : '' }}">
           <label class="col-md-4 control-label" name="admin" > Administrador</label>
           <div class="col-md-6">
-                <input type="checkbox" name="admin"  @if ($usuario->admin) checked @endif data-toggle="toggle" data-off="No" data-on="Sí" data-onstyle="success" data-offstyle="danger" placeholder= "Admin">
+            <input type="checkbox" name="admin" data-toggle="toggle" data-off="Usuario" data-on="Administrador" data-onstyle="success" data-offstyle="danger" placeholder= "Admin">
               @if ($errors->has('admin'))
                   <span class="help-block">
                       <strong>{{ $errors->first('admin') }}</strong>
@@ -68,6 +68,7 @@
             </button>
           </div>
         </div>
+
     </div>
   </div>
 </article>
