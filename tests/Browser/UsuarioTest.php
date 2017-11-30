@@ -9,7 +9,7 @@ use App\User;
 
 class UsuarioTest extends DuskTestCase
 {
-    public function testCreateUser() {
+    public function testCreate() {
         $this->newUser = factory(User::class)->create();
         $this->browse(function (Browser $browser) {
             $browser->loginAs(User::find(1))
@@ -23,7 +23,7 @@ class UsuarioTest extends DuskTestCase
         });
     }
 
-    public function testUpdateUser(){
+    public function testUpdate(){
           $this->browse(function (Browser $browser) {
             $browser->loginAs(User::find(1))
                     ->visit('/usuario')
@@ -33,7 +33,7 @@ class UsuarioTest extends DuskTestCase
             });
     }
 
-    public function testDeleteUser(){
+    public function testDelete(){
       $this->newUser = factory(User::class)->create();
       $this->browse(function (Browser $browser) {
             $browser->loginAs(User::find(1))
