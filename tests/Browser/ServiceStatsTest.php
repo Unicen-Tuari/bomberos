@@ -25,7 +25,7 @@ class ServiceStatsTest extends DuskTestCase
 	public function testTablaConValores()
 	{
 		$this->browse(function (browser $browser){
-			$servicio = factory(Servicio::class)->c·reate(['quemados'=> 15]);
+			$servicio = factory(Servicio::class)->create(['quemados'=> 15]);
 			$servicio2 = factory(Servicio::class)->create(['quemados'=> 2]);
 			$browser->loginAs(User::find(1))
 							->visit('/servicio/estadistica')
