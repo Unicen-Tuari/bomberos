@@ -20,9 +20,9 @@ class VariablesTest extends DuskTestCase
               ->type('asistencia', $variable->asistencia)
               ->type('accidentales', $variable->accidentales)
               ->type('guardias', $variable->guardias)
-              ->type('anio', $variable->anio)
+              ->type('year', $variable->year)
               ->press('Crear')
-              ->assertSee($variable->anio);
+              ->assertSee($variable->year);
     });
   }
   public function testUpdate()

@@ -24,7 +24,7 @@
                 <td>{{$variable->asistencia}}</td>
                 <td>{{$variable->accidentales}}</td>
                 <td>{{$variable->guardias}}</td>
-                <td>{{$variable->anio}}</td>
+                <td>{{$variable->year}}</td>
                 @if (Auth::user()->admin)
                   <td><a href="{{ route('variable.edit', $variable->id) }}" class="glyphicon glyphicon-edit"></a></td>
                   <td class="text-center">

@@ -44,13 +44,13 @@
                     @endif
                   </div>
                 </div>
-                <div class="form-group  {{ $errors->has('anio') ? ' has-error' : '' }}">
-                  <label for="anio" class="col-md-4 control-label">Año:</label>
+                <div class="form-group  {{ $errors->has('year') ? ' has-error' : '' }}">
+                  <label for="year" class="col-md-4 control-label">Año:</label>
                   <div class="col-md-2">
-                    <input type="number" class="form-control" min="0" name="anio"  @if(old('anio')) value="{{old('anio')}}" @endif value="{{$variables->anio}}" disabled>
-                      @if ($errors->has('anio'))
+                    <input type="number" class="form-control" min="0" name="year"  @if(old('year')) value="{{old('year')}}" @endif value="{{$variables->year}}" disabled>
+                      @if ($errors->has('year'))
                         <span class="help-block">
-                          <strong>{{ $errors->first('anio') }}</strong>
+                          <strong>{{ $errors->first('year') }}</strong>
                         </span>
                       @endif
                     </div>

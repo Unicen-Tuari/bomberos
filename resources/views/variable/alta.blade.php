@@ -44,14 +44,14 @@
               </span>
             @endif
           </div>
-          <div class="form-group  {{ $errors->has('anio') ? ' has-error' : '' }}">
-            <label for="anio" class="col-md-4 control-label">Año: </label>
+          <div class="form-group  {{ $errors->has('year') ? ' has-error' : '' }}">
+            <label for="year" class="col-md-4 control-label">Año: </label>
             <div class="col-md-2">
-              <input type="number" class="form-control" min="0" name="anio" >
+              <input type="number" class="form-control" min="0" name="year" >
             </div>
-            @if ($errors->has('anio'))
+            @if ($errors->has('year'))
               <span class="help-block">
-                <strong>{{ $errors->first('anio') }}</strong>
+                <strong>{{ $errors->first('year') }}</strong>
               </span>
             @endif
           </div>

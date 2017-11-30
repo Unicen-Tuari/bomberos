@@ -102,6 +102,6 @@ $factory->define(App\Puntuacion::class, function (Faker\Generator $faker){
       'asistencia' => $faker->randomNumber($nbDigits = 6),
       'accidentales' => $faker->randomNumber($nbDigits = 6),
       'guardias' => $faker->randomNumber($nbDigits = 6),
-      'anio' => $faker->numberBetween($min = 1800, $max = 2300),
+      'year' => $faker->numberBetween($min = 1800, $max = 2300),
     ];
   });
