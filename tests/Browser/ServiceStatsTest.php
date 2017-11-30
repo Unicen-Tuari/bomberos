@@ -17,8 +17,10 @@ class ServiceStatsTest extends DuskTestCase
 			$browser->loginAs(User::find(1))
 							->visit('/servicio/estadistica')
 							->assertDontSee('Error al Cargar la tabla ')
-							->assertSee('Estadisticas de ')
-							->assertSee('0');
+							->with('.table-bordered', function($table){
+								$table->assertSee('Estadisticas de ');
+								$table->assertSee('0');
+							});
 		});
 	}
 
@@ -30,8 +32,10 @@ class ServiceStatsTest extends DuskTestCase
 			$browser->loginAs(User::find(1))
 							->visit('/servicio/estadistica')
 							->assertDontSee('Error al Cargar la tabla ')
-							->assertSee('Estadisticas de ')
-							->assertSee('17');
+							->with('.table-bordered', function($table){
+								$table->assertSee('Estadisticas de ');
+								$table->assertSee('17');
+							});
 		});
 	}
 }
