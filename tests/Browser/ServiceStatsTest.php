@@ -17,19 +17,21 @@ class ServiceStatsTest extends DuskTestCase
 			$browser->loginAs(User::find(1))
 			->visit('/servicio/estadistica')
 			->assertDontSee('Error al Cargar la tabla ')
-			->assertSee('Estadisticas de ');
+			->assertSee('Estadisticas de ')
 			->assertSee('0');
 		});
 	}
 
-	// public function testTablaVacia()
-	// {
-	// 	$this->browse(function (browser $browser){
-	// 		$servicio = factory(Servicio::class)->create();
-	// 		$browser->loginAs(User::find(1))
-	// 		->visit('/servicio/estadistica')
-	// 		->assertDontSee('Error al Cargar la tabla ');
-	// 		->assertSee('0');
-	// 	});
-	// }
+	public function testTablaConValores()
+	{
+		$this->browse(function (browser $browser){
+			$servicio = factory(Servicio::class)->create(['quemados'=> 15]);
+			$servicio = factory(Servicio::class)->create(['quemados'=> 2]);
+			$browser->loginAs(User::find(1))
+			->visit('/servicio/estadistica')
+			->assertDontSee('Error al Cargar la tabla ')
+			->assertSee('Estadisticas de ')
+			->assertSee('17');
+		});
+	}
 }
