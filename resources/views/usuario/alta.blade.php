@@ -68,22 +68,24 @@
           <label class="col-md-4 control-label" name="admin" > Administrador</label>
           <div class="col-md-6">
             <input type="checkbox" name="admin" data-toggle="toggle" data-off="Usuario" data-on="Administrador" data-onstyle="success" data-offstyle="danger" placeholder= "Admin">
-              @if ($errors->has('admin'))
-                  <span class="help-block">
-                      <strong>{{ $errors->first('admin') }}</strong>
-                  </span>
-              @endif
-          </div>
-        </div>
+             <!-- <input type="checkbox" data-toggle="toggle" data-off="Usuario" data-on="Administrador" data-onstyle="success" placeholder= "Admin"> -->
+                @if ($errors->has('admin'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('admin') }}</strong>
+                   </span>
+               @endif
+           </div>
+         </div>
 
-        <div class="form-group">
-          <div class="col-md-6 col-md-offset-4">
-            <button type="submit" class="btn btn-primary">
-                <i class=" glyphicon glyphicon-user">Guardar</i>
-            </button>
-          </div>
-        </div>
+         <div class="form-group">
+           <div class="col-md-6 col-md-offset-4">
+             <button type="submit" class="btn btn-primary">
+                  <i class=" glyphicon glyphicon-user">Guardar</i>
+              </button>
+            </div>
+
+         </div>
+      </div>
     </div>
-  </div>
-</article>
-@endsection
+  </article>
+ @endsection
