@@ -10,20 +10,30 @@
 
     <div class="col-sm-12">
       <div class="col-md-7 col-sm-12 text-right" style="padding-top: 20px;">
-        {{Form::model(Request::all(),['route' => 'material.index', 'class' => 'form-horizontal', 'method' => 'GET'])}}
+        <form class='form-horizontal' action="{{route('material.index')}}" method='GET'>
           <div class="col-sm-4">
-            {{Form::select('rubro', [0=>'RUBRO'] + config('selects.rubro'),null, ['class' => 'form-control'])}}
+            <select class="form-control" name="rubro">
+              <option value="0">RUBRO</option>
+              @foreach(config('selects.rubro') as $key => $rubro_material)
+                <option value="{{$key}}">{{$rubro_material}}</option>
+                @endforeach
+              </select>
           </div>
             <div class="col-sm-3">
-              {{Form::select('movil',$vehiculos,null, ['class' => 'form-control'])}}
+              <select class="form-control" name="movil">
+                @foreach($vehiculos as $key => $vehiculo_material)
+                  <option value="{{$key}}">{{$vehiculo_material}}</option>
+                  @endforeach
+                </select>
             </div>
           <div class="col-sm-4">
-            {{Form::text('material', null, ['placeholder'=>"Buscar material", 'class' => 'form-control'])}}
+            <input class="form-control" type="text" name="material" @if(old('material')) value="{{old('material')}}" @endif value="" placeholder="Buscar material">
+
           </div>
           <div class="col-sm-1">
-            {{Form::submit('Buscar', ['class' => 'btn btn-primary']) }}
+            <input class="btn btn-primary" type="submit" name="buscar" value="Buscar">
           </div>
-        {{Form::close()}}
+        </form>
       </div>
     </div>
 
