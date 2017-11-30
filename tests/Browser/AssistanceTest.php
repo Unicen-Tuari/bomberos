@@ -52,8 +52,4 @@ class AssistanceTest extends DuskTestCase{
               ->assertDontSee('Reunión del ' . $this->asistencia->fecha_reunion);
     });
   }
-
-
-
-
 }
