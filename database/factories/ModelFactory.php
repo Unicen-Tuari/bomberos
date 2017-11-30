@@ -94,7 +94,8 @@ $factory->define(App\Puntuacion::class, function (Faker\Generator $faker){
     'total' => $faker->randomNumber($nbDigits = 1),
     'detalle' => $faker->realText($maxNbChars = 50, $indexSize = 2),
     'fecha' => $faker->date($format = 'Y-m-d'),
-  ];
+    ];
+  });
 
   $factory->define(App\Variables::class, function (Faker\Generator $faker) {
     return [
