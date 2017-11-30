@@ -5,11 +5,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateBomberoServicioTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('bombero_servicio', function (Blueprint $table) {
@@ -26,11 +21,6 @@ class CreateBomberoServicioTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::drop('bombero_servicio');

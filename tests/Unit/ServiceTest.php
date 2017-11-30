@@ -5,6 +5,8 @@ namespace Tests\Unit;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Servicio;
+use App\Bombero;
+use App\BomberoServicio;
 use DateTime;
 use DateTimeZone;
 
@@ -63,4 +65,11 @@ class ServiceTest extends TestCase
         $this->assertEquals($servicesMonthYear2->count(),1);
       }
 
+    public function testBomberos()
+    {
+      $service = factory(Servicio::class)->create();
+      $bombero = factory(Bombero::class)->create();
+      $bomberoServicio = factory(BomberoServicio::class)->create(['servicio_id'=>$service->id]);
+      $this->assertEquals($bomberoServicio->first()->servicio_id,$service->id);
+    }
 }

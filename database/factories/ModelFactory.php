@@ -53,7 +53,7 @@ $factory->define(App\Servicio::class, function (Faker\Generator $faker) {
     'disposiciones' => $faker->sentence($nbWords = 6, $variableNbWords = true),
     'hora_alarma' => $alarma,
     'hora_salida' => $salida,
-    'hora_regreso' => $regreso,
+    
   ];
 });
 $factory->define(App\Vehiculo::class, function (Faker\Generator $faker){
@@ -103,5 +103,19 @@ $factory->define(App\Puntuacion::class, function (Faker\Generator $faker){
       'accidentales' => $faker->randomNumber($nbDigits = 6),
       'guardias' => $faker->randomNumber($nbDigits = 6),
       'year' => $faker->numberBetween($min = 1800, $max = 2300),
+    ];
+  });
+
+  $factory->define(App\TipoAsistencia::class, function (Faker\Generator $faker) {
+    return [
+      'nombre' => $faker->word,
+    ];
+  });
+
+  $factory->define(App\BomberoServicio::class, function (Faker\Generator $faker) {
+    return [
+      'bombero_id' => factory(App\Bombero::class)->create()->id,
+      'servicio_id' => factory(App\Servicio::class)->create()->id,
+      'tipo_id' => factory(App\TipoAsistencia::class)->create()->id,
     ];
   });
