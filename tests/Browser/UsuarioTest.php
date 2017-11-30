@@ -19,7 +19,9 @@ class UsuarioTest extends DuskTestCase
                     ->type('usuario', $this->newUser->usuario)
                     ->type('password', $this->newUser->password)
                     ->press('Guardar')
-                    ->assertDontSee('required');
+                    ->type('id',$this->newUser->id)
+                    ->press('Buscar')
+                    ->assertSee($this->newUser->id);
         });
     }
 
@@ -28,9 +30,12 @@ class UsuarioTest extends DuskTestCase
             $browser->loginAs(User::find(1))
                     ->visit('/usuario')
                     ->click('.glyphicon-edit')
+                    ->type('nombre','nameTest')
                     ->press('Guardar')
-                    ->assertDontSee('required');
-            });
+                    ->type('id',$this->newUser->id)
+                    ->press('Buscar')
+                    ->assertSee('nameTest');
+          });
     }
 
     public function testDelete(){
