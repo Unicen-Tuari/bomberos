@@ -13,7 +13,6 @@ class BomberoTest extends TestCase
         $newBomberoModel = Bombero::Nombre($newBombero->nombre);
         $this->assertEquals($newBomberoModel->first()->nombre,$newBombero->nombre);
         $this->assertEquals($newBomberoModel->count(),1);
-        // $this->assertNotEquals($newBomberoModel->first()->nombre,$newBombero2->nombre);
     }
 
     public function testScopeLegajo()
@@ -23,7 +22,6 @@ class BomberoTest extends TestCase
         $newBomberoModel = Bombero::Legajo($newBombero->nro_legajo);
         $this->assertEquals($newBomberoModel->first()->nro_legajo,$newBombero->nro_legajo);
         $this->assertEquals($newBomberoModel->count(),1);
-        // $this->assertNotEquals($newBomberoModel->first()->nro_legajo,$newBombero2->nro_legajo);
     }
 
     public function testScopeJerarquia()
@@ -33,7 +31,6 @@ class BomberoTest extends TestCase
         $newBomberoModel = Bombero::Jerarquia($newBombero->jerarquia);
         $this->assertEquals($newBomberoModel->first()->jerarquia,$newBombero->jerarquia);
         $this->assertEquals($newBomberoModel->count(),1);
-        // $this->assertNotEquals($newBomberoModel->first()->jerarquia,$newBombero2->jerarquia);
     }
 
     public function testGetBomberos()
@@ -43,7 +40,4 @@ class BomberoTest extends TestCase
         $newBomberoModel = Bombero::getBomberos();
         $this->assertNotEquals(count($newBomberoModel),2);
     }
-
-
-
 }
