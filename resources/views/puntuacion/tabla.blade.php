@@ -1,7 +1,7 @@
 <table  class="table table-bordered">
   <thead><!--Titulos de la tabla-->
     <tr>
-      <th class="text-center" colspan="2">Periodo {{config('selects.meses')[$mes].'-'.$año}}</th>
+      <th class="text-center" colspan="2">Periodo {{config('selects.meses')[$month].'-'.$year}}</th>
       <th class="text-center" colspan="3">ASIST OBLIG</th>
       <th class="text-center" colspan="2">ACCID. {{$cantserv}}</th>
       <th class="text-center">Dedicación</th>
@@ -30,25 +30,25 @@
   </thead>
   <tbody class="tableFilter">
     @foreach ($bomberos as $bombero)
-    @if ($bombero->puntuo($mes,$año))
+    @if ($bombero->puntuo($month,$year))
     <tr>
-      <td><a idmodal={{$bombero->puntuacion($mes,$año)->id}} href="" class="glyphicon glyphicon-edit mp" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
+      <td><a idmodal={{$bombero->puntuacion($month,$year)->id}} href="" class="glyphicon glyphicon-edit mp" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
       </a> {{$bombero->nro_legajo}}</td>
       <td class="filtro text-center">{{$bombero->apellido.' '.$bombero->nombre}}</td>
-      <td class="text-center">{{$bombero->puntuacion($mes,$año)->ao_cant}}</td>
-      <td class="text-center">{{$bombero->puntuacion($mes,$año)->ao_punt}}</td>
-      <td class="text-center">{{$bombero->puntuacion($mes,$año)->ao_acad}}</td>
-      <td class="text-center">{{$bombero->puntuacion($mes,$año)->accid_cant}}</td>
-      <td class="text-center">{{$bombero->puntuacion($mes,$año)->accid_punt}}</td>
-      <td class="text-center">{{$bombero->puntuacion($mes,$año)->dedicacion}}</td>
-      <td class="text-center">{{$bombero->puntuacion($mes,$año)->guar_cant}}</td>
-      <td class="text-center">{{$bombero->puntuacion($mes,$año)->guar_punt}}</td>
-      <td class="text-center">{{$bombero->puntuacion($mes,$año)->especiales}}</td>
-      <td class="text-center">{{$bombero->puntuacion($mes,$año)->licencia}}</td>
-      <td class="text-center">{{$bombero->puntuacion($mes,$año)->castigo}}</td>
-      <td class="text-center">{{$bombero->puntuacion($mes,$año)->total}}</td>
+      <td class="text-center">{{$bombero->puntuacion($month,$year)->ao_cant}}</td>
+      <td class="text-center">{{$bombero->puntuacion($month,$year)->ao_punt}}</td>
+      <td class="text-center">{{$bombero->puntuacion($month,$year)->ao_acad}}</td>
+      <td class="text-center">{{$bombero->puntuacion($month,$year)->accid_cant}}</td>
+      <td class="text-center">{{$bombero->puntuacion($month,$year)->accid_punt}}</td>
+      <td class="text-center">{{$bombero->puntuacion($month,$year)->dedicacion}}</td>
+      <td class="text-center">{{$bombero->puntuacion($month,$year)->guar_cant}}</td>
+      <td class="text-center">{{$bombero->puntuacion($month,$year)->guar_punt}}</td>
+      <td class="text-center">{{$bombero->puntuacion($month,$year)->especiales}}</td>
+      <td class="text-center">{{$bombero->puntuacion($month,$year)->licencia}}</td>
+      <td class="text-center">{{$bombero->puntuacion($month,$year)->castigo}}</td>
+      <td class="text-center">{{$bombero->puntuacion($month,$year)->total}}</td>
       <th class="text-center">
-        <a detalle='{{$bombero->puntuacion($mes,$año)->detalle}}'
+        <a detalle='{{$bombero->puntuacion($month,$year)->detalle}}'
         href="" class="glyphicon glyphicon-eye-open detalle" data-toggle="modal" data-target="#exampleModal2" data-whatever="@mdo">
       </a></th>
     </tr>

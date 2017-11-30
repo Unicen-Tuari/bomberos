@@ -65,6 +65,12 @@ $factory->define(App\Vehiculo::class, function (Faker\Generator $faker){
   ];
 });
 
+$factory->define(App\Asistencia::class, function (Faker\Generator $faker) {
+  return [
+    'fecha_reunion' => $faker->date($format = 'd/m/Y', $max = '30/10/2017'),
+  ];
+});
+
 $factory->define(App\Ingreso::class, function (Faker\Generator $faker){
   return[
     'id_bombero' => factory(App\Bombero::class)->create()->id,

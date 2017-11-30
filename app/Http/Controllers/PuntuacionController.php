@@ -49,10 +49,10 @@ class PuntuacionController extends Controller
     public function puntuacionmes($month,$year,$bombero)
     {
         if(Auth::user()->admin){
-          $var=Variables::where('anio', '=', $year)->first();
-          $mesactual=\Carbon\Carbon::now()->format('m');
-          $actualYear=\Carbon\Carbon::now()->format('Y');
-          if($year<$actualYear || ($year==$actualYear && $month<$mesactual)){
+          $var=Variables::first();
+          $monthactual=\Carbon\Carbon::now()->format('m');
+          $yearactual=\Carbon\Carbon::now()->format('Y');
+          if($year<$yearactual || ($year==$yearactual && $month<$monthactual)){
             $bombero=Bombero::find($bombero);
             $dias=asistencia::select(\DB::raw('COUNT(*) as cant, id_bombero'))->whereYear('fecha_reunion','=',$year)->whereMonth('fecha_reunion','=',$month)->groupBy('id_bombero')->get()->max('cant');
             if ($dias==null) {
@@ -96,7 +96,7 @@ class PuntuacionController extends Controller
         }
         $cantserv=Servicio::whereNotNull('hora_regreso')->where('tipo_alarma', 3)->whereYear('hora_alarma','=',$year)->whereMonth('hora_alarma','=',$month)->count();
         $cantguar=Servicio::whereNotNull('hora_regreso')->where('tipo_alarma','<', 3)->whereYear('hora_alarma','=',$year)->whereMonth('hora_alarma','=',$month)->count();
-        return view('puntuacion/tabla',compact('bomberos','cantserv','cantguar','month','year','dias'));
+        return view('puntuacion/tabla',compact('bomberos','cantserv','cantguar','mes','año','dias'));
     }
 
     public function store(Request $request)
@@ -112,9 +112,9 @@ class PuntuacionController extends Controller
 
     public function bomberos($month,$year)
     {
-      $mesactual=\Carbon\Carbon::now()->format('m');
-      $actualYear=\Carbon\Carbon::now()->format('Y');
-      if($year<$actualYear || ($year==$actualYear && $month<$mesactual)){
+      $monthactual=\Carbon\Carbon::now()->format('m');
+      $yearactual=\Carbon\Carbon::now()->format('Y');
+      if($year<$yearactual || ($year==$yearactual && $month<$monthactual)){
         $bomberos=Bombero::where('activo', 1)->get();
         return view('puntuacion/puntuacionmes',compact('bomberos','month','year'));
       }
