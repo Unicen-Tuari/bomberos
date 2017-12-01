@@ -23,7 +23,7 @@ $factory->define(App\Bombero::class, function (Faker\Generator $faker) {
 });
 $factory->define(App\Material::class, function (Faker\Generator $faker) {
   return [
-    'nombre' => $faker->word,
+    'nombre' => str_random(12),
     'vehiculo_id' => factory(App\Vehiculo::class)->create()->id,
     'mantenimiento' => 0,
     'detalle' => $faker->text,
@@ -119,7 +119,7 @@ $factory->define(App\Puntuacion::class, function (Faker\Generator $faker){
       'tipo_id' => factory(App\TipoAsistencia::class)->create()->id,
     ];
   });
-  
+
   $factory->define(App\VehiculoServicio::class, function (Faker\Generator $faker) {
     return [
       'vehiculo_id' => factory(App\Vehiculo::class)->create()->id,

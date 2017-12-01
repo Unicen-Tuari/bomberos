@@ -43,6 +43,8 @@ class MaterialsTest extends DuskTestCase
               ->type('detalle', $material_edit->detalle)
               ->press('Editar')
               ->visit('/material')
+              ->type('material',$material_edit->nombre)
+              ->press('Buscar')
               ->assertSee($material_edit->nombre);
     });
   }
