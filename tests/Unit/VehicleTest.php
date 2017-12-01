@@ -4,6 +4,7 @@ namespace Tests\Unit;
 use Tests\TestCase;
 use App\Vehiculo;
 use App\Servicio;
+use App\Material;
 use App\VehiculoServicio;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 class VehicleTest extends TestCase
@@ -38,5 +39,11 @@ class VehicleTest extends TestCase
     $vehiculo = factory(Vehiculo::class)->create();
     $vehiculoServicio = factory(VehiculoServicio::class)->create(['vehiculo_id'=>$service->id]);
     $this->assertEquals($vehiculoServicio->first()->vehiculo_id,$service->id);
+  }
+  public function testMateriales()
+  {
+    $vehiculo = factory(Vehiculo::class)->create();
+    $material = factory(Material::class)->create(['vehiculo_id'=>$vehiculo->id]);
+    $this->assertEquals($material->first()->vehiculo_id,$vehiculo->id);
   }
 }
