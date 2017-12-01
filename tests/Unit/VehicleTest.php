@@ -1,11 +1,11 @@
 <?php
 
 namespace Tests\Unit;
-
 use Tests\TestCase;
 use App\Vehiculo;
+use App\Servicio;
+use App\VehiculoServicio;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-
 class VehicleTest extends TestCase
 {
   public function testScopePatente()
@@ -16,7 +16,6 @@ class VehicleTest extends TestCase
     $this->assertEquals($vehiculoModel->first()->patente, $vehiculo->patente);
     $this->assertEquals($vehiculoModel->count(),1);
   }
-
   public function testScopeMovil()
   {
     $vehiculo = factory(Vehiculo::class)->create(['num_movil' => 2]);
@@ -25,7 +24,6 @@ class VehicleTest extends TestCase
     $this->assertEquals($vehiculoModel->first()->num_movil, $vehiculo->num_movil);
     $this->assertEquals($vehiculoModel->count(),1);
   }
-
   public function testScopeEstado()
   {
     $vehiculo = factory(Vehiculo::class)->create(['estado' => 2]);
@@ -33,5 +31,12 @@ class VehicleTest extends TestCase
     $vehiculoModel = Vehiculo::estado($vehiculo->estado);
     $this->assertEquals($vehiculoModel->first()->estado, $vehiculo->estado);
     $this->assertEquals($vehiculoModel->count(),1);
+  }
+  public function testVehiculos()
+  {
+    $service = factory(Servicio::class)->create();
+    $vehiculo = factory(Vehiculo::class)->create();
+    $vehiculoServicio = factory(VehiculoServicio::class)->create(['vehiculo_id'=>$service->id]);
+    $this->assertEquals($vehiculoServicio->first()->vehiculo_id,$service->id);
   }
 }
