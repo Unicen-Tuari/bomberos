@@ -21,6 +21,8 @@ class MaterialsTest extends DuskTestCase
               ->select('rubro', $material->rubro)
               ->type('detalle', $material->detalle)
               ->press('Registrar')
+              ->type('material',$material->nombre)
+              ->press('Buscar')
               ->assertSee($material->nombre);
     });
   }
