@@ -6,7 +6,9 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Servicio;
 use App\Bombero;
+use App\Vehiculo;
 use App\BomberoServicio;
+use App\VehiculoServicio;
 use DateTime;
 use DateTimeZone;
 
@@ -71,5 +73,13 @@ class ServiceTest extends TestCase
       $bombero = factory(Bombero::class)->create();
       $bomberoServicio = factory(BomberoServicio::class)->create(['servicio_id'=>$service->id]);
       $this->assertEquals($bomberoServicio->first()->servicio_id,$service->id);
+    }
+
+    public function testVehiculos()
+    {
+      $service = factory(Servicio::class)->create();
+      $vehiculo = factory(Vehiculo::class)->create();
+      $vehiculoServicio = factory(VehiculoServicio::class)->create(['vehiculo_id'=>$service->id]);
+      $this->assertEquals($vehiculoServicio->first()->vehiculo_id,$service->id);
     }
 }
