@@ -26,17 +26,20 @@ class ServiceStatsTest extends DuskTestCase
 
 	public function testTablaConValores()
 	{
+		$this->servicio = factory(Servicio::class)->create(['quemados'=> 35,'hora_alarma'=> '2017-12-10 11:30:00']);
+		$this->servicio2 = factory(Servicio::class)->create(['quemados'=> 22,'hora_alarma'=> $this->servicio->hora_alarma]);
 		$this->browse(function (browser $browser){
-			$servicio = factory(Servicio::class)->create(['quemados'=> 15]);
-			$servicio2 = factory(Servicio::class)->create(['quemados'=> 2]);
+			list($fecha, $hora)=explode(' ',$this->servicio->hora_alarma);
+			list($year,$month,$day)= explode('-',$fecha);
 			$browser->loginAs(User::find(1))
 			->visit('/servicio/estadistica')
+			->select('meses', $month)
 			->assertDontSee('Error al Cargar la tabla ')
 			->with('.table-bordered', function($table){
 				$table->assertSee('Estadisticas de ');
-				$table->assertSee('15');
-				$table->assertSee('2');
-				$table->assertSee('17');
+				$table->assertSee('35');
+				$table->assertSee('22');
+				$table->assertSee('57');
 			});
 		});
 	}
