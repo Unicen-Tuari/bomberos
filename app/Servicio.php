@@ -38,6 +38,26 @@ class Servicio extends Model
     $query->whereYear('hora_alarma','=',$year)->whereMonth('hora_alarma','=',$month);
   }
 
+  public function ScopeFechaAlarmaPeriodo($query, $monthSince, $yearSince, $monthUntil, $yearUntil)
+  {
+    if ($yearSince < $yearUntil) {
+      if ('hora_alarma' >= $yearSince) {
+        if (whereYear('hora_alarma' == $yearSince)) {
+          $query->whereMonth('hora_alarma','>=',$monthSince);
+        }
+        elseif (whereYear('hora_alarma' >= $yearUntil)) {
+          if (whereYear('hora_alarma' == $yearUntil)) {
+            $query->whereMonth('hora_alarma','<=',$monthUntil);
+          }
+          else {
+            $query;
+          }
+        }
+      }
+      // $query->whereYear('hora_alarma','>=',$yearSince)->whereYear('hora_alarma','<=',$yearUntil);
+    }
+  }
+
   public function ScopeTipoAlarma($query,$tipo)
   {
     if ($tipo>0) {
