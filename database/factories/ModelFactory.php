@@ -53,7 +53,7 @@ $factory->define(App\Servicio::class, function (Faker\Generator $faker) {
     'disposiciones' => $faker->sentence($nbWords = 6, $variableNbWords = true),
     'hora_alarma' => $alarma,
     'hora_salida' => $salida,
-    
+    'hora_regreso' => $regreso,
   ];
 });
 $factory->define(App\Vehiculo::class, function (Faker\Generator $faker){
