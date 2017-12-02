@@ -65,17 +65,14 @@ class ServiceTest extends TestCase
 
       public function testScopeFechaAlarmaPeriodo()
       {
-          $horaAlarma = new DateTime("2016-10-01 00:00:00", new DateTimeZone("America/New_York"));
+          $horaAlarma = new DateTime("2015-10-01 00:00:00", new DateTimeZone("America/New_York"));
           $horaAlarma2 = new DateTime("2012-11-01 00:00:00", new DateTimeZone("America/New_York"));
-
           $service = factory(Servicio::class)->create(['hora_alarma'=>$horaAlarma->format("Y-m-d H:i:s")]);
           $service2 = factory(Servicio::class)->create(['hora_alarma'=>$horaAlarma->format("Y-m-d H:i:s")]);
           $service3 = factory(Servicio::class)->create(['hora_alarma'=>$horaAlarma2->format("Y-m-d H:i:s")]);
-
-          $servicesMonthYear = Servicio::FechaAlarmaPeriodo('10', '2012', '11', '2014');
+          $servicesMonthYear = Servicio::FechaAlarmaPeriodo('10', '2012', '01', '2014');
           $servicesMonthYear2 = Servicio::FechaAlarmaPeriodo('01', '2014', '01', '2016');
-
           $this->assertEquals($servicesMonthYear->count(),1);
-          $this->assertEquals($servicesMonthYear2->count(),0);
+          $this->assertEquals($servicesMonthYear2->count(),2);
         }
 }

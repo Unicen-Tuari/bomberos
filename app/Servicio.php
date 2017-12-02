@@ -41,20 +41,9 @@ class Servicio extends Model
   public function ScopeFechaAlarmaPeriodo($query, $monthSince, $yearSince, $monthUntil, $yearUntil)
   {
     if ($yearSince < $yearUntil) {
-      if ('hora_alarma' >= $yearSince) {
-        if (whereYear('hora_alarma' == $yearSince)) {
-          $query->whereMonth('hora_alarma','>=',$monthSince);
-        }
-        elseif (whereYear('hora_alarma' >= $yearUntil)) {
-          if (whereYear('hora_alarma' == $yearUntil)) {
-            $query->whereMonth('hora_alarma','<=',$monthUntil);
-          }
-          else {
-            $query;
-          }
-        }
-      }
-      // $query->whereYear('hora_alarma','>=',$yearSince)->whereYear('hora_alarma','<=',$yearUntil);
+      $since=\Carbon\Carbon::parse($yearSince . '-' . $monthSince . '-1');
+      $until=\Carbon\Carbon::parse($yearUntil . '-' . $monthUntil . '-1');
+      $query->whereBetween('hora_alarma',[$since,$until]);
     }
   }
 
