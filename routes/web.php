@@ -48,7 +48,7 @@ Route::get('servicio/ultimos', 'ServicioController@ultimos')->name('servicio.ult
 Route::get('servicio/activo/{id}', 'ServicioController@finalizarActivo')->name('servicio.finalizarActivo');
 route::get('servicio/finalizado', 'ServicioController@finalizado')->name('servicio.finalizado');
 Route::get('servicio/estadistica', 'ServicioController@estadistica')->name('servicio.estadistica');
-Route::get('servicio/{mes}/{anio}/tabla', 'ServicioController@tabla')->name('servicio.tabla');
+Route::get('servicio/{monthSince}/{yearSince}/{monthUntil}/{yearUntil}/tabla', 'ServicioController@tabla')->name('servicio.tabla');
 Route::get('servicio/reporte/planilla/{id}', 'ServicioController@tablaPlanilla')->name('servicio.planilla');
 Route::get('servicio/reporte/asistencia/{id}', 'ServicioController@tablaAsistencia')->name('servicio.asistencia');
 Route::get('servicio/planilla/{id}', 'ServicioController@planilla')->name('servicio.planilla');

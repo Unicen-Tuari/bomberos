@@ -42,7 +42,7 @@ class Servicio extends Model
   {
     if ($yearSince < $yearUntil) {
       $since=\Carbon\Carbon::parse($yearSince . '-' . $monthSince . '-1');
-      $until=\Carbon\Carbon::parse($yearUntil . '-' . $monthUntil . '-1');
+      $until=\Carbon\Carbon::parse($yearUntil . '-' . $monthUntil . '-30');
       $query->whereBetween('hora_alarma',[$since,$until]);
     }
   }
