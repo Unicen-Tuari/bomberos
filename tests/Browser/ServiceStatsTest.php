@@ -18,7 +18,7 @@ class ServiceStatsTest extends DuskTestCase
 			->visit('/servicio/estadistica')
 			->assertDontSee('Error al Cargar la tabla ')
 			->with('.table-bordered', function($table){
-				$table->assertSee('Estadisticas de ');
+				$table->assertSee('Estadisticas Periodo');
 				$table->assertSee('0');
 			});
 		});
@@ -35,7 +35,7 @@ class ServiceStatsTest extends DuskTestCase
 			->select('monthUntil', '12')
 			->assertDontSee('Error al Cargar la tabla ')
 			->with('.table-bordered', function($table){
-				$table->assertSee('Estadisticas periodo de ');
+				$table->assertSee('Estadisticas Periodo');
 				$table->assertSee('35');
 				$table->assertSee('22');
 				$table->assertSee('57');
