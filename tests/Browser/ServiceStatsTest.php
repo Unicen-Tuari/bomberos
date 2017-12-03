@@ -31,7 +31,7 @@ class ServiceStatsTest extends DuskTestCase
 		$this->browse(function (browser $browser){
 			$browser->loginAs(User::find(1))
 			->visit('/servicio/estadistica')
-			->select('monthSince', '1')//meses
+			->select('monthSince', '1')
 			->select('monthUntil', '12')
 			->assertDontSee('Error al Cargar la tabla ')
 			->with('.table-bordered', function($table){
