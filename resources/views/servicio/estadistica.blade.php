@@ -10,7 +10,7 @@
       </div>
       <div class="form-horizontal">
         <div class="panel-body">
-          <label class="col-md-1 control-label" for="month">Mes Desde:</label>
+          <label class="col-md-1 control-label" for="monthSince">Mes Desde:</label>
           <div class="col-md-2">
             <select id="monthSince" class="form-control" name="monthSince">
               @foreach(config('selects.meses') as $key => $month)
@@ -23,7 +23,7 @@
               <input id="yearSince" class="form-control" value={{\Carbon\Carbon::now()->format('Y')}}>
             </div>
 
-            <label class="col-md-1 control-label" for="month">Mes Hasta:</label>
+            <label class="col-md-1 control-label" for="monthUntil">Mes Hasta:</label>
             <div class="col-md-2">
               <select id="monthUntil" class="form-control" name="monthUntil">
                 @foreach(config('selects.meses') as $key => $month)
