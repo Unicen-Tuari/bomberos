@@ -33,17 +33,19 @@ class VehicleTest extends TestCase
     $this->assertEquals($vehiculoModel->first()->estado, $vehiculo->estado);
     $this->assertEquals($vehiculoModel->count(),1);
   }
-  public function testVehiculos()
+  public function testServicios()
   {
     $service = factory(Servicio::class)->create();
     $vehiculo = factory(Vehiculo::class)->create();
-    $vehiculoServicio = factory(VehiculoServicio::class)->create(['vehiculo_id'=>$service->id]);
-    $this->assertEquals($vehiculoServicio->first()->vehiculo_id,$service->id);
+    $vehiculoServicio = factory(VehiculoServicio::class)->create(['vehiculo_id'=>$vehiculo->id]);
+    $this->assertEquals($vehiculo->servicios()->first()->vehiculo_id, $vehiculo->id);
+    $this->assertEquals($vehiculo->servicios()->count(), 1);
   }
   public function testMateriales()
   {
     $vehiculo = factory(Vehiculo::class)->create();
     $material = factory(Material::class)->create(['vehiculo_id'=>$vehiculo->id]);
-    $this->assertEquals($material->first()->vehiculo_id,$vehiculo->id);
+    $this->assertEquals($vehiculo->materiales()->first()->material_id, $material->material_id);
+    $this->assertEquals($vehiculo->materiales()->count(), 1);
   }
 }
