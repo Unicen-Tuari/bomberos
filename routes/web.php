@@ -22,24 +22,25 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home.index');
 
-Route::get('usuario/permisos', 'BomberoController@permisos')->name('bombero.permisos');
-Route::put('usuario/modificar', 'BomberoController@permisosupdate')->name('bombero.permisosupdate');
 Route::resource('bombero','BomberoController',['except' => ['show']]);
+
+
+Route::get('usuario/permisos', 'UserController@showPermisos')->name('usuario.permisos');
+Route::put('usuario/modificar', 'UserController@permisosUpdate')->name('usuario.permisosupdate');
+Route::resource('usuario','UserController');
 
 Route::get('asistencia/rango', 'AsistenciaController@rango')->name('AsistenciaController.rango');
 Route::resource('asistencia','AsistenciaController');
 
-Route::get('puntuacion/variables', 'PuntuacionController@variables')->name('puntuacion.variables');
 Route::get('puntuacion/anual', 'PuntuacionController@anual')->name('puntuacion.anual');
 Route::get('puntuacion/anual/{bombero}/{inicio}/{fin}', 'PuntuacionController@tabla_anual')->name('puntuacion.tabla_anual');
-Route::get('puntuacion/bomberos/{mes}/{anio}', 'PuntuacionController@bomberos')->name('puntuacion.bomberos');
-Route::get('puntuacion/listar/{mes}/{anio}', 'PuntuacionController@listar')->name('puntuacion.listar');
-Route::get('puntuacion/{mes}/{anio}/{bombero}/puntuacionmes', 'PuntuacionController@puntuacionmes')->name('puntuacion.puntuacionmes');
-Route::post('puntuacion/variables', 'PuntuacionController@modificaar_variables')->name('puntuacion.modificar');
+Route::get('puntuacion/bomberos/{mes}/{year}', 'PuntuacionController@bomberos')->name('puntuacion.bomberos');
+Route::get('puntuacion/listar/{mes}/{year}', 'PuntuacionController@listar')->name('puntuacion.listar');
+Route::get('puntuacion/{mes}/{year}/{bombero}/puntuacionmes', 'PuntuacionController@puntuacionmes')->name('puntuacion.puntuacionmes');
+
 Route::resource('puntuacion','PuntuacionController');
-
 Route::resource('vehiculo','VehiculoController');
-
+Route::resource('variable','VariableController');
 Route::resource('material','MaterialController');
 
 Route::get('servicio/reporte/', 'ServicioController@reporte')->name('servicio.reporte');
@@ -48,7 +49,7 @@ Route::get('servicio/ultimos', 'ServicioController@ultimos')->name('servicio.ult
 Route::get('servicio/activo/{id}', 'ServicioController@finalizarActivo')->name('servicio.finalizarActivo');
 route::get('servicio/finalizado', 'ServicioController@finalizado')->name('servicio.finalizado');
 Route::get('servicio/estadistica', 'ServicioController@estadistica')->name('servicio.estadistica');
-Route::get('servicio/{mes}/{anio}/tabla', 'ServicioController@tabla')->name('servicio.tabla');
+Route::get('servicio/{monthSince}/{yearSince}/{monthUntil}/{yearUntil}/tabla', 'ServicioController@tabla')->name('servicio.tabla');
 Route::get('servicio/reporte/planilla/{id}', 'ServicioController@tablaPlanilla')->name('servicio.planilla');
 Route::get('servicio/reporte/asistencia/{id}', 'ServicioController@tablaAsistencia')->name('servicio.asistencia');
 Route::get('servicio/planilla/{id}', 'ServicioController@planilla')->name('servicio.planilla');

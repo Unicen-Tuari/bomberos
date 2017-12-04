@@ -2,7 +2,7 @@
 
 @section('content')
 
-  <article class="col-sm-12">
+  <article class="col-sm-12 fondotabla">
     <div class="panel panel-default">
       <div id="breadcrumb" class="panel-heading">
         <span class="fa fa-bar-chart" aria-hidden="true"></span>
@@ -10,18 +10,32 @@
       </div>
       <div class="form-horizontal">
         <div class="panel-body">
-          <label class="col-md-1 control-label" for="month">Mes:</label>
+          <label class="col-md-1 control-label" for="monthSince">Mes Desde:</label>
           <div class="col-md-2">
-            <select id="month" class="form-control" name="meses">
-              @foreach(config('selects.meses') as $key => $mes)
-                <option  @if($key == \Carbon\Carbon::now()->format('m')) selected @endif value={{$key}} >{{$mes}}</option>
+            <select id="monthSince" class="form-control" name="monthSince">
+              @foreach(config('selects.meses') as $key => $month)
+                <option  @if($key == \Carbon\Carbon::now()->format('m')) selected @endif value={{$key}} >{{$month}}</option>
                 @endforeach
               </select>
             </div>
-            <label class="col-md-1 control-label" for="year">Año:</label>
+            <label class="col-md-1 control-label" for="year">Año Desde:</label>
             <div class="col-md-2">
-              <input id="year" class="form-control" value={{\Carbon\Carbon::now()->format('Y')}}>
+              <input id="yearSince" class="form-control" value={{\Carbon\Carbon::now()->format('Y')}}>
             </div>
+
+            <label class="col-md-1 control-label" for="monthUntil">Mes Hasta:</label>
+            <div class="col-md-2">
+              <select id="monthUntil" class="form-control" name="monthUntil">
+                @foreach(config('selects.meses') as $key => $month)
+                  <option  @if($key == \Carbon\Carbon::now()->format('m')) selected @endif value={{$key}} >{{$month}}</option>
+                  @endforeach
+                </select>
+              </div>
+              <label class="col-md-1 control-label" for="year">Año Hasta:</label>
+              <div class="col-md-2">
+                <input id="yearUntil" class="form-control" value={{\Carbon\Carbon::now()->format('Y')}}>
+              </div>
+
           </div>
           <div id="estadistica">
 
@@ -32,5 +46,5 @@
   @endsection
 
   @section('js')
-    <script src="assets/js/ajaxtabla.js" type="text/javascript"></script>
+    <script src="../assets/js/ajaxtabla.js" type="text/javascript"></script>
   @endsection

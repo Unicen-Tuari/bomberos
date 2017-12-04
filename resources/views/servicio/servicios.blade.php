@@ -30,8 +30,8 @@
                 <div class="col-sm-3">
                   <select class="form-control" name="month">
                     <option value=0 >MES</option>
-                    @foreach(config('selects.meses') as $key => $mes)
-                      <option value={{$key}} @if($key == old('month')) value="{{old('month')}}" selected @endif >{{$mes}}</option>
+                    @foreach(config('selects.meses') as $key => $month)
+                      <option value={{$key}} @if($key == old('month')) value="{{old('month')}}" selected @endif >{{$month}}</option>
                       @endforeach
                     </select>
                   </div>

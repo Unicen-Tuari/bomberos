@@ -18,18 +18,18 @@
     </tr>
   </thead>
   <tbody id="tablaPuntuacion">
-    @for ($año=$inicio; $año <=$fin ; $año++)
+    @for ($year=$inicio; $year <=$fin ; $year++)
       <tr>
         @php
           $total=0;
         @endphp
-        <td class="text-center">{{$año}}</td>
-        @for ($mes=1; $mes < 13 ; $mes++)
-          @if ($bombero->puntuo($mes,$año))
+        <td class="text-center">{{$year}}</td>
+        @for ($month=1; $month < 13 ; $month++)
+          @if ($bombero->puntuo($month,$year))
             @php
-              $total+=$bombero->puntuacion($mes,$año)->total;
+              $total+=$bombero->puntuacion($month,$year)->total;
             @endphp
-            <td class="text-center">{{$bombero->puntuacion($mes,$año)->total}}</td>
+            <td class="text-center">{{$bombero->puntuacion($month,$year)->total}}</td>
           @else
             <td class="text-center">0</td>
           @endif
