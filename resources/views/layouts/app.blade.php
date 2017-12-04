@@ -162,6 +162,14 @@
             @endif
           </div>
 
+          <a href="#reemplazosSubMenu" id="reempladoMenu" class="list-group-item" data-toggle="collapse" data-parent="#MainMenu"><i class="fa fa-exchange fa-lg" style="padding-right: 10px;"></i> Reemplazos<span class="arrow"></span></a>
+          <div class="collapse" id="reemplazosSubMenu">
+            <a href="{{route('reemplazo.index')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Lista de reemplazos</a>
+            @if (Auth::user()->admin)
+              <a href="{{route('reemplazo.create')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Alta reemplazo</a>
+            @endif
+          </div>
+
           @if (Auth::user()->admin)
           <a href="#usuariosSubMenu" id="usuarioMenu" class="list-group-item" data-toggle="collapse" data-parent="#MainMenu"><i class="fa fa-id-badge fa-lg" style="padding-right: 10px;"></i> Usuarios<span class="arrow"></span></a>
           <div class="collapse" id="usuariosSubMenu">

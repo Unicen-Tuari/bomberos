@@ -98,9 +98,9 @@ $factory->define(App\Puntuacion::class, function (Faker\Generator $faker){
 });
 
 $factory->define(App\Reemplazo::class, function (Faker\Generator $faker){
-  $fecha = date('Y-m-d H:i:s');
+  $fecha = date('Y-m-d');
   $fechaFin = strtotime('+2day' , strtotime($fecha));
-  $fechaFin = date('Y-m-d H:i:s' , $fechaFin);
+  $fechaFin = date('Y-m-d' , $fechaFin);
   return[
     'id_bombero' => factory(App\Bombero::class)->create()->id,
     'id_bombero_reemplazo' => factory(App\Bombero::class)->create()->id,

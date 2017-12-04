@@ -12,18 +12,22 @@ use App\Reemplazo;
 
 class SubstitutionTest extends DuskTestCase
 {
-    public function testSubstitutionCreate()
+    public function testCreate()
     {
         $this->browse(function (Browser $browser) {
             $bombero = factory(Bombero::class)->create();
             $bomberoReemplazo = factory(Bombero::class)->create();
             $reemplazo = factory(Reemplazo::class)->make();
+            list($anio, $mes, $dia) = explode('-', $reemplazo->fecha_inicio);
+            $fechaInicio = $dia.$mes.$anio;
+            list($anio, $mes, $dia) = explode('-', $reemplazo->fecha_fin);
+            $fechaFin = $dia.$mes.$anio;
             $browser->loginAs(User::find(1))
                     ->visit('/reemplazo/create')
-                    ->select('bombero', $bombero->nombre)
-                    ->select('bombero_reemplazo', $bomberoReemplazo->nombre)
-                    ->type('fecha_inicio', $reemplazo->fecha_inicio)
-                    ->type('fecha_fin', $reemplazo->fecha_fin)
+                    ->select('id_bombero', $bombero->id)
+                    ->select('id_bombero_reemplazo', $bomberoReemplazo->id)
+                    ->keys('#fecha_inicio', $fechaInicio)
+                    ->keys('#fecha_fin', $fechaFin)
                     ->type('razon', $reemplazo->razon)
                     ->press('Registrar')
                     ->assertSee($bombero->nombre)
@@ -31,20 +35,24 @@ class SubstitutionTest extends DuskTestCase
         });
     }
 
-    public function testSubstitutionUpdate()
+    public function testUpdate()
     {
         $this->browse(function (Browser $browser){
             $reemplazo = factory(Reemplazo::class)->create();
             $newBombero = factory(Bombero::class)->create();
             $newBomberoReemplazo = factory(Bombero::class)->create();
             $reemplazoEdit = factory(Reemplazo::class)->make();
+            list($anio, $mes, $dia) = explode('-', $reemplazoEdit->fecha_inicio);
+            $newFechaInicio = $dia.$mes.$anio;
+            list($anio, $mes, $dia) = explode('-', $reemplazoEdit->fecha_fin);
+            $newFechaFin = $dia.$mes.$anio;
             $browser->loginAs(User::find(1))
                     ->visit('/reemplazo')
                     ->click('.glyphicon-edit')
-                    ->select('bombero', $newBombero->nombre)
-                    ->select('bombero_reemplazo', $newBomberoReemplazo->nombre)
-                    ->type('fecha_inicio', $reemplazoEdit->fecha_inicio)
-                    ->type('fecha_fin', $reemplazoEdit->fecha_fin)
+                    ->select('id_bombero', $newBombero->id)
+                    ->select('id_bombero_reemplazo', $newBomberoReemplazo->id)
+                    ->keys('#fecha_inicio', $newFechaInicio)
+                    ->keys('#fecha_fin', $newFechaFin)
                     ->type('razon', $reemplazoEdit->razon)
                     ->press('Editar')
                     ->assertSee($newBombero->nombre)
@@ -52,7 +60,7 @@ class SubstitutionTest extends DuskTestCase
         });
     }
 
-    public function testSubstitutionDelete()
+    public function testDelete()
     {
         $this->browse(function (Browser $browser){
             $bombero = factory(Bombero::class)->create();

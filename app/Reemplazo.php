@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Bombero;
 
 class Reemplazo extends Model
 {
@@ -21,5 +22,13 @@ class Reemplazo extends Model
   {
     $fecha = date('Y-m-d H:i:s');
     return Reemplazo::whereDate('fecha_fin', '<', $fecha)->get();
+  }
+
+  public function bombero(){
+    return $this->hasOne(Bombero::class,"id","id_bombero");
+  }
+
+  public function bomberoReemplazo(){
+    return $this->hasOne(Bombero::class,"id","id_bombero_reemplazo");
   }
 }
