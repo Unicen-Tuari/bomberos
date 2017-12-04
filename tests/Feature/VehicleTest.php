@@ -166,4 +166,16 @@ class VehicleTest extends TestCase
       $response->assertStatus(200)
                ->assertSee('No tienes permisos');
     }
+
+    public function testShowVehiculo()
+    {
+      $user = factory(User::class)->create();
+      $vehicle = factory(Vehiculo::class)->create();
+
+      $response = $this->actingAs($user)
+                       ->get("/vehiculo/$vehicle->id");
+
+      $response->assertStatus(200)
+               ->assertSee($vehicle->patente);
+    }
 }
