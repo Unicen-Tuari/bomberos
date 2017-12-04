@@ -6,6 +6,7 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\User;
 use App\Bombero;
+use App\Ingreso;
 
 class FirefighterTest extends TestCase
 {
@@ -75,7 +76,7 @@ class FirefighterTest extends TestCase
     {
       $user = factory(User::class)->create(['admin'=>true]);
       $firefigher = factory(Bombero::class)->create();
-
+      factory(Ingreso::class)->create(['id_bombero'=>$firefigher->id]);
       $response = $this->actingAs($user)
                        ->delete("/bombero/$firefigher->id");
 
@@ -94,7 +95,7 @@ class FirefighterTest extends TestCase
                ->assertSee('No tienes permisos');
     }
 
-    public function testStoreBombero()
+    public function testStoreBomberoAsAdmin()
     {
       $user = factory(User::class)->create(['admin'=>true]);
       $firefigher = factory(Bombero::class)->make();
@@ -114,7 +115,29 @@ class FirefighterTest extends TestCase
       $response->assertRedirect("/bombero");
     }
 
-    public function testUpdateBombero()
+    public function testStoreBombero()
+    {
+      $user = factory(User::class)->create();
+      $firefigher = factory(Bombero::class)->make();
+      $data =[
+        "nombre" => $firefigher->nombre,
+        "apellido" => $firefigher->apellido,
+        "nro_legajo" => $firefigher->nro_legajo,
+        "jerarquia" => $firefigher->jerarquia,
+        "direccion" => $firefigher->direccion,
+        "telefono" => $firefigher->telefono,
+        "fecha_nacimiento" => '12/12/2002',
+      ];
+
+      $response = $this->actingAs($user)
+                       ->post("/bombero",$data);
+
+     $response->assertStatus(200)
+              ->assertSee('No tienes permisos');
+    }
+
+
+    public function testUpdateBomberoAsAdmin()
     {
       $user = factory(User::class)->create(['admin'=>true]);
       $firefigher = factory(Bombero::class)->create();
@@ -133,5 +156,27 @@ class FirefighterTest extends TestCase
                        ->put("/bombero/$firefigher->id",$data);
 
       $response->assertRedirect("/bombero");
+    }
+
+    public function testUpdateBombero()
+    {
+      $user = factory(User::class)->create();
+      $firefigher = factory(Bombero::class)->create();
+      $new_firefigher = factory(Bombero::class)->make();
+      $data =[
+        "nombre" => $new_firefigher->nombre,
+        "apellido" => $new_firefigher->apellido,
+        "nro_legajo" => $new_firefigher->nro_legajo,
+        "jerarquia" => $new_firefigher->jerarquia,
+        "direccion" => $new_firefigher->direccion,
+        "telefono" => $new_firefigher->telefono,
+        "fecha_nacimiento" => '12/12/2002',
+      ];
+
+      $response = $this->actingAs($user)
+                       ->put("/bombero/$firefigher->id",$data);
+
+      $response->assertStatus(200)
+               ->assertSee('No tienes permisos');
     }
 }
