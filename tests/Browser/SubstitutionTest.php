@@ -42,10 +42,10 @@ class SubstitutionTest extends DuskTestCase
             $newBombero = factory(Bombero::class)->create();
             $newBomberoReemplazo = factory(Bombero::class)->create();
             $reemplazoEdit = factory(Reemplazo::class)->make();
-            list($anio, $mes, $dia) = explode('-', $reemplazoEdit->fecha_inicio);
-            $newFechaInicio = $dia.$mes.$anio;
-            list($anio, $mes, $dia) = explode('-', $reemplazoEdit->fecha_fin);
-            $newFechaFin = $dia.$mes.$anio;
+            list($year, $month, $day) = explode('-', $reemplazoEdit->fecha_inicio);
+            $newFechaInicio = $day. $month.$year;
+            list($year, $month, $day) = explode('-', $reemplazoEdit->fecha_fin);
+            $newFechaFin = $day. $month.$year;
             $browser->loginAs(User::find(1))
                     ->visit('/reemplazo')
                     ->click('.glyphicon-edit')
@@ -70,5 +70,21 @@ class SubstitutionTest extends DuskTestCase
                     ->click('.glyphicon-trash')
                     ->assertDontSee($bombero->nombre);
         });
+    }
+
+    public function testTerminados()
+    {
+      $this->browse(function (Browser $browser){
+          $fecha = date('Y-m-d H:i:s');
+          $fechaFin = strtotime('-2day' , strtotime($fecha));
+          $fechaFin = date('Y-m-d H:i:s' , $fechaFin);
+          $bombero = factory(Bombero::class)->create();
+          $reemplazoTerminado = factory(Reemplazo::class)->create(['fecha_fin'=>$fechaFin, 'id_bombero'=>$bombero->id]);
+          $browser->loginAs(User::find(1))
+                  ->visit('/reemplazo')
+                  ->assertDontSee($bombero->nombre)
+                  ->press('terminados')
+                  ->assertSee($bombero->nombre);
+      });
     }
 }

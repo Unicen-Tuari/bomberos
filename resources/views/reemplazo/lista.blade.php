@@ -54,12 +54,9 @@
               @endif
             </tr>
           @endforeach
-          </tbody>
-          <br>
-        </table>
-        <div class="text-center">
-
-        </div>
+        </tbody>
+        <br>
+      </table>
     </div>
   </div>
 </article>

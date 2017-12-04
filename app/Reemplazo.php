@@ -15,7 +15,7 @@ class Reemplazo extends Model
   public static function getActivos()
   {
     $fecha = date('Y-m-d H:i:s');
-    return Reemplazo::whereDate('fecha_fin', '>', $fecha)->get();
+    return Reemplazo::whereDate('fecha_fin', '>=', $fecha)->get();
   }
 
   public static function getTerminados()

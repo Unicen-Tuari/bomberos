@@ -19,7 +19,7 @@ class ReemplazoController extends Controller
     public function index()
     {
       $reemplazos = Reemplazo::getActivos();
-      if ($reemplazos != null){
+      if (!empty($reemplazos)){
         foreach ($reemplazos as $key => $reemplazo){
           $bombero = Reemplazo::find($reemplazo->id)->bombero;
           $bomberoReemplazo = Reemplazo::find($reemplazo->id)->bomberoReemplazo;
@@ -33,7 +33,7 @@ class ReemplazoController extends Controller
     public function terminados()
     {
       $reemplazos = Reemplazo::getTerminados();
-      if ($reemplazos != null){
+      if (!empty($reemplazos)){
         foreach ($reemplazos as $key => $reemplazo){
           $bombero = Reemplazo::find($reemplazo->id)->bombero;
           $bomberoReemplazo = Reemplazo::find($reemplazo->id)->bomberoReemplazo;
