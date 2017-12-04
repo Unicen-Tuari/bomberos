@@ -7,7 +7,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\User;
 class HomePageTest extends TestCase
 {
-    public function testRouteToHomeAdmin()
+    public function testRouteToHomeAsAdmin()
     {
       $user = factory(User::class)->create(['admin'=>true]);
 
@@ -36,6 +36,4 @@ class HomePageTest extends TestCase
                 ->assertDontSee('Cargar servicio')
                 ->assertSee('Últimos');
     }
-
-
 }
