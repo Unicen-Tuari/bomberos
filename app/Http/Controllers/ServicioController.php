@@ -212,10 +212,10 @@ class ServicioController extends Controller
     return view('servicio/estadistica');
   }
 
-  public function tabla($month,$year)
+  public function tabla($monthSince,$yearSince,$monthUntil,$yearUntil)
   {
-      $servicios=Servicio::FechaAlarma($month,$year)->get();
-      return view('servicio/estadisticasMes',compact('servicios','month','year'));
+      $servicios=Servicio::FechaAlarmaPeriodo($monthSince,$yearSince,$monthUntil,$yearUntil)->get();
+      return view('servicio/estadisticasMes',compact('servicios','monthSince','yearSince','monthUntil','yearUntil'));
   }
 
   public function tablaPlanilla($id)

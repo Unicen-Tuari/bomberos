@@ -38,6 +38,15 @@ class Servicio extends Model
     $query->whereYear('hora_alarma','=',$year)->whereMonth('hora_alarma','=',$month);
   }
 
+  public function ScopeFechaAlarmaPeriodo($query, $monthSince, $yearSince, $monthUntil, $yearUntil)
+  {
+    if ($yearSince < $yearUntil) {
+      $since=\Carbon\Carbon::parse($yearSince . '-' . $monthSince . '-1');
+      $until=\Carbon\Carbon::parse($yearUntil . '-' . $monthUntil . '-30');
+      $query->whereBetween('hora_alarma',[$since,$until]);
+    }
+  }
+
   public function ScopeTipoAlarma($query,$tipo)
   {
     if ($tipo>0) {
