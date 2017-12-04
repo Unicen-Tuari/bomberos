@@ -70,7 +70,7 @@
         <div class="form-group {{ $errors->has('razon') ? ' has-error' : '' }}">
           <label for="razon" class="col-md-4 control-label">Razon</label>
           <div class="col-md-6">
-            <input type="text" name="razon" class="form-control" value={{$reemplazo->razon}}>
+            <textarea type="text" name="razon" class="form-control" value="" rows="4">{{$reemplazo->razon}}</textarea>
             @if ($errors->has('razon'))
                 <span class="help-block">
                     <strong>{{$errors->first('razon')}}</strong>

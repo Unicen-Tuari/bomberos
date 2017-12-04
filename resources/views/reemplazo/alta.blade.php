@@ -72,7 +72,7 @@
         <div class="form-group {{ $errors->has('razon') ? ' has-error' : '' }}">
           <label for="razon" class="col-md-4 control-label">Razon</label>
           <div class="col-md-6">
-            <input type="text" name="razon" class="form-control" value="">
+            <textarea name="razon" class="form-control" value="" rows="4"></textarea>
             @if ($errors->has('razon'))
                 <span class="help-block">
                     <strong>{{$errors->first('razon')}}</strong>

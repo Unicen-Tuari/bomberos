@@ -33,11 +33,13 @@
         <tbody><!--Contenido de la tabla-->
           @foreach($reemplazos as $reemplazo)
             <tr>
-              <td class="col-md-2">{{$reemplazo->bombero}}</td>
-              <td class="col-md-2">{{$reemplazo->bombero_reemplazo}}</td>
+              <td class="col-md-3">{{$reemplazo->bombero}}</td>
+              <td class="col-md-3">{{$reemplazo->bombero_reemplazo}}</td>
               <td class="col-md-2">{{$reemplazo->fecha_inicio}}</td>
               <td class="col-md-2">{{$reemplazo->fecha_fin}}</td>
-              <td class="col-md-3">{{$reemplazo->razon}}</td>
+              <th class="col-md-1">
+                <a href="{{route('reemplazo.show', $reemplazo->id)}}" class="glyphicon glyphicon-eye-open"></a>
+              </th>
               @if (Auth::user()->admin)
                 <td><a href="{{route('reemplazo.edit', $reemplazo->id)}}" class="glyphicon glyphicon-edit"></a></td>
                 <td>

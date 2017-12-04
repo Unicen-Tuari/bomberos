@@ -18,10 +18,10 @@ class SubstitutionTest extends DuskTestCase
             $bombero = factory(Bombero::class)->create();
             $bomberoReemplazo = factory(Bombero::class)->create();
             $reemplazo = factory(Reemplazo::class)->make();
-            list($anio, $mes, $dia) = explode('-', $reemplazo->fecha_inicio);
-            $fechaInicio = $dia.$mes.$anio;
-            list($anio, $mes, $dia) = explode('-', $reemplazo->fecha_fin);
-            $fechaFin = $dia.$mes.$anio;
+            list($year, $month, $day) = explode('-', $reemplazo->fecha_inicio);
+            $fechaInicio = $day. $month.$year;
+            list($year, $month, $day) = explode('-', $reemplazo->fecha_fin);
+            $fechaFin = $day. $month.$year;
             $browser->loginAs(User::find(1))
                     ->visit('/reemplazo/create')
                     ->select('id_bombero', $bombero->id)

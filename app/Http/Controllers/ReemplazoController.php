@@ -63,31 +63,35 @@ class ReemplazoController extends Controller
 
     public function show(Reemplazo $reemplazo)
     {
-        //
+      $bombero = Reemplazo::find($reemplazo->id)->bombero;
+      $bomberoReemplazo = Reemplazo::find($reemplazo->id)->bomberoReemplazo;
+      $reemplazo['bombero'] = $bombero->apellido . ", " . $bombero->nombre;
+      $reemplazo['bombero_reemplazo'] = $bomberoReemplazo->apellido . ", " . $bomberoReemplazo->nombre;
+      return view('reemplazo/detalle', ['reemplazo' => $reemplazo]);
     }
 
     public function edit(Reemplazo $reemplazo)
     {
-        $bomberos = Bombero::all();
-        if(Auth::user()->admin){
-          return view('reemplazo/editar', ['reemplazo' => $reemplazo, 'bomberos' => $bomberos]);
-        }
-        return view('auth/alerta');
+      $bomberos = Bombero::all();
+      if(Auth::user()->admin){
+        return view('reemplazo/editar', ['reemplazo' => $reemplazo, 'bomberos' => $bomberos]);
+      }
+      return view('auth/alerta');
     }
 
     public function update(Request $request, Reemplazo $reemplazo)
     {
-        if (Auth::user()->admin){
-          Reemplazo::find($reemplazo->id)->update($request->all());
-          return redirect()->route('reemplazo.index');
-        }
+      if (Auth::user()->admin){
+        Reemplazo::find($reemplazo->id)->update($request->all());
+        return redirect()->route('reemplazo.index');
+      }
     }
 
     public function destroy(Reemplazo $reemplazo)
     {
-        if (Auth::user()->admin){
-          $reemplazo->delete();
-          return redirect()->route('reemplazo.index');
-        }
+      if (Auth::user()->admin){
+        $reemplazo->delete();
+        return redirect()->route('reemplazo.index');
+      }
     }
 }
