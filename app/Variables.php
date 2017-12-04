@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Variables extends Model
 {
   protected $fillable = [
-      'asistencia', 'accidentales', 'guardias',
+      'asistencia', 'accidentales', 'guardias', 'year',
   ];
-  
+
 }

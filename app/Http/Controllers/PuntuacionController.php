@@ -24,23 +24,6 @@ class PuntuacionController extends Controller
         return view('puntuacion/lista');
     }
 
-    public function variables()
-    {
-        $var=Variables::first();
-        $asistencia=$var->asistencia;
-        $accidentales=$var->accidentales;
-        $guardias=$var->guardias;
-        return view('puntuacion/variables',compact('asistencia','accidentales','guardias'));
-    }
-
-    public function modificaar_variables(Request $request)
-    {
-        $data=$request->all();
-        $var=Variables::first();
-        $var->update($data);
-        return redirect()->route('puntuacion.index');
-    }
-
     public function anual()
     {
         $bomberos=Bombero::getBomberos();
@@ -97,7 +80,7 @@ class PuntuacionController extends Controller
                 $puntguar=$var->guardias-(5*($cantguar-$guardia));
             }
             return view('puntuacion/alta',
-            compact('bombero','cantserv','cantguar','mes','año','dias','accid','guardia','asistencia','puntasis','puntaccid','puntguar'));
+            compact('bombero','cantserv','cantguar','month','year','dias','accid','guardia','asistencia','puntasis','puntaccid','puntguar'));
           }
           return view('errors/aviso');
         }
@@ -120,9 +103,9 @@ class PuntuacionController extends Controller
     {
         if(Auth::user()->admin){
           $date=$request->all();
-          $fecha=\Carbon\Carbon::parse($date['año'].'-'.$date['mes'].'-'.'1');
+          $fecha=\Carbon\Carbon::parse($date['year'].'-'.$date['month'].'-'.'1');
           $date['fecha']=$fecha;
-          unset($date['mes'],$date['año']);//elimino los elemnetos qeu no machean con la tabla
+          unset($date['month'],$date['year']);//elimino los elemnetos qeu no machean con la tabla
           Puntuacion::create($date);
         }
     }
@@ -133,7 +116,7 @@ class PuntuacionController extends Controller
       $yearactual=\Carbon\Carbon::now()->format('Y');
       if($year<$yearactual || ($year==$yearactual && $month<$monthactual)){
         $bomberos=Bombero::where('activo', 1)->get();
-        return view('puntuacion/puntuacionmes',compact('bomberos','mes','año'));
+        return view('puntuacion/puntuacionmes',compact('bomberos','month','year'));
       }
       return view('errors/aviso');
     }

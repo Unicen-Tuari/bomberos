@@ -32,17 +32,15 @@ Route::resource('usuario','UserController');
 Route::get('asistencia/rango', 'AsistenciaController@rango')->name('AsistenciaController.rango');
 Route::resource('asistencia','AsistenciaController');
 
-Route::get('puntuacion/variables', 'PuntuacionController@variables')->name('puntuacion.variables');
 Route::get('puntuacion/anual', 'PuntuacionController@anual')->name('puntuacion.anual');
 Route::get('puntuacion/anual/{bombero}/{inicio}/{fin}', 'PuntuacionController@tabla_anual')->name('puntuacion.tabla_anual');
-Route::get('puntuacion/bomberos/{mes}/{anio}', 'PuntuacionController@bomberos')->name('puntuacion.bomberos');
-Route::get('puntuacion/listar/{mes}/{anio}', 'PuntuacionController@listar')->name('puntuacion.listar');
-Route::get('puntuacion/{mes}/{anio}/{bombero}/puntuacionmes', 'PuntuacionController@puntuacionmes')->name('puntuacion.puntuacionmes');
-Route::post('puntuacion/variables', 'PuntuacionController@modificaar_variables')->name('puntuacion.modificar');
+Route::get('puntuacion/bomberos/{mes}/{year}', 'PuntuacionController@bomberos')->name('puntuacion.bomberos');
+Route::get('puntuacion/listar/{mes}/{year}', 'PuntuacionController@listar')->name('puntuacion.listar');
+Route::get('puntuacion/{mes}/{year}/{bombero}/puntuacionmes', 'PuntuacionController@puntuacionmes')->name('puntuacion.puntuacionmes');
+
 Route::resource('puntuacion','PuntuacionController');
-
 Route::resource('vehiculo','VehiculoController');
-
+Route::resource('variable','VariableController');
 Route::resource('material','MaterialController');
 
 Route::get('servicio/reporte/', 'ServicioController@reporte')->name('servicio.reporte');
