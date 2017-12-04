@@ -182,7 +182,7 @@
           <th class="text-center">{{count($servicios)}}</th>
       </tr>
       <tr>
-        <td class="text-center" colspan="28"> Estadisticas periodo desde {{config('selects.meses')[$monthSince].' - '.$yearSince}} hasta {{config('selects.meses')[$monthUntil].' - '.$yearUntil}}</td>
+        <td class="text-center" colspan="28"> Estadísticas período desde {{config('selects.meses')[$monthSince].' - '.$yearSince}} hasta {{config('selects.meses')[$monthUntil].' - '.$yearUntil}}</td>
       </tr>
   </tfoot>
   <br>
