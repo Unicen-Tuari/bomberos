@@ -6,46 +6,34 @@ use App\Http\Requests\Request;
 
 class MaterialRequest extends Request
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
+  public function authorize()
+  {
+    return true;
+  }
+  
+  public function rules()
+  {
+    switch($this->method())
     {
-        return true;
+      case 'GET':
+      case 'DELETE':
+      {
+        return [];
+      }
+      case 'POST':
+      {
+        return [
+          'nombre' => 'required|min:3|max:255'
+        ];
+      }
+
+      case 'PUT':
+      {
+        return [
+          'nombre' => 'required|min:3|max:255'
+        ];
+      }
+      default:break;
     }
-
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
-     public function rules()
-     {
-       switch($this->method())
-       {
-         case 'GET':
-         case 'DELETE':
-         {
-             return [];
-         }
-         case 'POST':
-         {
-           return [
-               'nombre' => 'required|min:3|max:255',
-               'vehiculo_id'=>'exists:vehiculo,id'
-           ];
-         }
-
-         case 'PUT':
-         {
-           return [
-             'nombre' => 'required|min:3|max:255',
-             'vehiculo_id'=>'exists:vehiculo,id'
-           ];
-         }
-         default:break;
-       }
-     }
+  }
 }

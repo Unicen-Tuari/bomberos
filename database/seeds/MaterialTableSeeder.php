@@ -15,7 +15,7 @@ class MaterialTableSeeder extends Seeder
     {
       $vehiculos = Vehiculo::all();
 
-      $materiales = factory(Material::class)->times(100)->make();
+      $materiales = factory(Material::class)->times(10)->make();
 
       foreach ($materiales as $material) {
         $vehiculo = $vehiculos->random();
