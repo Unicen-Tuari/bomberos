@@ -19,9 +19,9 @@ class SubstitutionTest extends DuskTestCase
             $bomberoReemplazo = factory(Bombero::class)->create();
             $reemplazo = factory(Reemplazo::class)->make();
             list($year, $month, $day) = explode('-', $reemplazo->fecha_inicio);
-            $fechaInicio = $day. $month.$year;
+            $fechaInicio = $day.$month.$year;
             list($year, $month, $day) = explode('-', $reemplazo->fecha_fin);
-            $fechaFin = $day. $month.$year;
+            $fechaFin = $day.$month.$year;
             $browser->loginAs(User::find(1))
                     ->visit('/reemplazo/create')
                     ->select('id_bombero', $bombero->id)
@@ -30,8 +30,8 @@ class SubstitutionTest extends DuskTestCase
                     ->keys('#fecha_fin', $fechaFin)
                     ->type('razon', $reemplazo->razon)
                     ->press('Registrar')
-                    ->assertSee($bombero->nombre)
-                    ->assertSee($bomberoReemplazo->nombre);
+                    ->assertSee($bombero->apellido.', '.$bombero->nombre)
+                    ->assertSee($bomberoReemplazo->apellido.', '.$bomberoReemplazo->nombre);
         });
     }
 
@@ -55,8 +55,8 @@ class SubstitutionTest extends DuskTestCase
                     ->keys('#fecha_fin', $newFechaFin)
                     ->type('razon', $reemplazoEdit->razon)
                     ->press('Editar')
-                    ->assertSee($newBombero->nombre)
-                    ->assertSee($newBomberoReemplazo->nombre);
+                    ->assertSee($newBombero->apellido.', '.$newBombero->nombre)
+                    ->assertSee($newBomberoReemplazo->apellido.', '.$newBomberoReemplazo->nombre);
         });
     }
 
@@ -68,7 +68,7 @@ class SubstitutionTest extends DuskTestCase
             $browser->loginAs(User::find(1))
                     ->visit('/reemplazo')
                     ->click('.glyphicon-trash')
-                    ->assertDontSee($bombero->nombre);
+                    ->assertDontSee($bombero->apellido.', '.$bombero->nombre);
         });
     }
 
@@ -82,9 +82,9 @@ class SubstitutionTest extends DuskTestCase
           $reemplazoTerminado = factory(Reemplazo::class)->create(['fecha_fin'=>$fechaFin, 'id_bombero'=>$bombero->id]);
           $browser->loginAs(User::find(1))
                   ->visit('/reemplazo')
-                  ->assertDontSee($bombero->nombre)
+                  ->assertDontSee($bombero->apellido.', '.$bombero->nombre)
                   ->press('terminados')
-                  ->assertSee($bombero->nombre);
+                  ->assertSee($bombero->apellido.', '.$bombero->nombre);
       });
     }
 }

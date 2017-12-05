@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Reemplazo;
 use Illuminate\Http\Request;
+use App\Http\Requests\ReemplazoRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Bombero;
 use Carbon\Carbon;
@@ -53,7 +54,7 @@ class ReemplazoController extends Controller
       return view('auth/alerta');
     }
 
-    public function store(Request $request)
+    public function store(ReemplazoRequest $request)
     {
       if (Auth::user()->admin) {
         Reemplazo::create($request->all());
@@ -79,7 +80,7 @@ class ReemplazoController extends Controller
       return view('auth/alerta');
     }
 
-    public function update(Request $request, Reemplazo $reemplazo)
+    public function update(ReemplazoRequest $request, Reemplazo $reemplazo)
     {
       if (Auth::user()->admin){
         Reemplazo::find($reemplazo->id)->update($request->all());
