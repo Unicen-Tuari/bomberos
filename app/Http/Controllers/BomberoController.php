@@ -21,6 +21,7 @@ class BomberoController extends Controller
   {
       $this->middleware('auth');
   }
+
   public function index(Request $request)
   {
       $bomberos=Bombero::legajo($request['legajo'])->nombre($request['nombre'])
@@ -44,6 +45,7 @@ class BomberoController extends Controller
       }
       return view('auth/alerta');
   }
+
   public function destroy($id)
   {
     if(Auth::user()->admin){
@@ -56,7 +58,9 @@ class BomberoController extends Controller
       $bombero->delete();
       return redirect()->route('bombero.index');
     }
+    return view('auth/alerta');
   }
+
   public function update(BomberoRequest  $data, $id)
   {
     if(Auth::user()->admin){
@@ -69,6 +73,7 @@ class BomberoController extends Controller
       Bombero::find($id)->update($bombero);
       return redirect()->route('bombero.index');
     }
+    return view('auth/alerta');
   }
 
   public function store(BomberoRequest  $data)
@@ -83,6 +88,7 @@ class BomberoController extends Controller
       Bombero::create($bombero);
       return redirect()->route('bombero.index');
     }
+    return view('auth/alerta');
   }
 
 }

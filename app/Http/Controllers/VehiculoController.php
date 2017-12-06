@@ -52,6 +52,7 @@ class VehiculoController extends Controller
       }
       return redirect()->route('vehiculo.index');
     }
+    return view('auth/alerta');
   }
   public function update(VehiculoRequest $data, $id)
   {
@@ -62,6 +63,7 @@ class VehiculoController extends Controller
       $vehiculo=Vehiculo::findorfail($id)->update($data->all());
       return redirect()->route('vehiculo.index');
     }
+    return view('auth/alerta');
   }
 
   public function store(VehiculoRequest $data)
@@ -73,5 +75,6 @@ class VehiculoController extends Controller
       Vehiculo::create($data->all());
       return redirect()->route('vehiculo.index');
     }
+    return view('auth/alerta');
   }
 }
