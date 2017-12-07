@@ -26,7 +26,7 @@
             <th>Reemplazo</th>
             <th>Desde</th>
             <th>Hasta</th>
-            <th>Razon</th>
+            <th></th>
             <th></th>
           </tr>
         </thead>
@@ -37,9 +37,9 @@
               <td class="col-md-3">{{$reemplazo->bombero_reemplazo}}</td>
               <td class="col-md-2">{{$reemplazo->fecha_inicio}}</td>
               <td class="col-md-2">{{$reemplazo->fecha_fin}}</td>
-              <th class="col-md-1">
+              <td class="col-md-1">
                 <a href="{{route('reemplazo.show', $reemplazo->id)}}" class="glyphicon glyphicon-eye-open"></a>
-              </th>
+              </td>
               @if (Auth::user()->admin)
                 <td><a href="{{route('reemplazo.edit', $reemplazo->id)}}" class="glyphicon glyphicon-edit"></a></td>
                 <td>
