@@ -94,8 +94,21 @@ $factory->define(App\Puntuacion::class, function (Faker\Generator $faker){
     'total' => $faker->randomNumber($nbDigits = 1),
     'detalle' => $faker->realText($maxNbChars = 50, $indexSize = 2),
     'fecha' => $faker->date($format = 'Y-m-d'),
-    ];
-  });
+  ];
+});
+
+$factory->define(App\Reemplazo::class, function (Faker\Generator $faker){
+  $fecha = date('Y-m-d');
+  $fechaFin = strtotime('+2day' , strtotime($fecha));
+  $fechaFin = date('Y-m-d' , $fechaFin);
+  return[
+    'id_bombero' => factory(App\Bombero::class)->create()->id,
+    'id_bombero_reemplazo' => factory(App\Bombero::class)->create()->id,
+    'fecha_inicio' => $fecha,
+    'fecha_fin' => $fechaFin,
+    'razon' => $faker->realText($maxNbChars = 50, $indexSize = 2),
+  ];
+});
 
   $factory->define(App\Variables::class, function (Faker\Generator $faker) {
     return [
@@ -126,3 +139,4 @@ $factory->define(App\Puntuacion::class, function (Faker\Generator $faker){
       'servicio_id' => factory(App\Servicio::class)->create()->id,
     ];
   });
+

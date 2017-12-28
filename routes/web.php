@@ -65,3 +65,7 @@ Route::get('ingreso/presentes/edit/{servicio}', 'IngresoController@editPresentes
 Route::get('ingreso/presentes/{servicio}/{acargo}', 'IngresoController@indexPresentes')->name('ingreso.indexPresentes');
 Route::post('ingreso', 'IngresoController@guardarIngreso')->name('ingreso.guardarIngreso');
 Route::delete('ingreso/{id}', 'IngresoController@borrarIngreso')->name('ingreso.borrarIngreso');
+
+Route::get('reemplazo/terminados', 'ReemplazoController@terminados')->name('reemplazo.terminados');
+Route::get('reemplazo/activos', 'ReemplazoController@index')->name('reemplazo.activos');
+Route::resource('reemplazo','ReemplazoController');
