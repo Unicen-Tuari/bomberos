@@ -36,25 +36,25 @@ cd bomberos
 cp .env.docker .env
 ```
 
-Instalación de dependencias con Composer vía Docker
-
-```
-docker run --rm -v $(pwd):/app composer install
-```
-
 Inicialización de contenedores Docker
 
 ```
 docker-compose up -d
 ```
 
+Instalación de dependencias con Composer vía Docker
+
+```
+docker-compose exec app composer install
+```
+
 Migraciones
 
 ```
-docker-compose run --rm app php artisan migrate --seed
+docker-compose exec app php artisan migrate --seed
 ```
 
-## Desarrollo
+## Desarrollo y Testing
 
 Los cambios en el código se deben solicitar a través pull request y deberán ser revisados previo a su aceptación.
 
