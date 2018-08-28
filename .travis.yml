@@ -23,6 +23,7 @@ before_script:
   - sudo ln -s /usr/local/bin/chromedriver ~/bin/chromedriver # add to path
   - sudo ln -sf /usr/local/bin/chromedriver ./vendor/laravel/dusk/bin/chromedriver-linux # add to dusk
   - psql -c 'create database bomberos_testing;' -U postgres
+  - rm .env.testing
   - cp .env.travis .env
   - php artisan key:generate
   - php artisan migrate
