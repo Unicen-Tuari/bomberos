@@ -60,10 +60,10 @@ class UserTest extends TestCase
     
 
       $response = $this->actingAs($user)
-                       ->get('/home');
+                       ->get('/usuario/create');
 
       $response->assertStatus(200)
-               ->assertDontSee('Alta usuario');
+               ->assertSee('No tienes permisos');
     }
 
     public function testShowUserAddAsAdmin()
@@ -71,9 +71,20 @@ class UserTest extends TestCase
       $user = factory(\App\User::class)->create(['admin'=>true]);
 
       $response = $this->actingAs($user)
-                       ->get('/home');
+                       ->get('/usuario/create');
 
       $response->assertStatus(200)
                ->assertSee('Alta usuario');
     }
+
+    // public function testEditUsuarioAsAdmin()
+    // {
+    //   $user = factory(User::class)->create(['admin'=>true]);
+
+    //   $response = $this->actingAs($user)
+    //                    ->get("/usuario/$user->id/edit");
+
+    //   $response->assertStatus(200)
+    //            ->assertSee('Editar');
+    // }
 }
