@@ -31,4 +31,26 @@ class UserTest extends TestCase
                ->assertSee('Lista de usuarios');
     }
 
+    public function testShowUserAdd()
+    {
+      $user = factory(\App\User::class)->create();
+    
+
+      $response = $this->actingAs($user)
+                       ->get('/home');
+
+      $response->assertStatus(200)
+               ->assertDontSee('Alta usuario');
+    }
+
+    public function testShowUserAddAsAdmin()
+    {
+      $user = factory(\App\User::class)->create(['admin'=>true]);
+
+      $response = $this->actingAs($user)
+                       ->get('/home');
+
+      $response->assertStatus(200)
+               ->assertSee('Alta usuario');
+    }
 }
