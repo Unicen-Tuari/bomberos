@@ -60,6 +60,11 @@ Los cambios en el código se deben solicitar a través pull request y deberán s
 
 Todas las modificaciones deben pasar los test de unidad e integración. Se proveen dos herramientas para test: PHPUnit y Dusk, las cuales se ejecutan con los comandos:
 
+Crear la base de datos
+```
+docker-compose run app php artisan db:create --env=testing
+```
+
 PHP Unit
 
 ```
