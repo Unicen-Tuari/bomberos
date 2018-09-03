@@ -17,10 +17,33 @@ class UserTest extends TestCase
                        ->get('/home');
 
       $response->assertStatus(200)
-               ->assertDontSee('Lista de usuarios');
+               ->assertDontSee('Usuarios');
     }
 
     public function testShowUserMenuAsAdmin()
+    {
+      $user = factory(\App\User::class)->create(['admin'=>true]);
+
+      $response = $this->actingAs($user)
+                       ->get('/home');
+
+      $response->assertStatus(200)
+               ->assertSee('Usuarios');
+    }
+
+    public function testShowUserListMenu()
+    {
+      $user = factory(\App\User::class)->create();
+    
+
+      $response = $this->actingAs($user)
+                       ->get('/home');
+
+      $response->assertStatus(200)
+               ->assertDontSee('Lista de usuarios');
+    }
+
+    public function testShowUserListMenuAsAdmin()
     {
       $user = factory(\App\User::class)->create(['admin'=>true]);
 
