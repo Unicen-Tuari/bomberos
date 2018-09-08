@@ -14,10 +14,11 @@ class UserTest extends TestCase
     
 
       $response = $this->actingAs($user)
-                       ->get('/home');
+                       ->get('/usuario');
 
       $response->assertStatus(200)
-               ->assertDontSee('Usuarios');
+               ->assertDontSee('Usuarios')
+               ->assertSee('No tiene permisos');
     }
 
     public function testShowUserMenuAsAdmin()
@@ -25,57 +26,57 @@ class UserTest extends TestCase
       $user = factory(\App\User::class)->create(['admin'=>true]);
 
       $response = $this->actingAs($user)
-                       ->get('/home');
+                       ->get('/usuario');
 
       $response->assertStatus(200)
                ->assertSee('Usuarios');
     }
 
-    public function testShowUserListMenu()
-    {
-      $user = factory(\App\User::class)->create();
+    // public function testShowUserListMenu()
+    // {
+    //   $user = factory(\App\User::class)->create();
     
 
-      $response = $this->actingAs($user)
-                       ->get('/home');
+    //   $response = $this->actingAs($user)
+    //                    ->get('/home');
 
-      $response->assertStatus(200)
-               ->assertDontSee('Lista de usuarios');
-    }
+    //   $response->assertStatus(200)
+    //            ->assertDontSee('Lista de usuarios');
+    // }
 
-    public function testShowUserListMenuAsAdmin()
-    {
-      $user = factory(\App\User::class)->create(['admin'=>true]);
+    // public function testShowUserListMenuAsAdmin()
+    // {
+    //   $user = factory(\App\User::class)->create(['admin'=>true]);
 
-      $response = $this->actingAs($user)
-                       ->get('/home');
+    //   $response = $this->actingAs($user)
+    //                    ->get('/home');
 
-      $response->assertStatus(200)
-               ->assertSee('Lista de usuarios');
-    }
+    //   $response->assertStatus(200)
+    //            ->assertSee('Lista de usuarios');
+    // }
 
-    public function testShowUserAdd()
-    {
-      $user = factory(\App\User::class)->create();
+    // public function testShowUserAdd()
+    // {
+    //   $user = factory(\App\User::class)->create();
     
 
-      $response = $this->actingAs($user)
-                       ->get('/usuario/create');
+    //   $response = $this->actingAs($user)
+    //                    ->get('/usuario/create');
 
-      $response->assertStatus(200)
-               ->assertSee('No tienes permisos');
-    }
+    //   $response->assertStatus(200)
+    //            ->assertSee('No tienes permisos');
+    // }
 
-    public function testShowUserAddAsAdmin()
-    {
-      $user = factory(\App\User::class)->create(['admin'=>true]);
+    // public function testShowUserAddAsAdmin()
+    // {
+    //   $user = factory(\App\User::class)->create(['admin'=>true]);
 
-      $response = $this->actingAs($user)
-                       ->get('/usuario/create');
+    //   $response = $this->actingAs($user)
+    //                    ->get('/usuario/create');
 
-      $response->assertStatus(200)
-               ->assertSee('Alta usuario');
-    }
+    //   $response->assertStatus(200)
+    //            ->assertSee('Alta usuario');
+    // }
 
     // public function testEditUsuarioAsAdmin()
     // {
