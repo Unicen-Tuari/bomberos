@@ -99,4 +99,27 @@ class UserTest extends TestCase
       $response->assertStatus(200)
                ->assertSee('Editar');
     }
+
+    public function testDeleteUsuario()
+    {
+      $user = factory(\App\User::class)->create();
+      
+      $response = $this->actingAs($user)
+                       ->delete("/usuario/$user->id");
+
+      $response->assertStatus(200)
+               ->assertSee('No tienes permisos');
+    }
+
+    public function testDeleteUsuarioAsAdmin()
+    {
+      $user = factory(\App\User::class)->create(['admin'=>true]);
+
+      $response = $this->actingAs($user)
+                       ->delete("/usuario/$user->id");
+
+      $response->assertRedirect("/usuario");
+    }
+
+    
 }
