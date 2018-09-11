@@ -42,17 +42,16 @@
           @if (Auth::user()->admin)
           <td><a href="{{ route('usuario.edit', $usuario->id) }}" class="glyphicon glyphicon-edit"></a></td>
           <td>
-            @if (count($usuario->servicios)==0)
               <form action="{{route('usuario.destroy',$usuario)}}" method="post">
                 {{ csrf_field() }}
                 {{ method_field('DELETE') }}
                 <button type="submit" class="glyphicon glyphicon-trash"></button>
               </form>
-            @else
-            <button type="submit" class="glyphicon glyphicon-ban-circle" title="Imposible eliminar, participo en al menos un servicio"></button>
-            @endif
           </td>
           @else
+            <td colspan="2">
+              <button type="submit" class="glyphicon glyphicon-ban-circle" title="Sin permisos para eliminar/modificar"></button>
+            </td>
           @endif
         </tr>
         @endforeach
