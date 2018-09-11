@@ -18,8 +18,11 @@ class UserController extends Controller
 
   public function index(Request $request)
   {
-    $usuarios=User::id($request['id'])->nombre($request['nombre'])->paginate(8);
-    return view('usuario/lista',compact('usuarios'));
+    if(Auth::user()->admin){
+      $usuarios=User::id($request['id'])->nombre($request['nombre'])->paginate(8);
+      return view('usuario/lista',compact('usuarios'));
+    }
+    return view('auth/alerta');
   }
 
   public function create()
@@ -52,6 +55,7 @@ class UserController extends Controller
       $usuario->delete();
       return redirect()->route('usuario.index');
     }
+    return view('auth/alerta');
   }
 
   public function update(UserRequest $request, $id)

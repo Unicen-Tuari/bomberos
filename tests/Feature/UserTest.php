@@ -18,7 +18,7 @@ class UserTest extends TestCase
 
       $response->assertStatus(200)
                ->assertDontSee('Usuarios')
-               ->assertSee('No tiene permisos');
+               ->assertSee('No tienes permisos');
     }
 
     public function testShowUserMenuAsAdmin()
