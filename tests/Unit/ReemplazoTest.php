@@ -39,7 +39,7 @@ class ReemplazoTest extends TestCase
         $reemplazo = factory(Reemplazo::class)->create(['id_bombero'=>$bombero->id]);
         $bomberoReemplazo = Reemplazo::find($reemplazo->id)->bombero;
         $this->assertEquals($bomberoReemplazo->id,$bombero->id);
-        $this->assertEquals($bomberoReemplazo->nro_legajo,$bombero->nro_legajo);
+        $this->assertEquals($bomberoReemplazo->nro_legajo(),$bombero->nro_legajo());
     }
 
     public function testBomberoReemplazo()
@@ -48,6 +48,6 @@ class ReemplazoTest extends TestCase
       $reemplazo = factory(Reemplazo::class)->create(['id_bombero_reemplazo'=>$bombero->id]);
       $bomberoReemplazo = Reemplazo::find($reemplazo->id)->bomberoReemplazo;
       $this->assertEquals($bomberoReemplazo->id,$bombero->id);
-      $this->assertEquals($bomberoReemplazo->nro_legajo,$bombero->nro_legajo);
+      $this->assertEquals($bomberoReemplazo->nro_legajo(),$bombero->nro_legajo());
     }
 }

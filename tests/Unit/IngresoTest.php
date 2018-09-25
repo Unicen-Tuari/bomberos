@@ -15,7 +15,7 @@ class IngresoTest extends TestCase
         $ingreso = factory(Ingreso::class)->create(['id_bombero'=>$bombero->id]);
         $bomberoIngreso = Ingreso::find($ingreso->id)->bombero;
         $this->assertEquals($bomberoIngreso->id,$bombero->id);
-        $this->assertEquals($bomberoIngreso->nro_legajo,$bombero->nro_legajo);
+        $this->assertEquals($bomberoIngreso->nro_legajo(),$bombero->nro_legajo());
     }
 
     public function testGetIngresos()

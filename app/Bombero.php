@@ -14,9 +14,14 @@ class Bombero extends Model
 {
   protected $table = 'bombero';
   protected $fillable = [
-    'id', 'nombre', 'apellido', 'nro_legajo', 'jerarquia',
+    'id', 'nombre', 'apellido', 'cuartel', 'legajo', 'jerarquia',
      'direccion', 'telefono', 'fecha_nacimiento','activo',
   ];
+
+  
+  public function nro_legajo(){
+    return $this->cuartel . '/' . $this->legajo;
+  }
 
   public function ScopeNombre($query,$nombre)
   {
@@ -29,7 +34,7 @@ class Bombero extends Model
   public function ScopeLegajo($query,$legajo)
   {
     if (trim($legajo)!="") {
-      $query->where('nro_legajo','LIKE',"%$legajo%");
+      $query->where('legajo','LIKE',"%$legajo%");
     }
   }
 

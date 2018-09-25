@@ -39,7 +39,6 @@ class ServiceStatsTest extends DuskTestCase
 		$this->browse(function (browser $browser){
 			$browser->loginAs(User::find(1))
 			->visit('/servicio/estadistica')
-			->assertDontSee('Error al Cargar la tabla ')
 			->whenAvailable('.table-bordered', function($table){
 				$table->assertSee('Estadísticas período desde');
 				$table->assertSee('0');
@@ -56,7 +55,6 @@ class ServiceStatsTest extends DuskTestCase
 			->visit('/servicio/estadistica')
 			->select('monthSince', '1')
 			->select('monthUntil', '12')
-			->assertDontSee('Error al Cargar la tabla ')
 			->whenAvailable('.table-bordered', function($table){
 				$table->assertSee('Estadísticas período desde');
 				$table->assertSee('35');

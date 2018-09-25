@@ -62,18 +62,19 @@ Todas las modificaciones deben pasar los test de unidad e integración. Se prove
 
 Crear la base de datos
 ```
-docker-compose run app php artisan db:create --env=testing
+docker-compose exec app bash
+docker-compose exec app php artisan db:create --env=testing
 ```
 
 PHP Unit
 
 ```
-docker-compose run --rm app php vendor/bin/phpunit
+docker-compose exec app php vendor/bin/phpunit
 ```
 
 Dusk
 ```
-docker-compose run --rm app php artisan dusk
+docker-compose exec app php artisan dusk
 ```
 
 ## Contacto

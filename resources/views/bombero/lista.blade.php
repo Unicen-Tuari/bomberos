@@ -46,7 +46,7 @@
             @else
             <tr class="danger">
             @endif
-              <td>{{$bombero->nro_legajo}}</td>
+              <td>{{$bombero->nro_legajo()}}</td>
               <td>{{config('selects.jerarquia')[$bombero->jerarquia]}}</td>
               <td class="filtro">{{$bombero->apellido}}, {{$bombero->nombre}}</td>
               <td>{{$bombero->direccion}}</td>

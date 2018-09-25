@@ -3,7 +3,7 @@
   @foreach ($bomberos as $bombero)
     @if (!$bombero->puntuo($month,$year))
     <div class="form-group col-sm-6 " id = "modal{{$bombero->id}}">
-      <p class="text-center col-sm-10 filtro">{{$bombero->nro_legajo.' - '.$bombero->apellido.' '.$bombero->nombre}}</p>
+      <p class="text-center col-sm-10 filtro">{{$bombero->nro_legajo().' - '.$bombero->apellido.' '.$bombero->nombre}}</p>
       <button idmodal={{$bombero->id}} type="button" class="col-sm-2 btn btn-primary mp" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Puntuar</button>
     </div>
     @endif
