@@ -19,7 +19,8 @@ namespace Tests\Browser;
                       ->visit('/bombero/create')
                       ->type('nombre',$firefighter->nombre)
                       ->type('apellido',$firefighter->apellido)
-                      ->type('nro_legajo',$firefighter->nro_legajo)
+                      ->type('cuartel',$firefighter->cuartel)
+                      ->type('legajo',$firefighter->legajo)
                       ->type('direccion',$firefighter->direccion)
                       ->type('telefono',$firefighter->telefono)
                       ->type('fecha_nacimiento',$firefighter->fecha_nacimiento)
@@ -38,10 +39,11 @@ namespace Tests\Browser;
                       ->click('.glyphicon-edit')
                       ->type('nombre', $firefighter_edit->nombre)
                       ->type('apellido', $firefighter_edit->apellido)
-                      ->type('nro_legajo', $firefighter_edit->nro_legajo)
+                      ->type('cuartel',$firefighter_edit->cuartel)
+                      ->type('legajo',$firefighter_edit->legajo)
                       ->press('Editar')
                       ->assertSee($firefighter_edit->nombre)
-                      ->assertSee($firefighter_edit->nro_legajo);
+                      ->assertSee($firefighter_edit->legajo);
               });
       }
 

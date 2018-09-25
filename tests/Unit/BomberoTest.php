@@ -17,10 +17,9 @@ class BomberoTest extends TestCase
 
     public function testScopeLegajo()
     {
-        $newBombero = factory(Bombero::class)->create(['nro_legajo'=>'849302']);
-        $newBombero2 = factory(Bombero::class)->create(['nro_legajo'=>'632818']);
-        $newBomberoModel = Bombero::Legajo($newBombero->nro_legajo);
-        $this->assertEquals($newBomberoModel->first()->nro_legajo,$newBombero->nro_legajo);
+        $newBombero = factory(Bombero::class)->create(['legajo'=>'632818']);
+        $newBomberoModel = Bombero::Legajo($newBombero->legajo);
+        $this->assertEquals($newBomberoModel->first()->legajo,$newBombero->legajo);
         $this->assertEquals($newBomberoModel->count(),1);
     }
 

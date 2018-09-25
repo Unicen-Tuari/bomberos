@@ -1,6 +1,6 @@
 <div class="form-group">
   <div class="col-sm-12">
-    {!! Form::label('legajo', 'Nº Legajo: '.$bombero->nro_legajo.' - ',['class' => 'control-label']) !!}
+    {!! Form::label('legajo', 'Nº Legajo: '.$bombero->nro_legajo().' - ',['class' => 'control-label']) !!}
     {!! Form::label('legajo', 'Apellido Nombre: '.$bombero->apellido.' '.$bombero->nombre,['class' => 'control-label']) !!}
   </div>
 </div>
