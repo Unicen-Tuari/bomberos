@@ -96,7 +96,7 @@ class PuntuacionController extends Controller
         }
         $cantserv=Servicio::whereNotNull('hora_regreso')->where('tipo_alarma', 3)->whereYear('hora_alarma','=',$year)->whereMonth('hora_alarma','=',$month)->count();
         $cantguar=Servicio::whereNotNull('hora_regreso')->where('tipo_alarma','<', 3)->whereYear('hora_alarma','=',$year)->whereMonth('hora_alarma','=',$month)->count();
-        return view('puntuacion/tabla',compact('bomberos','cantserv','cantguar','mes','año','dias'));
+        return view('puntuacion/tabla',compact('bomberos','cantserv','cantguar','month','year','dias'));
     }
 
     public function store(Request $request)

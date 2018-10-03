@@ -102,7 +102,8 @@ class FirefighterTest extends TestCase
       $data =[
         "nombre" => $firefigher->nombre,
         "apellido" => $firefigher->apellido,
-        "nro_legajo" => $firefigher->nro_legajo,
+        "cuartel" => $firefigher->cuartel,
+        "legajo" => $firefigher->legajo,
         "jerarquia" => $firefigher->jerarquia,
         "direccion" => $firefigher->direccion,
         "telefono" => $firefigher->telefono,
@@ -122,7 +123,8 @@ class FirefighterTest extends TestCase
       $data =[
         "nombre" => $firefigher->nombre,
         "apellido" => $firefigher->apellido,
-        "nro_legajo" => $firefigher->nro_legajo,
+        "cuartel" => $firefigher->cuartel,
+        "legajo" => $firefigher->legajo,
         "jerarquia" => $firefigher->jerarquia,
         "direccion" => $firefigher->direccion,
         "telefono" => $firefigher->telefono,
@@ -145,7 +147,8 @@ class FirefighterTest extends TestCase
       $data =[
         "nombre" => $new_firefigher->nombre,
         "apellido" => $new_firefigher->apellido,
-        "nro_legajo" => $new_firefigher->nro_legajo,
+        "cuartel" => $new_firefigher->cuartel,
+        "legajo" => $new_firefigher->legajo,
         "jerarquia" => $new_firefigher->jerarquia,
         "direccion" => $new_firefigher->direccion,
         "telefono" => $new_firefigher->telefono,
@@ -166,7 +169,8 @@ class FirefighterTest extends TestCase
       $data =[
         "nombre" => $new_firefigher->nombre,
         "apellido" => $new_firefigher->apellido,
-        "nro_legajo" => $new_firefigher->nro_legajo,
+        "cuartel" => $new_firefigher->cuartel,
+        "legajo" => $new_firefigher->legajo,
         "jerarquia" => $new_firefigher->jerarquia,
         "direccion" => $new_firefigher->direccion,
         "telefono" => $new_firefigher->telefono,

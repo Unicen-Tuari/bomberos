@@ -5,13 +5,14 @@
     <div class="panel panel-default">
       <div id="breadcrumb" class="panel-heading">
         <span class="fa fa-pie-chart" aria-hidden="true"></span>
-        <h4>Lista de variables</h4>
+        <h4>Lista de puntaje por calificación</h4>
       </div>
       <div class="panel-body">
+        <a href="{{route('variable.create')}}" class="btn btn-primary pull-right">Alta Puntaje por calificación</a>
         <table class="table table-striped">
           <thead><!--Titulos de la tabla-->
             <tr>
-              <th>Asistencia</th>
+              <th>Orden interno</th>
               <th>Accidentales</th>
               <th>Guardias</th>
               <th>Año</th>

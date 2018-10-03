@@ -6,7 +6,7 @@
     <div class="panel panel-default">
       <div id="breadcrumb" class="panel-heading">
         <span class="fa fa-bar-chart" aria-hidden="true"></span>
-        <h4>Estadisticas</h4>
+        <h4>Recopiladora</h4>
       </div>
       <div class="form-horizontal">
         <div class="panel-body">

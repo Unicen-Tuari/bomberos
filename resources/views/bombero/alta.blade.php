@@ -40,14 +40,27 @@
           </div>
         </div>
 
-        <div class="form-group {{ $errors->has('nro_legajo') ? ' has-error' : '' }}">
-          {!! Form::label('nro_legajo', 'Numero de legajo',['class' => 'col-md-4 control-label']) !!}
+        <div class="form-group {{ $errors->has('cuartel') ? ' has-error' : '' }}">
+          {!! Form::label('cuartel', 'Código de cuartel',['class' => 'col-md-4 control-label']) !!}
           <div class="col-md-6">
-          {!! Form::text('nro_legajo', null, ['class' => 'form-control']) !!}
+          {!! Form::text('cuartel', null, ['class' => 'form-control']) !!}
 
-              @if ($errors->has('nro_legajo'))
+              @if ($errors->has('cuartel'))
                   <span class="help-block">
-                      <strong>{{ $errors->first('nro_legajo') }}</strong>
+                      <strong>{{ $errors->first('cuartel') }}</strong>
+                  </span>
+              @endif
+          </div>
+        </div>
+
+        <div class="form-group {{ $errors->has('legajo') ? ' has-error' : '' }}">
+          {!! Form::label('legajo', 'Código de legajo',['class' => 'col-md-4 control-label']) !!}
+          <div class="col-md-6">
+          {!! Form::text('legajo', null, ['class' => 'form-control']) !!}
+
+              @if ($errors->has('legajo'))
+                  <span class="help-block">
+                      <strong>{{ $errors->first('legajo') }}</strong>
                   </span>
               @endif
           </div>

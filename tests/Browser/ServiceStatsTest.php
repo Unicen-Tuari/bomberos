@@ -11,13 +11,35 @@ use App\User;
 
 class ServiceStatsTest extends DuskTestCase
 {
+	use DatabaseMigrations;
+	
+	public function testMenuRecopiladora()
+	{
+		$this->browse(function (browser $browser){
+			$browser->loginAs(\App\User::find(1))
+                ->visit('/')
+                ->click('#servicioMenu')
+                ->whenAvailable('#serviciosSubMenu', function($submenu){
+                    $submenu->assertSee('Recopiladora');
+                });
+		});
+	}
+
+	public function testRecopiladora()
+	{
+		$this->browse(function (browser $browser){
+			$browser->loginAs(\App\User::find(1))
+				->visit('/servicio/estadistica')
+				->assertSee('Recopiladora');
+		});
+	}
+
 	public function testTablaVacia()
 	{
 		$this->browse(function (browser $browser){
 			$browser->loginAs(User::find(1))
 			->visit('/servicio/estadistica')
-			->assertDontSee('Error al Cargar la tabla ')
-			->with('.table-bordered', function($table){
+			->whenAvailable('.table-bordered', function($table){
 				$table->assertSee('Estadísticas período desde');
 				$table->assertSee('0');
 			});
@@ -33,8 +55,7 @@ class ServiceStatsTest extends DuskTestCase
 			->visit('/servicio/estadistica')
 			->select('monthSince', '1')
 			->select('monthUntil', '12')
-			->assertDontSee('Error al Cargar la tabla ')
-			->with('.table-bordered', function($table){
+			->whenAvailable('.table-bordered', function($table){
 				$table->assertSee('Estadísticas período desde');
 				$table->assertSee('35');
 				$table->assertSee('22');

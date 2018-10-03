@@ -33,7 +33,7 @@
         <tbody class="tableFilter">
           @foreach ($bomberos as $bombero)
             <tr id = "modal{{$bombero->id}}">
-              <td class="text-center">{{$bombero->nro_legajo}}</td>
+              <td class="text-center">{{$bombero->nro_legajo()}}</td>
               <td class="text-center filtro">{{$bombero->apellido.' - '.$bombero->nombre}}</td>
               <td class="text-center">
                 @if ($bombero->presente($reunion))

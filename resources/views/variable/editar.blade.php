@@ -12,7 +12,7 @@
           {{csrf_field()}}
           {{method_field('PUT')}}
           <div class="form-group  {{ $errors->has('asistencia') ? ' has-error' : '' }}">
-            <label for="asistencia" class="col-md-4 control-label">Asistencia: </label>
+            <label for="asistencia" class="col-md-4 control-label">Orden interno: </label>
             <div class="col-md-2">
               <input type="number" class="form-control" min="0" name="asistencia"  @if(old('asistencia')) value="{{old('asistencia')}}" @endif value="{{$variables->asistencia}}">
                 @if ($errors->has('asistencia'))

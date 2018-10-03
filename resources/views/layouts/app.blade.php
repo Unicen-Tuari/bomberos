@@ -134,6 +134,7 @@
           <div class="collapse" id="puntuacionSubMenu">
             @if (Auth::user()->admin)
               <a  href="{{route('puntuacion.create')}}"  class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Cargar</a>
+              <a href="{{route('variable.index')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Puntaje por calificación</a>
             @endif
             <a  href="{{route('puntuacion.index')}}"  class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Listar</a>
             <a  href="{{route('puntuacion.anual')}}"  class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Listado anual</a>
@@ -142,7 +143,7 @@
           <a href="#serviciosSubMenu" id="servicioMenu" class="list-group-item" data-toggle="collapse" data-parent="#MainMenu"><i class="fa fa-cog fa-lg" style="padding-right: 10px;"></i>  Servicios<span class="arrow"></span></a>
           <div class="collapse" id="serviciosSubMenu">
             <a href="{{route('servicio.index')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Lista de servicios</a>
-            <a href="{{route('servicio.estadistica')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Estadísticas</a>
+            <a href="{{route('servicio.estadistica')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Recopiladora</a>
           </div>
 
           <a href="#vehiculosSubMenu" id="vehiculoMenu" class="list-group-item" data-toggle="collapse" data-parent="#MainMenu"><i class="fa fa-car fa-lg" style="padding-right: 10px;"></i> Vehículos<span class="arrow"></span></a>
@@ -177,14 +178,6 @@
             <a href="{{route('usuario.permisos')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Permisos de usuarios</a>
           </div>
           @endif
-
-        <a href="#variablesSubMenu" id="variableMenu" class="list-group-item" data-toggle="collapse" data-parent="#MainMenu"><i class="fa fa-pie-chart  " style="padding-right: 10px;"></i> Variables<span class="arrow"></span></a>
-        <div class="collapse" id="variablesSubMenu">
-          <a href="{{route('variable.index')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Listar variables</a>
-          @if (Auth::user()->admin)
-            <a href="{{route('variable.create')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Alta variable</a>
-          @endif
-        </div>
       </div>
 
       </div>

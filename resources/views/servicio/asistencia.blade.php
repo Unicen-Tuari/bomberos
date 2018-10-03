@@ -8,7 +8,7 @@
 	</tr>
 	@foreach($bomberos as $clave => $bombero)
 	<tr>
-		<td>{{$bombero->nro_legajo}}</td>
+		<td>{{$bombero->nro_legajo()}}</td>
 		<td>{{config('selects.jerarquia')[$bombero->jerarquia]}}</td>
 		<td>{{$bombero->apellido}}, {{$bombero->nombre}}</td>
 		<td>&#160;&#160;&#160;</td>
