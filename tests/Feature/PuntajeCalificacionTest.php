@@ -19,7 +19,7 @@ class PuntajeCalificacionTest extends TestCase
                      ->get('/variable');
 
     $response->assertStatus(200)//or 300
-             ->assertSee('Lista de variables');
+             ->assertDontSee('Lista de puntaje por calificación');
   }
 
   public function testAccederAlta()
@@ -47,18 +47,17 @@ public function testAccederModif()
               ->assertSee('No tienes permisos');
   }
 
-// public function testAccederBorrado()
-//   {
-//     //No acceder al borrado como usuario -4
-//     $user = factory(User::class)->create();
-//     $variable = factory(Variables::class)->create();
-//
-//     $response = $this->actingAs($user)
-//                      ->post("/variable/$variable->id/delete");
-//
-//     $response->assertStatus(200)
-//               ->assertSee('No tienes permisos');
-//   }
+public function testAccederBorrado()
+  {
+    //No acceder al borrado como usuario -4
+    $user = factory(User::class)->create();
+    $variable = factory(Variables::class)->create();
+
+    $response = $this->actingAs($user)
+                     ->delete("/variable/$variable->id/delete");
+
+    $response->assertStatus(404);
+  }
 
   public function AltaVariableAdmin()
   {
@@ -82,20 +81,20 @@ public function EditPuntanjeAdmin()
   $response = $this->actingAs($user)
                    ->get("/variable/$variable->id/edit");
   $response->assertStatus(200)
-            ->assertSee('Editar Variables');
+            ->assertSee('Editar variables');
 }
 
 
-  // public function borrarPuntanjeAdmin(){
-  //   // Acceder al borrado como usuario admin -7
-  //   $user = factory(User::class)->create([['admin'=>true]]);
-  //   $variable = factory(Variables::class)->create();
-  //
-  //   $response = $this->actingAs($user)
-  //                    ->post("/variable/$variable->id/delete");
-  //
-  //   $response->assertStatus(200)
-  //             ->assertDontSee('No tienes permisos');
-  // }
+  public function borrarPuntanjeAdmin(){
+    // Acceder al borrado como usuario admin -7
+    $user = factory(User::class)->create([['admin'=>true]]);
+    $variable = factory(Variables::class)->create();
+
+    $response = $this->actingAs($user)
+                     ->delete("/variable/$variable->id/delete");
+
+    $response->assertStatus(200)
+              ->assertSee('Lista de puntaje por calificación');
+  }
 }
 ?>
