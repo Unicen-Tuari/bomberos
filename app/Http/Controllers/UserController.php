@@ -61,8 +61,14 @@ class UserController extends Controller
   public function update(UserRequest $request, $id)
   {
     if(Auth::user()->admin){
-      User::find($id)->update($request->all());
-      return redirect()->route('usuario.index');
+      $data=$request->admin;
+      if ($data == 'on') {
+        User::find($id)->update($request->all());
+       } else {
+           User::find($id)->update($request->all());
+           User::find($id)->update(['admin'=>0]);
+       }
+     return redirect()->route('usuario.index');
     }
   }
 
