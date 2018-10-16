@@ -42,10 +42,8 @@ class UsuarioTest extends DuskTestCase
         $browser->loginAs(User::find(1))
                 ->visit('/usuario')
                 ->click('.glyphicon-edit')
-                ->type('nombre','nameTest')
+                ->type('admin','nameTest')
                 ->press('Guardar')
-                ->type('nombre','nameTest')
-                ->press('Buscar')
                 ->assertSee('No tienes permisos');
       });
 }
