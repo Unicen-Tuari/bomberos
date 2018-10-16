@@ -37,6 +37,18 @@ class UsuarioTest extends DuskTestCase
                     ->assertSee('nameTest');
           });
     }
+    public function testUpdateAdmin(){
+      $this->browse(function (Browser $browser) {
+        $browser->loginAs(User::find(1))
+                ->visit('/usuario')
+                ->click('.glyphicon-edit')
+                ->type('nombre','nameTest')
+                ->press('Guardar')
+                ->type('nombre','nameTest')
+                ->press('Buscar')
+                ->assertSee('No tienes permisos');
+      });
+}
 
     public function testDelete(){
       $this->newUser = factory(User::class)->create();

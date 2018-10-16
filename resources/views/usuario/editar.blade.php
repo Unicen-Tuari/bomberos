@@ -26,7 +26,7 @@
         </div>
 
         <div class="form-group {{ $errors->has('apellido') ? ' has-error' : '' }}">
-          <label class="col-md-4 control-label" name="nombre" >Apellido</label>
+          <label class="col-md-4 control-label" name="apellido" >Apellido</label>
           <div class="col-md-6">
                     <input class="form-control" type="text" name="apellido" value="{{$usuario->apellido}}">
               @if ($errors->has('apellido'))
@@ -52,7 +52,11 @@
         <div class="form-group {{ $errors->has('activo') ? ' has-error' : '' }}">
           <label class="col-md-4 control-label" name="admin" > Administrador</label>
           <div class="col-md-6">
-            <input type="checkbox" name="admin" data-toggle="toggle" data-off="Usuario" data-on="Administrador" data-onstyle="success" data-offstyle="danger" placeholder= "Admin">
+            <input type="checkbox" name="admin" data-toggle="toggle" data-off="Usuario" data-on="Administrador" data-onstyle="success" data-offstyle="danger" placeholder= "Admin"
+              @if ($usuario->admin =="on")
+                checked
+              @endif
+            >
               @if ($errors->has('admin'))
                   <span class="help-block">
                       <strong>{{ $errors->first('admin') }}</strong>
