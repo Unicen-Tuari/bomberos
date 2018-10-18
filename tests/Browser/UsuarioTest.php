@@ -37,15 +37,14 @@ class UsuarioTest extends DuskTestCase
                     ->assertSee('nameTest');
           });
     }
-    public function testUpdateAdmin(){
+    public function testUpdateRemoveAdmin(){
       $this->browse(function (Browser $browser) {
+
         $browser->loginAs(User::find(1))
                 ->visit('/usuario')
                 ->click('.glyphicon-edit')
-                ->type('admin','nameTest')
+                ->click('.toggle')
                 ->press('Guardar')
-                ->type('nombre','nameTest')
-                ->press('Buscar')
                 ->assertSee('No tienes permisos');
       });
 }
