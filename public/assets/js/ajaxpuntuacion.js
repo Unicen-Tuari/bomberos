@@ -4,11 +4,11 @@ $(document).ready(function () {
     var ruta= window.location.href;
     var url=ruta.substring(0, ruta.indexOf("create"));
     var mes=$('#mes').val();
-    var año=$('#año').val();
+    var year=$('#year').val();
 		$.ajax({
 			type: 'GET',
 			dataType: 'HTML',
-			url: url+'bomberos/'+mes+'/'+año,
+			url: url+'bomberos/'+mes+'/'+year,
 			success: function(data){
 						$('#lista').html(data);
 					},
@@ -18,11 +18,11 @@ $(document).ready(function () {
   function listarPuntuaciones(){
     var url= window.location.href;
     var mes=$('#mes').val();
-    var año=$('#año').val();
+    var year=$('#year').val();
 		$.ajax({
 			type: 'GET',
 			dataType: 'HTML',
-			url: url+'/listar/'+mes+'/'+año,
+			url: url+'/listar/'+mes+'/'+year,
 			success: function(data){
 						$('#tabla').html(data);
 					},
@@ -37,7 +37,7 @@ $(document).ready(function () {
     }
   });
 
-  $('#año').on('change',function(){
+  $('#year').on('change',function(){
     if(window.location.href.indexOf("create") == -1){
       listarPuntuaciones();
     }else{

@@ -24,11 +24,11 @@ $(document).ready(function () {
       .done(function(dd) {
         var url= window.location.href;
         var mes=$('#mes').val();
-        var año=$('#año').val();
+        var year=$('#year').val();
     		$.ajax({
     			type: 'GET',
     			dataType: 'HTML',
-    			url: url+'/listar/'+mes+'/'+año,
+    			url: url+'/listar/'+mes+'/'+year,
     			success: function(data){
     						$('#tabla').html(data);
     					},
