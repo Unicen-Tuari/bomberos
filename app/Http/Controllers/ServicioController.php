@@ -15,6 +15,7 @@ use App\Ingreso;
 use Carbon\Carbon;
 use \DateTimeZone;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ServicioController extends Controller
 {
@@ -310,6 +311,12 @@ class ServicioController extends Controller
         $servicio->jefe_servicio=$data['jefe_servicio'];
         $servicio->oficial=$data['oficial'];
         $servicio->jefe_de_cuerpo=$data['jefe_de_cuerpo'];
+        if($request->hasFile('imageToUpload')){
+          $filename = Storage::disk('public')->putFile('planillas',$request
+          ->file('imageToUpload'));
+
+          $servicio->path = $filename;
+        }
         if ($servicio->save()){
           $bomberoacargo=BomberoServicio::where([['servicio_id',$servicio->id],['a_cargo',1]])->first();
           if ($data["bombero"]){
@@ -404,7 +411,8 @@ class ServicioController extends Controller
     }
     public function planilla($id)
     {
-      return view('servicio.planilla',compact('id'));
+      $servicio = Servicio::find($id);
+      return view('servicio.planilla',compact('servicio'));
     }
     public function destroy($id)
     {

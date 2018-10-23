@@ -8,7 +8,7 @@
       <h4>Modificar servicio</h4>
     </div>
   <div class="panel-body">
-   <form class='form-horizontal' action="{{route('servicio.update',$servicio)}}" method="POST">
+   <form class='form-horizontal' action="{{route('servicio.update',$servicio)}}" method="POST" enctype="multipart/form-data">
      {{csrf_field()}}
      {{method_field('PUT')}}
   @php
@@ -36,6 +36,12 @@
     @endphp
     <input class="hidden" type="text" name="finalizar" value="0">
     @include('servicio.formcompleto')
+    <div class="form-group {{$errors->has('disposiciones') ? ' has-error' : ''}}">
+      <label class="col-sm-2 control-label" for="imageToUpload">Planilla</label>
+      <div class="col-sm-8">
+        <input type="file" class="form-control" name="imageToUpload" id="imageToUpload">
+      </div>
+    </div>
     <div class="col-sm-1 col-sm-offset-5">
       <button type="submit" class="btn btn-primary">
           <i class="glyphicon glyphicon-ok"></i> Finalizar
