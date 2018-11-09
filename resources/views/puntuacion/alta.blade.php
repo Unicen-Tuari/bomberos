@@ -5,8 +5,8 @@
 <div class="modal-body form-group grupo">
   {!! Form::open([ 'route' => 'puntuacion.store', 'class' => 'form-horizontal', 'method' => 'POST','id'=>'post']) !!}
 
-    {!! Form::hidden('mes', $month) !!}
-    {!! Form::hidden('año', $year) !!}
+    {!! Form::hidden('month', $month) !!}
+    {!! Form::hidden('year', $year) !!}
     {!! Form::hidden('id_bombero', $bombero->id) !!}
     @include('puntuacion.form-puntuacion')
   {!! Form::close() !!}
