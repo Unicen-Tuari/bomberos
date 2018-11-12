@@ -20,7 +20,7 @@ class CreateRenglonsTable extends Migration
             $table->string('responsable',300);
             $table->string('ayudante',300);
             $table->timestamps();
-            $table->foreign('planilla_id')->references('id')->on('planillas')->onDelete('restrict');
+            $table->foreign('planilla_id')->references('id')->on('planillas')->onDelete('cascade');
 
         });
     }
