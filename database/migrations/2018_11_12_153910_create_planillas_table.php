@@ -16,9 +16,9 @@ class CreatePlanillasTable extends Migration
         Schema::create('planillas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('jefe_guardia',100);
-            $table->integer('nro_guardia');
-            $table->integer('inicio_semana');
-            $table->integer('fin_semana');
+            $table->integer('nro_guardia')->unsigned();
+            $table->integer('inicio_semana')->unsigned();
+            $table->integer('fin_semana')->unsigned();
             $table->string('mes',20);
             $table->timestamps();
         });

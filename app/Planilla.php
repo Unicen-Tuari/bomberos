@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Planilla extends Model
 {
-    protected $table = 'bombero';
+    protected $table = 'planillas';
     protected $fillable = [
       'id', 'jefe_guardia', 'nro_guardia', 'inicio_semana', 'fin_semana', 'mes',
     ];
