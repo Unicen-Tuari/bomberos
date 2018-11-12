@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 // use App\Http\Requests\PlanillaRequest;
-
+use Illuminate\Support\Facades\Auth;
 
 class PlanillaController extends Controller
 {
@@ -68,6 +68,7 @@ class PlanillaController extends Controller
 //     if(Auth::user()->admin){
 //       $bombero=$data->all();
 //       list($dia, $month, $year) = explode('/', $bombero["fecha_nacimiento"]);
+    //convertir el nro de guardia en un entero pq viene un string en el formulario
 //       $bombero["fecha_nacimiento"]=$year.'-'.$month.'-'.$dia;
 //       if (!array_key_exists('activo', $bombero)){
 //         $bombero["activo"]=0;
