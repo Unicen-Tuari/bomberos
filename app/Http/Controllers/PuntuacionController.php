@@ -114,9 +114,7 @@ class PuntuacionController extends Controller
     {
       $monthactual=\Carbon\Carbon::now()->format('m');
       $yearactual=\Carbon\Carbon::now()->format('Y');
-      echo("Entre1");
       if($year<$yearactual || ($year==$yearactual && $month<$monthactual)){
-        echo("Entre");
         $bomberos=Bombero::where('activo', 1)->get();
         return view('puntuacion/puntuacionmes',compact('bomberos','month','year'));
       }
