@@ -17,7 +17,7 @@
       <div class="form-group col-sm-4">
         {{ Form::label('añoo', 'Elija el año: ',['class' => 'control-label col-sm-4']) }}
         <div class="col-sm-8">
-          {{Form::text('año', \Carbon\Carbon::now()->format('Y'), ['class' => 'form-control','id'=>"año"])}}
+          {{Form::text('year', \Carbon\Carbon::now()->format('Y'), ['class' => 'form-control','id'=>"year"])}}
         </div>
       </div>
       <div class="form-group col-sm-4">

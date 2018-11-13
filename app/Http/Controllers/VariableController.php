@@ -20,7 +20,10 @@ class VariableController extends Controller
     public function index(Request $request)
     {
         $variables=Variables::paginate(12);
-        return view('variable/lista',compact('variables'));
+        if(Auth::user()->admin){
+          return view('variable/lista',compact('variables'));
+        }
+        return view('auth/alerta');
     }
 
     public function create()
