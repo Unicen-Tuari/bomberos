@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
-// use App\Http\Requests\PlanillaRequest;
+use App\Planilla;
+use App\Http\Requests\PlanillaRequest;
 use Illuminate\Support\Facades\Auth;
 
 class PlanillaController extends Controller
@@ -16,7 +17,7 @@ class PlanillaController extends Controller
 
 //   public function index(Request $request)
 //   {
-//       $bomberos=Bombero::legajo($request['legajo'])->nombre($request['nombre'])
+//       $planillas=Planilla::legajo($request['legajo'])->nombre($request['nombre'])
 //       ->jerarquia($request['jerarquia'])->paginate(12);
 //       return view('bombero/lista',compact('bomberos'));
 //   }
@@ -48,35 +49,24 @@ class PlanillaController extends Controller
     return view('auth/alerta');
   }
 
-//   public function update(PlanillaRequest  $data, $id)
-//   {
-//     if(Auth::user()->admin){
-//       $bombero=$data->all();
-//       list($dia, $month, $year) = explode('/', $bombero["fecha_nacimiento"]);
-//       $bombero["fecha_nacimiento"]=$year.'-'.$month.'-'.$dia;
-//       if (!array_key_exists('activo', $bombero)){
-//         $bombero["activo"]=0;
-//       }
-//       Bombero::find($id)->update($bombero);
-//       return redirect()->route('bombero.index');
-//     }
-//     return view('auth/alerta');
-//   }
+  public function update(PlanillaRequest  $data, $id)
+  {
+    if(Auth::user()->admin){
+      $planilla=$data->all();
+      Planilla::find($id)->update($planilla);
+      return redirect()->route('planilla.index');
+    }
+    return view('auth/alerta');
+  }
 
-//   public function store(BomberoRequest  $data)
-//   {
-//     if(Auth::user()->admin){
-//       $bombero=$data->all();
-//       list($dia, $month, $year) = explode('/', $bombero["fecha_nacimiento"]);
-    //convertir el nro de guardia en un entero pq viene un string en el formulario
-//       $bombero["fecha_nacimiento"]=$year.'-'.$month.'-'.$dia;
-//       if (!array_key_exists('activo', $bombero)){
-//         $bombero["activo"]=0;
-//       }
-//       Bombero::create($bombero);
-//       return redirect()->route('bombero.index');
-//     }
-//     return view('auth/alerta');
-//   }
+  public function store(PlanillaRequest  $data)
+  {
+    if(Auth::user()->admin){
+      $planilla=$data->all();
+      Planilla::create($planilla);
+      return redirect()->route('planilla.index');
+    }
+    return view('auth/alerta');
+  }
 
 }
