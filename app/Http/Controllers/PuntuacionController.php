@@ -102,7 +102,6 @@ class PuntuacionController extends Controller
     public function store(Request $request)
     {
       $date=$request->all();
-      var_dump($date);
         if(Auth::user()->admin){
           $date=$request->all();
           $fecha=\Carbon\Carbon::parse($date['year'].'-'.$date['month'].'-'.'1');
@@ -114,8 +113,6 @@ class PuntuacionController extends Controller
 
     public function bomberos($month, $year)
     {
-      var_dump($month);
-      var_dump($year . "asd");
       $monthactual=\Carbon\Carbon::now()->format('m');
       $yearactual=\Carbon\Carbon::now()->format('Y');
       if($year<$yearactual || ($year==$yearactual && $month<$monthactual)){
