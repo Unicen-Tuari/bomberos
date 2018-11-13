@@ -174,6 +174,7 @@
           <div class="collapse" id="planillaSubMenu">
             @if (Auth::user()->admin)
               <a href="{{route('planilla.create')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Cargar</a>
+              <a href="{{route('planilla.index')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Listar</a>
             @endif
           </div>
 

@@ -15,12 +15,13 @@ class PlanillaController extends Controller
       $this->middleware('auth');
   }
 
-//   public function index(Request $request)
-//   {
-//       $planillas=Planilla::legajo($request['legajo'])->nombre($request['nombre'])
-//       ->jerarquia($request['jerarquia'])->paginate(12);
-//       return view('bombero/lista',compact('bomberos'));
-//   }
+  public function index(Request $request)
+  {
+      $planillas=Planilla::get();
+      // $planillas=Planilla::jefe_guardia($request['jefe_guardia'])->nro_guardia($request['nro_guardia'])
+      // ->inicio_semana($request['inicio_semana'])->fin_semana($request['fin_semana'])->mes($request['mes']);
+      return view('planilla/lista',compact('planillas'));
+  }
 
   public function create()
   {
@@ -43,7 +44,7 @@ class PlanillaController extends Controller
   {
     if(Auth::user()->admin){
       $planilla=Planilla::find($id);
-      $bombero->delete();
+      $planilla->delete();
       return redirect()->route('planilla.index');
     }
     return view('auth/alerta');

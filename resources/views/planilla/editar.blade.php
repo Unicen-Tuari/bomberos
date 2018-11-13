@@ -52,7 +52,7 @@
         <div class="form-group {{ $errors->has('fin_semana') ? ' has-error' : '' }}">
             <label class="col-md-4 control-label" name="fin_semana" > Día del final de semana</label>
               <div class="col-md-6">
-                <input class="form-control" type="text" name="fin_semana" placeholder= "{{$planilla->fin_semana}}">
+                <input class="form-control" type="text" name="fin_semana" value= "{{$planilla->fin_semana}}">
                     @if ($errors->has('fin_semana'))
                         <span class="help-block">
                             <strong>{{ $errors->first('fin_semnana') }}</strong>
@@ -65,7 +65,7 @@
           <label for="mes" class="col-md-4 control-label">Mes</label>
           <div class="col-md-6">
             <select class="form-control" name="mes">
-              <option value="">{{$planilla->mes}} </option>
+              <option value="{{$planilla->mes}}">{{$planilla->mes}} </option>
              <option value="Enero">Enero</option>
              <option value="Febrero">Febrero</option>
              <option value="Marzo">Marzo</option>
