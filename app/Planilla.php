@@ -9,7 +9,7 @@ class Planilla extends Model
 {
   protected $table = 'planillas';
   protected $fillable = [
-    'id', 'jefe_guardia', 'nro_guardia', 'inicio_semana', 'fin_semana', 'mes',
+    'id', 'jefe_guardia', 'nro_guardia', 'inicio_semana', 'fin_semana', 'mes', 'year',
   ];
 
   // public function ScopeJefe_guardia($query,$jefe_guardia)

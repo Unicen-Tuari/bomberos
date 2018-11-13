@@ -20,6 +20,7 @@ class CreatePlanillasTable extends Migration
             $table->integer('inicio_semana')->unsigned();
             $table->integer('fin_semana')->unsigned();
             $table->string('mes',20);
+            $table->integer('year')->unsigned();
             $table->timestamps();
         });
     }

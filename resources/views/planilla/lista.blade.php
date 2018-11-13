@@ -15,6 +15,10 @@
             <th>Id Planilla</th>
             <th>Jefe Guardia</th>
             <th>Nro Guardia</th>
+            <th>Inicio Semana</th>
+            <th>Fin Semana</th>
+            <th>Mes</th>
+            <th>Año</th>
             <th></th>
           </tr>
         </thead>
@@ -23,6 +27,10 @@
           <td>{{$planilla->id}}</td>
           <td>{{$planilla->jefe_guardia}}</td>
           <td>{{$planilla->nro_guardia}}</td>
+          <td>{{$planilla->inicio_semana}}</td>
+          <td>{{$planilla->fin_semana}}</td>
+          <td>{{$planilla->mes}}</td>
+          <td>{{$planilla->year}}</td>
           @if (Auth::user()->admin)
           <td><a href="{{ route('planilla.edit', $planilla->id) }}" class="glyphicon glyphicon-edit"></a></td>
           <td>

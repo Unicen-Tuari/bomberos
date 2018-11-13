@@ -21,7 +21,6 @@ class CreateRenglonsTable extends Migration
             $table->string('ayudante',300);
             $table->timestamps();
             $table->foreign('planilla_id')->references('id')->on('planillas')->onDelete('cascade');
-
         });
     }
 

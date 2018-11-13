@@ -87,6 +87,18 @@
           </div>
         </div>
 
+        <div class="form-group {{ $errors->has('year') ? ' has-error' : '' }}">
+            <label class="col-md-4 control-label" name="year" > Año</label>
+              <div class="col-md-6">
+                <input class="form-control" type="text" name="year" placeholder= "Número de año">
+                    @if ($errors->has('year'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('year') }}</strong>
+                        </span>
+                    @endif
+              </div>
+        </div>
+
          <div class="form-group">
            <div class="col-md-6 col-md-offset-4">
              <button type="submit" class="btn btn-primary">

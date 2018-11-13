@@ -18,8 +18,6 @@ class PlanillaController extends Controller
   public function index(Request $request)
   {
       $planillas=Planilla::get();
-      // $planillas=Planilla::jefe_guardia($request['jefe_guardia'])->nro_guardia($request['nro_guardia'])
-      // ->inicio_semana($request['inicio_semana'])->fin_semana($request['fin_semana'])->mes($request['mes']);
       return view('planilla/lista',compact('planillas'));
   }
 

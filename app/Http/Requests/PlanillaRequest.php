@@ -28,6 +28,7 @@ class PlanillaRequest extends Request
               'inicio_semana' => 'required|numeric', 
               'fin_semana' => 'required|numeric', 
               'mes' => 'required',
+              'year' => 'required|numeric',
           ];
         }
 
@@ -39,6 +40,7 @@ class PlanillaRequest extends Request
               'inicio_semana' => 'required|numeric', 
               'fin_semana' => 'required|numeric', 
               'mes' => 'required',
+              'año' => 'required|numeric'
           ];
         }
         default:break;
