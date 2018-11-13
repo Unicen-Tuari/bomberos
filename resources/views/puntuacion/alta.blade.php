@@ -4,12 +4,7 @@
 @endphp
 <div class="modal-body form-group grupo">
   {!! Form::open([ 'route' => 'puntuacion.store', 'class' => 'form-horizontal', 'method' => 'POST','id'=>'post']) !!}
-
-<<<<<<< HEAD
-    {!! Form::hidden('mes', $month) !!}
-=======
     {!! Form::hidden('month', $month) !!}
->>>>>>> Issue-238
     {!! Form::hidden('year', $year) !!}
     {!! Form::hidden('id_bombero', $bombero->id) !!}
     @include('puntuacion.form-puntuacion')
