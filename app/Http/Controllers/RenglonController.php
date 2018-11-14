@@ -39,15 +39,15 @@ class RenglonController extends Controller
     //     return view('auth/alerta');
     // }
   
-    // public function destroy($id)
-    // {
-    //   if(Auth::user()->admin){
-    //     $planilla=Planilla::find($id);
-    //     $planilla->delete();
-    //     return redirect()->route('planilla.index');
-    //   }
-    //   return view('auth/alerta');
-    // }
+    public function destroy($id)
+    {
+      if(Auth::user()->admin){
+        $renglon=Renglon::find($id);
+        $renglon->delete();
+        return redirect()->route('renglon.index');
+      }
+      return view('auth/alerta');
+    }
   
     // public function update(PlanillaRequest  $data, $id)
     // {
