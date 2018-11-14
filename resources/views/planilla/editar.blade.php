@@ -91,7 +91,7 @@
             <label class="col-md-4 control-label" name="year" > Año</label>
               <div class="col-md-6">
                 <input class="form-control" type="text" name="year" value= "{{$planilla->year}}">
-                    @if ($errors->has('año'))
+                    @if ($errors->has('year'))
                         <span class="help-block">
                             <strong>{{ $errors->first('year') }}</strong>
                         </span>

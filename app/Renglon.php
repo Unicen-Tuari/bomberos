@@ -10,4 +10,8 @@ class Renglon extends Model
     protected $fillable = [
       'id', 'planilla_id', 'descripcion_responsabilidad', 'responsable', 'ayudante', 
     ];
+
+    public function planilla(){
+      return $this->hasOne(Planilla::class,"id","planilla_id");
+    }
 }

@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use App\Renglon;
+use App\Http\Requests\PlanillaRequest;
+use Illuminate\Support\Facades\Auth;
 
 class RenglonController extends Controller
 {
@@ -17,13 +21,13 @@ class RenglonController extends Controller
     //     return view('planilla/lista',compact('planillas'));
     // }
   
-    // public function create()
-    // {
-    //     if(Auth::user()->admin){
-    //       return view('planilla/alta');
-    //     }
-    //     return view('auth/alerta');
-    // }
+    public function create()
+    {
+        if(Auth::user()->admin){
+          return view('renglon/alta');
+        }
+        return view('auth/alerta');
+    }
   
     // public function edit($id)
     // {
@@ -54,14 +58,14 @@ class RenglonController extends Controller
     //   return view('auth/alerta');
     // }
   
-    // public function store(PlanillaRequest  $data)
-    // {
-    //   if(Auth::user()->admin){
-    //     $planilla=$data->all();
-    //     Planilla::create($planilla);
-    //     return redirect()->route('planilla.index');
-    //   }
-    //   return view('auth/alerta');
-    // }
+    public function store(RenglonRequest  $data)
+    {
+      if(Auth::user()->admin){
+        $renglon=$data->all();
+        Planilla::create($renglon);
+        return redirect()->route('planilla.index');
+      }
+      return view('auth/alerta');
+    }
   
 }

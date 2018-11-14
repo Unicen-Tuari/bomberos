@@ -35,12 +35,12 @@ class PlanillaRequest extends Request
         case 'PUT':
         {
           return [
-            'jefe_guardia' => 'required',
+              'jefe_guardia' => 'required',
               'nro_guardia' => 'required', 
               'inicio_semana' => 'required|numeric', 
               'fin_semana' => 'required|numeric', 
               'mes' => 'required',
-              'año' => 'required|numeric'
+              'year' => 'required|numeric'
           ];
         }
         default:break;
