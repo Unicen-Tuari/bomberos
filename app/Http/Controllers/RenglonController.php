@@ -30,14 +30,14 @@ class RenglonController extends Controller
         return view('auth/alerta');
     }
   
-    // public function edit($id)
-    // {
-    //     if(Auth::user()->admin){
-    //       $planilla=Planilla::findorfail($id);
-    //       return view('planilla/editar',compact('planilla'));
-    //     }
-    //     return view('auth/alerta');
-    // }
+    public function edit($id)
+    {
+        if(Auth::user()->admin){
+          $renglon=Renglon::findorfail($id);
+          return view('renglon/editar',compact('renglon'));
+        }
+        return view('auth/alerta');
+    }
   
     public function destroy($id)
     {
