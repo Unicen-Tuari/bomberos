@@ -99,14 +99,21 @@
               </div>
         </div>
 
+        <div class="form-group">
+           <div class="col-md-6 col-md-offset-4">
+           <label class="col-md-4 control-label"  > Nuevo renglon de la planilla</label>
+           <button type="button " class="btn  btn-primary" ><a href="{{ route('renglon.create', $planilla->id) }}">Agregar</a></button>    
+            </div>
+         </div>
+
          <div class="form-group">
            <div class="col-md-6 col-md-offset-4">
              <button type="submit" class="btn btn-primary">
                   <i class=" glyphicon glyphicon-user">Guardar</i>
               </button>
             </div>
-
          </div>
+
       </div>
     </div>
   </article>
