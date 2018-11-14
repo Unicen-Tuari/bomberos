@@ -49,15 +49,15 @@ class RenglonController extends Controller
       return view('auth/alerta');
     }
   
-    // public function update(PlanillaRequest  $data, $id)
-    // {
-    //   if(Auth::user()->admin){
-    //     $planilla=$data->all();
-    //     Planilla::find($id)->update($planilla);
-    //     return redirect()->route('planilla.index');
-    //   }
-    //   return view('auth/alerta');
-    // }
+    public function update(RenglonRequest  $data, $id)
+    {
+      if(Auth::user()->admin){
+        $renglon=$data->all();
+        Renglon::find($id)->update($renglon);
+        return redirect()->route('renglon.index');
+      }
+      return view('auth/alerta');
+    }
   
     public function store(RenglonRequest  $data)
     {
