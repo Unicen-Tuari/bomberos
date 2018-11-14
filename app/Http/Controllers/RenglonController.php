@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Renglon;
-use App\Http\Requests\PlanillaRequest;
+use App\Planilla;
+use App\Http\Requests\RenglonRequest;
 use Illuminate\Support\Facades\Auth;
 
 class RenglonController extends Controller
@@ -62,8 +63,8 @@ class RenglonController extends Controller
     {
       if(Auth::user()->admin){
         $renglon=$data->all();
-        Planilla::create($renglon);
-        return redirect()->route('planilla.index');
+        Renglon::create($renglon);
+        return redirect()->route('renglon.index');
       }
       return view('auth/alerta');
     }

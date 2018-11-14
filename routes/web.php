@@ -43,6 +43,7 @@ Route::resource('vehiculo','VehiculoController');
 Route::resource('variable','VariableController');
 Route::resource('material','MaterialController');
 Route::resource('planilla','PlanillaController');
+Route::resource('renglon','RenglonController');
 
 Route::get('servicio/reporte/', 'ServicioController@reporte')->name('servicio.reporte');
 Route::get('servicio/llamada', 'ServicioController@llamada')->name('servicio.llamada');
