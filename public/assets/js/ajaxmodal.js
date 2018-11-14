@@ -17,8 +17,8 @@ $(document).ready(function () {
     var ruta= window.location.href;
     var url=ruta.substring(0, ruta.indexOf("create"));
     var mes=$('#mes').val();
-    var año=$('#año').val();
-    cargarPuntuacion(url+mes+'/'+año+'/'+id+'/puntuacionmes');
+    var year=$('#year').val();
+    cargarPuntuacion(url+mes+'/'+year+'/'+id+'/puntuacionmes');
   });
 
   $('.descripcion').on('click',function(){
