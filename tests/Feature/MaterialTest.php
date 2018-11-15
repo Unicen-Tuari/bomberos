@@ -65,7 +65,6 @@ class MaterialTest extends TestCase
                        ->get("/material/$newMaterial->id/edit");
 
       $response->assertStatus(200)
-               ->assertSee($newMaterial->id)
                ->assertSee('Editar Material');
     }
 
