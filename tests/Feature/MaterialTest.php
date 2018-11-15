@@ -59,7 +59,7 @@ class MaterialTest extends TestCase
     public function testEditMaterialAsAdmin()
     {
       $user = factory(User::class)->create(['admin'=>true]);
-      $newMAterial = factory(Material::class)->create();
+      $newMaterial = factory(Material::class)->create();
 
       $response = $this->actingAs($user)
                        ->get("/material/$newMaterial->id/edit");
@@ -85,7 +85,6 @@ class MaterialTest extends TestCase
     {
       $user = factory(User::class)->create(['admin'=>true]);
       $newMaterial = factory(Material::class)->create();
-      //factory(Ingreso::class)->create(['id_bombero'=>$firefigher->id]);
       $response = $this->actingAs($user)
                        ->delete("/material/$newMaterial->id");
 
