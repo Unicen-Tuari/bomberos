@@ -16,57 +16,62 @@ class RenglonController extends Controller
         $this->middleware('auth');
     }
   
-    // public function index(Request $request)
+    public function index(Request $request)
+    {
+      $planilla=Planilla::findorfail($id);
+        return view('planilla/editar',compact('planilla'));
+    }
+  
+    // public function create()
     // {
-    //     $planillas=Planilla::get();
-    //     return view('planilla/lista',compact('planillas'));
+
+    // }
+    public function nuevoRenglon($planilla_id)
+    {
+      $planilla=Planilla::find($planilla_id);
+      if(Auth::user()->admin){
+          return view('renglon/alta',compact('planilla'));
+        }
+        return view('auth/alerta');
+    }
+  
+    // public function edit($id, $planilla_id)
+    // {
+    //     if(Auth::user()->admin){
+    //       $renglon=Renglon::findorfail($id);
+    //       return view('renglon/editar',compact('renglon'));
+    //     }
+    //     return view('auth/alerta');
     // }
   
-    public function create()
-    {
-        if(Auth::user()->admin){
-          return view('renglon/alta');
-        }
-        return view('auth/alerta');
-    }
+    // public function destroy($id)
+    // {
+    //   if(Auth::user()->admin){
+    //     $renglon=Renglon::find($id);
+    //     $renglon->delete();
+    //     return redirect()->route('renglon.index');
+    //   }
+    //   return view('auth/alerta');
+    // }
   
-    public function edit($id)
-    {
-        if(Auth::user()->admin){
-          $renglon=Renglon::findorfail($id);
-          return view('renglon/editar',compact('renglon'));
-        }
-        return view('auth/alerta');
-    }
+    // public function update(RenglonRequest  $data, $id)
+    // {
+    //   if(Auth::user()->admin){
+    //     $renglon=$data->all();
+    //     Renglon::find($id)->update($renglon);
+    //     return redirect()->route('renglon.index');
+    //   }
+    //   return view('auth/alerta');
+    // }
   
-    public function destroy($id)
-    {
-      if(Auth::user()->admin){
-        $renglon=Renglon::find($id);
-        $renglon->delete();
-        return redirect()->route('renglon.index');
-      }
-      return view('auth/alerta');
-    }
-  
-    public function update(RenglonRequest  $data, $id)
-    {
-      if(Auth::user()->admin){
-        $renglon=$data->all();
-        Renglon::find($id)->update($renglon);
-        return redirect()->route('renglon.index');
-      }
-      return view('auth/alerta');
-    }
-  
-    public function store(RenglonRequest  $data)
+    public function guardarRenglon(RenglonRequest  $data)
     {
       if(Auth::user()->admin){
         $renglon=$data->all();
         Renglon::create($renglon);
-        return redirect()->route('renglon.index');
+        return redirect()->route('renglon.index', $data->planilla_id);
       }
-      return view('auth/alerta');
+       return view('auth/alerta');
     }
   
 }

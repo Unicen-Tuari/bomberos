@@ -45,6 +45,11 @@ Route::resource('material','MaterialController');
 Route::resource('planilla','PlanillaController');
 Route::resource('renglon','RenglonController');
 
+Route::get('planilla/{id}/renglon', 'RenglonController@nuevoRenglon')->name('renglon.nuevoRenglon');
+//Route::get('planilla/{id}, RenglonController@index')->name('renglon.index');
+Route::post('planilla/{id}/renglon', 'RenglonController@guardarRenglon')->name('renglon.guardarRenglon');
+
+
 Route::get('servicio/reporte/', 'ServicioController@reporte')->name('servicio.reporte');
 Route::get('servicio/llamada', 'ServicioController@llamada')->name('servicio.llamada');
 Route::get('servicio/ultimos', 'ServicioController@ultimos')->name('servicio.ultimos');

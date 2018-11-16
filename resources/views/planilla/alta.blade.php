@@ -4,7 +4,7 @@
 <article class="col-md-12">
   <div class="panel panel-default">
     <div id="breadcrumb" class="panel-heading">
-      <span class="fa fa-user" aria-hidden="true"></span>
+      <span class="fa fa-sticky-note" aria-hidden="true"></span>
       <h4>Alta planilla</h4>
     </div>
     <div class="panel-body">
@@ -98,13 +98,6 @@
                     @endif
               </div>
         </div>
-
-        <div class="form-group">
-           <div class="col-md-6 col-md-offset-4">
-           <label class="col-md-4 control-label"  > Nuevo renglon de la planilla</label>
-           <button type="button " class="btn  btn-primary" ><a href="{{ route('renglon.create', $planilla->id) }}">Agregar</a></button>    
-            </div>
-         </div>
 
          <div class="form-group">
            <div class="col-md-6 col-md-offset-4">

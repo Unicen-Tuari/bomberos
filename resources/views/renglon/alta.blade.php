@@ -4,14 +4,26 @@
 <article class="col-md-12">
   <div class="panel panel-default">
     <div id="breadcrumb" class="panel-heading">
-      <!-- <span class="fa fa-user" aria-hidden="true"></span> -->
+      <span class="fa fa-sticky-note" aria-hidden="true"></span>
       <h4>Alta de renglones de la planilla</h4>
     </div>
     <div class="panel-body">
 
-     <form class="form-horizontal" action='{{route("renglon.store")}}' method="POST">
+     <form class="form-horizontal" action='{{route("renglon.guardarRenglon",$planilla->id)}}' method="POST">
         {{csrf_field()}}
         {{method_field('POST')}}
+
+        <div class="form-group {{ $errors->has('planilla_id') ? ' has-error' : '' }}">
+          <label class="col-md-4 control-label" name="planilla_id" > Numero de Planilla</label>
+          <div class="col-md-6">
+            <input class="form-control" type="text" name="planilla_id" value= "{{$planilla->id}}">
+              @if ($errors->has('planilla_id'))
+                  <span class="help-block">
+                    <strong>{{ $errors->first('planilla_id') }}</strong>
+                  </span>
+              @endif
+          </div>
+        </div>
 
         <div class="form-group {{ $errors->has('descripcion_responsabilidad') ? ' has-error' : '' }}">
           <label class="col-md-4 control-label" name="descripcion_responsabilidad" > Descripción de responsabilidad</label>

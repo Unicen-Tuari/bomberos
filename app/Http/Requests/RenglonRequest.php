@@ -23,7 +23,7 @@ class RenglonRequest extends Request
         case 'POST':
         {
           return [
-              'planilla_id' => 'required|exists:planilla,id',
+              'planilla_id' => 'required|exists:planillas,id',
               'descripcion_responsabilidad' => 'required|max:200', 
               'responsable' => 'required|max:300', 
               'ayudante' => 'required|max:300', 
@@ -33,7 +33,7 @@ class RenglonRequest extends Request
         case 'PUT':
         {
           return [
-              'planilla_id' => 'required|exists:planilla,id',
+              'planilla_id' => 'required|exists:planillas,id',
               'descripcion_responsabilidad' => 'required|max:200', 
               'responsable' => 'required|max:300', 
               'ayudante' => 'required|max:300', 
