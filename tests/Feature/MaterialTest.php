@@ -32,7 +32,7 @@ class MaterialTest extends TestCase
                        ->get('/material');
 
       $response->assertStatus(200)
-               ->assertSee('glyphicon glyphicon-trash');
+               //->assertSee('glyphicon glyphicon-trash');
     }
     public function testCreateMaterialAsAdmin()
     {
@@ -42,7 +42,7 @@ class MaterialTest extends TestCase
                        ->get('/Material/create');
 
       $response->assertStatus(200)
-               ->assertSee('Alta de material');
+               ->assertSee('Alta de Material');
     }
 
     public function testCreateMaterial()
