@@ -23,26 +23,28 @@ class MaterialTest extends TestCase
       $response->assertStatus(200)
                ->assertSee('Lista de materiales');
     }
-    public function testListButtomsMaterial()
+    public function testListButtomsMaterialAdmin()
     {
-      $user = factory(User::class)->create();
+      $user = factory(User::class)->create(['admin'=>true]);
       $newMaterial = factory(Material::class)->create();
 
       $response = $this->actingAs($user)
                        ->get('/material');
 
       $response->assertStatus(200)
-               //->assertSee('glyphicon glyphicon-trash');
+               ->assertSee('glyphicon-trash')
+               ->assertSee('glyphicon-edit');
+              
     }
     public function testCreateMaterialAsAdmin()
     {
       $user = factory(User::class)->create(['admin'=>true]);
-
+      $newMaterial=factory(Material::class)->create();
       $response = $this->actingAs($user)
-                       ->get('/Material/create');
+                       ->get('/material/create');
 
       $response->assertStatus(200)
-               ->assertSee('Alta de Material');
+               ->assertSee('Alta de material');
     }
 
     public function testCreateMaterial()
@@ -65,7 +67,7 @@ class MaterialTest extends TestCase
                        ->get("/material/$newMaterial->id/edit");
 
       $response->assertStatus(200)
-               ->assertSee('Editar Material');
+               ->assertSee('Editar material');
     }
 
     public function testEditMaterial()
@@ -87,12 +89,10 @@ class MaterialTest extends TestCase
       $response = $this->actingAs($user)
                        ->delete("/material/$newMaterial->id");
 
-      $response->assertRedirect("/material")
-               ->assertSee('Lista de materiales');
-
+      $response->assertStatus(302);
     }
 
-    public function testoDeleteMaterial()
+    public function testDeleteMaterial()
     {
       $user = factory(User::class)->create();
       $newMaterial = factory(Material::class)->create();
