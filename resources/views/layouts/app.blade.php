@@ -170,14 +170,14 @@
             @endif
           </div>
 
+          @if (Auth::user()->admin)
           <a href="#planillaSubMenu" id="planillaMenu" class="list-group-item" data-toggle="collapse" data-parent="#MainMenu"><i class="fa fa-sticky-note fa-lg" style="padding-right: 10px;"></i> Planilla<span class="arrow"></span></a>
-          <div class="collapse" id="planillaSubMenu">
-            @if (Auth::user()->admin)
+          <div class="collapse" id="planillaSubMenu">  
               <a href="{{route('planilla.create')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Cargar</a>
               <a href="{{route('planilla.index')}}" class="list-group-item"><i class="fa fa-angle-double-right fa-md"></i> Listar</a>
-            @endif
           </div>
-
+          @endif
+          
           @if (Auth::user()->admin)
           <a href="#usuariosSubMenu" id="usuarioMenu" class="list-group-item" data-toggle="collapse" data-parent="#MainMenu"><i class="fa fa-id-badge fa-lg" style="padding-right: 10px;"></i> Usuarios<span class="arrow"></span></a>
           <div class="collapse" id="usuariosSubMenu">

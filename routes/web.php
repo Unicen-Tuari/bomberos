@@ -43,11 +43,12 @@ Route::resource('vehiculo','VehiculoController');
 Route::resource('variable','VariableController');
 Route::resource('material','MaterialController');
 Route::resource('planilla','PlanillaController');
-Route::resource('renglon','RenglonController');
+Route::resource('planilla/{id}/renglon','RenglonController');
 
-Route::get('planilla/{id}/renglon', 'RenglonController@nuevoRenglon')->name('renglon.nuevoRenglon');
-//Route::get('planilla/{id}, RenglonController@index')->name('renglon.index');
-Route::post('planilla/{id}/renglon', 'RenglonController@guardarRenglon')->name('renglon.guardarRenglon');
+//Route::get('planilla/{id}/renglon', 'RenglonController@nuevoRenglon')->name('renglon.nuevoRenglon');
+//Route::get('planilla/{id}/renglon', 'RenglonController@listar')->name('renglon.listar');
+//Route::get('renglon/{id}', 'RenglonController@editar')->name('renglon.editar');
+//Route::get('renglon/{id}', 'RenglonController@update')->name('renglon.update');
 
 
 Route::get('servicio/reporte/', 'ServicioController@reporte')->name('servicio.reporte');

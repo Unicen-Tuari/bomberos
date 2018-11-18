@@ -1,4 +1,4 @@
-@extends('layouts.app')
+ @extends('layouts.app')
 
 @section('content')
 <article class="col-md-12">
@@ -7,9 +7,9 @@
       <span class="fa fa-sticky-note" aria-hidden="true"></span>
       <h4>Alta de renglones de la planilla</h4>
     </div>
-    <div class="panel-body">
+    <div class="panel-body"> 
 
-     <form class="form-horizontal" action='{{route("renglon.guardarRenglon",$planilla->id)}}' method="POST">
+     <form class="form-horizontal" action='{{route("renglon.store",$planilla->id)}}' method="POST">
         {{csrf_field()}}
         {{method_field('POST')}}
 
@@ -72,4 +72,4 @@
       </div>
     </div>
   </article>
- @endsection
+ @endsection 
