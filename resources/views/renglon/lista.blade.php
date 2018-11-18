@@ -25,7 +25,9 @@
           <td>{{$renglon->ayudante}}</td>
           <td><a href="{{ route('renglon.edit',[$renglon->planilla_id,$renglon->id]) }}" class="glyphicon glyphicon-edit"></a></td>
           <td>
-            
+              <form action="{{route('renglon.destroy',[$renglon->planilla_id,$renglon->id])}}" method="post">
+                {{ csrf_field() }}
+                {{ method_field('DELETE') }}
                 <button type="submit" class="glyphicon glyphicon-trash"></button>
               </form>
           </td>
@@ -34,6 +36,13 @@
       </tbody>
       <br>
     </table>
+    <div class="form-group">
+            <label class="col-md-4 control-label"  > Nuevo dato</label>
+            <div class="col-md-6">            
+            <button type="submit" class="btn btn-success"> <a href="" class= "glyphicon glyphicon-plus"></a>
+            </button>
+            </div>
+         </div>  
   </div>
 </div>
 </article>

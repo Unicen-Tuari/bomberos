@@ -40,10 +40,11 @@ class RenglonController extends Controller
         return view('auth/alerta');
     }
   
-    public function destroy($id)
+    public function destroy($planilla_id,$id)
     {
       if(Auth::user()->admin){
         $renglon=Renglon::find($id);
+        $planilla= $planilla_id;
         $renglon->delete();
         return redirect()->route('renglon.index', $planilla);
       }
