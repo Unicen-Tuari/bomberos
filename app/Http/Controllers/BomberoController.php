@@ -29,7 +29,7 @@ class BomberoController extends Controller
       return view('bombero/lista',compact('bomberos'));
   }
 
-  public function createRenglon()
+  public function create()
   {
       if(Auth::user()->admin){
         return view('bombero/alta');
