@@ -91,7 +91,7 @@ class PlanillaTest extends TestCase
                ->assertSee('No tienes permisos');
     }
 
-    public function testDeleteUsuarioAsAdmin()
+    public function testDeletePlanillaAsAdmin()
     {
       $user = factory(\App\User::class)->create(['admin'=>true]);
       $planilla = factory(\App\Planilla::class)->create();
