@@ -34,7 +34,6 @@
             </td>
           @endif
           </tr>
-          @php $planilla=$renglon->planilla_id @endphp
           @endforeach
         </tbody>
       
@@ -42,10 +41,9 @@
     </table>
     @if (Auth::user()->admin)
       <div class="form-group">
-            <label class="col-md-4 control-label"  > Nuevo dato</label>
+            <label class="col-md-4 control-label"  >Nuevo dato</label>
             <div class="col-md-6">            
-            
-            <button type="submit" class="btn btn-success"> <a href="{{route('renglon.create',$planilla)}}" class= "glyphicon glyphicon-plus"></a>
+            <button type="submit" class="btn btn-success"> <a href="{{route('renglon.create',$planilla_id)}}" class= "glyphicon glyphicon-plus"></a>
             </button>
             </div>
       </div>  

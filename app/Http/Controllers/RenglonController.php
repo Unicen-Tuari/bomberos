@@ -19,7 +19,7 @@ class RenglonController extends Controller
     public function index($planilla_id)
     {
       $renglones=Renglon::where('planilla_id', $planilla_id)->get();
-        return view('renglon/lista',compact('renglones'));
+        return view('renglon/lista',compact('renglones', 'planilla_id'));
     }
   
     public function create($planilla_id)
