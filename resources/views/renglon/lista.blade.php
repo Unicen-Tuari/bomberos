@@ -23,30 +23,34 @@
           <td>{{$renglon->descripcion_responsabilidad}}</td>
           <td>{{$renglon->responsable}}</td>
           <td>{{$renglon->ayudante}}</td>
-          <td><a href="{{ route('renglon.edit',[$renglon->planilla_id,$renglon->id]) }}" class="glyphicon glyphicon-edit"></a></td>
-          <td>
-              <form action="{{route('renglon.destroy',[$renglon->planilla_id,$renglon->id])}}" method="post">
-                {{ csrf_field() }}
-                {{ method_field('DELETE') }}
-                <button type="submit" class="glyphicon glyphicon-trash"></button>
-              </form>
-          </td>
-        </tr>
-        @php $planilla=$renglon->planilla_id @endphp
-        @endforeach
+          @if (Auth::user()->admin)
+            <td><a href="{{ route('renglon.edit',[$renglon->planilla_id,$renglon->id]) }}" class="glyphicon glyphicon-edit"></a></td>
+            <td>
+                <form action="{{route('renglon.destroy',[$renglon->planilla_id,$renglon->id])}}" method="post">
+                  {{ csrf_field() }}
+                  {{ method_field('DELETE') }}
+                  <button type="submit" class="glyphicon glyphicon-trash"></button>
+                </form>
+            </td>
+          @endif
+          </tr>
+          @php $planilla=$renglon->planilla_id @endphp
+          @endforeach
         </tbody>
       
       <br>
     </table>
-    <div class="form-group">
+    @if (Auth::user()->admin)
+      <div class="form-group">
             <label class="col-md-4 control-label"  > Nuevo dato</label>
             <div class="col-md-6">            
             
             <button type="submit" class="btn btn-success"> <a href="{{route('renglon.create',$planilla)}}" class= "glyphicon glyphicon-plus"></a>
             </button>
             </div>
-         </div>  
+      </div>  
+    @endif  
+    </div>
   </div>
-</div>
 </article>
 @endsection
