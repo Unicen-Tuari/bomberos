@@ -6,7 +6,7 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Puntuacion;
 use App\Bombero;
-
+use App\Variables;
 class PuntuacionTest extends TestCase
 {
     public function testBombero()
@@ -16,5 +16,10 @@ class PuntuacionTest extends TestCase
         $bomberoPuntuacion = Puntuacion::find($puntuacion->id)->bombero;
         $this->assertEquals($bomberoPuntuacion->id,$bombero->id);
         $this->assertEquals($bomberoPuntuacion->nro_legajo(),$bombero->nro_legajo());
+    }
+
+    public function testPuntacionmes(){
+        
+
     }
 }

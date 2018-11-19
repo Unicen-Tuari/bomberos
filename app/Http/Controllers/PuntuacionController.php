@@ -49,9 +49,13 @@ class PuntuacionController extends Controller
     public function puntuacionmes($month,$year,$bombero)
     {
         if(Auth::user()->admin){
-          $var=Variables::first();
+          //$vaarr=Variables::first();
+          $var=Variables::whereNotNull('year')->where('year','=', $year)->first();
           $monthactual=\Carbon\Carbon::now()->format('m');
           $yearactual=\Carbon\Carbon::now()->format('Y');
+          if(!isset($var)){
+              return view('errors/faltante');
+          }
           if($year<$yearactual || ($year==$yearactual && $month<$monthactual)){
             $bombero=Bombero::find($bombero);
             $dias=asistencia::select(\DB::raw('COUNT(*) as cant, id_bombero'))->whereYear('fecha_reunion','=',$year)->whereMonth('fecha_reunion','=',$month)->groupBy('id_bombero')->get()->max('cant');
