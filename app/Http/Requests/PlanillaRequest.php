@@ -24,7 +24,7 @@ class PlanillaRequest extends Request
         {
           return [
               'jefe_guardia' => 'required',
-              'nro_guardia' => 'required', 
+              'nro_guardia' => 'required|numeric', 
               'inicio_semana' => 'required|numeric', 
               'fin_semana' => 'required|numeric', 
               'mes' => 'required',
@@ -36,7 +36,7 @@ class PlanillaRequest extends Request
         {
           return [
               'jefe_guardia' => 'required',
-              'nro_guardia' => 'required', 
+              'nro_guardia' => 'required|numeric', 
               'inicio_semana' => 'required|numeric', 
               'fin_semana' => 'required|numeric', 
               'mes' => 'required',
