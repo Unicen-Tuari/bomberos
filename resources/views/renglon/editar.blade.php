@@ -14,15 +14,12 @@
         {{ method_field('PUT') }}
 
         <div class="form-group {{ $errors->has('planilla_id') ? ' has-error' : '' }}">
-          <label class="col-md-4 control-label" name="planilla_id" > Numero de planilla</label>
-        <div class="col-md-6">
-                    <input class="form-control" type="text" name="planilla_id" value="{{$renglon->planilla_id}}">
+            <input class="form-control" type="hidden" name="planilla_id" value="{{$renglon->planilla_id}}">
               @if ($errors->has('planilla_id'))
                   <span class="help-block">
                       <strong>{{ $errors->first('planilla_id') }}</strong>
                   </span>
               @endif
-          </div>
         </div>
 
         <div class="form-group {{ $errors->has('descripcion_responsabilidad') ? ' has-error' : '' }}">
