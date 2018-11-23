@@ -14,14 +14,18 @@
         {{ method_field('PUT') }}
 
         <div class="form-group {{ $errors->has('jefe_guardia') ? ' has-error' : '' }}">
-          <label class="col-md-4 control-label" name="jefe_guardia" > Jefe de Guardia</label>
-        <div class="col-md-6">
-                    <input class="form-control" type="text" name="jefe_guardia" value="{{$planilla->jefe_guardia}}">
-              @if ($errors->has('jefe_guardia'))
-                  <span class="help-block">
-                      <strong>{{ $errors->first('jefe_guardia') }}</strong>
-                  </span>
-              @endif
+          <label for="jefe_guardia" class="col-md-4 control-label">Jefe de guardia</label>
+          <div class="col-md-6">
+            <select class="form-control" name="jefe_guardia">
+              @foreach($bomberos as $bombero)
+                <option value="{{$bombero->id}}" @if($bombero->id === $planilla->jefe_guardia) selected @endif>{{$bombero->apellido}}, {{$bombero->nombre}}</option>
+              @endforeach
+            </select>
+            @if ($errors->has('jefe_guardia'))
+                <span class="help-block">
+                    <strong>{{$errors->first('jefe_guardia')}}</strong>
+                </span>
+            @endif
           </div>
         </div>
 

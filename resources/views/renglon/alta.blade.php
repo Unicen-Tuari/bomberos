@@ -35,29 +35,39 @@
         </div>
 
         <div class="form-group {{ $errors->has('responsable') ? ' has-error' : '' }}">
-            <label class="col-md-4 control-label" name="responsable" > Responsable</label>
-              <div class="col-md-6">
-                <input class="form-control" type="text" name="responsable" placeholder= "Responsable">
-                    @if ($errors->has('responsable'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('responsable') }}</strong>
-                        </span>
-                    @endif
-              </div>
+          <label for="responsable" class="col-md-4 control-label">Responsable</label>
+          <div class="col-md-6">
+            <select class="form-control" name="responsable">
+              <option value="">Bombero... </option>
+              @foreach($bomberos as $bombero)
+                <option value="{{$bombero->id}}">{{$bombero->apellido}}, {{$bombero->nombre}}</option>
+              @endforeach
+            </select>
+            @if ($errors->has('reemplazo'))
+                <span class="help-block">
+                    <strong>{{$errors->first('reemplazo')}}</strong>
+                </span>
+            @endif
+          </div>
         </div>
-
+        
         <div class="form-group {{ $errors->has('ayudante') ? ' has-error' : '' }}">
-            <label class="col-md-4 control-label" name="ayudante" > Ayudante</label>
-              <div class="col-md-6">
-                <input class="form-control" type="text" name="ayudante" placeholder= "Ayudante">
-                    @if ($errors->has('ayudante'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('ayudante') }}</strong>
-                        </span>
-                    @endif
-              </div>
+          <label for="ayudante" class="col-md-4 control-label">Ayudante</label>
+          <div class="col-md-6">
+            <select class="form-control" name="ayudante">
+              <option value="">Bombero... </option>
+              @foreach($bomberos as $bombero)
+                <option value="{{$bombero->id}}">{{$bombero->apellido}}, {{$bombero->nombre}}</option>
+              @endforeach
+            </select>
+            @if ($errors->has('ayudante'))
+                <span class="help-block">
+                    <strong>{{$errors->first('ayudante')}}</strong>
+                </span>
+            @endif
+          </div>
         </div>
-
+       
          <div class="form-group">
            <div class="col-md-6 col-md-offset-4">
              <button type="submit" class="btn btn-primary">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Bombero;
 use App\Renglon;
 use App\Planilla;
 use App\Http\Requests\RenglonRequest;
@@ -19,23 +20,33 @@ class RenglonController extends Controller
     public function index($planilla_id)
     {
       $renglones=Renglon::where('planilla_id', $planilla_id)->get();
-        return view('renglon/lista',compact('renglones', 'planilla_id'));
+      if (!empty($renglones)){
+        foreach ($renglones as $key => $renglon){
+          $bombero_responsable = Renglon::find($renglon->id)->bombero_responsable;
+          $renglon['responsable'] = $bombero_responsable->apellido . ", " . $bombero_responsable->nombre;
+          $bombero_ayudante= Renglon::find($renglon->id)->bombero_ayudante;
+          $renglon['ayudante'] =$bombero_ayudante->apellido . ", " . $bombero_ayudante->nombre;
+        }
+      }
+      return view('renglon/lista',compact('renglones', 'planilla_id'));
     }
   
     public function create($planilla_id)
     {
       $planilla=Planilla::find($planilla_id);
+      $bomberos = Bombero::all();
       if(Auth::user()->admin){
-          return view('renglon/alta',compact('planilla'));
+          return view('renglon/alta',compact('planilla','bomberos'));
         }
         return view('auth/alerta');
     }
   
     public function edit($planilla_id,$id)
     {
+        $bomberos = Bombero::all();
         if(Auth::user()->admin){
           $renglon=Renglon::findorfail($id);
-          return view('renglon/editar',compact('renglon'));
+          return view('renglon/editar',compact('renglon','bomberos'));
         }
         return view('auth/alerta');
     }

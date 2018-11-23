@@ -144,7 +144,7 @@ $factory->define(App\Reemplazo::class, function (Faker\Generator $faker){
   $factory->define(App\Planilla::class, function (Faker\Generator $faker){
     $mes= 'Enero';
     return[
-      'jefe_guardia' => $faker->name(), 
+      'jefe_guardia' => factory(App\Bombero::class)->create()->id, 
       'nro_guardia'=> $faker->randomNumber($nbDigits = 3),
       'inicio_semana'=> $faker->numberBetween($min = 1, $max = 31), 
       'fin_semana' => $faker->numberBetween($min = 1, $max = 31),
@@ -157,7 +157,7 @@ $factory->define(App\Reemplazo::class, function (Faker\Generator $faker){
     return [
       'planilla_id' => factory(App\Planilla::class)->create()->id,
       'descripcion_responsabilidad' => $faker->realText($maxNbChars = 50, $indexSize = 2),
-      'responsable' => $faker->name(),
-      'ayudante' => $faker->name(),
+      'responsable' => factory(App\Bombero::class)->create()->id,
+      'ayudante' => factory(App\Bombero::class)->create()->id,
     ];
   }); 

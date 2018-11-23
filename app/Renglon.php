@@ -15,4 +15,10 @@ class Renglon extends Model
     public function planillas(){
       return $this->belongsTo(Planilla::class);
     }
+    public function bombero_responsable(){
+      return $this->hasOne(Bombero::class,"id","responsable");
+    }
+    public function bombero_ayudante(){
+      return $this->hasOne(Bombero::class,"id","ayudante");
+    }
 }
