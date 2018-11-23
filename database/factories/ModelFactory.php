@@ -141,3 +141,23 @@ $factory->define(App\Reemplazo::class, function (Faker\Generator $faker){
     ];
   });
 
+  $factory->define(App\Planilla::class, function (Faker\Generator $faker){
+    $mes= 'Enero';
+    return[
+      'jefe_guardia' => $faker->name(), 
+      'nro_guardia'=> $faker->randomNumber($nbDigits = 3),
+      'inicio_semana'=> $faker->numberBetween($min = 1, $max = 31), 
+      'fin_semana' => $faker->numberBetween($min = 1, $max = 31),
+      'mes' => $mes, 
+      'year'=> $faker->numberBetween($min = 1800, $max = 2300),
+    ];
+  });
+  
+  $factory->define(App\Renglon::class, function (Faker\Generator $faker) {
+    return [
+      'planilla_id' => factory(App\Planilla::class)->create()->id,
+      'descripcion_responsabilidad' => $faker->realText($maxNbChars = 50, $indexSize = 2),
+      'responsable' => $faker->name(),
+      'ayudante' => $faker->name(),
+    ];
+  }); 
