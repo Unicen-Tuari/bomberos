@@ -374,3 +374,25 @@ a:hover, a:focus {
 .alto{
   height: 350px;
 }
+
+.onBorder{
+  border: 2px solid black;
+  text-align: center;
+}
+
+#bgLight{
+  background: white;
+}
+
+#topSign{
+  margin-top: 25px;
+  margin-bottom: 10px;
+}
+
+td{
+  text-align: center;
+  padding-right: 30px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+

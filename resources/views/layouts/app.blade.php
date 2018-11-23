@@ -68,6 +68,12 @@
               </li>
 
               <li class="navIcon text-center">
+                <a href="{{route('planilla.create')}}" title="Planilla de responsabilidades">
+                  <p><span class="glyphicon glyphicon-file"></span></p><p><span class="icon-title">Planilla</span></p>
+                </a>
+              </li>
+
+              <li class="navIcon text-center">
             @else
               <li id="first-icon"  class="navIcon text-center">
             @endif
