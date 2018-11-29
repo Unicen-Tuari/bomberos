@@ -23,7 +23,7 @@ class PlanillaRequest extends Request
         case 'POST':
         {
           return [
-              'jefe_guardia' => 'required',
+              'jefe_guardia' => 'required|numeric|exists:bombero,id',
               'nro_guardia' => 'required|numeric', 
               'inicio_semana' => 'required|numeric', 
               'fin_semana' => 'required|numeric', 
@@ -35,7 +35,7 @@ class PlanillaRequest extends Request
         case 'PUT':
         {
           return [
-              'jefe_guardia' => 'required',
+              'jefe_guardia' => 'required|numeric|exists:bombero,id',
               'nro_guardia' => 'required|numeric', 
               'inicio_semana' => 'required|numeric', 
               'fin_semana' => 'required|numeric', 

@@ -25,8 +25,8 @@ class RenglonRequest extends Request
           return [
               'planilla_id' => 'required|exists:planillas,id',
               'descripcion_responsabilidad' => 'required|max:200', 
-              'responsable' => 'required|max:300', 
-              'ayudante' => 'required|max:300', 
+              'responsable' => 'required|numeric|exists:bombero,id',
+              'ayudante' => 'required|numeric|exists:bombero,id|different:responsable', 
           ];
         }
 
@@ -35,8 +35,8 @@ class RenglonRequest extends Request
           return [
               'planilla_id' => 'required|exists:planillas,id',
               'descripcion_responsabilidad' => 'required|max:200', 
-              'responsable' => 'required|max:300', 
-              'ayudante' => 'required|max:300', 
+              'responsable' => 'required|numeric|exists:bombero,id', 
+              'ayudante' => 'required|numeric|exists:bombero,id|different:responsable',  
           ];
         }
         default:break;

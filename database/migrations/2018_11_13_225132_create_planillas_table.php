@@ -15,13 +15,14 @@ class CreatePlanillasTable extends Migration
     {
         Schema::create('planillas', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('jefe_guardia',100);
+            $table->integer('jefe_guardia')->unsigned();
             $table->integer('nro_guardia')->unsigned();
             $table->integer('inicio_semana')->unsigned();
             $table->integer('fin_semana')->unsigned();
             $table->string('mes',20);
             $table->integer('year')->unsigned();
             $table->timestamps();
+            $table->foreign('jefe_guardia')->references('id')->on('bombero')->onDelete('cascade');
         });
     }
 

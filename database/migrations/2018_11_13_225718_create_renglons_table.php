@@ -17,9 +17,11 @@ class CreateRenglonsTable extends Migration
             $table->increments('id');
             $table->integer('planilla_id')->unsigned();
             $table->string('descripcion_responsabilidad',200);
-            $table->string('responsable',300);
-            $table->string('ayudante',300);
+            $table->integer('responsable')->unsigned();
+            $table->integer('ayudante')->unsigned();
             $table->timestamps();
+            $table->foreign('responsable')->references('id')->on('bombero')->onDelete('cascade');
+            $table->foreign('ayudante')->references('id')->on('bombero')->onDelete('cascade');
             $table->foreign('planilla_id')->references('id')->on('planillas')->onDelete('cascade');
         });
     }
