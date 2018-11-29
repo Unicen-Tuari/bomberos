@@ -45,6 +45,7 @@
               <button type="submit" class="glyphicon glyphicon-ban-circle" title="Sin permisos para eliminar/modificar"></button>
             </td>
           @endif
+          <td><a href="{{ route('planilla.mostrar', $planilla->id) }}" class="glyphicon glyphicon-picture"></a></td>
         </tr>
         @endforeach
       </tbody>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Planilla;
+use App\Renglon;
 use App\Http\Requests\PlanillaRequest;
 use Illuminate\Support\Facades\Auth;
 
@@ -67,5 +68,24 @@ class PlanillaController extends Controller
     }
     return view('auth/alerta');
   }
+
+  public function mostrar($id)
+  { 
+    $planilla=Planilla::find($id);
+    $renglon=Renglon::find($id);
+    $responsable=User::find($renglon->responsable);
+    $ayudante=User::find($renglon->ayudante);
+    return view('planilla.mostrar', compact('planilla', 'renglon', 'responsable', 'ayudante'));
+  }
+
+  public function imprimir($id)
+  { 
+    $planilla=Planilla::find($id);
+    $renglon=Renglon::find($id);
+    $responsable=User::find($renglon->responsable);
+    $ayudante=User::find($renglon->ayudante);
+    return view('planilla.imprimir', compact('planilla', 'renglon', 'responsable', 'ayudante'));
+  }
+
 
 }
