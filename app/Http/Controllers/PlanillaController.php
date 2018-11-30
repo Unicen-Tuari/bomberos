@@ -5,12 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Planilla;
-<<<<<<< HEAD
-use App\Renglon;
-=======
 use App\Bombero;
+use App\Renglon;
 
->>>>>>> 5df5b47d58ed9a07841c4ebe7c5ac22806fdfabb
 use App\Http\Requests\PlanillaRequest;
 
 use Illuminate\Support\Facades\Auth;
@@ -83,23 +80,28 @@ class PlanillaController extends Controller
     return view('auth/alerta');
   }
 
-  public function mostrar($id)
-  { 
+  public function mostrar($id){ 
     $planilla=Planilla::find($id);
-    $renglon=Renglon::find($id);
-    $responsable=User::find($renglon->responsable);
-    $ayudante=User::find($renglon->ayudante);
-    return view('planilla.mostrar', compact('planilla', 'renglon', 'responsable', 'ayudante'));
+    $jefe=Bombero::find($planilla->jefe_guardia);
+
+    $renglones=Renglon::where('planilla_id', $planilla->id)->get();
+      foreach ($renglones as $renglon){
+      $responsables[]=Bombero::find($renglon->responsable);
+      $ayudantes[]=Bombero::find($renglon->ayudante);
+    }
+    return view('planilla.mostrar', compact('planilla', 'renglones', 'jefe', 'responsables', 'ayudantes'));
   }
 
-  public function imprimir($id)
-  { 
+  public function imprimir($id){
     $planilla=Planilla::find($id);
-    $renglon=Renglon::find($id);
-    $responsable=User::find($renglon->responsable);
-    $ayudante=User::find($renglon->ayudante);
-    return view('planilla.imprimir', compact('planilla', 'renglon', 'responsable', 'ayudante'));
-  }
+    $jefe=Bombero::find($planilla->jefe_guardia);
 
+    $renglones=Renglon::where('planilla_id', $planilla->id)->get();
+      foreach ($renglones as $renglon){
+      $responsables[]=Bombero::find($renglon->responsable);
+      $ayudantes[]=Bombero::find($renglon->ayudante);
+    }
+    return view('planilla.imprimir', compact('planilla', 'renglones', 'jefe', 'responsables', 'ayudantes'));
+  }
 
 }
