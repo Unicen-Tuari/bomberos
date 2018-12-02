@@ -38,4 +38,29 @@
     body {
       margin: 0 auto;
     }
+
+    .onBorder{
+        border: 2px solid black;
+        text-align: center;
+        padding-top: 8px;
+        margin: 1px;
+    }
+    
+    .descripcion{
+        padding-top: 1px;
+        margin: 1px;
+    }
+    
+    .descripcion p{
+        margin: 0px;
+        padding-top: 1%;
+        padding-bottom: 1%;
+        padding-left: 1%;
+        background: #d1d1d1;
+    }
+    
+    .descripcion #responsable{
+        margin: 0px;
+        background: #e3e3e3;
+    }
   }

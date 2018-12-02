@@ -6,18 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bomberos voluntarios</title>
-    {!! Html::style('assets/css/planilla.css') !!}
     {!! Html::style('assets/css/font-awesome.min.css') !!}
     {!! Html::style('assets/css/bootstrap.css') !!}
     {!! Html::style('assets/css/bootstrap-multiselect.css') !!}
     {!! Html::style('assets/css/bootstrap-toggle.min.css') !!}
+    {!! Html::style('assets/css/planilla.css') !!}
 </head>
 
 <body onload="window.print()">
 
-  <div class="container" id="printeable">
+  <div class="container">
       <div class="row">
-        <div class="col-md-10 col-md-offset-1">
+        <div class="col-xs-10 col-xs-offset-1">
           <h4>Jefe de guardia N° {{$jefe->apellido}}, {{$jefe->nombre}}
           responsable de las actividades del Orden Interno durante la semana del 
           {{$planilla->inicio_semana}} al {{$planilla->fin_semana}} de 
@@ -27,16 +27,16 @@
 
       @foreach($renglones as $key=>$renglon)
       <div class="row">
-        <div class="col-md-3 col-md-offset-1">
+        <div class="col-xs-3 col-xs-offset-1">
             <div class="onBorder">
                 <p>{{$renglon->descripcion_responsabilidad}}</p>
                 <p>Móviles {{$renglon->created_at}}</p>
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-xs-7">
             <div class="descripcion">
-                <p id="responsable">Responsable -- Legajo: {{$responsables[$key]->legajo}}  - Nombre: {{$responsables[$key]->apellido}}, {{$responsables[$key]->nombre}} - Firma: </p>
-                <p>Ayudante -- Legajo: {{$ayudantes[$key]->legajo}}  - Nombre: {{$ayudantes[$key]->apellido}}, {{$ayudantes[$key]->nombre}} - Firma: </p>
+                <p id="responsable">Responsable -- Legajo: {{$responsables[$key]->legajo}}  - Nombre: {{$responsables[$key]->apellido}}, {{$responsables[$key]->nombre}} - Firma: ___________________</p>
+                <p>Ayudante -- Legajo: {{$ayudantes[$key]->legajo}}  - Nombre: {{$ayudantes[$key]->apellido}}, {{$ayudantes[$key]->nombre}} - Firma: ___________________</p>
             </div>
         </div>
       </div>
@@ -47,37 +47,5 @@
     {!!HTML::script('assets/js/bootstrap-multiselect.js')!!}
     {!!HTML::script('assets/js/script.js')!!}      
     {!! Html::script('assets/js/bootstrap-toggle.js') !!}
-
- <script type="text/javascript">
-      window.onload = function() {window.print();}
-    /*document.getElementsById('printeable').addEventListener('onload', 
-    function(){ console.log("1");
-     document.print();}); */
-
-    /*var mywindow = window.open('', 'PRINT', 'height=800,width=1200');
-    mywindow.document.write('<!DOCTYPE html><html lang="en">');
-    mywindow.document.write(document.getElementsByTagName('head')[0].innerHTML);
-    mywindow.document.write('<body >');
-    mywindow.document.write(document.getElementById("printeable").innerHTML);
-    mywindow.document.write('</body></html>');
-
-    mywindow.document.close();
-    mywindow.focus();
-
-    mywindow.print();
-    mywindow.close();*/
-
-/*        <div class="container">
-            <div class="row" id="topSign">
-                <div class="col-sm-2 col-sm-offset-1">
-                    <button onclick="print()" type="submit" class="btn btn-primary">
-                        <i class="fa fa-exchange"></i> Imprimir
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>*/
-</script>
-
 </body>
 </html>

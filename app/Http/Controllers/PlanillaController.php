@@ -82,26 +82,32 @@ class PlanillaController extends Controller
 
   public function mostrar($id){ 
     $planilla=Planilla::find($id);
-    $jefe=Bombero::find($planilla->jefe_guardia);
-
-    $renglones=Renglon::where('planilla_id', $planilla->id)->get();
-      foreach ($renglones as $renglon){
-      $responsables[]=Bombero::find($renglon->responsable);
-      $ayudantes[]=Bombero::find($renglon->ayudante);
+    if($planilla != null){
+      $jefe=Bombero::find($planilla->jefe_guardia);
+      $renglones=Renglon::where('planilla_id', $planilla->id)->get();
+        foreach ($renglones as $renglon){
+          $responsables[]=Bombero::find($renglon->responsable);
+          $ayudantes[]=Bombero::find($renglon->ayudante);
+        }
+      return view('planilla.mostrar', compact('planilla', 'renglones', 'jefe', 'responsables', 'ayudantes'));
+    }else{
+      return view('auth/planilla');
     }
-    return view('planilla.mostrar', compact('planilla', 'renglones', 'jefe', 'responsables', 'ayudantes'));
   }
 
   public function imprimir($id){
     $planilla=Planilla::find($id);
-    $jefe=Bombero::find($planilla->jefe_guardia);
-
-    $renglones=Renglon::where('planilla_id', $planilla->id)->get();
-      foreach ($renglones as $renglon){
-      $responsables[]=Bombero::find($renglon->responsable);
-      $ayudantes[]=Bombero::find($renglon->ayudante);
+    if($planilla != null){
+      $jefe=Bombero::find($planilla->jefe_guardia);
+      $renglones=Renglon::where('planilla_id', $planilla->id)->get();
+        foreach ($renglones as $renglon){
+          $responsables[]=Bombero::find($renglon->responsable);
+          $ayudantes[]=Bombero::find($renglon->ayudante);
+        }
+      return view('planilla.imprimir', compact('planilla', 'renglones', 'jefe', 'responsables', 'ayudantes'));
+    }else{
+      return view('auth/planilla');
     }
-    return view('planilla.imprimir', compact('planilla', 'renglones', 'jefe', 'responsables', 'ayudantes'));
   }
 
 }

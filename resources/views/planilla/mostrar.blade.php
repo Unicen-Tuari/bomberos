@@ -47,38 +47,6 @@
     {{ Form::close() }}
     </div>
   </div>
-
-<script>
-function Imprimir(){
-
-  var mywindow = window.open('', 'PRINT', 'height=800,width=1200');
-  mywindow.document.write('<!DOCTYPE html><html lang="en">');
-  mywindow.document.write(document.getElementsByTagName('head')[0].innerHTML);
-  mywindow.document.write('<body >');
-  mywindow.document.write(document.getElementById("printeable").innerHTML);
-  mywindow.document.write('</body></html>');
-
-  mywindow.document.close();
-  mywindow.focus();
-
-  mywindow.print();
-  mywindow.close();
-
-  /*
-
-  <div class="container">
-      <div class="row" id="topSign">
-        <div class="col-sm-2 col-sm-offset-1">
-        <a href="{{ route('planilla.imprimir', $planilla->id) }}" 
-          class="glyphicon glyphicon-picture"></a>
-        </div>
-      </div>
-  </div>
-
-  */
-
-}
-</script>
 @endsection
 
 @section('js')
