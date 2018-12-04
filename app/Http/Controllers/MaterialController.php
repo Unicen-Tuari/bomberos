@@ -78,6 +78,9 @@ class MaterialController extends Controller
         $material->delete();
         return redirect()->route('material.index');
       }
+      else{
+        return view('auth/alerta');
+      }
   }
   public function update(MaterialRequest $data, $id)
   {
