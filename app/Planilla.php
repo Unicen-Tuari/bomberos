@@ -15,4 +15,7 @@ class Planilla extends Model
   public function renglones(){
       return $this->hasMany(Renglon::class);
     }
+    public function bombero(){
+      return $this->hasOne(Bombero::class,"id","jefe_guardia");
+    }
 }

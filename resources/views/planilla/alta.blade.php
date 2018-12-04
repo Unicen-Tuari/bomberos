@@ -14,17 +14,22 @@
         {{method_field('POST')}}
 
         <div class="form-group {{ $errors->has('jefe_guardia') ? ' has-error' : '' }}">
-          <label class="col-md-4 control-label" name="jefe_guardia" > Jefe de Guardia</label>
+          <label for="jefe_guardia" class="col-md-4 control-label">Jefe de Guardia</label>
           <div class="col-md-6">
-            <input class="form-control" type="text" name="jefe_guardia" placeholder= "Jefe guardia">
-              @if ($errors->has('jefe_guardia'))
-                  <span class="help-block">
-                    <strong>{{ $errors->first('jefe_guardia') }}</strong>
-                  </span>
-              @endif
+            <select class="form-control" name="jefe_guardia">
+              <option value="">Bombero... </option>
+              @foreach($bomberos as $bombero)
+                <option value="{{$bombero->id}}">{{$bombero->apellido}}, {{$bombero->nombre}}</option>
+              @endforeach
+            </select>
+            @if ($errors->has('jefe_guardia'))
+                <span class="help-block">
+                    <strong>{{$errors->first('jefe_guardia')}}</strong>
+                </span>
+            @endif
           </div>
         </div>
-
+        
         <div class="form-group {{ $errors->has('nro_guardia') ? ' has-error' : '' }}">
             <label class="col-md-4 control-label" name="nro_guardia" > Nro de Guardia</label>
               <div class="col-md-6">
@@ -43,7 +48,7 @@
                 <input class="form-control" type="text" name="inicio_semana" placeholder= "Número de día">
                     @if ($errors->has('inicio_semana'))
                         <span class="help-block">
-                            <strong>{{ $errors->first('inicio_semnana') }}</strong>
+                            <strong>{{ $errors->first('inicio_semana') }}</strong>
                         </span>
                     @endif
               </div>
@@ -55,7 +60,7 @@
                 <input class="form-control" type="text" name="fin_semana" placeholder= "Número de día">
                     @if ($errors->has('fin_semana'))
                         <span class="help-block">
-                            <strong>{{ $errors->first('fin_semnana') }}</strong>
+                            <strong>{{ $errors->first('fin_semana') }}</strong>
                         </span>
                     @endif
               </div>
