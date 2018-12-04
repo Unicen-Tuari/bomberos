@@ -18,8 +18,11 @@ class PuntuacionTest extends TestCase
         $this->assertEquals($bomberoPuntuacion->nro_legajo(),$bombero->nro_legajo());
     }
 
-    public function testPuntacionmes(){
-        
-
+    public function testPuntacionYear(){
+        $variable= factory(Variables::class)->create(['year'=>2018]);
+        $variableYear= Variables::getVarByYear('2018');
+        $variableDesc= Variables::getVar();
+        $this->assertEquals($variable->year,$variableYear->year);
+        $this->assertEquals($variable->year,$variableDesc->year);
     }
 }

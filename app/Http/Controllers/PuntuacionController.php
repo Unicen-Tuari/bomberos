@@ -49,8 +49,7 @@ class PuntuacionController extends Controller
     public function puntuacionmes($month,$year,$bombero)
     {
         if(Auth::user()->admin){
-          //$vaarr=Variables::first();
-          $var=Variables::whereNotNull('year')->where('year','=', $year)->first();
+          $var=Variables::getVarByYear($year);
           $monthactual=\Carbon\Carbon::now()->format('m');
           $yearactual=\Carbon\Carbon::now()->format('Y');
           if(!isset($var)){
@@ -132,7 +131,7 @@ class PuntuacionController extends Controller
     public function edit($id)
     {
       if(Auth::user()->admin){
-        $var=Variables::first();
+        $var=Variables::getVar();
         $puntuacion=Puntuacion::find($id);
         $month=\Carbon\Carbon::parse($puntuacion->fecha)->format('m');
         $year=\Carbon\Carbon::parse($puntuacion->fecha)->format('Y');
