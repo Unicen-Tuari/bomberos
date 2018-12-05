@@ -7,7 +7,7 @@ class Servicio extends Model
   protected $table = 'servicio';
   protected $fillable = ['tipo_servicio_id, tipo_alarma, num_servicio, direccion, descripcion,
             hora_alarma, hora_salida, hora_regreso, ilesos, otros, Superficie, muertos,
-            quemados, lesionados, combustible, disposiciones, reconocimiento'];
+            quemados, lesionados, combustible, disposiciones, reconocimiento', 'path'];
   public function ScopeTipo($query,$tipo)
   {
     if ($tipo>0) {
@@ -52,6 +52,11 @@ class Servicio extends Model
   {   //servicios activos son aquellos que no tengan hora de regreso marcada
       return $this->whereNull('hora_regreso')->orderBy('id','ASC')->get()->all();
   }
+
+  public function getPlanillaUrlAttribute(){
+    return "/storage/" . $this->path;
+  }
+
   public function bomberos(){
     return $this->hasMany(BomberoServicio::class);
   }

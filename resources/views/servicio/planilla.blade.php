@@ -9,7 +9,7 @@
       </form>
       <div id="breadcrumb" class="panel-heading">
         <span class="fa fa-print" aria-hidden="true"></span>
-        <h4>Reporte de Servicio - <span id="idServicio">{{$id}}</span></h4>
+        <h4>Reporte de Servicio - <span id="idServicio">{{$servicio->id}}</span></h4>
       </div>
       <div class="container-fluid" id="planillaReporteServicio">
         <div class="row">
@@ -70,6 +70,9 @@
                 <button type="submit" id="print" class="btn btn-default pull-left">
                   <i class=" glyphicon glyphicon-print"></i> Imprimir
                 </button>
+                <a href="{{$servicio->planilla_url}}" class="btn btn-default pull-left">
+                  Ver Planilla
+                </a>
                 <form action="{{route('servicio.index')}}" metho="GET">
                   <button type="submit" id="print" class="btn btn-default pull-right">
                     <i class=" glyphicon glyphicon-arrow-left"></i> Volver
