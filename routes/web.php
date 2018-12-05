@@ -32,6 +32,10 @@ Route::resource('usuario','UserController');
 Route::get('asistencia/rango', 'AsistenciaController@rango')->name('AsistenciaController.rango');
 Route::resource('asistencia','AsistenciaController');
 
+Route::resource('planilla','PlanillaController');
+Route::get('planilla/mostrar/{id}', 'PlanillaController@mostrar')->name('planilla.mostrar');
+Route::get('planilla/imprimir/{id}', 'PlanillaController@imprimir')->name('planilla.imprimir');
+
 Route::get('puntuacion/anual', 'PuntuacionController@anual')->name('puntuacion.anual');
 Route::get('puntuacion/anual/{bombero}/{inicio}/{fin}', 'PuntuacionController@tabla_anual')->name('puntuacion.tabla_anual');
 Route::get('puntuacion/bomberos/{mes}/{year}', 'PuntuacionController@bomberos')->name('puntuacion.bomberos');
