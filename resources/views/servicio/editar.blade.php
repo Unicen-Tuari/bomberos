@@ -37,9 +37,9 @@
     <input class="hidden" type="text" name="finalizar" value="0">
     @include('servicio.formcompleto')
     <div class="form-group {{$errors->has('disposiciones') ? ' has-error' : ''}}">
-      <label class="col-sm-2 control-label" for="imageToUpload">Planilla</label>
+      <label class="col-sm-2 control-label" for="imageToUpload">Planillas</label>
       <div class="col-sm-8">
-        <input type="file" class="form-control" name="imageToUpload" id="imageToUpload">
+        <input type="file" class="form-control" name="imageToUpload" id="imageToUpload" multiple>
       </div>
     </div>
     <div class="col-sm-1 col-sm-offset-5">

@@ -66,4 +66,8 @@ class Servicio extends Model
   public function tipoServicio(){
     return $this->belongsTo(TipoServicio::class);
   }
+  public function imagenes(){
+    return $this->hasMany('App\ImagenServicio');
+  }
+
 }
