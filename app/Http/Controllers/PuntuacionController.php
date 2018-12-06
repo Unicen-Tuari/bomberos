@@ -49,9 +49,12 @@ class PuntuacionController extends Controller
     public function puntuacionmes($month,$year,$bombero)
     {
         if(Auth::user()->admin){
-          $var=Variables::first();
+          $var=Variables::getVarByYear($year);
           $monthactual=\Carbon\Carbon::now()->format('m');
           $yearactual=\Carbon\Carbon::now()->format('Y');
+          if(!isset($var)){
+              return view('errors/faltante');
+          }
           if($year<$yearactual || ($year==$yearactual && $month<$monthactual)){
             $bombero=Bombero::find($bombero);
             $dias=asistencia::select(\DB::raw('COUNT(*) as cant, id_bombero'))->whereYear('fecha_reunion','=',$year)->whereMonth('fecha_reunion','=',$month)->groupBy('id_bombero')->get()->max('cant');
@@ -129,7 +132,7 @@ class PuntuacionController extends Controller
     public function edit($id)
     {
       if(Auth::user()->admin){
-        $var=Variables::first();
+        $var=Variables::getVar();
         $puntuacion=Puntuacion::find($id);
         $month=\Carbon\Carbon::parse($puntuacion->fecha)->format('m');
         $year=\Carbon\Carbon::parse($puntuacion->fecha)->format('Y');

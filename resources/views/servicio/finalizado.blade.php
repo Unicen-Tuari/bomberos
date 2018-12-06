@@ -29,6 +29,11 @@
             <i class="glyphicon glyphicon-ok"></i> Finalizar
         </button>
       </div>
+      <div class="col-sm-1 col-sm-offset-2">
+      <button type="" class="btn btn-primary">
+            <i class="glyphicon glyphicon-more"></i> Otro servicio
+        </button>
+        </div>
     {!! Form::close() !!}
 
     </div>
