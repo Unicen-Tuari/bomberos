@@ -39,7 +39,7 @@
     <div class="form-group {{$errors->has('disposiciones') ? ' has-error' : ''}}">
       <label class="col-sm-2 control-label" for="imageToUpload">Planillas</label>
       <div class="col-sm-8">
-        <input type="file" class="form-control" name="imageToUpload" id="imageToUpload" multiple>
+        <input type="file" class="form-control" name="imageToUpload[]" id="imageToUpload" multiple>
       </div>
     </div>
     <div class="col-sm-1 col-sm-offset-5">
