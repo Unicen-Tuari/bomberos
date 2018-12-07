@@ -5,10 +5,10 @@ class ImagenServicio extends Model
 {
     protected $fillable = ['servicio_id', 'path'];
 
-    protected $table = 'imagen_servicio';
+    protected $table = 'imagen_servicios';
 
     public function servicio()
     {
-        return $this->belongsTo('App\Servicio');
+        return $this->belongsTo(Servicio::class,"id");
     }
 }
