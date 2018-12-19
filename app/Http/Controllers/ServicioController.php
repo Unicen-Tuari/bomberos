@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Requests\ServicioRequest;
 use App\Servicio;
+use App\ImagenServicio;
 use App\Bombero;
 use App\TipoAsistencia;
 use App\Vehiculo;
@@ -311,12 +312,15 @@ class ServicioController extends Controller
         $servicio->jefe_servicio=$data['jefe_servicio'];
         $servicio->oficial=$data['oficial'];
         $servicio->jefe_de_cuerpo=$data['jefe_de_cuerpo'];
-        if($request->hasFile('imageToUpload')){
-          $filename = Storage::disk('public')->putFile('planillas',$request
-          ->file('imageToUpload'));
-
-          $servicio->path = $filename;
-        }
+        $servicio = Servicio::find($id); //busco el id del servicio en el que estoy
+        foreach ($request->imageToUpload as $image) { // recorro todas las images que hay en imagesToUpload
+          $path = $image->store('photos');
+          //y aca las guardo en la tabla de ImagenServicio
+          ImagenServicio::create([
+              'servicio_id' => $servicio->id,
+              'path' => $path
+          ]);
+         }
         if ($servicio->save()){
           $bomberoacargo=BomberoServicio::where([['servicio_id',$servicio->id],['a_cargo',1]])->first();
           if ($data["bombero"]){
@@ -431,4 +435,4 @@ class ServicioController extends Controller
       }
       return view('auth/alerta');
     }
-  }
+}

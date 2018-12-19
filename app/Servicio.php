@@ -7,7 +7,7 @@ class Servicio extends Model
   protected $table = 'servicio';
   protected $fillable = ['tipo_servicio_id, tipo_alarma, num_servicio, direccion, descripcion,
             hora_alarma, hora_salida, hora_regreso, ilesos, otros, Superficie, muertos,
-            quemados, lesionados, combustible, disposiciones, reconocimiento', 'path'];
+            quemados, lesionados, combustible, disposiciones, reconocimiento'];
   public function ScopeTipo($query,$tipo)
   {
     if ($tipo>0) {
@@ -66,4 +66,8 @@ class Servicio extends Model
   public function tipoServicio(){
     return $this->belongsTo(TipoServicio::class);
   }
+  public function imagenes(){
+    return $this->hasMany(ImagenServicio::class);
+  }
+
 }
